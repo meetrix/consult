@@ -10,25 +10,28 @@ api-user:
     - "9000:9000"
   links:
     - mongodb
-#
-#frontend:
-#  image: node:7
-#  command: npm run webpack
+
+#frontend-dashboard:
+#  image: node:carbon
+#  command: bash -c "npm install && npm start"
 #  working_dir: /app
 #  volumes:
-#    - ./frontend:/app
+#    - ./frontend-dashboard:/app
+#  environment:
+#    PORT: 8080
 #  ports:
-#    - "4000:4000"
-#
+#    - "8000:8080"
+
 nginx-main:
   image: nginx
   ports:
-      - "8080:8080"
+      - "8000:8080"
   volumes:
       - ./nginx-main/default.conf:/etc/nginx/conf.d/default.conf
-#      - ./frontend/dist:/usr/share/nginx/html
+      - ./frontend-dashboard/build:/usr/share/nginx/html
   links:
     - api-user
+#    - frontend-dashboard
 
 mongodb:
   image: mongo
