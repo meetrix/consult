@@ -20,13 +20,15 @@ api-user:
 #  ports:
 #    - "4000:4000"
 #
-#public:
-#  image: nginx
-#  ports:
-#      - "8080:8080"
-#  volumes:
-#      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+nginx-main:
+  image: nginx
+  ports:
+      - "8080:8080"
+  volumes:
+      - ./nginx-main/default.conf:/etc/nginx/conf.d/default.conf
 #      - ./frontend/dist:/usr/share/nginx/html
+  links:
+    - api-user
 
 mongodb:
   image: mongo
