@@ -31,7 +31,7 @@ nginx-main:
       - ./frontend-dashboard/build:/usr/share/nginx/html
   links:
     - api-user
-#    - frontend-dashboard
+    - frontend-dashboard
 
 mongodb:
   image: mongo
