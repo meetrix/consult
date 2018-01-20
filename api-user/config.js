@@ -16,9 +16,9 @@ const config = {
     port: {
         web: {
             $filter: 'env',
-            test: 9090,
+            test: process.env.PORT,
             production: process.env.PORT,
-            $default: 9000
+            $default: 8080
         }
     },
     authAttempts: {
@@ -35,8 +35,8 @@ const config = {
             uri: {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
-                test: 'mongodb://mongodb:27017/frame-test',
-                $default: 'mongodb://mongodb:27017/frame'
+                test: 'mongodb://localhost:27017/frame-test',
+                $default: 'mongodb://localhost:27017/frame'
             }
         },
         autoIndex: true
