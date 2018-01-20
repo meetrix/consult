@@ -30,7 +30,7 @@ module.exports = (env = {}) => {
       port: 8080,
       compress: true,
       hot: true,
-      open: true
+      open: false
     },
     module: {
       rules: [
