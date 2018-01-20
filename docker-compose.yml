@@ -7,20 +7,20 @@ api-user:
   environment:
     PORT: 9000
   ports:
-    - "9000:9000"
+    - "8001:9000"
   links:
     - mongodb
 
-#frontend-dashboard:
-#  image: node:carbon
-#  command: bash -c "npm install && npm start"
-#  working_dir: /app
-#  volumes:
-#    - ./frontend-dashboard:/app
-#  environment:
-#    PORT: 8080
-#  ports:
-#    - "8000:8080"
+frontend-dashboard:
+  image: node:carbon
+  command: bash -c "npm install && npm start"
+  working_dir: /app
+  volumes:
+    - ./frontend-dashboard:/app
+  environment:
+    PORT: 8080
+  ports:
+    - "8002:8080"
 
 nginx-main:
   image: nginx
