@@ -25,7 +25,7 @@ frontend-dashboard:
 nginx-main:
   image: nginx
   ports:
-      - "8000:8080"
+      - "8080:8080"
   volumes:
       - ./nginx-main/default.conf:/etc/nginx/conf.d/default.conf
       - ./frontend-dashboard/build:/usr/share/nginx/html
