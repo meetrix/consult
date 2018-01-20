@@ -12,3 +12,8 @@ Components
 1. api-user
     1. This is the back end api for user management. Based on [jedireza/frame](https://github.com/jedireza/frame)
     2. proxy url `/api/user/`.
+    
+    
+Conventions
+
+1. All web containers run on 8080 
