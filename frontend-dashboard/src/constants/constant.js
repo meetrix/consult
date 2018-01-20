@@ -1,5 +1,5 @@
 
-const BACKEND_URL = 'http://localhost:9000';
+const BACKEND_URL = 'http://localhost:8000/api/user';
 export const REDUX_ACTIONS = {
     //saga action
     FETCHING:'FETCHING',
@@ -43,7 +43,7 @@ export const ACTION_ATTR ={
 }
 export const URLS = {
     TUTOR: BACKEND_URL+'/tutor',
-    LOGIN:BACKEND_URL+'/api/login'
+    LOGIN:BACKEND_URL+'/login'
 };
 export const HTTP_METHODS = {
     GET: "GET",

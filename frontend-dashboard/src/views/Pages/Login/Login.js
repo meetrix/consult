@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 import firebase from 'firebase';
-import {HashRouter, Route, Switch,withRouter} from 'react-router-dom';
+import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
 import GoogleButton from 'react-google-button'
 
-const config = require('../../../config.json');
+const config = require('../../../../config.json');
 
 class Login extends Component {
 
@@ -71,9 +71,10 @@ class Login extends Component {
 
   render() {
     if(this.props.auth[0].isLogin){
+        return(
 
-        console.log("user login")
-        this.props.history.push('/')
+        <Redirect to="/"/>
+        )
     }
     else {
         return (
