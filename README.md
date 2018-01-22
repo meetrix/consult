@@ -8,14 +8,14 @@ Getting things up
     2. Run init script : `npm run first-time-setup`
     
     
-Component
+Components
 -
 
 1. api-user (host port 8001)
     1. This is the back end api for user management. Based on [jedireza/frame](https://github.com/jedireza/frame)
     2. proxy url `/api/user/`.
 2. frontend-dashboard (host port 8002)
-    1. [CoreUI Admin]() based React frontend
+    1. [CoreUI Admin](https://github.com/mrholek/CoreUI-React) based React frontend
     2. proxy url `/`
     
 Contributing
