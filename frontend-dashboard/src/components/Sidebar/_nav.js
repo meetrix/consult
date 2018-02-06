@@ -23,6 +23,11 @@ export default {
                     name: 'Register',
                     url: '/register',
                     icon: 'icon-star'
+                },
+                {
+                    name: 'Classroom',
+                    url: '/classroom',
+                    icon: 'icon-star'
                 }
             ]
         }

@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import {HashRouter, Route, Switch,withRouter} from 'react-router-dom';
 import GoogleButton from 'react-google-button'
 
-const config = require('../../../config.json');
+const config = require('../../../../config.json');
 
 class Login extends Component {
 
