@@ -6,7 +6,7 @@ class Classroom extends Component {
     render() {
             return (
                 <div className="app flex-row align-items-center">
-                        <iframe src="https://whiteboard.siplo.lk/whiteboard/" height='inherit' overflow="hidden"  width='100%'/>
+                        <iframe src="https://whiteboard.siplo.lk/whiteboard/" width="1300" height="700"/>
                 </div>
             );
     }
