@@ -109,7 +109,6 @@ internals.applyRoutes = function (server, next) {
             reply({
                 data:[
                     {
-                        isLogin:true,
                         user: {
                             _id: request.pre.user._id,
                             username: request.pre.user.username,
