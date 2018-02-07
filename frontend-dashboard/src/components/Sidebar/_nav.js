@@ -25,8 +25,8 @@ export default {
                     icon: 'icon-star'
                 },
                 {
-                    name: 'Classroom',
-                    url: '/classroom',
+                    name: 'Session',
+                    url: '/session',
                     icon: 'icon-star'
                 }
             ]
