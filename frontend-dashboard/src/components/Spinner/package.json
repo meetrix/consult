@@ -1,6 +1,6 @@
 {
-  "name": "SidebarMinimizer",
+  "name": "Spinner",
   "version": "0.0.0",
   "private": true,
-  "main": "./SidebarMinimizer.js"
+  "main": "./Spinner.js"
 }
