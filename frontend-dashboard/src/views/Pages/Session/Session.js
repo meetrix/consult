@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 
 class Session extends Component {
 
@@ -8,6 +9,7 @@ class Session extends Component {
                 <iframe src="https://whiteboard.siplo.lk"
                         height={window.innerHeight}
                         width={window.innerWidth} />
+                <button id="myBtn" class="btn btn-default">File Share</button>
             </div>
         )
     }
