@@ -1,24 +1,25 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 import firebase from 'firebase';
-import {HashRouter, Route, Switch,withRouter} from 'react-router-dom';
+import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
 import GoogleButton from 'react-google-button'
 
-const config = require('../../../config.json');
+const config = require('../../../../config.json');
 
 class Login extends Component {
 
     constructor(props){
         super(props);
         this.state={
-            auth:this.props.auth
+            auth:this.props.auth,
+            signup:false
         }
         firebase.initializeApp(config.firebase_config);
 
         this.google_siginin = this.google_siginin.bind(this);
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
-
+        this.signup = this.signup.bind(this);
 
     }
     setUsername(username){
@@ -68,12 +69,23 @@ class Login extends Component {
 
 
     }
+    signup(){
+        this.setState({
+            signup: true
+        });
 
+    }
   render() {
-    if(this.props.auth[0].isLogin){
+    if(this.props.auth[0].authHeader!=undefined){
+        return(
 
-        console.log("user login")
-        this.props.history.push('/')
+        <Redirect to="/"/>
+        )
+    }
+    else if(this.state.signup){
+        return(
+        <Redirect to="/signup"/>
+        )
     }
     else {
         return (
@@ -127,7 +139,7 @@ class Login extends Component {
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                                 tempor incididunt ut
                                                 labore et dolore magna aliqua.</p>
-                                            <Button color="primary" className="mt-3" active>Register Now!</Button>
+                                            <Button color="primary" className="mt-3" active onClick={ () => this.signup()}>Register Now!</Button>
                                         </div>
                                     </CardBody>
                                 </Card>

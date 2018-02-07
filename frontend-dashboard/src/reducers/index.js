@@ -4,5 +4,6 @@ import auth from './auth'
 const rootReducer = combineReducers({
     tutors,
     auth,
+
 });
 export default rootReducer;

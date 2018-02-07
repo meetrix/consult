@@ -158,14 +158,19 @@ internals.applyRoutes = function (server, next) {
                 const authHeader = 'Basic ' + new Buffer(credentials).toString('base64');
 
                 reply({
-                    user: {
-                        _id: user._id,
-                        username: user.username,
-                        email: user.email,
-                        roles: user.roles
-                    },
-                    session: results.session,
-                    authHeader
+                    data:[
+                        {
+
+                            user: {
+                                _id: user._id,
+                                username: user.username,
+                                email: user.email,
+                                roles: user.roles
+                            },
+                            //session: results.session,
+                            //authHeader
+                        }
+                    ]
                 });
             });
         }
