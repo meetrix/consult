@@ -20,13 +20,13 @@ import Login from './containers/Login/LoginContainer'
 import Register from './views/Pages/Register/'
 import TutorsContainer from './containers/Tutors/TutorsContainer'
 import Session from './views/Pages/Session/'
+import Chat from './views/Pages/Chat/'
 
 // Containers
 import Full from './containers/Full/'
 
 //Configure Store
 import configure from './configurestore'
-import Classroom from "./views/Pages/Classroom/Classroom";
 //Initiate store
 const initialState = {
     tutors: [{id:0, name:'init'}]
@@ -40,6 +40,7 @@ ReactDOM.render((
             <Route exact path="/login" name="Login Page" component={Login}/>
             <Route exact path="/register" name="Register Page" component={Register}/>
             <Route exact path="/session" name="Session Page" component={Session}/>
+            <Route exact path="/chat" name="Chat Page" component={Chat}/>
             <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer}/>
             <Route path="/" name="Home" component={Full}/>
         </Switch>
