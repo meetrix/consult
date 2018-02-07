@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import styles from './ChatApp.scss';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
+{/*<div className="container" >*/}
 
 class ChatApp extends Component {
 
     render() {
         return (
-                <div className="container" style={{marginLeft: 1400}}>
+                <div className="container">
                     <div className="row chat-window col-xs-5 col-md-3" id="chat_window_1" style={{marginLeft: 10}}>
                         <div className="col-xs-12 col-md-12">
                             <div className="panel panel-default">
                                 <div className="panel-heading top-bar">
                                     <div className="col-md-8 col-xs-8">
-                                        <h3 className="panel-title"><span className="glyphicon glyphicon-comment" /> Chat - Miguel</h3>
+                                        <h3 className="panel-title"><span className="glyphicon glyphicon-comment" /> Chat - Consult</h3>
                                     </div>
                                     <div className="col-md-4 col-xs-4" style={{textAlign: 'right'}}>
                                         <a href="#"><span id="minim_chat_window" className="glyphicon glyphicon-minus icon_minim" /></a>
