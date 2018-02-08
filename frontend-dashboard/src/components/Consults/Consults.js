@@ -14,14 +14,14 @@ class Consults extends Component {
 
     render() {
         return(
-            <ul>
+            <div >
                 {this.props.consults.map(consult =>
                     <Consult
                         key={consult._id}
                         {...consult}
                         actions={this.props.actions}
                     />)}
-            </ul>
+            </div>
 
 
         )
