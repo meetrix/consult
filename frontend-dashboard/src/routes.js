@@ -6,7 +6,7 @@ import {HashRouter, Route, Switch} from 'react-router-dom';
 import Login from './containers/Login/LoginContainer'
 import SignUpContainer from './containers/SignUp/SignUpContainer'
 import TutorsContainer from './containers/Tutors/TutorsContainer'
-
+import Consults from './views/Pages/Consults/Consults';
 import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/Route/UnauthenticatedRoute";
 
@@ -19,6 +19,7 @@ export default() =>
     <Route exact path="/login" name="Login Page" component={Login} />
     <Route exact path="/signup" name="Register Page" component={SignUpContainer} />
     <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer} />
+    <Route exact path="/consults" name="Consults Page" component={Consults} />
     <Route path="/" name="Home" component={Full} />
   </Switch>
 </HashRouter>
