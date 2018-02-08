@@ -12,9 +12,17 @@ const internals = {};
 
 
 internals.applyRoutes = function (server, next) {
+
+    const AuthAttempt = server.plugins['hapi-mongo-models'].AuthAttempt;
+
     server.route({
         method: 'GET',
         path: '/conference/jwt',
+        config: {
+            auth: {
+                strategy: 'simple'
+            }
+        },
         handler: function (request, reply) {
             let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
             reply(token);
@@ -26,7 +34,10 @@ internals.applyRoutes = function (server, next) {
 
 exports.register = function (server, options, next) {
 
-    server.dependency(['auth', 'hapi-mongo-models'], internals.applyRoutes);
+    server.dependency(['hapi-mongo-models'], internals.applyRoutes);
 
     next();
+};
+exports.register.attributes = {
+    name: 'jwt-token-generator'
 };
