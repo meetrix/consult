@@ -13,7 +13,7 @@ class SortByRadioButtons extends Component {
             <div>
                 <FormGroup tag="fieldset">
                     <Label>Sort By</Label>
-                    <FormGroup check>
+                    <FormGroup className="form-inline">
                         {radioButtons}
                     </FormGroup>
                 </FormGroup>

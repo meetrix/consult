@@ -10,7 +10,7 @@ class DropDownMenuSet extends Component {
         );
 
         return (
-            <div>
+            <div className="form-inline">
                 {menuSet}
             </div>
         )
