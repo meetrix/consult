@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 
 class DropDownMenu extends Component {
     render() {
+        let options = this.props.options.map(option=>
+            <option key={'search_criteria_option_'+this.props.name+'_'+option}>{option}</option>
+        )
         return (
             <div>
-                <Label for={'search_criteria_'+this.props.searchKey}>{this.props.label}</Label>
-                <Input type="select" name="select" id={'search_criteria_'+this.props.searchKey}>
-                    <option>1</option>
-                    <option>2</option>
+                <Label for={'search_criteria_'+this.props.name}>{this.props.label}</Label>
+                <Input type="select" name={'search_criteria_'+this.props.name}>
+                    {options}
                 </Input>
             </div>
         )
@@ -17,8 +19,8 @@ class DropDownMenu extends Component {
 }
 
 DropDownMenu.propTypes = {
+    name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    searchKey: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired
 }
 

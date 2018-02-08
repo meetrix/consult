@@ -6,12 +6,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
-import DropDownMenu from '../../../components/Search/DropDownMenu/DropDownMenu';
+import DropDownMenuSet from '../../../components/Search/DropDownMenu/DropDownMenuSet';
 import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
 
 class ConsultantList extends Component {
 
     render() {
+
+        let dropDownMenus = [{name: "subject", label:"Subject", options:["Chemistry", "Physics"] }];
         return(
             <div>
                 {/*Search Parameters*/}
@@ -29,11 +31,7 @@ class ConsultantList extends Component {
 
                 {/*Criteria Selection*/}
                 <Row>
-                    <Col md="3">
-                        <DropDownMenu
-                            searchKey="subject" label="Subject" options={["1", "2"]}
-                        />
-                    </Col>
+                    <DropDownMenuSet dropDownMenus={dropDownMenus}/>
                 </Row>
 
             </div>
