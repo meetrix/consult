@@ -8,12 +8,13 @@ import PropTypes from 'prop-types';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
 import DropDownMenuSet from '../../../components/Search/DropDownMenu/DropDownMenuSet';
 import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
+import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
 
 class ConsultantList extends Component {
 
     render() {
 
-        let dropDownMenus = [{name: "subject", label:"Subject", options:["Chemistry", "Physics"] }];
+        // let dropDownMenus = [{name: "subject", label:"Subject", options:["Chemistry", "Physics"] }];
         return(
             <div>
                 {/*Search Parameters*/}
@@ -25,13 +26,13 @@ class ConsultantList extends Component {
 
                     {/*Sort By Radio Buttons*/}
                     <Col md="8">
-                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={[{id: '1', label:'test'}]}/>
+                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
                     </Col>
                 </Row>
 
                 {/*Criteria Selection*/}
                 <Row>
-                    <DropDownMenuSet dropDownMenus={dropDownMenus}/>
+                    <DropDownMenuSet dropDownMenus={ConsultantSearchDropDownMenu}/>
                 </Row>
 
             </div>
