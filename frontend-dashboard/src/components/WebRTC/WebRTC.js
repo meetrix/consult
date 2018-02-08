@@ -7,12 +7,7 @@ class WebRTC extends Component {
         this.removeVideo = this.removeVideo.bind(this);
         this.readyToCall = this.readyToCall.bind(this);
     }
-    // componentWillMount() {
-    //     const script = document.createElement("script");
-    //     script.src = "https://simplewebrtc.com/latest-v2.js";
-    //     script.async = true;
-    //     document.head.appendChild(script);
-    // }
+
     componentDidMount(){
         this.webrtc = new SimpleWebRTC({
             localVideoEl: 'localVideo',
