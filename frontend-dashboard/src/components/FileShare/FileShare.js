@@ -245,7 +245,7 @@ class FileShare extends Component {
 
             <div>
                 <div id="classControlContainer" className="" style={divStyle}>
-                    <button id="myBtn" className="btn btn-default" color="orange">File Share</button>
+                    <button id="myBtn" className="btn btn-default" style={{backgroundColor:'orange'}}>File Share</button>
                     <div id="myModal" className="modal">
                         <div className="modal-content">
                             <span className="closing">&times;</span>
