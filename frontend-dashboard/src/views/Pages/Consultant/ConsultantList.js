@@ -7,6 +7,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
 import DropDownMenu from '../../../components/Search/DropDownMenu/DropDownMenu';
+import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
 
 class ConsultantList extends Component {
 
@@ -22,23 +23,7 @@ class ConsultantList extends Component {
 
                     {/*Sort By Radio Buttons*/}
                     <Col md="8">
-                        <FormGroup tag="fieldset">
-                            <Label>Sort By</Label>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="radio" name="radio1" />{' '}
-                                    Option one
-                                </Label>
-                                <Label check>
-                                    <Input type="radio" name="radio1" />{' '}
-                                    Option two
-                                </Label>
-                                <Label check>
-                                    <Input type="radio" name="radio1"/>{' '}
-                                    Option three
-                                </Label>
-                            </FormGroup>
-                        </FormGroup>
+                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={[{id: '1', label:'test'}]}/>
                     </Col>
                 </Row>
 
@@ -52,7 +37,6 @@ class ConsultantList extends Component {
                 </Row>
 
             </div>
-
 
         )
     }
