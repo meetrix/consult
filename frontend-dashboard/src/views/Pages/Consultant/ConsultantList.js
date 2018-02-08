@@ -45,7 +45,9 @@ class ConsultantList extends Component {
                 {/*Criteria Selection*/}
                 <Row>
                     <Col md="3">
-                        <DropDownMenu/>
+                        <DropDownMenu
+                            searchKey="subject" label="Subject" options={["1", "2"]}
+                        />
                     </Col>
                 </Row>
 
