@@ -14,8 +14,7 @@ class Session extends Component {
                         height={window.innerHeight}
                         width={window.innerWidth} />
                 <FileShare/>
-
-                <ChatApp></ChatApp>
+                <ChatApp/>
 
             </div>
         )
