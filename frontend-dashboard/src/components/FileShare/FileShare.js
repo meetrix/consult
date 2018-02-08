@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
+import "./FileShare.scss";
 
 class FileShare extends Component {
     constructor(props) {
