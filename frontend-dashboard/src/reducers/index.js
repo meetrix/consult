@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import tutors from './tutor'
 import auth from './auth'
-const rootReducer = combineReducers({
-    tutors,
-    auth,
+import consultants from './consultants'
 
+const rootReducer = combineReducers({
+    auth,
+    consultants,
 });
 export default rootReducer;

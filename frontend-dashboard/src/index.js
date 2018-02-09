@@ -21,7 +21,7 @@ import Routes from  './routes'
 import configure from './configurestore'
 //Initiate store
 const initialState = {
-    tutors: [{id:0, name:'init'}]
+
 };
 
 const store = configure(initialState);
