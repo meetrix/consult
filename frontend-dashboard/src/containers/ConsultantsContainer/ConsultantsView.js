@@ -5,22 +5,22 @@
 // Core modules
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Consults from '../../components/Consults/Consults'
+import Consultants from '../../components/Consultants/Consultants'
 
-class ConsultsView extends Component {
+class ConsultantsView extends Component {
 
     componentWillMount(){
-        this.props.actions.getConsults();
+        this.props.actions.getConsultants();
     }
     render() {
         return(
-            <Consults consults={this.props.consults} actions={this.props.actions} />
+            <Consultants consultants={this.props.consultants} actions={this.props.actions} />
         )
     }
 }
 
-ConsultsView.propTypes = {
-    consults: PropTypes.arrayOf(PropTypes.shape({
+ConsultantsView.propTypes = {
+    consultants: PropTypes.arrayOf(PropTypes.shape({
             _id:PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
 
@@ -30,4 +30,4 @@ ConsultsView.propTypes = {
 
 };
 
-export default ConsultsView;
+export default ConsultantsView;
