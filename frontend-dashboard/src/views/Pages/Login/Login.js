@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 import firebase from 'firebase';
 import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
-import GoogleButton from 'react-google-button'
+import GoogleButton from 'react-google-button';
 
 const config = require('../../../../config.json');
 

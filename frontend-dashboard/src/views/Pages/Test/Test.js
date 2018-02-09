@@ -16,7 +16,7 @@ class Test extends Component{
     render(){
         return(
             <div style={{top: '50%',left: '50%',position:'absolute'}}>
-
+                <ConsultantWidget username="Yasith Prabuddhaka" price="Rs.5000"/>
                 <ImageWidget path="img/avatars/1.jpg"/>
             </div>
 
