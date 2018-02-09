@@ -1,0 +1,6 @@
+{
+  "name": "ScheduledMeetSidePopUpSummary",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ScheduledMeetSidePopUpSummary.js"
+}

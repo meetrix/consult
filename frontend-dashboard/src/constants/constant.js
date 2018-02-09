@@ -18,6 +18,10 @@ export const REDUX_ACTIONS = {
     HANDLE_SIGNUP_DATA_FETCH_FAILURE:"HANDLE_SIGNUP_DATA_FETCH_FAILURE",
     SET_SIGNUP_DATA:"SET_SIGNUP_DATA",
 
+    //consults redux action
+    HANDLE_CONSULTS_DATA_FETCH_FAILURE:"HANDLE_CONSULTS_DATA_FETCH_FAILURE",
+    SET_CONSULTS_DATA:"SET_CONSULTS_DATA",
+
 }
 export const STORE_INITIATE_VALUE={
     AUTH_INITIATE: [
@@ -39,7 +43,8 @@ export const ACTION_KEY ={
 
     LOGIN:"LOGIN",
     SIGNUP:"SIGNUP",
-    TUTOR :"TUTOR"
+    TUTOR :"TUTOR",
+    CONSULTS:"CONSULTS"
 }
 
 export const ACTION_ATTR ={
@@ -49,6 +54,7 @@ export const URLS = {
     TUTOR: BACKEND_URL+'/tutor',
     LOGIN:BACKEND_URL+'/login',
     SIGNUP:BACKEND_URL+'/signup',
+    CONSULTS:BACKEND_URL+'/users'
 };
 export const HTTP_METHODS = {
     GET: "GET",
