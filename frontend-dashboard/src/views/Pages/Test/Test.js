@@ -7,6 +7,7 @@ import React,{Component} from 'react'
 
 
 import ScheduledClassSidePopUp from '../../../components/ScheduledMeetSidePopUpSummary/ScheduledMeetSidePopUpSummary'
+import ConsultantWidget from '../../../components/Consultant/ConsultantWidget'
 class Test extends Component{
 
 
@@ -15,7 +16,7 @@ class Test extends Component{
         return(
             <div style={{top: '50%',left: '50%',position:'absolute'}}>
 
-                <ScheduledClassSidePopUp/>
+                <ConsultantWidget/>
             </div>
 
         );
