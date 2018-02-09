@@ -6,6 +6,7 @@ import {REDUX_ACTIONS,STORE_INITIATE_VALUE} from '../constants/constant';
 export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_LOGIN_DATA: {
+            localStorage.setItem('token',action.payload[0].authHeader)
             return action.payload;
         }
         case REDUX_ACTIONS.HANDLE_LOGIN_DATA_FETCH_FAILURE: {
