@@ -144,6 +144,12 @@ const manifest = {
         },
         {
             plugin: './server/web/index'
+        },
+        {
+            plugin: './server/api/jwt-token-generator',
+            options: {
+                routes: { prefix: '/api' }
+            }
         }
     ]
 };

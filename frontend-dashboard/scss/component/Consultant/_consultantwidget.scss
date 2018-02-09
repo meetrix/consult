@@ -1,0 +1,30 @@
+.consultantWidget{
+  background-color: #b9bbbf;
+  width: 400px;
+  height: 100px;
+  border-radius: 20px;
+
+}
+
+.widget-image{
+  position: absolute;
+  top: 25%;
+  left: 10px;
+}
+
+.widget-detail{
+  position:absolute;
+  top: 25%;
+  left: 25%;
+}
+
+.widget-price{
+  position:absolute;
+  top:50%;
+  left: 300px;
+}
+
+.consultant-widget-price{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}

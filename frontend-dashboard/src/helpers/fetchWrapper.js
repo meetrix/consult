@@ -17,11 +17,24 @@ export default (url, options) =>
         }
 
         options.credentials = "include";
+        const token = localStorage.getItem('token');
 
-        options.headers = new Headers({
-            "Content-Type": "application/json"
+        console.log("token========="+token);
+        if(token === null){
+            options.headers = new Headers({
+                "Content-Type": "application/json"
 
-        });
+            });
+        }
+        else {
+            options.headers = new Headers({
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('token')
+
+
+            });
+        }
+
 
         if (typeof options.body === "object") {
             options.body = JSON.stringify(options.body);
