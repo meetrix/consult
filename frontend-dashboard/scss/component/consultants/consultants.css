@@ -1,0 +1,38 @@
+.consultantWidget {
+  background-color: #00bf8f; }
+
+.consultant {
+  float: left;
+  width: 300px;
+  margin: 5px;
+  box-shadow: 5px 10px 18px #888888;
+  border: 1px solid orange;
+  border-radius: 25px; }
+
+.consultant-price {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background-color: orange;
+  position: relative;
+  text-align: center; }
+
+.consultant-image {
+  float: left;
+  width: 150px;
+  height: 150px; }
+  .consultant-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    border: 3px solid orange; }
+
+.consultant-detail {
+  float: left;
+  width: 140px;
+  height: 150px;
+  padding: 10px; }
+
+/*# sourceMappingURL=consultants.css.map */

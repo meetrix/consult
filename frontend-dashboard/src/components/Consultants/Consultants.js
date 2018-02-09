@@ -8,17 +8,17 @@
 // Core modules
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Consult from '../Consult/Consult'
+import Consultant from './/Consultant'
 
-class Consults extends Component {
+class Consultants extends Component {
 
     render() {
         return(
             <div >
-                {this.props.consults.map(consult =>
-                    <Consult
-                        key={consult._id}
-                        {...consult}
+                {this.props.consultants.map(consultant =>
+                    <Consultant
+                        key={consultant._id}
+                        {...consultant}
                         actions={this.props.actions}
                     />)}
             </div>
@@ -28,8 +28,8 @@ class Consults extends Component {
     }
 }
 
-Consults.propTypes = {
-    consults: PropTypes.arrayOf(PropTypes.shape({
+Consultants.propTypes = {
+    consultants: PropTypes.arrayOf(PropTypes.shape({
         _id:PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
 
@@ -39,4 +39,4 @@ Consults.propTypes = {
 
 };
 
-export default Consults;
+export default Consultants;

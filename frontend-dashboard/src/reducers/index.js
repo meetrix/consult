@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import auth from './auth'
-import consults from './consults'
+import consultants from './consultants'
 
 const rootReducer = combineReducers({
     auth,
-    consults,
+    consultants,
 });
 export default rootReducer;

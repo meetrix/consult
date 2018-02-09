@@ -7,7 +7,7 @@ import React,{Component} from 'react'
 
 
 import ScheduledWidget from '../../../components/Schedul/ScheduledWidget'
-import ConsultantWidget from '../../../components/Consultant/ConsultantWidget'
+import ConsultantWidget from '../../../components/Consultants/ConsultantWidget'
 import ImageWidget from '../../../components/Core/ImageWidget'
 class Test extends Component{
 
