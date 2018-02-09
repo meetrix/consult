@@ -6,9 +6,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
+import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
 import DropDownMenuSet from '../../../components/Search/DropDownMenu/DropDownMenuSet';
 import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
-import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
+import TextSearch from '../../../components/Search/TextSearch/TextSearch';
 
 class ConsultantList extends Component {
 
@@ -21,7 +22,7 @@ class ConsultantList extends Component {
                 <Row>
                     {/*Search by Name*/}
                     <Col md="4">
-                        <Input></Input>
+                        <TextSearch label="textsearch" name="textsearch" placeHolder="textsearch"/>
                     </Col>
 
                     {/*Sort By Radio Buttons*/}
