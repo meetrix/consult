@@ -13,6 +13,14 @@ metadata[KEYS.TUTOR] = {
     failureAction: ACTIONS.HANDLE_TUTOR_DATA_FETCH_FAILURE,
     successAction: ACTIONS.SET_TUTOR_DATA
 };
+metadata[KEYS.CONSULTS] = {
+    url: URLS.CONSULTS,
+    options: {
+        method: HTTP_METHODS.GET
+    },
+    failureAction: ACTIONS.HANDLE_CONSULTS_DATA_FETCH_FAILURE,
+    successAction: ACTIONS.SET_CONSULTS_DATA
+};
 metadata[KEYS.LOGIN] = {
     url: URLS.LOGIN,
     options: {
