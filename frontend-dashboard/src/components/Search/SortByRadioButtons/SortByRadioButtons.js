@@ -11,9 +11,9 @@ class SortByRadioButtons extends Component {
 
         return (
             <div>
-                <FormGroup tag="fieldset">
-                    <Label>Sort By</Label>
-                    <FormGroup className="form-inline">
+                <FormGroup tag="fieldset" className="sort-by-radio-buttons-container">
+                    {/*<Label>Sort By</Label>*/}
+                    <FormGroup className="form-inline sort-by-radio-buttons-set">
                         {radioButtons}
                     </FormGroup>
                 </FormGroup>

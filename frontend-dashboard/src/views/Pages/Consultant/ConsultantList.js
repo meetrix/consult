@@ -22,12 +22,12 @@ class ConsultantList extends Component {
                 {/*Search Parameters*/}
                 <Row>
                     {/*Search by Name*/}
-                    <Col md="4">
+                    <Col xs="12" md="6">
                         <TextSearch label="textsearch" name="textsearch" placeHolder="textsearch"/>
                     </Col>
 
                     {/*Sort By Radio Buttons*/}
-                    <Col md="8">
+                    <Col xs="12" md="6">
                         <SortByRadioButtons label="Sort" name="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
                     </Col>
                 </Row>

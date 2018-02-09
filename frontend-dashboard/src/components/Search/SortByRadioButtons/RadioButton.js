@@ -5,12 +5,10 @@ import PropTypes from 'prop-types';
 class RadioButton extends Component {
     render() {
         return (
-            <div>
-                <Label className="radio-inline sort-by-radio-button">
-                    <Input type="radio" name={this.props.name}/>
-                    {this.props.label}
-                </Label>
-            </div>
+            <Label className="radio-inline sort-by-radio-button-label">
+                <Input type="radio" name={this.props.name}/>
+                {this.props.label}
+            </Label>
         )
     }
 }
