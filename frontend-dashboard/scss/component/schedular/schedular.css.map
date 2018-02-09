@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,iBAAiB;EACf,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,qBAAqB;EACjC,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,IAAI;EACb,qBAAG;IACD,KAAK,EAAE,IAAI;IACX,KAAK,EAAE,KAAK;IACZ,UAAU,EAAE,IAAI;IAChB,UAAU,EAAE,MAAM",
+"sources": ["_scheduled-widget.scss"],
+"names": [],
+"file": "schedular.css"
+}

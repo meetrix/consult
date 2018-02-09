@@ -3,11 +3,11 @@
  */
 import React,{Component} from 'react';
 
-class ScheduledClassSidePopUp extends Component{
+class ScheduledWidget extends Component{
 
     render(){
         return(
-            <div className="ScheduledMeetSidePopUpSummary">
+            <div className="scheduled-widget">
                 <div>
                     <div>ConsultArea</div>
                     <div>2018-02-09</div>
@@ -26,4 +26,4 @@ class ScheduledClassSidePopUp extends Component{
 
 }
 
-export default ScheduledClassSidePopUp;
+export default ScheduledWidget;
