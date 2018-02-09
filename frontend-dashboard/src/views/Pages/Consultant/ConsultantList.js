@@ -11,6 +11,7 @@ import DropDownMenuSet from '../../../components/Search/DropDownMenu/DropDownMen
 import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
 import TextSearch from '../../../components/Search/TextSearch/TextSearch';
 
+
 class ConsultantList extends Component {
 
     render() {
@@ -27,7 +28,31 @@ class ConsultantList extends Component {
 
                     {/*Sort By Radio Buttons*/}
                     <Col md="8">
+<<<<<<< HEAD
                         <SortByRadioButtons label="Sort" name="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
+=======
+
+                        <FormGroup tag="fieldset">
+                            <Label>Sort By</Label>
+                            <FormGroup check>
+                                <Label check>
+                                    <RadioButton/>{' '}
+                                    Option one
+                                </Label>
+                                <Label check>
+                                    <RadioButton/>{' '}
+                                    Option two
+                                </Label>
+                                <Label check>
+                                    <RadioButton/>{' '}
+                                    Option three
+                                </Label>
+                            </FormGroup>
+                        </FormGroup>
+
+                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
+
+>>>>>>> 1e7b27cf651b3b6e0b60fbd496f5c6229a9cfa15
                     </Col>
                 </Row>
 
