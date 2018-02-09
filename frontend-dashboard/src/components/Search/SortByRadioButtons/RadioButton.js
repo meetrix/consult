@@ -7,7 +7,7 @@ class RadioButton extends Component {
         return (
             <div>
                 <Label className="radio-inline">
-                    <Input type="radio" name={this.props.name} id={this.props.id} />
+                    <Input type="radio" name={this.props.name}/>
                     {this.props.label}
                 </Label>
             </div>
@@ -16,7 +16,6 @@ class RadioButton extends Component {
 }
 
 RadioButton.propTypes = {
-    id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
 }

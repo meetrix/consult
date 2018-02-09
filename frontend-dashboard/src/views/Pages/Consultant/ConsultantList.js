@@ -27,7 +27,7 @@ class ConsultantList extends Component {
 
                     {/*Sort By Radio Buttons*/}
                     <Col md="8">
-                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
+                        <SortByRadioButtons label="Sort" name="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
                     </Col>
                 </Row>
 

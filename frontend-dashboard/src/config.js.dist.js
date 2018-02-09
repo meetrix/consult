@@ -1,4 +1,4 @@
-export const ConsultantSortByRadioButtons = [{id: 'experience', label:'Experience'}, {id: 'rating', label:'Rating'}, {id: 'hourlyRate', label:'Hourly Rate'}];
+export const ConsultantSortByRadioButtons = [{label:'Experience'}, {label:'Rating'}, {label:'Hourly Rate'}];
 
 export const ConsultantSearchDropDownMenu = [
     {name: "expertise", label:"Expertise", options:["Rocket Science", "Thermo Dynamics"] },

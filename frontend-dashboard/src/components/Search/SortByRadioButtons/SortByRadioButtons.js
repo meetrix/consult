@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 class SortByRadioButtons extends Component {
     render() {
         let radioButtons = this.props.radioButtons.map((radioButton)=>
-            <RadioButton key={radioButton.id} id={radioButton.id} label={radioButton.label} name="sortBy"/>
+            <RadioButton key={radioButton.label}  label={radioButton.label} name={this.props.name}/>
         );
 
         return (
@@ -24,11 +24,10 @@ class SortByRadioButtons extends Component {
 
 SortByRadioButtons.propTypes = {
     label: PropTypes.string.isRequired,
-    searchKey: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     radioButtons : PropTypes.arrayOf(
         PropTypes.shape(
             {
-                id: PropTypes.string,
                 label: PropTypes.string
             }
         )
