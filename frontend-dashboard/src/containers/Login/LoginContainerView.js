@@ -10,7 +10,7 @@ import Login from '../../views/Pages/Login'
 class LoginContainerView extends Component {
 
     componentWillMount(){
-        console.log("auth")
+
         console.log(this.props.auth)
     }
     render() {

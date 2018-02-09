@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Route, Switch} from 'react-router-dom';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
@@ -14,14 +13,9 @@ import 'simple-line-icons/css/simple-line-icons.css';
 import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
+//import router
+import Routes from  './routes'
 
-//Views
-import Login from './containers/Login/LoginContainer'
-import Register from './views/Pages/Register/'
-import TutorsContainer from './containers/Tutors/TutorsContainer'
-
-// Containers
-import Full from './containers/Full/'
 
 //Configure Store
 import configure from './configurestore'
@@ -33,13 +27,6 @@ const initialState = {
 const store = configure(initialState);
 ReactDOM.render((
     <Provider store={store}>
-      <HashRouter>
-        <Switch>
-            <Route exact path="/login" name="Login Page" component={Login}/>
-            <Route exact path="/register" name="Register Page" component={Register}/>
-            <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer}/>
-            <Route path="/" name="Home" component={Full}/>
-        </Switch>
-      </HashRouter>
+        <Routes/>
     </Provider>
 ), document.getElementById('root'));
