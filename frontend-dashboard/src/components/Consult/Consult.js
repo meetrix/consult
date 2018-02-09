@@ -30,7 +30,7 @@ class Consult extends Component {
     render() {
         return(
             <div className="consultant">
-
+                <div className="consultant-price"> 1000/ - per session</div>
                 <div className="consultant-image">
                     <img   alt="Avatar"  src="img/avatars/1.jpg"/>
                 </div>
