@@ -16,7 +16,7 @@ class Test extends Component{
         return(
             <div style={{top: '50%',left: '50%',position:'absolute'}}>
 
-                <ConsultantWidget/>
+                <ConsultantWidget username="Yasith Prabuddhaka" price="Rs.5000"/>
             </div>
 
         );
