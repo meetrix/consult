@@ -5,5 +5,11 @@
     "databaseURL": "https://redux-firebasev3.firebaseio.com",
     "storageBucket": "redux-firebasev3.appspot.com",
     "messagingSenderId": "823357791673"
+  },
+  "consultants" : {
+    "search" : {
+        "radioButtons" : {},
+        "dropDownMenus" : {}
+    }
   }
 }

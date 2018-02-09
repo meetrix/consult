@@ -3,7 +3,7 @@ Getting things up
 1. Install docker on host machine
 2. Clone the project
 3. `docker-compose up`
-4. Create admin user in api-user
+4. Creating admin user for api-user
     1. Login to container : `docker-compose exec api-user bash`
     2. Run init script : `npm run first-time-setup`
     

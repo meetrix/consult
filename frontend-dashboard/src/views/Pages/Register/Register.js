@@ -36,7 +36,10 @@ class Register extends Component {
   }
 
   signup(){
-      this.props.actions.signup({name:this.state.name,username:this.state.username,email:this.state.email,password:this.state.password});
+      if(this.state.password===this.state.repassword){
+          this.props.actions.signup({name:this.state.name,username:this.state.username,email:this.state.email,password:this.state.password});
+      }
+
   }
   render() {
       if (this.props.auth[0].user._id != undefined) {
