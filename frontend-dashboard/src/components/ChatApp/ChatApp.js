@@ -14,6 +14,7 @@ class ChatApp extends Component {
         };
         this.messageValue = this.messageValue.bind(this);
         this.setNewMessage = this.setNewMessage.bind(this);
+        this.getMessage = this.getMessage.bind(this);
     }
 
     // var room = 'PortalChatRoom';
@@ -22,13 +23,9 @@ class ChatApp extends Component {
 
     componentDidMount() {
         this.webrtc = new SimpleWebRTC({
-            // the id/element dom element that will hold "our" video
             localVideoEl: '',
-            // the id/element dom element that will hold remote videos
             remoteVideosEl: '',
-            // immediately ask for camera access
             autoRequestMedia: false,
-            //set default nickname to Peer
             nick: 'Peer'
         });
 
@@ -53,6 +50,7 @@ class ChatApp extends Component {
         this.setState({
             message: e.target.value
         });
+
     }
 
     setNewMessage(e) {
@@ -63,7 +61,7 @@ class ChatApp extends Component {
         });
 
         e.preventDefault();
-        ReactDOM.findDOMNode(this.refs.msg).value
+
     }
 
     // For Text Chat ------------------------------------------------------------------
@@ -71,9 +69,14 @@ class ChatApp extends Component {
 
     getMessage(data){
         console.log("Received");
-        // if(data.type ==='chat'){
-        //     console.log('chat received',data.payload.message);
-        // }
+        const dataValue = typeof data;
+        if(dataValue ==='chat'){
+            console.log('chat recieved');
+            const message = this.refs.messages;
+
+        }
+        // {//     console.log('chat received',data.payload.message);
+       // }
     }
 
     // webrtc.connection.on('message', function(data){
@@ -112,7 +115,7 @@ class ChatApp extends Component {
                        ref="msg" placeholder="Enter a message"></input>
                 <button onClick={this.setNewMessage} id="send" type="submit">go</button>
                 <br/><br/>
-                <textarea name="reply" id="messages" rows="10" cols="50"></textarea>
+                <textarea name="reply" ref="messages" rows="10" cols="50"></textarea>
 
             </div>
         );
