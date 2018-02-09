@@ -10,10 +10,7 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
             return action.payload;
         }
         case REDUX_ACTIONS.HANDLE_LOGIN_DATA_FETCH_FAILURE: {
-            return {
-                name: 'DEFAULT_TUTOR_NAME',
-                age: 10
-            };
+            //TODO when login error
         }
         case REDUX_ACTIONS.SET_SIGNUP_DATA: {
 
@@ -28,10 +25,7 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
 
         }
         case REDUX_ACTIONS.HANDLE_SIGNUP_DATA_FETCH_FAILURE: {
-            return {
-                name: 'DEFAULT_TUTOR_NAME',
-                age: 10
-            };
+            //TODO when signup error
         }
         default:
             return state;
