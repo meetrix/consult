@@ -215,6 +215,7 @@ class FileShare extends Component {
             }
         });
 
+
         function setRoom(name) {
             console.log("setRoom function works");
             document.querySelector('form').remove();
@@ -239,16 +240,16 @@ class FileShare extends Component {
     render() {
         var divStyle={
             position: "absolute",
-            bottom: "15%",
-            right: "15%",
+            bottom: "10%",
+            right: "25%",
             zIndex:"10"
-        }
+        };
 
         return (
 
             <div>
                 <div id="classControlContainer" className="" style={divStyle}>
-                    <button id="myBtn" className="btn btn-default" style={{backgroundColor:'orange'}}>File Share</button>
+                    <button id="myBtn" className="btn btn-warning rounded">File Share</button>
                     <div id="myModal" className="modal">
                         <div className="modal-content">
                             <span className="closing">&times;</span>
@@ -257,7 +258,6 @@ class FileShare extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         )
     }
