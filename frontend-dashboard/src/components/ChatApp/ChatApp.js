@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import styles from './ChatApp.scss';
-import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
-import FileShare from "../FileShare";
-{/*<div className="container" >*/}
+import ChatHidden from "./ChatHidden";
 
 class ChatApp extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this._onClick.bind(this);
         this.state = {
             showReply: true
         }
     }
     _onClick(e){
-        // e.preventDefault();
         this.setState({showReply: !this.state.showReply});
     }
 
@@ -141,22 +139,8 @@ class ChatApp extends Component {
             );
         }else{
             return (
-                <div className="container">
-                    <div className="row chat-window col-xs-5 col-md-3" id="chat_window_1" style={{marginLeft: 10}}>
-                        <div className="col-xs-12 col-md-12">
-                            <div className="panel panel-default">
-                                <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}} >
-                                        <h3 className="panel-title"><span className="glyphicon glyphicon-comment"/>
-                                            Messages &nbsp;
-                                            <div className="btn-group dropup">
-                                                <button type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" onClick={this._onClick.bind(this)} aria-haspopup="true" aria-expanded="false">
-                                                </button>
-                                            </div>
-                                        </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <ChatHidden action={this._onClick.bind(this)}/>
                 </div>
             );
         }
