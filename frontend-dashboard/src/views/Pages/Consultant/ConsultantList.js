@@ -6,12 +6,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
-import DropDownMenu from '../../../components/Search/DropDownMenu/DropDownMenu';
+
 import RadioButton from "../../../components/Search/RadioButton/RadioButton";
+
+import DropDownMenuSet from '../../../components/Search/DropDownMenu/DropDownMenuSet';
+import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
+import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
+
 
 class ConsultantList extends Component {
 
     render() {
+
+        // let dropDownMenus = [{name: "subject", label:"Subject", options:["Chemistry", "Physics"] }];
         return(
             <div>
                 {/*Search Parameters*/}
@@ -23,6 +30,7 @@ class ConsultantList extends Component {
 
                     {/*Sort By Radio Buttons*/}
                     <Col md="8">
+
                         <FormGroup tag="fieldset">
                             <Label>Sort By</Label>
                             <FormGroup check>
@@ -40,18 +48,18 @@ class ConsultantList extends Component {
                                 </Label>
                             </FormGroup>
                         </FormGroup>
+
+                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
+
                     </Col>
                 </Row>
 
                 {/*Criteria Selection*/}
                 <Row>
-                    <Col md="3">
-                        <DropDownMenu/>
-                    </Col>
+                    <DropDownMenuSet dropDownMenus={ConsultantSearchDropDownMenu}/>
                 </Row>
 
             </div>
-
 
         )
     }
