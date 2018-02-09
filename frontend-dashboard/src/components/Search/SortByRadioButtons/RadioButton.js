@@ -6,7 +6,7 @@ class RadioButton extends Component {
     render() {
         return (
             <div>
-                <Label className="radio-inline">
+                <Label className="radio-inline sort-by-radio-button">
                     <Input type="radio" name={this.props.name}/>
                     {this.props.label}
                 </Label>
