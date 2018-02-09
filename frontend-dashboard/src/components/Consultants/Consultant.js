@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars'
 
-class Consult extends Component {
+class Consultant extends Component {
 
     constructor(props){
         super(props)
@@ -20,7 +20,7 @@ class Consult extends Component {
 
     componentWillMount(){
 
-        console.log("Consult")
+        console.log("Consultant")
         console.log(this.props.actions)
     }
 
@@ -54,7 +54,7 @@ class Consult extends Component {
     }
 }
 
-Consult.propTypes = {
+Consultant.propTypes = {
     _id:PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
     actions:PropTypes.object.isRequired
@@ -63,4 +63,4 @@ Consult.propTypes = {
 
 };
 
-export default Consult;
+export default Consultant;
