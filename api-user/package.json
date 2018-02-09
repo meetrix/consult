@@ -28,6 +28,7 @@
     "inert": "4.x.x",
     "jade": "1.x.x",
     "joi": "10.x.x",
+    "jsonwebtoken": "^8.1.1",
     "lout": "10.x.x",
     "mongo-models": "1.x.x",
     "mongodb": "2.x.x",
