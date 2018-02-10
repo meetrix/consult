@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import {Input, Label} from 'reactstrap';
+import {Input, InputGroup, InputGroupAddon} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 class TextSearch extends Component {
     render() {
         return (
-                <Input type="text" name={this.props.name} placeholder={this.props.placeHolder}/>
+                <InputGroup>
+                    <Input type="text" name={this.props.name} placeholder={this.props.placeHolder}/>
+                    <InputGroupAddon addontype="append">
+                        <span className="fa fa-search"></span>
+                    </InputGroupAddon>
+                </InputGroup>
         )
     }
 }
