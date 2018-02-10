@@ -44,7 +44,6 @@ class Register extends Component {
   render() {
       if (this.props.auth[0].user._id != undefined) {
           return (
-
               <Redirect to="/login"/>
           )
       } else {
