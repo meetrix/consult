@@ -63,8 +63,8 @@ function* fetchAsync(action) {
     try {
         const reply = yield call(fetchHandler,action)
         yield put({...action, type: REDUX_ACTIONS.FETCHING_SUCCESS});
-        console.log(reply.res.data)
-        yield put({type: reply.successAction, payload: reply.res.data, args: {...action.payload, ...action.args}});
+        console.log(reply)
+        yield put({type: reply.successAction, payload: reply.res.data.data, args: {...action.payload, ...action.args}});
     } catch (reply) {
         console.log(reply)
         yield put({...action, type: REDUX_ACTIONS.FETCHING_FAILURE});
