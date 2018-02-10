@@ -46,12 +46,12 @@ function fetchHandler({key, payload}) {
         fetch(url, optionsClone)
             .then((res) => resolve({
                 successAction: successAction,
-                res: res.data
+                res: res
 
             }))
             .catch((err) => reject({
                 failureAction: failureAction,
-                err: err.data
+                err: err
             }));
     });
 }

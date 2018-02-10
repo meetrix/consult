@@ -6,9 +6,6 @@ import {HashRouter, Route, Switch} from 'react-router-dom';
 import Login from './containers/Login/LoginContainer'
 import SignUpContainer from './containers/SignUp/SignUpContainer'
 import Consultants from './views/Pages/Consultants/Consultants';
-
-
-import TutorsContainer from './containers/Tutors/TutorsContainer'
 import ConsultantList from './views/Pages/Consultant/ConsultantList'
 
 
@@ -28,10 +25,7 @@ export default() =>
     <Route exact path="/signup" name="Register Page" component={SignUpContainer} />
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
-
-    <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer} />
     <Route exact path="/consultants" name="Consultant List" component={ConsultantList} />
-
     <Route path="/" name="Home" component={Full} />
   </Switch>
 </HashRouter>
