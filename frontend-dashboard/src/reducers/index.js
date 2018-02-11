@@ -4,6 +4,6 @@ import consultants from './consultants'
 
 const rootReducer = combineReducers({
     auth,
-    consultants,
+    consultants
 });
 export default rootReducer;

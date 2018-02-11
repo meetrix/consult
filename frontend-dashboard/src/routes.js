@@ -8,6 +8,11 @@ import SignUpContainer from './containers/SignUp/SignUpContainer'
 import ConsultantList from './views/Pages/Consultant/ConsultantList'
 import Consultants from './views/Pages/Consultants/Consultants'
 
+
+import TutorsContainer from './containers/Tutors/TutorsContainer'
+import ConsultantList from './views/Pages/Consultant/ConsultantList'
+
+
 //TestComponet
 import Test from './views/Pages/Test/Test'
 import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
@@ -25,6 +30,10 @@ export default() =>
     <Route exact path="/consultantsearch" name="Consultant List" component={ConsultantList} />
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
+
+    <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer} />
+    <Route exact path="/consultants" name="Consultant List" component={ConsultantList} />
+
     <Route path="/" name="Home" component={Full} />
   </Switch>
 </HashRouter>

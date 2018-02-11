@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Input, Row, Col} from 'reactstrap';
-import DropDownMenu from './DropDownMenu';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import {Input, Label, FormGroup} from 'reactstrap';
 
 class DropDownMenuSet extends Component {
     render() {
