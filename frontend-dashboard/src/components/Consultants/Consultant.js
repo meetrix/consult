@@ -8,7 +8,8 @@
 // Core modules
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
+import {Col,Row} from 'reactstrap';
 
 class Consultant extends Component {
 
@@ -29,24 +30,44 @@ class Consultant extends Component {
     }
     render() {
         return(
-            <div className="consultant">
-                <div className="consultant-price"> 1000/ - per session</div>
-                <div className="consultant-image">
-                    <img   alt="Avatar"  src="img/avatars/1.jpg"/>
-                </div>
-                <div className="consultant-detail" >
-                    <p >{this.props.username}</p>
-                    <ReactStars count={5} onChange={this.ratingChanged} size={24} color2={'#ffd700'} />
-                </div>
+            <Col xs="12" sm= {this.props.columnWidth} md= {this.props.columnWidth} className="consultant">
+                <Row className="consultant-price"><p>1000/ - per session</p> </Row>
+                <Row >
+                    <Col className="consultant-image" xs="12" md="6">
+                        <img   alt="Avatar"  src="img/avatars/1.jpg"/>
+                    </Col>
+                    <Col xs="12" md="6">
+                        <Row>
+                            <Col >
+                                <p >{this.props.username}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col >
+                                <ReactStars count={5} onChange={this.ratingChanged} size={24} color2={'#ffd700'} />
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
 
+                <Row>
+                    <Col xs="12" md="6">
+                        <Row >
+                            <Col xs="12" md="6">Experts Area</Col>
+                        </Row>
+                        <Row>
+                            <Col xs={{size: 'auto', offset: 1}} md={{size: 'auto', offset: 1}}>Technology</Col>
+                        </Row>
+                        <Row >
+                            <Col xs={{size: 'auto', offset: 2}} md={{size: 'auto', offset: 2}}>C</Col>
+                        </Row>
+                        <Row >
+                            <Col xs={{size: 'auto', offset: 2}} md={{size: 'auto', offset: 2}}>Java</Col>
+                        </Row>
+                        </Col>
+                </Row>
 
-                <p>Constult</p>
-                <h1>Experts Area</h1>
-                <h5>C</h5>
-                <h5>java</h5>
-                <h5>python</h5>
-
-            </div>
+            </Col>
 
 
 
@@ -57,9 +78,8 @@ class Consultant extends Component {
 Consultant.propTypes = {
     _id:PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
-    actions:PropTypes.object.isRequired
-
-
+    actions:PropTypes.object.isRequired,
+    columnWidth: PropTypes.number.isRequired
 
 };
 
