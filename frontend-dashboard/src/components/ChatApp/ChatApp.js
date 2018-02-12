@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import styles from './ChatApp.scss';
 import ChatShown from "./ChatShown";
 import ChatHidden from "./ChatHidden";
 
-class ChatApp extends Component {
+class ChatApp extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,6 +16,7 @@ class ChatApp extends Component {
     }
 
     render() {
+
         if(this.state.showMessages) {
             return (
                 <div >
@@ -30,6 +30,7 @@ class ChatApp extends Component {
                 </div>
             );
         }
+
     }
 }
 
