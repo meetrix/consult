@@ -3,6 +3,50 @@ import styles from './ChatApp.scss';
 
 class ChatShown extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: '',
+            chat: '',
+            users:[]
+        };
+        this.readyToCall = this.readyToCall.bind(this);
+    }
+
+    componentDidMount(){
+        this.webrtc = new SimpleWebRTC({
+            localVideoEl: '',
+            remoteVideosEl: '',
+            autoRequestMedia: false,
+        });
+
+        console.log("webrtc component mounted");
+        this.webrtc.on('readyToCall', this.readyToCall);
+        this.webrtc.connection.on('message', function(data){
+            if(data.type==='chat') {
+                this.setState({ chat: data.payload.message });
+                console.log('Received: ' + data.payload.message);
+            }
+        }.bind(this));
+    }
+
+    readyToCall() {
+        console.log('joined TEST');
+        return this.webrtc.joinRoom('test');
+    }
+
+
+    _handleChange(e) {
+        this.setState({ message: e.target.value });
+    }
+
+    _handleClick(e){
+        const message = this.state.message;
+        this.setState({ chat: message });
+        console.log('clicked: ' +message);
+        this.webrtc.sendToAll('chat', {message: message});
+    }
+
     render() {
             return (
                 <div className="container">
@@ -25,11 +69,11 @@ class ChatShown extends Component {
                                     </div>
                                 </div>
                                 <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
+
                                     <div className="row msg_container base_sent">
                                         <div className="col-xs-10 col-md-10">
                                             <div className="messages msg_sent">
-                                                <p>that mongodb thing looks good, huh?
-                                                    tiny master db, and huge document store</p>
+                                                <input id="noter-text-area" refs="textarea" value={this.state.chat}></input>
                                                 <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
                                             </div>
                                         </div>
@@ -37,29 +81,15 @@ class ChatShown extends Component {
                                             <img
                                                 src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
                                                 className=" img-responsive "/>
-                                        </div>
-                                    </div>
-                                    <div className="row msg_container base_receive">
-                                        <div className="col-md-2 col-xs-2 avatar">
-                                            <img
-                                                src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                                className=" img-responsive "/>
-                                        </div>
-                                        <div className="col-xs-10 col-md-10">
-                                            <div className="messages msg_receive">
-                                                <p>that mongodb thing looks good, huh?
-                                                    tiny master db, and huge document store</p>
-                                                <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="panel-footer">
                                     <div className="input-group">
                                         <input id="btn-input" type="text" className="form-control input-sm chat_input"
-                                               placeholder="Write your message here..."/>
+                                               placeholder="Write your message here..." onChange={this._handleChange.bind(this)}/>
                                         <span className="input-group-btn">
-                                            <button className="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                                            <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
                                         </span>
                                     </div>
                                 </div>
