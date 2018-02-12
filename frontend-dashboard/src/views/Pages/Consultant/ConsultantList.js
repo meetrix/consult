@@ -6,12 +6,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
-
-import RadioButton from "../../../components/Search/RadioButton/RadioButton";
-
+import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
 import DropDownMenuSet from '../../../components/Search/DropDownMenu/DropDownMenuSet';
 import SortByRadioButtons from '../../../components/Search/SortByRadioButtons/SortByRadioButtons';
-import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
+import TextSearch from '../../../components/Search/TextSearch/TextSearch';
 
 
 class ConsultantList extends Component {
@@ -24,33 +22,13 @@ class ConsultantList extends Component {
                 {/*Search Parameters*/}
                 <Row>
                     {/*Search by Name*/}
-                    <Col md="4">
-                        <Input></Input>
+                    <Col xs="12" md="6">
+                        <TextSearch label="textsearch" name="textsearch" placeHolder="textsearch"/>
                     </Col>
 
                     {/*Sort By Radio Buttons*/}
-                    <Col md="8">
-
-                        <FormGroup tag="fieldset">
-                            <Label>Sort By</Label>
-                            <FormGroup check>
-                                <Label check>
-                                    <RadioButton/>{' '}
-                                    Option one
-                                </Label>
-                                <Label check>
-                                    <RadioButton/>{' '}
-                                    Option two
-                                </Label>
-                                <Label check>
-                                    <RadioButton/>{' '}
-                                    Option three
-                                </Label>
-                            </FormGroup>
-                        </FormGroup>
-
-                        <SortByRadioButtons label="Sort" searchKey="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
-
+                    <Col xs="12" md="6">
+                        <SortByRadioButtons label="Sort" name="sortBy" radioButtons={ConsultantSortByRadioButtons}/>
                     </Col>
                 </Row>
 
