@@ -30,9 +30,9 @@ class Consultant extends Component {
     }
     render() {
         return(
-            <Col  className="consultant">
-                <Row xs="12" md="6" className="consultant-price"><p>1000/ - per session</p> </Row>
-                <Row xs="12" md="6" >
+            <Col xs="12" sm= {this.props.columnWidth} md= {this.props.columnWidth} className="consultant">
+                <Row className="consultant-price"><p>1000/ - per session</p> </Row>
+                <Row >
                     <Col className="consultant-image" xs="12" md="6">
                         <img   alt="Avatar"  src="img/avatars/1.jpg"/>
                     </Col>
@@ -50,7 +50,7 @@ class Consultant extends Component {
                     </Col>
                 </Row>
 
-                <Row xs="12" md="6">
+                <Row>
                     <Col xs="12" md="6">
                         <Row >
                             <Col xs="12" md="6">Experts Area</Col>
@@ -78,9 +78,8 @@ class Consultant extends Component {
 Consultant.propTypes = {
     _id:PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
-    actions:PropTypes.object.isRequired
-
-
+    actions:PropTypes.object.isRequired,
+    columnWidth: PropTypes.number.isRequired
 
 };
 
