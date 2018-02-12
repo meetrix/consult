@@ -65,8 +65,8 @@ class WebRTC extends Component {
     }
 
     readyToCall() {
-        console.log('joined TEST');
-        return this.webrtc.joinRoom('test');
+        console.log("Ready Call");
+        return this.webrtc.joinRoom('PortalChatRoom');
     }
 
     connect() {
