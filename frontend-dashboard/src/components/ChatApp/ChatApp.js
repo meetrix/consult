@@ -1,25 +1,14 @@
 import React, {Component} from 'react';
 import styles from './ChatApp.scss';
-import {TextInput} from 'reactstrap';
 import ReactDOM from 'react-dom';
 
-
-class ChatApp extends Component {
-    constructor(props, context) {
-        super(props, context);
-
-        this.state = {
-            message: "",
-            defaultMessage: "name"
-        };
-        this.messageValue = this.messageValue.bind(this);
-        this.setNewMessage = this.setNewMessage.bind(this);
-        this.getMessage = this.getMessage.bind(this);
+class ChatApp extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: ''};
+        this.messageChange = this.messageChange.bind(this);
+        this.messageSubmit = this.messageSubmit.bind(this);
     }
-
-    // var room = 'PortalChatRoom';
-
-    // webrtc.joinRoom(room);
 
     componentDidMount() {
         this.webrtc = new SimpleWebRTC({
@@ -28,95 +17,58 @@ class ChatApp extends Component {
             autoRequestMedia: false,
             nick: 'Peer'
         });
-
         console.log("webrtc component mounted");
         this.webrtc.connection.on('message', this.getMessage());
-        this.webrtc.on('readyToCall', this.readyToCall);
-    }
-    componentWillMount () {
-        const script = document.createElement("script");
-
-        script.src = "https://simplewebrtc.com/latest-v2.js";
-        script.async = true;
-
-        document.body.appendChild(script);
     }
 
+    //get input value
+    messageChange(event) {
+        this.setState({value: event.target.value});
+        console.log("Set");
+    }
+
+    //submit message value
+    messageSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        console.log("Submit");
+        event.preventDefault();
+    }
+
+    //For Text Chat ------------------------------------------------------------------
     // Await messages from others
 
-
-    messageValue(e) {
-        console.log("Add message");
-        this.setState({
-            message: e.target.value
-        });
-
-    }
-
-    setNewMessage(e) {
-        console.log("set message");
-        const defaultMessage = "null";
-        this.setState({
-            defaultMessage: this.state.message
-        });
-
-        e.preventDefault();
-
-    }
-
-    // For Text Chat ------------------------------------------------------------------
-    // Await messages from others
-
-    getMessage(data){
+    getMessage(data) {
         console.log("Received");
         const dataValue = typeof data;
-        if(dataValue ==='chat'){
+        if (dataValue === 'chat') {
             console.log('chat recieved');
+            //append name and message to textarea using id #messages
             const message = this.refs.messages;
+            const new_message = message +
 
         }
-        // {//     console.log('chat received',data.payload.message);
-       // }
     }
+    /*webrtc.connection.on('message', function(data){
+        console.log("Received");
+        if(data.type === 'chat'){
+            console.log('chat received',data.payload.message);
+            //append name and message to textarea using id #messages
+            $('#messages').append('<br>' + data.payload.nick + ': <br>' + data.payload.message + '&#10;');
+        }
+    });*/
 
-    // webrtc.connection.on('message', function(data){
-    //     console.log("Received");
-    //     if(data.type === 'chat'){
-    //         console.log('chat received',data.payload.message);
-    //         //append name and message to textarea using id #messages
-    //         $('#messages').append('<br>' + data.payload.nick + ': <br>' + data.payload.message + '&#10;');
-    //     }
-    // });
-
-
-    // Send a chat message
-    //When Send button (id is #send) is clicked
-
-
-    // $('#send').click(function(){
-    //     //Get the message from the text box with #text id
-    //     var msg = $('#text').val();
-    //     webrtc.config.nick = $('#name').val();
-    //     webrtc.sendToAll('chat', {message: msg, nick: webrtc.config.nick});
-    //     $('#messages').append('<br>You: <br>' + msg + '&#10;');
-    //     //Set the value of text box to null
-    //     $('#text').val('');
-    // });
-
-    readyToCall() {
-        return this.webrtc.joinRoom('room');
-    }
 
     render() {
-
         return (
             <div className="">
-                <input onChange={this.messageValue}
-                       ref="msg" placeholder="Enter a message"></input>
-                <button onClick={this.setNewMessage} id="send" type="submit">go</button>
-                <br/><br/>
-                <textarea name="reply" ref="messages" rows="10" cols="50"></textarea>
-
+                <h3>Portal Chat Room</h3>
+                <form onSubmit={this.messageSubmit}>
+                    <label>Message:
+                        <input type="text" value={this.state.value} onChange={this.messageChange} />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+                <textarea name="reply" refs="messages" rows="10" cols="50"></textarea>
             </div>
         );
     }
