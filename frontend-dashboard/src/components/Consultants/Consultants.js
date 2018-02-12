@@ -7,6 +7,7 @@
 
 // Core modules
 import React, {Component} from 'react';
+import {Row, Col, Fragment} from 'reactstrap';
 import PropTypes from 'prop-types';
 import Consultant from './/Consultant'
 
@@ -14,16 +15,16 @@ class Consultants extends Component {
 
     render() {
         return(
-            <div >
+            <Row>
                 {this.props.consultants.map(consultant =>
-                    <Consultant
-                        key={consultant._id}
-                        {...consultant}
-                        actions={this.props.actions}
-                    />)}
-            </div>
-
-
+                    <Col xs="12" sm="3" md="3" key={consultant._id}>
+                        <Consultant
+                            {...consultant}
+                            actions={this.props.actions}
+                        />
+                    </Col>
+                )}
+            </Row>
         )
     }
 }
@@ -32,7 +33,6 @@ Consultants.propTypes = {
     consultants: PropTypes.arrayOf(PropTypes.shape({
         _id:PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
-
 
     })),
     actions: PropTypes.object.isRequired
