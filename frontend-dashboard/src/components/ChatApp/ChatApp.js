@@ -9,15 +9,15 @@ class ChatApp extends Component {
         super(props);
         this._onClick.bind(this);
         this.state = {
-            showReply: true
+            showMessages: true
         }
     }
     _onClick(e){
-        this.setState({showReply: !this.state.showReply});
+        this.setState({showMessages: !this.state.showMessages});
     }
 
     render() {
-        if(this.state.showReply) {
+        if(this.state.showMessages) {
             return (
                 <div >
                     <ChatShown action={this._onClick.bind(this)}/>
