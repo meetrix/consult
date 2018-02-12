@@ -22,7 +22,6 @@ export default() =>
     <Route exact path="/consultantsearch" name="Consultant List" component={ConsultantList} />
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
-
     <Route path="/" name="Home" component={Full} />
   </Switch>
 </HashRouter>

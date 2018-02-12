@@ -46,12 +46,12 @@ function fetchHandler({key, payload}) {
         fetch(url, optionsClone)
             .then((res) => resolve({
                 successAction: successAction,
-                res: res.data
+                res: res
 
             }))
             .catch((err) => reject({
                 failureAction: failureAction,
-                err: err.data
+                err: err
             }));
     });
 }
@@ -63,8 +63,8 @@ function* fetchAsync(action) {
     try {
         const reply = yield call(fetchHandler,action)
         yield put({...action, type: REDUX_ACTIONS.FETCHING_SUCCESS});
-        console.log(reply.res.data)
-        yield put({type: reply.successAction, payload: reply.res.data, args: {...action.payload, ...action.args}});
+        console.log(reply)
+        yield put({type: reply.successAction, payload: reply.res.data.data, args: {...action.payload, ...action.args}});
     } catch (reply) {
         console.log(reply)
         yield put({...action, type: REDUX_ACTIONS.FETCHING_FAILURE});

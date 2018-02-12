@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import ConsultantImage from "./ConsultantImage";
 import ReactStars from 'react-stars';
 
 
@@ -19,7 +18,7 @@ class ConsultantWidget extends Component{
         return (
 
             <div className="consultantWidget">
-                <div className="widget-image"> <ConsultantImage /> </div>
+                <div className="widget-image"> <img   alt="Avatar"  src="img/avatars/1.jpg"/> </div>
 
                 <div className="widget-detail" >
                     <p className="consultant-username" >{this.props.username}</p>
