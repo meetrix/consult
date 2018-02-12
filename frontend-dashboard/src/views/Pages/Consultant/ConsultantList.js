@@ -5,7 +5,7 @@
 // Core modules
 import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
-import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../config.js';
+import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../../../config.js';
 import ConsultantSearch from '../../../components/Search/ConsultantSearch';
 
 

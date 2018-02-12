@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label} from 'reactstrap';
+import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon, FormGroup, legend, Label, Fragment} from 'reactstrap';
 import DropDownMenuSet from './DropDownMenu/DropDownMenuSet';
 import SortByRadioButtons from './SortByRadioButtons/SortByRadioButtons';
 import TextSearch from './TextSearch/TextSearch';
