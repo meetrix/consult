@@ -58,7 +58,8 @@ const manifest = {
                         AuthAttempt: './server/models/auth-attempt',
                         Session: './server/models/session',
                         Status: './server/models/status',
-                        User: './server/models/user'
+                        User: './server/models/user',
+                        Event:'./server/models/event'
                     },
                     autoIndex: Config.get('/hapiMongoModels/autoIndex')
                 }
@@ -147,6 +148,12 @@ const manifest = {
         },
         {
             plugin: './server/api/jwt-token-generator',
+            options: {
+                routes: { prefix: '/api' }
+            }
+        },
+        {
+            plugin: './server/api/event',
             options: {
                 routes: { prefix: '/api' }
             }
