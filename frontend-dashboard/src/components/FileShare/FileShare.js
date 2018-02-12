@@ -42,18 +42,11 @@ class FileShare extends Component {
         var user = {};
         var webrtc = new SimpleWebRTC({
             // the id/element dom element that will hold "our" video
-            localVideoEl: '',
+            localVideoEl: 'localVideo',
             // the id/element dom element that will hold remote videos
-            remoteVideosEl: '',
+            remoteVideosEl: 'remoteVideos',
             // immediately ask for camera access
             autoRequestMedia: true,
-            //set default nickname to Peer
-            nick: 'Peer',
-
-            receiveMedia: {
-                offerToReceiveAudio: 0,
-                offerToReceiveVideo: 0
-            }
         });
         //webrtc.joinRoom(room);
         if (room) {
