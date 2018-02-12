@@ -26,48 +26,6 @@ class ChatShown extends Component {
                                 </div>
                                 <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
                                     <div className="row msg_container base_sent">
-                                        <div className="col-md-10 col-xs-10">
-                                            <div className="messages msg_sent">
-                                                <p>that mongodb thing looks good, huh?
-                                                    tiny master db, and huge document store</p>
-                                                <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-2 col-xs-2 avatar">
-                                            <img
-                                                src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                                className=" img-responsive "/>
-                                        </div>
-                                    </div>
-                                    <div className="row msg_container base_receive">
-                                        <div className="col-md-2 col-xs-2 avatar">
-                                            <img
-                                                src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                                className=" img-responsive "/>
-                                        </div>
-                                        <div className="col-md-10 col-xs-10">
-                                            <div className="messages msg_receive">
-                                                <p>that mongodb thing looks good, huh?
-                                                    tiny master db, and huge document store</p>
-                                                <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row msg_container base_receive">
-                                        <div className="col-md-2 col-xs-2 avatar">
-                                            <img
-                                                src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                                className=" img-responsive "/>
-                                        </div>
-                                        <div className="col-xs-10 col-md-10">
-                                            <div className="messages msg_receive">
-                                                <p>that mongodb thing looks good, huh?
-                                                    tiny master db, and huge document store</p>
-                                                <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row msg_container base_sent">
                                         <div className="col-xs-10 col-md-10">
                                             <div className="messages msg_sent">
                                                 <p>that mongodb thing looks good, huh?
@@ -93,20 +51,6 @@ class ChatShown extends Component {
                                                     tiny master db, and huge document store</p>
                                                 <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="row msg_container base_sent">
-                                        <div className="col-md-10 col-xs-10 ">
-                                            <div className="messages msg_sent">
-                                                <p>that mongodb thing looks good, huh?
-                                                    tiny master db, and huge document store</p>
-                                                <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-2 col-xs-2 avatar">
-                                            <img
-                                                src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                                className=" img-responsive "/>
                                         </div>
                                     </div>
                                 </div>
