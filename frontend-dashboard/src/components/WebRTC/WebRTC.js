@@ -8,8 +8,8 @@ class WebRTC extends Component {
             message: '',
             chat: ''
         };
-        this.addVideo = this.addVideo.bind(this);
-        this.removeVideo = this.removeVideo.bind(this);
+        // this.addVideo = this.addVideo.bind(this);
+        // this.removeVideo = this.removeVideo.bind(this);
         this.readyToCall = this.readyToCall.bind(this);
     }
 
@@ -21,9 +21,9 @@ class WebRTC extends Component {
             // url: 'https://simplewebrtc.com/demo.html?test'
         });
 
-        console.log("webrtc component mounted");
-        this.webrtc.on('videoAdded', this.addVideo);
-        this.webrtc.on('videoRemoved', this.removeVideo);
+        // console.log("webrtc component mounted");
+        // this.webrtc.on('videoAdded', this.addVideo);
+        // this.webrtc.on('videoRemoved', this.removeVideo);
         this.webrtc.on('readyToCall', this.readyToCall);
         this.webrtc.connection.on('message', function(data){
             if(data.type==='chat') {
@@ -31,9 +31,6 @@ class WebRTC extends Component {
                 console.log('Received: ' + data.payload.message);
             }
         }.bind(this));
-        // this.webrtc.connection.on('joined', function(data){
-        //     console.log("Joined");
-        // });
     }
 
     addVideo(video, peer) {
@@ -84,7 +81,7 @@ class WebRTC extends Component {
     _handleClick(e){
         const message = this.state.message;
         this.setState({ chat: message });
-        console.log('clicked: ' +message);
+        console.log('Sent: ' +message);
         this.webrtc.sendToAll('chat', {message: message});
     }
 

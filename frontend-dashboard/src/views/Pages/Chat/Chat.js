@@ -9,7 +9,7 @@ class Chat extends Component {
         // const localVideo = 'localVideo';
 
         return (
-            <div><WebRTC/></div>
+            {/*<div><WebRTC/></div>*/}
         );
     }
 }

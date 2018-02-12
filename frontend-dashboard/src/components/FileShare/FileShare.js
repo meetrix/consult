@@ -31,7 +31,7 @@ class FileShare extends Component {
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-            console.log("Modal Closed");
+            // console.log("Modal Closed");
             if (event.target == modal) {
                 modal.style.display = "none";
             }
