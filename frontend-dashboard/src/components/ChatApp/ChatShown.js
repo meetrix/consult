@@ -116,6 +116,9 @@ class ChatShown extends Component {
                                         <a href="#"><span className="close" data-id="chat_window_1"/></a>
                                     </div>
                                 </div>
+                                <div>
+                                    {this.state.showComponent ? <MessageSent/> : <MessageRecieved/>}
+                                </div>
                                     {/*<div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>*/}
                                         {/*<div className="row msg_container base_sent">*/}
                                             {/*<div className="col-xs-10 col-md-10">*/}
@@ -141,8 +144,6 @@ class ChatShown extends Component {
                                             <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
                                         </span>
                                     </div>
-                                            {this.state.showComponent ? <MessageSent/> : null}
-
                                 </div>
                             </div>
                         </div>
