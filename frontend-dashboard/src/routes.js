@@ -10,8 +10,10 @@ import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/Route/UnauthenticatedRoute";
 
 
+
 // Containers
 import Full from './containers/Full/'
+import Calendar from "./components/Calendar/Calendar";
 export default() =>
 
 <HashRouter>
@@ -20,6 +22,7 @@ export default() =>
     <Route exact path="/signup" name="Register Page" component={SignUpContainer} />
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
+    <Route exact path="/calendar" name="Calendar Component" component={Calendar} />
     <Route path="/" name="Home" component={Full} />
   </Switch>
 </HashRouter>
