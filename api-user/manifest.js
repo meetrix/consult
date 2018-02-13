@@ -150,6 +150,12 @@ const manifest = {
             options: {
                 routes: { prefix: '/api' }
             }
+        },
+        {
+            plugin: './server/api/app-authorize',
+            options: {
+                routes: { prefix: '/api' }
+            }
         }
     ]
 };
