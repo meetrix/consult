@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styles from './ChatApp.scss';
-import Message from "./Message";
+import MessageSent from "./MessageSent";
+import MessageRecieved from "./MessageRecieved";
 
 class ChatShown extends Component {
 
@@ -9,7 +10,8 @@ class ChatShown extends Component {
         this.state = {
             message: '',
             chat: '',
-            users:[]
+            users:[],
+            showComponent: false,
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
@@ -85,7 +87,10 @@ class ChatShown extends Component {
 
     _handleClick(e){
         const message = this.state.message;
-        this.setState({ chat: message });
+        this.setState({
+            chat: message ,
+            showComponent: true
+        });
         console.log('Sent: ' +message);
         this.webrtc.sendToAll('chat', {message: message});
     }
@@ -111,32 +116,33 @@ class ChatShown extends Component {
                                         <a href="#"><span className="close" data-id="chat_window_1"/></a>
                                     </div>
                                 </div>
-                                <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
-                                    <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
-                                        <div className="row msg_container base_sent">
-                                            <div className="col-xs-10 col-md-10">
-                                                <div className="messages msg_sent">
-                                                    <input id="noter-text-area" refs="textarea" value={this.state.chat}></input>
-                                                    <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-2 col-xs-2 avatar">
-                                                <img
-                                                    src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                                    className=" img-responsive "/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    {/*<div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>*/}
+                                        {/*<div className="row msg_container base_sent">*/}
+                                            {/*<div className="col-xs-10 col-md-10">*/}
+                                                {/*<div className="messages msg_sent">*/}
+                                                    {/*<input id="noter-text-area" refs="textarea" value={this.state.chat}></input>*/}
+                                                    {/*<time dateTime="2009-11-13T20:00">Timothy • 51 min</time>*/}
+                                                {/*</div>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="col-md-2 col-xs-2 avatar">*/}
+                                                {/*<img*/}
+                                                    {/*src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"*/}
+                                                    {/*className=" img-responsive "/>*/}
+                                            {/*</div>*/}
+                                        {/*</div>*/}
+                                    {/*</div>*/}
                                 </div>
                                 <div className="panel-footer">
                                     <div className="input-group">
                                         <input id="btn-input" type="text" className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
                                                placeholder="Write your message here..."/>
+
                                         <span className="input-group-btn">
                                             <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
                                         </span>
                                     </div>
+                                            {this.state.showComponent ? <MessageSent/> : null}
+
                                 </div>
                             </div>
                         </div>

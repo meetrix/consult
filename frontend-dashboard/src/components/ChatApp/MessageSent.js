@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+import styles from './ChatApp.scss';
 
-class Message extends Component {
+class MessageSent extends Component {
     render() {
         return (
             <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
                 <div className="row msg_container base_sent">
                     <div className="col-xs-10 col-md-10">
                         <div className="messages msg_sent">
-                            <input id="noter-text-area" refs="textarea"></input>
+                            <p id="noter-text-area" ref="textarea">Sent</p>
                             <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
                         </div>
                     </div>
@@ -22,4 +23,4 @@ class Message extends Component {
     }
 }
 
-export default Message;
+export default MessageSent;
