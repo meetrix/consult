@@ -28,7 +28,10 @@
     "uglify-js": "^3.1.4",
     "url-loader": "^0.6.2",
     "webpack": "^3.7.1",
-    "webpack-dev-server": "^2.9.2"
+    "webpack-dev-server": "^2.9.2",
+    "fullcalendar": "^3.2.0",
+    "fullcalendar-scheduler": "^1.5.1",
+    "jquery": "^3.2.1"
   },
   "dependencies": {
     "axios": "^0.17.1",
