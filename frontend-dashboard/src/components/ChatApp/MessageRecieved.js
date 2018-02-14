@@ -4,7 +4,6 @@ import styles from './ChatApp.scss';
 class MessageRecieved extends Component {
     render() {
         return (
-            <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "10vh" }}>
                 <div className="row msg_container base_receive">
                     <div className="col-md-2 col-xs-2 avatar">
                         <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" className=" img-responsive " />
@@ -16,7 +15,6 @@ class MessageRecieved extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

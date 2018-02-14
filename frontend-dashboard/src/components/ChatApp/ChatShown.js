@@ -13,7 +13,7 @@ class ChatShown extends Component {
             users:[],
             showComponent: false,
             value: [],
-            count: 1
+            count: 0
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
@@ -98,16 +98,27 @@ class ChatShown extends Component {
         this.webrtc.sendToAll('chat', {message: message});
     }
 
-    displaysendMessage(){
+    displaySentMessage(){
         let sendMessage =[];
         for(let i=0;i< this.state.count; i++){
             sendMessage.push(
                 <div key={i}>
-                    <MessageSent message = {this.state.message[i]}/>
+                    <MessageSent message={this.state.messageArray[i] || ''}/>
                 </div>
             )
         }
         return sendMessage;
+    }
+    displayReceivedMessage(){
+        let receivedMessage =[];
+        for(let i=0;i< this.state.count; i++){
+            receivedMessage.push(
+                <div key={i}>
+                    <MessageRecieved message={this.state.messageArray[i] || ''}/>
+                </div>
+            )
+        }
+        return receivedMessage || null;
     }
 
     render() {
@@ -131,10 +142,13 @@ class ChatShown extends Component {
                                         <a href="#"><span className="close" data-id="chat_window_1"/></a>
                                     </div>
                                 </div>
-                                <div>
+                                <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
 
-                                    {this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}
-                                    {this.displaysendMessage()}
+
+                                    {this.state.showComponent ? this.displaySentMessage() : this.displayReceivedMessage()}
+                                    {/*{this.state.messageArray}*/}
+                                    {/*{this.displaysendMessage()}*/}
+
                                     </div>
                                 </div>
                                 <div className="panel-footer">
