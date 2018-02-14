@@ -8,11 +8,10 @@ class ChatShown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: '',
+            message:'',
             chat: '',
             users:[],
             showComponent: false,
-            messageArray:[],
             value: [],
             count: 1
         };
@@ -90,13 +89,9 @@ class ChatShown extends Component {
 
     _handleClick(e){
         const message = this.state.message;
-        const form =this._input.value;
-        const allTmks = this.state.messageArray.concat([form]);
-        console.log('MyArray '+allTmks);
         this.setState({
             chat: message ,
             showComponent: true,
-            messageArray:allTmks,
             count:this.state.count+1
         });
         console.log('Sent: ' +message);
@@ -108,11 +103,11 @@ class ChatShown extends Component {
         for(let i=0;i< this.state.count; i++){
             sendMessage.push(
                 <div key={i}>
-                    <MessageSent value={this.state.message[i] || ''}/>
+                    <MessageSent message = {this.state.message[i]}/>
                 </div>
             )
         }
-        return sendMessage || null;
+        return sendMessage;
     }
 
     render() {
@@ -138,8 +133,7 @@ class ChatShown extends Component {
                                 </div>
                                 <div>
 
-                                    {/*{this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}*/}
-                                    {/*{this.state.messageArray}*/}
+                                    {this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}
                                     {this.displaysendMessage()}
                                     </div>
                                 </div>
