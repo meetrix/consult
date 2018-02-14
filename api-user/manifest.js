@@ -59,7 +59,8 @@ const manifest = {
                         Session: './server/models/session',
                         Status: './server/models/status',
                         User: './server/models/user',
-                        Event:'./server/models/event'
+                        Event:'./server/models/event',
+                        App:'./server/models/app'
                     },
                     autoIndex: Config.get('/hapiMongoModels/autoIndex')
                 }
@@ -157,7 +158,14 @@ const manifest = {
             options: {
                 routes: { prefix: '/api' }
             }
+        },
+        {
+            plugin: './server/api/app-authorize',
+            options: {
+                routes: { prefix: '/api' }
+            }
         }
+
     ]
 };
 
