@@ -11,6 +11,19 @@ api-user:
   links:
     - mongodb
 
+api-starter:
+  image: node:carbon
+  command: bash -c "npm install && npm start"
+  working_dir: /app
+  volumes:
+    - ./api-starter:/app
+  environment:
+    PORT: 8080
+  ports:
+    - "8003:8080"
+  links:
+    - mongodb
+
 frontend-dashboard:
   image: node:carbon
   command: bash -c "npm install && npm start"
@@ -31,6 +44,7 @@ nginx-main:
       - ./frontend-dashboard/build:/usr/share/nginx/html
   links:
     - api-user
+    - api-starter
     - frontend-dashboard
 
 mongodb:
