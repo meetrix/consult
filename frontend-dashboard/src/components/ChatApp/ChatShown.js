@@ -89,7 +89,7 @@ class ChatShown extends Component {
         const message = this.state.message;
         const form =this._input.value;
         const allTmks = this.state.messageArray.concat([form]);
-        console.log('MyArray'+allTmks);
+        console.log('MyArray '+allTmks);
         this.setState({
             chat: message ,
             showComponent: true,
@@ -122,13 +122,13 @@ class ChatShown extends Component {
                                 </div>
                                 <div>
                                     {this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}
-                                </div>
+                                    {this.state.messageArray}
+                                    </div>
                                 </div>
                                 <div className="panel-footer">
                                     <div className="input-group">
                                         <input id="btn-input" type="text" ref={(el) => this._input = el} className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
                                                placeholder="Write your message here..."/>
-
                                         <span className="input-group-btn">
                                             <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
                                         </span>
