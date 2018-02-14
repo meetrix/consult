@@ -1,0 +1,6 @@
+{
+  "name": "StepsBox",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./StepsBox.js"
+}
