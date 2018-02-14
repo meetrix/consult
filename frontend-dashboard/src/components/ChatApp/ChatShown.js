@@ -12,7 +12,9 @@ class ChatShown extends Component {
             chat: '',
             users:[],
             showComponent: false,
-            messageArray:[]
+            messageArray:[],
+            value: [],
+            count: 1
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
@@ -94,10 +96,23 @@ class ChatShown extends Component {
         this.setState({
             chat: message ,
             showComponent: true,
-            messageArray:allTmks
+            messageArray:allTmks,
+            count:this.state.count+1
         });
         console.log('Sent: ' +message);
         this.webrtc.sendToAll('chat', {message: message});
+    }
+
+    displaysendMessage(){
+        let sendMessage =[];
+        for(let i=0;i< this.state.count; i++){
+            sendMessage.push(
+                <div key={i}>
+                    <MessageSent value={this.state.message[i] || ''}/>
+                </div>
+            )
+        }
+        return sendMessage || null;
     }
 
     render() {
@@ -123,8 +138,9 @@ class ChatShown extends Component {
                                 </div>
                                 <div>
 
-                                    {this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}
-                                    {this.state.messageArray}
+                                    {/*{this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}*/}
+                                    {/*{this.state.messageArray}*/}
+                                    {this.displaysendMessage()}
                                     </div>
                                 </div>
                                 <div className="panel-footer">
