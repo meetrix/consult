@@ -4,7 +4,7 @@ import styles from './ChatApp.scss';
 class MessageSent extends Component {
     render() {
         return (
-            <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
+            <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "10vh" }}>
                 <div className="row msg_container base_sent">
                     <div className="col-xs-10 col-md-10">
                         <div className="messages msg_sent">
