@@ -16,7 +16,7 @@ const internals = {};
 
 internals.applyRoutes = function (server, next) {
 
-    const AuthAttempt = server.plugins['hapi-mongo-models'].AuthAttempt;
+    const App = server.plugins['hapi-mongo-models'].App;
 
     server.route({
         method: 'POST',
@@ -24,11 +24,29 @@ internals.applyRoutes = function (server, next) {
         config: {
             auth: {
                 strategy: 'simple'
+            },
+            validate: {
+                payload: {
+                    appId:Joi.string().required()
+
+                }
             }
         },
         handler: function (request, reply) {
-            let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-            reply(token);
+            const appId = request.payload.appId;
+            App.findByAppId(appId, (err, app) => {
+                console.log(err)
+                console.log(app)
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!app) {
+                    return reply(Boom.notFound('App not found. That is strange.'));
+                }
+
+                reply(app);
+            });
         }
     });
 
