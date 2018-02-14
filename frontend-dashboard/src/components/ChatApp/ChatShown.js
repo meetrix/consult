@@ -117,7 +117,7 @@ class ChatShown extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    {this.state.showComponent ? <MessageSent/> : <MessageRecieved/>}
+                                    {this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}
                                 </div>
                                     {/*<div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>*/}
                                         {/*<div className="row msg_container base_sent">*/}
