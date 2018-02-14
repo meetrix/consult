@@ -12,6 +12,7 @@ class ChatShown extends Component {
             chat: '',
             users:[],
             showComponent: false,
+            messageArray:[]
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
@@ -23,7 +24,6 @@ class ChatShown extends Component {
             localVideoEl: '',
             remoteVideosEl: '',
             autoRequestMedia: true,
-            // url: 'https://simplewebrtc.com/demo.html?test'
         });
 
         // console.log("webrtc component mounted");
@@ -87,9 +87,13 @@ class ChatShown extends Component {
 
     _handleClick(e){
         const message = this.state.message;
+        const form =this._input.value;
+        const allTmks = this.state.messageArray.concat([form]);
+        console.log('MyArray'+allTmks);
         this.setState({
             chat: message ,
-            showComponent: true
+            showComponent: true,
+            messageArray:allTmks
         });
         console.log('Sent: ' +message);
         this.webrtc.sendToAll('chat', {message: message});
@@ -119,25 +123,10 @@ class ChatShown extends Component {
                                 <div>
                                     {this.state.showComponent ? <MessageSent/> : <MessageRecieved/>}
                                 </div>
-                                    {/*<div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>*/}
-                                        {/*<div className="row msg_container base_sent">*/}
-                                            {/*<div className="col-xs-10 col-md-10">*/}
-                                                {/*<div className="messages msg_sent">*/}
-                                                    {/*<input id="noter-text-area" refs="textarea" value={this.state.chat}></input>*/}
-                                                    {/*<time dateTime="2009-11-13T20:00">Timothy • 51 min</time>*/}
-                                                {/*</div>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="col-md-2 col-xs-2 avatar">*/}
-                                                {/*<img*/}
-                                                    {/*src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"*/}
-                                                    {/*className=" img-responsive "/>*/}
-                                            {/*</div>*/}
-                                        {/*</div>*/}
-                                    {/*</div>*/}
                                 </div>
                                 <div className="panel-footer">
                                     <div className="input-group">
-                                        <input id="btn-input" type="text" className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
+                                        <input id="btn-input" type="text" ref={(el) => this._input = el} className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
                                                placeholder="Write your message here..."/>
 
                                         <span className="input-group-btn">
