@@ -8,7 +8,7 @@ class Landing extends Component{
     render(){
         return(
             <Fragment>
-                {/*Background Image*/}
+                {/*Background Carousel*/}
                 <Row>
                     <BackgroundCarousel/>
                     {/*<Col className='background-image'>*/}
@@ -21,6 +21,7 @@ class Landing extends Component{
                     {/*</Col>*/}
                 </Row>
 
+                {/*Steps Heading*/}
                 <Row>
                     <Col className='steps-heading'>
                         <h3><b>Easy Three Steps!</b></h3>
