@@ -11,7 +11,7 @@ class MessageRecieved extends Component {
                     </div>
                     <div className="col-xs-10 col-md-10">
                         <div className="messages msg_receive">
-                            <p id="noter-text-area" ref="textarea">Recieved</p>
+                            <p id="noter-text-area" ref="textarea">{this.props.message}</p>
                             <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
                         </div>
                     </div>

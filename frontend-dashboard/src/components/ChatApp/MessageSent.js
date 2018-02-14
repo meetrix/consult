@@ -8,7 +8,7 @@ class MessageSent extends Component {
                 <div className="row msg_container base_sent">
                     <div className="col-xs-10 col-md-10">
                         <div className="messages msg_sent">
-                            <p id="noter-text-area" ref="textarea">Sent</p>
+                            <p id="noter-text-area" ref="textarea">{this.props.message}</p>
                             <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
                         </div>
                     </div>

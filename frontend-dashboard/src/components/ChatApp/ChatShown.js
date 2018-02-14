@@ -121,7 +121,7 @@ class ChatShown extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    {this.state.showComponent ? <MessageSent/> : <MessageRecieved/>}
+                                    {this.state.showComponent ? <MessageSent message={this.state.message}/> : <MessageRecieved message={this.state.message}/>}
                                 </div>
                                 </div>
                                 <div className="panel-footer">
