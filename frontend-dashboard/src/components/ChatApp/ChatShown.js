@@ -8,17 +8,19 @@ class ChatShown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message:'',
+            message: '',
             chat: '',
             users:[],
             showComponent: false,
+            messageArray:[],
             value: [],
             count: 0
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
         this.readyToCall = this.readyToCall.bind(this);
-        };
+        this.message = this.message.bind(this);
+    };
 
     componentDidMount(){
         this.webrtc = new SimpleWebRTC({
@@ -32,15 +34,17 @@ class ChatShown extends Component {
         // this.webrtc.on('videoRemoved', this.removeVideo);
 
         this.webrtc.on('readyToCall', this.readyToCall);
-        this.webrtc.connection.on('message', function(data){
-            if(data.type==='chat') {
-                this.setState({ chat: data.payload.message,
-                                showComponent: false});
-                console.log('Received: ' + data.payload.message);
-            }
-        }.bind(this));
+        this.webrtc.connection.on('message', this.message);
+
     }
 
+    message(data){
+        if(data.type==='chat') {
+            this.setState({ chat: data.payload.message,
+                showComponent: true});
+            console.log('Received: ' + data.payload.message);
+        }
+    }
 
     addVideo(video, peer) {
         console.log('video added', peer);
@@ -89,9 +93,13 @@ class ChatShown extends Component {
 
     _handleClick(e){
         const message = this.state.message;
+        const form =this._input.value;
+        const allTmks = this.state.messageArray.concat([form]);
+        console.log('MyArray '+allTmks);
         this.setState({
             chat: message ,
             showComponent: true,
+            messageArray:allTmks,
             count:this.state.count+1
         });
         console.log('Sent: ' +message);
@@ -107,7 +115,7 @@ class ChatShown extends Component {
                 </div>
             )
         }
-        return sendMessage;
+        return sendMessage || null;
     }
     displayReceivedMessage(){
         let receivedMessage =[];
@@ -122,48 +130,46 @@ class ChatShown extends Component {
     }
 
     render() {
-            return (
-                <div className="container">
-                    <div className="row chat-window col-xs-5 col-md-3" id="chat_window_1" style={{marginLeft: 10}}>
-                        <div className="col-xs-12 col-md-12">
-                            <div className="panel panel-default">
-                                <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}}>
-                                    <div className="col-md-12">
-                                        <h3 className="panel-title"><span className="glyphicon glyphicon-comment"/>
-                                            Messages&nbsp;
-                                            <div className="btn-group dropdown">
-                                                <button type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" onClick={this.props.action} aria-haspopup="true" aria-expanded="false">
-                                                </button>
-                                            </div>
-                                        </h3>
-                                    </div>
-                                    <div className="col-md-4 col-xs-4" style={{textAlign: 'right'}}>
-                                        <a href="#"><span id="minim_chat_window" className="close"/></a>
-                                        <a href="#"><span className="close" data-id="chat_window_1"/></a>
-                                    </div>
+        return (
+            <div className="container">
+                <div className="row chat-window col-xs-5 col-md-3" id="chat_window_1" style={{marginLeft: 10}}>
+                    <div className="col-xs-12 col-md-12">
+                        <div className="panel panel-default">
+                            <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}}>
+                                <div className="col-md-12">
+                                    <h3 className="panel-title"><span className="glyphicon glyphicon-comment"/>
+                                        Messages&nbsp;
+                                        <div className="btn-group dropdown">
+                                            <button type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" onClick={this.props.action} aria-haspopup="true" aria-expanded="false">
+                                            </button>
+                                        </div>
+                                    </h3>
                                 </div>
-                                <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
-
-
-                                    {this.state.showComponent ? this.displaySentMessage() : this.displayReceivedMessage()}
-                                    {/*{this.state.messageArray}*/}
-                                    {/*{this.displaysendMessage()}*/}
-
-                                    </div>
+                                <div className="col-md-4 col-xs-4" style={{textAlign: 'right'}}>
+                                    <a href="#"><span id="minim_chat_window" className="close"/></a>
+                                    <a href="#"><span className="close" data-id="chat_window_1"/></a>
                                 </div>
-                                <div className="panel-footer">
-                                    <div className="input-group">
-                                        <input id="btn-input" type="text" ref={(el) => this._input = el} className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
-                                               placeholder="Write your message here..."/>
-                                        <span className="input-group-btn">
+                            </div>
+                            <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
+
+                                {this.state.showComponent ? this.displaySentMessage() : this.displayReceivedMessage()}
+                                {/*{this.state.messageArray}*/}
+                                {/*{this.displaysendMessage()}*/}
+                            </div>
+                        </div>
+                        <div className="panel-footer">
+                            <div className="input-group">
+                                <input id="btn-input" type="text" ref={(el) => this._input = el} className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
+                                       placeholder="Write your message here..."/>
+                                <span className="input-group-btn">
                                             <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
                                         </span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-            );
+                </div>
+            </div>
+        );
     }
 }
 
