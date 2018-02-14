@@ -36,7 +36,7 @@ const config = {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
                 test: 'mongodb://mongodb:27017/frame-test',
-                $default: 'mongodb://mongodb:27017/scheduler'
+                $default: 'mongodb://mongodb:27017/starter'
             }
         },
         autoIndex: true
