@@ -1,6 +1,6 @@
 {
-  "name": "StepsBox",
+  "name": "BackgroundCarousel",
   "version": "0.0.0",
   "private": true,
-  "main": "./StepsBox.js"
+  "main": "./BackgroundCarousel.js"
 }
