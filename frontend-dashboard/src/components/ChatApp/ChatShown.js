@@ -41,7 +41,7 @@ class ChatShown extends Component {
     message(data){
         if(data.type==='chat') {
             this.setState({ chat: data.payload.message,
-                showComponent: true});
+                showComponent: false});
             console.log('Received: ' + data.payload.message);
         }
     }
