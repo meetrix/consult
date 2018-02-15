@@ -1,12 +1,17 @@
 import React, {Component, Fragment} from 'react';
 import {
+    Button,
+    Col,
+    Row,
     Carousel,
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
-import {LandingPageBackgroundCarouselItems} from '../../../config.js'
+import {LandingPageBackgroundCarouselItems} from '../../../config.js';
+//CarouselBackgroundImage
+import CarouselBackgroundImage from '../../assets/LandingPageImages/carousel_background.png';
 
 class BackgroundCarousel extends Component{
     constructor(props) {
@@ -53,7 +58,15 @@ class BackgroundCarousel extends Component{
                     onExited={this.onExited}
                     key={item.src}
                 >
-                    <img className='carousel-image' src={item.src} alt={item.altText} />
+                    <Row>
+                    <Col className='landing-page-background-text'>
+                    <h4>Ready</h4>
+                    <h4>Steady</h4>
+                    <h4>Learn</h4>
+                    <Button color="info"><h4>Get in</h4></Button>{' '}
+                    </Col>
+                    <img className='landing-page-carousel-image' src={CarouselBackgroundImage} alt={item.altText} />
+                    </Row>
                     <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
                 </CarouselItem>
             );

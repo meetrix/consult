@@ -11,14 +11,6 @@ class Landing extends Component{
                 {/*Background Carousel*/}
                 <Row>
                     <BackgroundCarousel/>
-                    {/*<Col className='background-image'>*/}
-                        {/*<Col className='landing-page-background-text'>*/}
-                            {/*<h4>Ready</h4>*/}
-                            {/*<h4>Steady</h4>*/}
-                            {/*<h4>Learn</h4>*/}
-                            {/*<Button color="info"><h4>Get in</h4></Button>{' '}*/}
-                        {/*</Col>*/}
-                    {/*</Col>*/}
                 </Row>
 
                 {/*Steps Heading*/}
