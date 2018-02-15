@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import {Input} from "reactstrap";
+import styles from "./WebRTC.scss";
 
 class WebRTC extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: '',
-            chat: ''
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
@@ -15,22 +14,16 @@ class WebRTC extends Component {
 
     componentDidMount(){
         this.webrtc = new SimpleWebRTC({
-            localVideoEl: '',
-            remoteVideosEl: '',
+            localVideoEl: 'localVideo',
+            remoteVideosEl: 'remotesVideos',
             autoRequestMedia: true,
-            // url: 'https://simplewebrtc.com/demo.html?test'
         });
 
         // console.log("webrtc component mounted");
         // this.webrtc.on('videoAdded', this.addVideo);
         // this.webrtc.on('videoRemoved', this.removeVideo);
         this.webrtc.on('readyToCall', this.readyToCall);
-        this.webrtc.connection.on('message', function(data){
-            if(data.type==='chat') {
-                this.setState({ chat: data.payload.message });
-                console.log('Received: ' + data.payload.message);
-            }
-        }.bind(this));
+
     }
 
     addVideo(video, peer) {
@@ -74,37 +67,27 @@ class WebRTC extends Component {
         console.log("disconnected");
     }
 
-    _handleChange(e) {
-        this.setState({ message: e.target.value });
-    }
-
-    _handleClick(e){
-        const message = this.state.message;
-        this.setState({ chat: message });
-        console.log('Sent: ' +message);
-        this.webrtc.sendToAll('chat', {message: message});
-    }
 
     render() {
+
+
         return (
-            < div >
-                < div >
+            <div className ="row">
+                <div className ="col-md-12 col-sm-12">
                 <video className = "local"
-                id = "localVideo"
-                ref = "local" >
+                    id = "localVideo"
+                    ref = "local">
                 </video>
                 </div>
-                <div className = "remotes"
-                id = "remoteVideos"
-                ref = "remotes" >
+                <div className ="col-md-4 col-sm-4">
+                    <div className = "-circle">
+                    <div className = "remotes"
+                        id = "remotesVideos"
+                        ref = "remotes" >
+                    </div>
+                    </div>
                 </div>
-                <div>
-                    <Input id="message"  type='text' label='Message' placeholder='Enter message' onChange={this._handleChange.bind(this)}/>
-                    <button id="myBtn" className="btn btn-warning rounded" onClick={this._handleClick.bind(this)}>Send</button>
-                    <br/><br/><br/>
-                    <textarea id="noter-text-area" name="textarea" value={this.state.chat}></textarea>
-                </div>
-            </div >
+            </div>
         );
     }
 }
