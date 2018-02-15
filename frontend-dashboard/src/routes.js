@@ -5,7 +5,7 @@ import Login from './containers/Login/LoginContainer'
 import SignUpContainer from './containers/SignUp/SignUpContainer'
 import Consultants from './views/Pages/Consultant/Consultants'
 //TestComponet
-import Test from './components/Consultants/ConsultGrap'
+import Test from './views/Pages/Test/Test'
 import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/Route/UnauthenticatedRoute";
 
