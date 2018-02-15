@@ -19,8 +19,9 @@ class ChatShown extends Component {
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
         this.readyToCall = this.readyToCall.bind(this);
-        this.message = this.message.bind(this);
-    };
+        this._handleChange = this._handleChange.bind(this);
+        this._handleClick = this._handleClick.bind(this);
+        };
 
     componentDidMount(){
         this.webrtc = new SimpleWebRTC({
