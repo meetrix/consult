@@ -2,11 +2,20 @@ import React, {Component} from 'react';
 import {Col,Row} from 'reactstrap';
 
 
+
 class BaseBox extends Component{
+    constructor(props){
+        super(props);
+    }
     render(){
         return(
-            <Col xs="12" sm= "4" md= "4" className="base-box">
+            <Col className="base-box">
 
+                <Col>
+
+                    {this.props.children}
+
+                </Col>
             </Col>
         )
     }
