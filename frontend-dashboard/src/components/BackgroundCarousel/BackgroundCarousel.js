@@ -65,7 +65,7 @@ class BackgroundCarousel extends Component{
 
         const slides = items.map((item) => {
             return (
-                <CarouselItem className='background-carousel'
+                <CarouselItem className='landing-page-background-carousel'
                     onExiting={this.onExiting}
                     onExited={this.onExited}
                     key={item.src}
@@ -77,7 +77,7 @@ class BackgroundCarousel extends Component{
         });
 
         return (
-            <Carousel className='background-carousel'
+            <Carousel className='landing-page-background-carousel'
                 activeIndex={activeIndex}
                 next={this.next}
                 previous={this.previous}

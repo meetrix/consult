@@ -12,7 +12,7 @@ class Landing extends Component{
                 <Row>
                     <BackgroundCarousel/>
                     {/*<Col className='background-image'>*/}
-                        {/*<Col className='background-text'>*/}
+                        {/*<Col className='landing-page-background-text'>*/}
                             {/*<h4>Ready</h4>*/}
                             {/*<h4>Steady</h4>*/}
                             {/*<h4>Learn</h4>*/}
@@ -23,7 +23,7 @@ class Landing extends Component{
 
                 {/*Steps Heading*/}
                 <Row>
-                    <Col className='steps-heading'>
+                    <Col className='landing-page-steps-heading'>
                         <h3><b>Easy Three Steps!</b></h3>
                     </Col>
                 </Row>
