@@ -20,47 +20,47 @@
 //}
 
 //StepBox
+    //SignupBlock
 .landing-page-signup-block{
   background-color: #a4b7c1;
   height: auto;
   vertical-align: middle;
 }
 .landing-page-signup-block-image{
+  position: inherit;
   vertical-align: middle;
-  position: relative;
-  margin-top: 5%;
 }
 .landing-page-signup-block-text{
-  text-align: center;
+  text-align: inherit;
   margin-top: 10%;
 }
-
+    //SelectTutorBlock
 .landing-page-tutor-block{
   background-color: #b9bbbf;
   height: auto;
   vertical-align: middle;
 }
 .landing-page-tutor-block-image{
-  position: relative;
+  position: inherit;
   vertical-align: middle;
-  margin-top: 15%;
+
 }
 .landing-page-tutor-block-text{
-  text-align: center;
+  text-align: inherit;
   margin-top: 10%
 }
-
+    //ScheduleClassBlock
 .landing-page-schedule-class-block{
   background-color: #869fac;
   height: auto;
   vertical-align: middle;
 }
 .landing-page-schedule-class-block-image{
-  position: relative;
+  position: inherit;
   vertical-align: middle;
-  margin-top: 10%;
+
 }
 .landing-page-schedule-class-block-text{
-  text-align: center;
+  text-align: inherit;
   margin-top: 10%;
 }
