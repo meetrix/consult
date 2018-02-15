@@ -1,11 +1,19 @@
 import React,{Component} from 'react';
-
+import {Col} from 'reactstrap';
 class ConsultantImage extends Component{
+
+    constructor(props){
+        super(props);
+    }
+
     render(){
+
         return(
-            <div className="consultant-image">
-                <img   alt="Avatar"  src="img/avatars/1.jpg"/>
-            </div>
+            <Col>
+                <div className="consultant-image">
+                    <img   alt="Avatar"  src={this.props.image}/>
+                </div>
+            </Col>
         )
     }
 }
