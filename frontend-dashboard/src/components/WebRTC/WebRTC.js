@@ -70,24 +70,30 @@ class WebRTC extends Component {
 
     render() {
 
-
         return (
-            <div className ="row">
-                <div className ="col-md-12 col-sm-12">
+            <div className ="row" id="transperant">
+                <div className ="">
                 <video className = "local"
                     id = "localVideo"
                     ref = "local">
                 </video>
                 </div>
-                <div className ="col-md-4 col-sm-4">
-                    <div className = "-circle">
+                <div className ="">
                     <div className = "remotes"
                         id = "remotesVideos"
                         ref = "remotes" >
                     </div>
-                    </div>
                 </div>
+                {/*<div className="col-md-offset-6 col-sm-offset-6" id = "callButtonContainer">*/}
+                    {/*<button id="call" className="btn btn-lg btn-warning text-white">*/}
+                        {/*<i id="videoControl" className="material-icons"><FaBeer /></i>*/}
+                    {/*</button>*/}
+                    {/*<button id="videoRefreshButton" className="btn btn-lg btn-warning text-white">*/}
+                        {/*<i id="videoControl" className="material-icons">refresh</i>*/}
+                    {/*</button>*/}
+                {/*</div>*/}
             </div>
+
         );
     }
 }

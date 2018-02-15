@@ -1,9 +1,52 @@
 //#localVideo {
-//  height: 150px;
-//  width: 200px;
+//  height: 50%;
+//  width: 50%;
 //}
 //
 //#remotesVideos {
-//  height: 37px;
-//  width: 50px;
+//  transform: scale(0.25);
+//  //height: 25%;
+//  //width: 25%;
 //}
+
+
+#videoContainer {
+  position: absolute;
+  float: left;
+}
+
+#localVideo {
+  //width: 640px;
+  //height: 480px;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+#remotesVideos {
+  /*width: 240px;*/
+  /*height: 180px;*/
+  transform: scale(0.25);
+  padding: 0px;
+  position: absolute;
+  top: -34px;
+  left: -24px;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0px;
+}
+
+#callButtonContainer{
+  position:absolute;
+  margin-top: 450px;
+  margin-left: 30px
+}
+
+#call,videoRefreshButton{
+  background: transparent;
+}
+
+#transperant{
+  //z-index:100;
+  background: transparent;
+}
