@@ -35,19 +35,18 @@ class ChatShown extends Component {
         // this.webrtc.on('videoRemoved', this.removeVideo);
 
         this.webrtc.on('readyToCall', this.readyToCall);
-        this.webrtc.connection.on('message', this.message);
+        this.webrtc.connection.on('message', function(data){
+            if(data.type ==='chat') {
+                this.setState({
+                    chat: data.payload.message,
+                    showComponent: true
+                });
+                console.log('Received: ' + data.payload.message);
+                }
+        }.bind(this));
 
     }
 
-    message(data){
-        if(data.type==='chat') {
-            this.setState({
-                chat: data.payload.message,
-                showComponent: false
-            });
-            console.log('Received: ' + data.payload.message);
-        }
-    }
 
     addVideo(video, peer) {
         console.log('video added', peer);
