@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {Redirect} from 'react-router-dom';
 import {
     Button,
     Col,
@@ -16,12 +17,17 @@ import CarouselBackgroundImage from '../../assets/LandingPageImages/carousel_bac
 class BackgroundCarousel extends Component{
     constructor(props) {
         super(props);
-        this.state = { activeIndex: 0 };
+        this.state = {
+            activeIndex: 0,
+            auth:this.props.auth,
+            login:false
+        };
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
         this.goToIndex = this.goToIndex.bind(this);
         this.onExiting = this.onExiting.bind(this);
         this.onExited = this.onExited.bind(this);
+        this.login = this.login.bind(this);
     }
     onExiting() {
         this.animating = true;
@@ -48,7 +54,18 @@ class BackgroundCarousel extends Component{
         this.setState({ activeIndex: newIndex });
     }
 
+    login(){
+        this.setState({
+            login: true
+        });
+    }
+
     render() {
+        if(this.state.login) {
+            return (
+                <Redirect to="/login"/>
+            )
+        }
         const { activeIndex } = this.state;
 
         const slides = LandingPageBackgroundCarouselItems.map((item) => {
@@ -63,7 +80,7 @@ class BackgroundCarousel extends Component{
                     <h4>Ready</h4>
                     <h4>Steady</h4>
                     <h4>Learn</h4>
-                    <Button color="info"><h4>Get in</h4></Button>{' '}
+                    <Button color="info" active onClick={ () => this.login()}><h4>Get in</h4></Button>{' '}
                     </Col>
                     <img className='landing-page-carousel-image' src={CarouselBackgroundImage} alt={item.altText} />
                     </Row>
