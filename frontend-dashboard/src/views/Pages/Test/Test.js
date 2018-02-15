@@ -10,7 +10,7 @@ import ScheduledWidget from '../../../components/Schedul/ScheduledWidget'
 import ConsultantWidget from '../../../components/Consultants/ConsultantWidget'
 import ImageWidget from '../../../components/Core/ImageWidget'
 
-import FullcalendarTest from '../../../components/lib/FullcalendarTest';
+
 class Test extends Component{
 
 
@@ -18,7 +18,7 @@ class Test extends Component{
     render(){
         return(
             <div style={{top: '1%',left: '1%',position:'absolute'}}>
-                <FullcalendarTest/>
+
             </div>
 
         );
