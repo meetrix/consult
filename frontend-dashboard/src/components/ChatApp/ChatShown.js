@@ -11,7 +11,7 @@ class ChatShown extends Component {
             message: '',
             chat: '',
             users:[],
-            showComponent: false,
+            showComponent: true,
             messageArray:[],
             value: [],
             count: 0
@@ -40,8 +40,10 @@ class ChatShown extends Component {
 
     message(data){
         if(data.type==='chat') {
-            this.setState({ chat: data.payload.message,
-                showComponent: false});
+            this.setState({
+                chat: data.payload.message,
+                showComponent: false
+            });
             console.log('Received: ' + data.payload.message);
         }
     }
@@ -98,7 +100,7 @@ class ChatShown extends Component {
         console.log('MyArray '+allTmks);
         this.setState({
             chat: message ,
-            showComponent: true,
+            showComponent: false,
             messageArray:allTmks,
             count:this.state.count+1
         });
@@ -152,7 +154,7 @@ class ChatShown extends Component {
                             </div>
                             <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
 
-                                {this.state.showComponent ? this.displaySentMessage() : this.displayReceivedMessage()}
+                                {this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}
                                 {/*{this.state.messageArray}*/}
                                 {/*{this.displaysendMessage()}*/}
                             </div>
@@ -162,8 +164,8 @@ class ChatShown extends Component {
                                 <input id="btn-input" type="text" ref={(el) => this._input = el} className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
                                        placeholder="Write your message here..."/>
                                 <span className="input-group-btn">
-                                            <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
-                                        </span>
+                                    <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
+                                </span>
                             </div>
                         </div>
                     </div>
