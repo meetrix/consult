@@ -41,6 +41,7 @@ class ChatShown extends Component {
                     chat: data.payload.message,
                     showComponent: true
                 });
+                this.state.messageArray.push(data.payload.message);
                 console.log('Received: ' + data.payload.message);
                 }
         }.bind(this));
@@ -154,9 +155,9 @@ class ChatShown extends Component {
                             </div>
                             <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
 
-                                {this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}
+                                {/*{this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}*/}
                                 {/*{this.state.messageArray}*/}
-                                {/*{this.displaysendMessage()}*/}
+                                {this.displaySentMessage()}
                             </div>
                         </div>
                         <div className="panel-footer">
