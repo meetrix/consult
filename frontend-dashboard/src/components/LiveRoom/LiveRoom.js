@@ -53,6 +53,7 @@ class LiveRoom extends Component{
 
 LiveRoom.propTypes = {
     //images:PropTypes.array.isRequired
+    room:PropTypes.object.isRequired
 
 };
 

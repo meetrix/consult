@@ -14,15 +14,9 @@ class LiveRooms extends Component{
     constructor(props){
         super(props)
         this.state = {
-            rooms:[
-                {consultantsImages:["img/avatars/1.jpg","img/avatars/2.jpg","img/avatars/3.jpg","img/avatars/4.jpg"]},
-                {consultantsImages:["img/avatars/1.jpg","img/avatars/2.jpg","img/avatars/3.jpg","img/avatars/4.jpg"]},
-                {consultantsImages:["img/avatars/1.jpg","img/avatars/2.jpg","img/avatars/3.jpg","img/avatars/4.jpg"]},
-                {consultantsImages:["img/avatars/1.jpg","img/avatars/2.jpg","img/avatars/3.jpg","img/avatars/4.jpg"]}
-
-                ],
+            rooms:this.props.rooms,
             availabelRooms:[],
-            num:2
+            num:this.props.numOfRoomsShoudShow
         };
 
     }
@@ -51,4 +45,10 @@ class LiveRooms extends Component{
         );
     }
 }
+LiveRooms.propTypes = {
+    rooms:PropTypes.array.isRequired,
+    numOfRoomsShoudShow:PropTypes.number.isRequired
+
+};
+
 export default LiveRooms;

@@ -73,4 +73,9 @@ class BaseShowRow extends Component{
     }
 
 }
+BaseShowRow.propTypes = {
+    numComponentView:PropTypes.number.isRequired,
+    availabelComponent:PropTypes.array.isRequired
+
+}
 export default BaseShowRow;
