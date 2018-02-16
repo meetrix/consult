@@ -14,7 +14,7 @@ class ChatShown extends Component {
             showComponent: true,
             messageArray:[],
             value: [],
-            count: 0
+            count: 0,
         };
         // this.addVideo = this.addVideo.bind(this);
         // this.removeVideo = this.removeVideo.bind(this);
@@ -103,23 +103,22 @@ class ChatShown extends Component {
     _handleClick(e){
         const message = this.state.message;
         const form =this._input.value;
-        //const allTmks = this.state.messageArray.concat([form]);
-       // console.log('MyArray '+allTmks);
-        // this.setState({
-        //     chat: message ,
-        //     showComponent: false,
-        //     messageArray:allTmks,
-        //     count:this.state.count+1
-        // });
+        const allTmks = this.state.messageArray.concat([form]);
+        console.log('MyArray '+allTmks);
+        this.setState({
+            chat: message ,
+            showComponent: false,
+            messageArray:allTmks,
+            count:this.state.count+1,
+        });
         console.log('Sent: ' +message);
         this.webrtc.sendToAll('chat', {message: message});
-        this.createMsgElement(message);
-
-
+        // this.createMsgElement(message);
+        this._input.value="";
     }
 
     createMsgElement(msg){
-        const msgElement = '<div>'+msg+'</div>'
+        const msgElement = msg
         this.setState((prev)=>(
             {
                 messageArray : prev.messageArray.concat([msgElement])
@@ -133,23 +132,26 @@ class ChatShown extends Component {
         for(let i=0;i< this.state.count; i++){
             sendMessage.push(
                 <div key={i}>
-                    {/*<MessageSent message={this.state.messageArray[i] || ''}/>*/}
+                    <MessageSent message={this.state.messageArray[i] || ''}/>
                 </div>
             )
         }
-        return sendMessage || null;
+
+        return sendMessage;
     }
     displayReceivedMessage(){
-        let receivedMessage =[];
-        for(let i=0;i< this.state.count; i++){
-            receivedMessage.push(
-                <div key={i}>
-                    {/*<MessageRecieved message={this.state.messageArray[i] || ''}/>*/}
-                </div>
-            )
-        }
-        return receivedMessage || null;
+        // let receivedMessage =[];
+        // for(let i=0;i< this.state.count; i++){
+        //     receivedMessage.push(
+        //         <div key={i}>
+        //             <MessageRecieved message={this.state.messageArray[i] || ''}/>
+        //         </div>
+        //     )
+        // }
+        return <MessageRecieved message={this.state.messageArray}/>
     }
+
+
 
     render() {
         return (
@@ -174,10 +176,10 @@ class ChatShown extends Component {
                             </div>
                             <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
 
-                                {/*{this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}*/}
+                                {this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}
                                 {/*{this.state.messageArray}*/}
                                 {/*{this.displaySentMessage()}*/}
-                                {this.state.messageArray}
+                                {/*{this.state.messageArray}*/}
                             </div>
                         </div>
                         <div className="panel-footer">
