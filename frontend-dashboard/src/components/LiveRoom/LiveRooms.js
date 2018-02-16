@@ -14,9 +14,7 @@ class LiveRooms extends Component{
     constructor(props){
         super(props)
         this.state = {
-            rooms:this.props.rooms,
-            availabelRooms:[],
-            num:this.props.numOfRoomsShoudShow
+            availabelRooms:[]
         };
 
     }
@@ -26,8 +24,8 @@ class LiveRooms extends Component{
     }
     getConsultantsRooms(){
         let availabelRooms = []
-        if(this.state.rooms!= undefined) {
-            this.state.rooms.map((room, index) =>
+        if(this.props.rooms!= undefined) {
+            this.props.rooms.map((room, index) =>
                 availabelRooms.push(<LiveRoom key={index} room={room}/>)
             )
 
@@ -39,7 +37,7 @@ class LiveRooms extends Component{
         return(
             <BaseBox>
                 <Row>
-                    <BaseShowRow  numComponentView={this.state.num} availabelComponent={this.state.availabelRooms}/>
+                    <BaseShowRow  numComponentView={this.props.numOfRoomsShouldShow} availabelComponent={this.state.availabelRooms}/>
                 </Row>
             </BaseBox>
         );
@@ -47,7 +45,7 @@ class LiveRooms extends Component{
 }
 LiveRooms.propTypes = {
     rooms:PropTypes.array.isRequired,
-    numOfRoomsShoudShow:PropTypes.number.isRequired
+    numOfRoomsShouldShow:PropTypes.number.isRequired
 
 };
 

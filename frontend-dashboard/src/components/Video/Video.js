@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react';
 import PropTypes from 'prop-types'
-import {Row,Button} from 'reactstrap';
+import {Row,Col,Button} from 'reactstrap';
 
 
 
@@ -11,13 +11,9 @@ import {Row,Button} from 'reactstrap';
 import BaseBox from '../BaseBox/BaseBox'
 import ConsultantsImage from '../Consultants/ConsultantsImage'
 
-class LiveRoom extends Component{
+class Video extends Component{
     constructor(props){
         super(props)
-        this.state = {
-            consultsViewImages:[],
-            num:2
-        };
 
 
     }
@@ -25,23 +21,28 @@ class LiveRoom extends Component{
 
     render(){
         return(
+            <Col>
             <BaseBox>
                 <Row>
-                    <ConsultantsImage consultantsImages={this.props.room.consultantsImages}/>
-                </Row>
-                <Row>
-                    <Button color="info">Join Now</Button>
+                    <div className="consultant-image">
+                        <img   alt="Avatar"  src={this.props.video.url}/>
+                    </div>
                 </Row>
 
+
             </BaseBox>
+            </Col>
         )
     }
 }
 
-LiveRoom.propTypes = {
+Video.propTypes = {
     //images:PropTypes.array.isRequired
-    room:PropTypes.object.isRequired
+    video:PropTypes.object.isRequired
 
 };
 
-export default LiveRoom;
+export default Video;
+/**
+ * Created by supun on 16/02/18.
+ */

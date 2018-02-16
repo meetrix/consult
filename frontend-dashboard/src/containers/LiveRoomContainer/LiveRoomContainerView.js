@@ -15,7 +15,7 @@ class LiveRoomContainerView extends Component {
 
     render() {
         return(
-            <LiveRooms rooms={this.props.rooms} numOfRoomsShoudShow={this.props.numOfRoomsShoudShow}></LiveRooms>
+            <LiveRooms rooms={this.props.rooms} numOfRoomsShouldShow={this.props.numOfRoomsShouldShow}></LiveRooms>
         )
     }
 }
@@ -23,7 +23,7 @@ class LiveRoomContainerView extends Component {
 LiveRoomContainerView.propTypes = {
     actions: PropTypes.object.isRequired,
     rooms:PropTypes.array.isRequired,
-    numOfRoomsShoudShow:PropTypes.number.isRequired
+    numOfRoomsShouldShow:PropTypes.number.isRequired
 
 };
 

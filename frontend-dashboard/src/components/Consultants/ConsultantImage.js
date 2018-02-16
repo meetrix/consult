@@ -5,6 +5,7 @@ class ConsultantImage extends Component{
 
     constructor(props){
         super(props);
+
     }
 
     render(){

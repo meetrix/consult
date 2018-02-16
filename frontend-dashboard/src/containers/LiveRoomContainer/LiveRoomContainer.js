@@ -25,7 +25,7 @@ function mapStateToProps(state){
                 {consultantsImages:["img/avatars/1.jpg","img/avatars/2.jpg","img/avatars/3.jpg","img/avatars/4.jpg"]}
 
             ],
-        numOfRoomsShoudShow:2
+        numOfRoomsShouldShow:2
     }
 
 

@@ -11,6 +11,8 @@ import ImageWidget from '../../../components/Core/ImageWidget'
 import BaseShowRow from '../../../components/BaseBox/BaseShowRow'
 import ConsultImage from '../../../components/Consultants/ConsultantImage'
 import LiveRoomContainer from '../../../containers/LiveRoomContainer/LiveRoomContainer'
+import ConsultantLiveContainer from '../../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
+import VideoContainer from '../../../containers/VideoContainer/VideoContainer'
 class Test extends Component{
 
     constructor(props){
@@ -25,9 +27,9 @@ class Test extends Component{
         return(
             <Col>
                 Dashbord
-                <Row>online consults</Row>
+                <Row><ConsultantLiveContainer/></Row>
                 <Row><LiveRoomContainer/></Row>
-                <Row>video</Row>
+                <Row><VideoContainer/></Row>
             </Col>
 
         );
