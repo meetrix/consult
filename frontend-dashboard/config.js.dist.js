@@ -6,6 +6,21 @@ export const ConsultantSearchDropDownMenu = [
     {name: "education", label:"Education", options:["Diploma", "Degree", "Masters"] }
 ];
 
+export const LandingPageBackgroundCarouselItems=[
+    {
+        altText: 'Slide 1',
+        caption: 'Slide 1',
+    },
+    {
+        altText: 'Slide 2',
+        caption: 'Slide 2'
+    },
+    {
+        altText: 'Slide 3',
+        caption: 'Slide 3'
+    }
+];
+
 export const Branding = {
     "footer" : {
         "applicationName" : "Consult",
