@@ -27,7 +27,12 @@ class Full extends Component {
           </main>
           <Aside />
         </div>
-        <Footer />
+        <Footer
+            applicationName="Consult"
+            organization="Meetrix"
+            copyrightYear="2018"
+            poweredByText="Meetrix"
+        />
       </div>
     );
   }
