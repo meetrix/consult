@@ -1,40 +1,15 @@
-//#localVideo {
-//  height: 50%;
-//  width: 50%;
-//}
-//
-//#remotesVideos {
-//  transform: scale(0.25);
-//  //height: 25%;
-//  //width: 25%;
-//}
-
-
 #videoContainer {
   position: absolute;
   float: left;
 }
 
-//#localVideo {
-//  //width: 640px;
-//  //height: 480px;
-//  top: 0;
-//  left: 0;
-//  z-index: 10;
-//}
-//
-//#remoteVideos {
-//  /*width: 240px;*/
-//  /*height: 180px;*/
-//  transform: scale(0.25);
-//  padding: 0px;
-//  position: absolute;
-//  top: -34px;
-//  left: -24px;
-//  cursor: pointer;
-//  z-index: 10;
-//  padding: 0px;
-//}
+.videoRow {
+  position: absolute;
+  bottom: 60%;
+  margin-left: 79%;
+  z-index: 100;
+}
+
 #localVideo {
   height: 200px;
   width: 250px;
@@ -43,6 +18,8 @@
 #remoteVideos {
   height: 37px;
   width: 50px;
+  padding: 0;
+  transform: scale(0.1);
 }
 
 @media screen and (max-device-width: 425px) {
@@ -54,6 +31,8 @@
   #remoteVideos {
     height: 18px;
     width: 25px;
+    padding: 0;
+    transform: scale(0.1);
   }
 }
 
@@ -66,14 +45,18 @@
   #remoteVideos {
     height: 18px;
     width: 25px;
+    padding: 0;
+    transform: scale(0.1);
   }
 }
 #callButtonContainer{
   position:absolute;
-  margin-top: 450px;
-  margin-left: 30px
+  z-index: 110;
+  background: transparent;
+  margin-top: -55px;
+  margin-left: 10px;
 }
 
-#call,videoRefreshButton{
+#videoCall,#videoRefreshButton{
   background: transparent;
 }
