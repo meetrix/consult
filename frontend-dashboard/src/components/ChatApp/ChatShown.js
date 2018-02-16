@@ -118,7 +118,7 @@ class ChatShown extends Component {
     }
 
     createMsgElement(msg){
-        const msgElement = msg
+        const msgElement = msg;
         this.setState((prev)=>(
             {
                 messageArray : prev.messageArray.concat([msgElement])
@@ -138,6 +138,8 @@ class ChatShown extends Component {
         }
 
         return sendMessage;
+        // return <MessageSent message={this.state.messageArray}/>
+
     }
     displayReceivedMessage(){
         // let receivedMessage =[];
@@ -176,9 +178,9 @@ class ChatShown extends Component {
                             </div>
                             <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
 
-                                {this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}
+                                {/*{this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}*/}
                                 {/*{this.state.messageArray}*/}
-                                {/*{this.displaySentMessage()}*/}
+                                {this.displaySentMessage()}
                                 {/*{this.state.messageArray}*/}
                             </div>
                         </div>

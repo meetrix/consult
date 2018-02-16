@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Input} from "reactstrap";
-import styles from "./WebRTC.scss";
+import styles from "./Video.scss";
 import MaterialIcon from 'react-google-material-icons';
 
-class WebRTC extends Component {
+class Video extends Component {
     // constructor(props) {
     //     super(props);
     //     this.state = {
@@ -96,4 +96,4 @@ class WebRTC extends Component {
     }
 }
 
-export default WebRTC;
+export default Video;

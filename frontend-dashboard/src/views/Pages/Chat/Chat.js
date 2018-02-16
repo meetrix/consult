@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WebRTC from "../../../components/WebRTC";
+import WebRTC from "../../../components/Video";
 
 class Chat extends Component {
     constructor(props) {
@@ -9,7 +9,7 @@ class Chat extends Component {
         // const localVideo = 'localVideo';
 
         return (
-            {/*<div><WebRTC/></div>*/}
+            {/*<div><Video/></div>*/}
         );
     }
 }
