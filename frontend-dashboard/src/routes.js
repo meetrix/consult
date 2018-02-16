@@ -6,6 +6,7 @@ import SignUpContainer from './containers/SignUp/SignUpContainer'
 import Consultants from './views/Pages/Consultant/Consultants'
 //TestComponet
 import Test from './views/Pages/Test/Test'
+import Life from './views/Pages/Test/LifycycleTest'
 import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/Route/UnauthenticatedRoute";
 
