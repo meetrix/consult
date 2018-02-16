@@ -15,7 +15,7 @@ class WebRTC extends Component {
     componentDidMount(){
         this.webrtc = new SimpleWebRTC({
             localVideoEl: 'localVideo',
-            remoteVideosEl: 'remotesVideos',
+            remoteVideosEl: 'remoteVideos',
             autoRequestMedia: true,
         });
 
@@ -56,7 +56,7 @@ class WebRTC extends Component {
 
     readyToCall() {
         console.log("Ready Call");
-        return this.webrtc.joinRoom('PortalChatRoom');
+        return this.webrtc.joinRoom('test');
     }
 
     connect() {
@@ -69,10 +69,15 @@ class WebRTC extends Component {
 
 
     render() {
-
+        const videoContainer={
+            position: "absolute",
+            bottom: "70%",
+            right: 0,
+            zIndex:"100"
+        };
         return (
-            <div className ="row" id="transperant">
-                <div className ="">
+            <div className ="row" style={videoContainer}>
+                <div>
                 <video className = "local"
                     id = "localVideo"
                     ref = "local">
@@ -80,7 +85,7 @@ class WebRTC extends Component {
                 </div>
                 <div className ="">
                     <div className = "remotes"
-                        id = "remotesVideos"
+                        id = "remoteVideos"
                         ref = "remotes" >
                     </div>
                 </div>

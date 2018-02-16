@@ -6,8 +6,8 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="animated fadeIn">
-        {/*Hello World*/}
-        <WebRTC/>
+        Hello World
+        {/*<WebRTC/>*/}
       </div>
     )
   }
