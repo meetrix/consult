@@ -11,7 +11,7 @@ import ConsultantWidget from '../../../components/Consultants/ConsultantWidget'
 import ImageWidget from '../../../components/Core/ImageWidget'
 import BaseShowRow from '../../../components/BaseBox/BaseShowRow'
 import ConsultImage from '../../../components/Consultants/ConsultantImage'
-
+import LiveRooms from '../../../components/DashBoard/LiveRooms'
 
 class Test extends Component{
 
@@ -43,8 +43,8 @@ class Test extends Component{
     render(){
         return(
             <div style={{top: '1%',left: '1%',position:'absolute'}}>
-                <BaseShowRow  numComponentView={this.state.num} availabelComponent={this.state.consultsViewImages}/>
-
+                {/*<BaseShowRow  numComponentView={this.state.num} availabelComponent={this.state.consultsViewImages}/>*/}
+                <LiveRooms/>
             </div>
 
         );

@@ -9,13 +9,29 @@ import {Row,Button} from 'reactstrap';
 
 //component
 import BaseBox from '../BaseBox/BaseBox'
-import ConsultsImage from '../Consultants/ConsultantsImage'
-
+import ConsultImage from '../Consultants/ConsultantImage'
+import BaseShowRow from '../BaseBox/BaseShowRow'
 class LiveRoom extends Component{
-    constructor(props) {
+    constructor(props){
         super(props)
         this.state = {
-            images: ["img/avatars/1.jpg", "img/avatars/2.jpg", "img/avatars/3.jpg", "img/avatars/4.jpg"]
+            room:this.props.room,
+            consultsViewImages:[],
+            num:2
+        };
+
+    }
+    componentDidMount(){
+        this.getConsultantsImages();
+
+    }
+    getConsultantsImages(){
+        let consultsImages = []
+        if(this.state.room.consultantsImages!= undefined) {
+            this.state.room.consultantsImages.map((consultantImage, index) =>
+                consultsImages.push(<ConsultImage key={index} image={consultantImage}/>)
+            )
+            this.setState({consultsViewImages: consultsImages});
         }
     }
 
@@ -24,7 +40,7 @@ class LiveRoom extends Component{
         return(
             <BaseBox>
                 <Row>
-                   <ConsultsImage images={this.state.images}/>
+                    <BaseShowRow  numComponentView={this.state.num} availabelComponent={this.state.consultsViewImages}/>
                 </Row>
                 <Row>
                     <Button color="info">Join Now</Button>
