@@ -3,10 +3,11 @@
  */
 import React,{Component} from 'react';
 import PropTypes from 'prop-types'
-import {Row,Button} from 'reactstrap';
+import {Row,Button,Col} from 'reactstrap';
 
 import Video from './Video'
 import {BaseShowRow,BaseBox} from '../BaseBox'
+import ReactList from 'react-list';
 
 
 class Videos extends Component{
@@ -37,7 +38,16 @@ class Videos extends Component{
         return(
             <BaseBox>
                 <Row>
-                    <BaseShowRow  numComponentView={this.props.numOfVideoShouldShow} availabelComponent={this.state.availabelVideos}/>
+                    {/*<BaseShowRow  numComponentView={this.props.numOfVideoShouldShow} availabelComponent={this.state.availabelVideos}/>*/}
+                    <Col style={{overflow: 'auto'}}>
+                        <ReactList
+                            itemRenderer={(index,key)=>this.state.availabelVideos[index]}
+                            length={this.state.availabelVideos.length}
+                            type='uniform'
+                            axis='x'
+                            useTranslate3d={true}
+                        />
+                    </Col>
                 </Row>
             </BaseBox>
         );

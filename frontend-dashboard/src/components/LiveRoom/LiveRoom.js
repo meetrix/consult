@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react';
 import PropTypes from 'prop-types'
-import {Row,Button} from 'reactstrap';
+import {Row,Col,Button} from 'reactstrap';
 
 
 
@@ -25,15 +25,17 @@ class LiveRoom extends Component{
 
     render(){
         return(
-            <BaseBox>
-                <Row>
-                    <ConsultantsImage consultantsImages={this.props.room.consultantsImages}/>
-                </Row>
-                <Row>
-                    <Button color="info">Join Now</Button>
-                </Row>
+            <div style={{float: 'left'}}>
+                <BaseBox>
+                    <Row>
+                        <ConsultantsImage consultantsImages={this.props.room.consultantsImages}/>
+                    </Row>
+                    <Row>
+                        <Button color="info">Join Now</Button>
+                    </Row>
 
-            </BaseBox>
+                </BaseBox>
+            </div>
         )
     }
 }

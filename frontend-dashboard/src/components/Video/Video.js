@@ -21,17 +21,19 @@ class Video extends Component{
 
     render(){
         return(
+            <div style={{float: 'left'}}>
             <Col>
-            <BaseBox>
-                <Row>
-                    <div className="consultant-image">
-                        <img   alt="Avatar"  src={this.props.video.url}/>
-                    </div>
-                </Row>
+                <BaseBox>
+                    <Row>
+                        <div className="consultant-image">
+                            <img   alt="Avatar"  src={this.props.video.url}/>
+                        </div>
+                    </Row>
 
 
-            </BaseBox>
+                </BaseBox>
             </Col>
+            </div>
         )
     }
 }

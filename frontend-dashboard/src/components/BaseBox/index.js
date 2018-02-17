@@ -3,3 +3,4 @@
  */
 export {default as BaseShowRow} from './BaseShowRow'
 export {default as BaseBox} from  './BaseBox';
+export {default as BaseScroll} from  './BaseScroll';

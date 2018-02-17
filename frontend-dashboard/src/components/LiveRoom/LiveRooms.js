@@ -3,7 +3,8 @@
  */
 import React,{Component} from 'react';
 import PropTypes from 'prop-types'
-import {Row,Button} from 'reactstrap';
+import {Row,Col,Button} from 'reactstrap';
+import ReactList from 'react-list';
 
 import LiveRoom from './LiveRoom'
 import BaseShowRow from '../BaseBox/BaseShowRow'
@@ -37,8 +38,16 @@ class LiveRooms extends Component{
         return(
             <BaseBox>
                 <Row>
-                    <BaseShowRow  numComponentView={this.props.numOfRoomsShouldShow} availabelComponent={this.state.availabelRooms}/>
-                </Row>
+                    {/*<BaseShowRow  numComponentView={this.props.numOfRoomsShouldShow} availabelComponent={this.state.availabelRooms}/>*/}
+                    <Col style={{overflow: 'auto'}}>
+                        <ReactList
+                            itemRenderer={(index,key)=>this.state.availabelRooms[index]}
+                            length={this.state.availabelRooms.length}
+                            type='variable'
+                            axis='x'
+                        />
+                    </Col>
+                    </Row>
             </BaseBox>
         );
     }
