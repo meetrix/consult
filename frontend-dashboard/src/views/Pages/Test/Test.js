@@ -29,10 +29,10 @@ class Test extends Component{
         return(
             <Col>
                 Dashbord
-                <Row><MyConsultantsContainer/></Row>
-                <Row><ConsultantLiveContainer/></Row>
-                <Row><LiveRoomContainer/></Row>
-                <Row><VideoContainer/></Row>
+                <Row className="dash-board-component-wrapper"><MyConsultantsContainer/></Row>
+                <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+                <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+                <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
                 {/*<Row><BaseScroll/></Row>*/}
 
 
