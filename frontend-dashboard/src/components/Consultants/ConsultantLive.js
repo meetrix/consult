@@ -11,7 +11,7 @@ class ConsultantLive extends Component{
 
             <BaseBox>
                 <Row className="username-consult-live">
-                    <p>{this.props.consultant.username}</p>
+                    <p style={{margin:"auto"}}>{this.props.consultant.username}</p>
                 </Row>
 
                 <Row className="consultant-image">

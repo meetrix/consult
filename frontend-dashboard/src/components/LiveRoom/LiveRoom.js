@@ -28,10 +28,19 @@ class LiveRoom extends Component{
             <div style={{float: 'left'}}>
                 <BaseBox>
                     <Row>
+                        <div style={{margin:'auto'}}>
+                            Room Name
+                        </div>
+
+                    </Row>
+                    <Row>
                         <ConsultantsImage consultantsImages={this.props.room.consultantsImages}/>
                     </Row>
                     <Row>
-                        <Button color="info">Join Now</Button>
+                        <div style={{margin:'auto'}}>
+                            <Button color="warning">Join Now</Button>
+                        </div>
+
                     </Row>
 
                 </BaseBox>

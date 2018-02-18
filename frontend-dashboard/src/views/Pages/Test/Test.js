@@ -13,6 +13,7 @@ import ConsultImage from '../../../components/Consultants/ConsultantImage'
 import LiveRoomContainer from '../../../containers/LiveRoomContainer/LiveRoomContainer'
 import ConsultantLiveContainer from '../../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
 import VideoContainer from '../../../containers/VideoContainer/VideoContainer'
+import MyConsultantsContainer from '../../../containers/MyConsutantsContainer/MyConsultantsContainer'
 import {BaseScroll} from '../../../components/BaseBox'
 class Test extends Component{
 
@@ -28,6 +29,7 @@ class Test extends Component{
         return(
             <Col>
                 Dashbord
+                <Row><MyConsultantsContainer/></Row>
                 <Row><ConsultantLiveContainer/></Row>
                 <Row><LiveRoomContainer/></Row>
                 <Row><VideoContainer/></Row>
