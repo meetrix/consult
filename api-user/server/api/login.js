@@ -73,16 +73,14 @@ const register = function (server, serverOptions) {
             const authHeader = `Basic ${new Buffer(credentials).toString('base64')}`;
 
             return {
-                data : [
-                    {                user: {
-                        _id: request.pre.user._id,
-                        username: request.pre.user.username,
-                        email: request.pre.user.email,
-                        roles: request.pre.user.roles
-                    },
-                        session: request.pre.session,
-                        authHeader}
-                ]
+                user: {
+                    _id: request.pre.user._id,
+                    username: request.pre.user.username,
+                    email: request.pre.user.email,
+                    roles: request.pre.user.roles
+                },
+                session: request.pre.session,
+                authHeader
             };
         }
     });
