@@ -6,6 +6,10 @@ export const REDUX_ACTIONS = {
     FETCH_LATEST:'FETCH_LATEST',
     FETCHING_SUCCESS : 'FETCHING_SUCCESS',
     FETCHING_FAILURE:'FETCHING_FAILURE',
+    ADD_MESSAGE: 'ADD_MESSAGE',
+    MESSAGE_RECEIVED: 'MESSAGE_RECEIVED',
+    // ADD_USER: 'ADD_USER',
+    // USERS_LIST: 'USERS_LIST',
     //tutor redux action
 
     SET_TUTOR_DATA: "SET_TUTOR_DATA",
@@ -15,6 +19,29 @@ export const REDUX_ACTIONS = {
     SET_LOGIN_DATA:"SET_LOGIN_DATA",
 
 }
+let nextMessageId = 0
+// let nextUserId = 0
+
+export const addMessage = (message, author) => ({
+    type: REDUX_ACTIONS.ADD_MESSAGE,
+    id: nextMessageId++,
+    message,
+    author
+})
+
+// export const addUser = name => ({
+//     type: types.ADD_USER,
+//     id: nextUserId++,
+//     name
+// })
+
+export const messageReceived = (message, author) => ({
+    type: REDUX_ACTIONS.MESSAGE_RECEIVED,
+    id: nextMessageId++,
+    message,
+    author
+});
+
 export const STORE_INITIATE_VALUE={
     AUTH_INITIATE: [
     {
