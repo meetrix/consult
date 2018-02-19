@@ -76,10 +76,10 @@ class Login extends Component {
 
     }
   render() {
-    if(this.props.auth[0].authHeader!=undefined){
+    if(this.props.auth.authHeader!=undefined){
         return(
 
-        <Redirect to="/"/>
+        <Redirect to="/consultants"/>
         )
     }
     else if(this.state.signup){
