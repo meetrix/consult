@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ChatTest from "../../../components/ChatTest/ChatTest";
+// import ChatTest from "../../../components/ChatTest/ChatTest";
 
 class Chat extends Component {
     // constructor(props) {
@@ -9,7 +9,7 @@ class Chat extends Component {
         // const localVideo = 'localVideo';
 
         return (
-            <div><ChatTest/></div>
+            {/*<div><ChatTest/></div>*/}
         );
     }
 }
