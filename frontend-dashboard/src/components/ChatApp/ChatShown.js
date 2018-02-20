@@ -117,7 +117,7 @@ class ChatShown extends Component {
         console.log('Sent: ' +message);
         this.webrtc.sendToAll('chat', {message: message});
         // this.createMsgElement(message);
-        this._input.value="";
+        input.value = ''
     }
 
     createMsgElement(msg){
@@ -188,7 +188,7 @@ class ChatShown extends Component {
                                 {/*{this.state.messageArray}*/}
                             </div>
                         </div>
-                        <AddMessage />
+                        <AddMessage/>
                     </div>
                 </div>
             </div>

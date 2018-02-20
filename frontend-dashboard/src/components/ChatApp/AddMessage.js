@@ -18,12 +18,11 @@ const AddMessage = (props) => {
                             <span className="input-group-btn">
                                 <button className="btn btn-primary btn-sm"
                                         id="btn-chat"
-                                        // onClick={this.props.action}>
-                                         onClick={(e)=> {
-                                            props.dispatch(input.value, 'Me')
-                                            // console.log('ENTERED: ' + input.value)
-                                            input.value = ''
-                                            }
+                                        onClick={(e) => {
+                                             props.dispatch(input.value, 'Me')
+                                             //  this.webrtc.sendToAll('chat', {message: message});
+                                             input.value = ''
+                                           }
                                         }>
                                 Send
                                 </button>
