@@ -40,7 +40,7 @@ ReactDOM.render((
             <Route exact path="/login" name="Login Page" component={Login}/>
             <Route exact path="/register" name="Register Page" component={Register}/>
             <Route exact path="/session" name="Session Page" component={Session}/>
-            <Route exact path="/chat" name="Chat Page" component={Chat}/>
+            {/*<Route exact path="/chat" name="Chat Page" component={Chat}/>*/}
             <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer}/>
             <Route path="/" name="Home" component={Full}/>
         </Switch>
