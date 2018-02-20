@@ -584,7 +584,7 @@ lab.experiment('GET /api/accounts/my', () => {
 
     lab.test('it returns HTTP 200 when all is well', async () => {
 
-        const response = await server.inject(request);
+        const respognse = await server.inject(request);
 
         Code.expect(response.statusCode).to.equal(200);
         Code.expect(response.result).to.be.an.object();
