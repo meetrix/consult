@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import AddMessageComponent from '../../components/ChatTest/AddMessage'
+import AddMessageComponent from '../../components/ChatApp/AddMessage'
 import {addMessage} from "../../constants/constant";
 
 const mapDispatchToProps = dispatch => ({

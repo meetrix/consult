@@ -3,6 +3,9 @@ import styles from './ChatApp.scss';
 import MessageSent from "./MessageSent";
 import MessageRecieved from "./MessageRecieved";
 
+import { MessagesList } from "../../containers/ChatApp/MessageList"
+import { AddMessage } from "../../containers/ChatApp/AddMessage"
+
 class ChatShown extends Component {
 
     constructor(props) {
@@ -166,7 +169,7 @@ class ChatShown extends Component {
                                     <h3 className="panel-title"><span className="glyphicon glyphicon-comment"/>
                                         Messages&nbsp;
                                         <div className="btn-group dropdown">
-                                            <button type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" onClick={this.props.action} aria-haspopup="true" aria-expanded="false">
+                                            <button type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             </button>
                                         </div>
                                     </h3>
@@ -178,21 +181,14 @@ class ChatShown extends Component {
                             </div>
                             <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
 
+                                <MessagesList/>
                                 {/*{this.state.showComponent ? this.displayReceivedMessage() : this.displaySentMessage()}*/}
                                 {/*{this.state.messageArray}*/}
-                                {this.displaySentMessage()}
+                                {/*{this.displaySentMessage()}*/}
                                 {/*{this.state.messageArray}*/}
                             </div>
                         </div>
-                        <div className="panel-footer">
-                            <div className="input-group">
-                                <input id="btn-input" type="text" ref={(el) => this._input = el} className="form-control input-sm chat_input" onChange={this._handleChange.bind(this)}
-                                       placeholder="Write your message here..."/>
-                                <span className="input-group-btn">
-                                    <button className="btn btn-primary btn-sm" id="btn-chat" onClick={this._handleClick.bind(this)}>Send</button>
-                                </span>
-                            </div>
-                        </div>
+                        <AddMessage />
                     </div>
                 </div>
             </div>
