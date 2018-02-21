@@ -31,7 +31,7 @@ const config = {
                 uri: {
                     $filter: 'env',
                     production: process.env.MONGODB_URI,
-                    $default: 'mongodb://mongodb:27017/'
+                    $default: 'mongodb://localhost:27017/'
                 },
                 db: {
                     $filter: 'env',
