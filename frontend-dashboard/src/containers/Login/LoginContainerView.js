@@ -22,7 +22,7 @@ class LoginContainerView extends Component {
 
 LoginContainerView.propTypes = {
     actions: PropTypes.object.isRequired,
-    auth:PropTypes.array.isRequired
+    auth:PropTypes.object.isRequired
 
 };
 
