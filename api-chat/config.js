@@ -31,13 +31,13 @@ const config = {
                 uri: {
                     $filter: 'env',
                     production: process.env.MONGODB_URI,
-                    $default: 'mongodb://localhost:27017/'
+                    $default: 'mongodb://mongodb:27017/'
                 },
                 db: {
                     $filter: 'env',
                     production: process.env.MONGODB_DB_NAME,
-                    test: 'api-starter-test',
-                    $default: 'api-starter-test'
+                    test: 'api_chat',
+                    $default: 'api_chat'
                 }
             }
         },
