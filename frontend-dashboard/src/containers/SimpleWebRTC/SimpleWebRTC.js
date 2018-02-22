@@ -21,28 +21,24 @@ function addWebRTC(dispatch, getState) {
         });
     }
 
-    // webrtc.connection.on('message', function (data) {
-    //     console.log("Received");
-    //     if (data.type === 'chat') {
-    //         console.log('chat received', data.payload.message);
-    //         //append name and message to textarea using id #messages
-    //         // $('#messages').append('<br>' + data.payload.nick + ': <br>' + data.payload.message + '&#10;');
-    //     }
-    //     dispatch({
-    //         type: REDUX_ACTIONS.MESSAGE_RECEIVED,
-    //         name: 'MEE',
-    //         message: data.payload.message
-    //     })
-    // });
+    webrtc.connection.on('message', function (data) {
+        console.log("Received");
+        if (data.type === 'chat') {
+            console.log('chat received', data.payload.message);
+        }
+        dispatch({
+            type: REDUX_ACTIONS.MESSAGE_RECEIVED,
+            name: 'MEE',
+            message: data.payload.message
+        })
+    });
 }
 
-// function messageAdded(action) {
-//     // webrtc.config.nick = $('#name').val();
-//     webrtc.sendToAll('chat', {message: action.message, nick: 'Me'});
-//     if (action.type === 'ADD_MESSAGE') {
-//         console.log("ADD_MESSAGE: " +action.message)
-//         // appendToList();
-//     }
-// }
+function messageAdded(action) {
+    webrtc.sendToAll('chat', {message: action.message});
+    if (action.type === 'ADD_MESSAGE') {
+        console.log("ADD_MESSAGE: " +action.message)
+    }
+}
 
-export {addWebRTC}
+export {addWebRTC, messageAdded}
