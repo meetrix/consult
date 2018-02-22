@@ -30,7 +30,8 @@ class Consultant extends Component {
     }
     render() {
         return(
-            <Col xs="12" sm= {this.props.columnWidth} md= {this.props.columnWidth} className="consultant">
+            <Col xs="12" sm= {this.props.columnWidth} md= {this.props.columnWidth} >
+                <div className="consultant">
                 <Row className="consultant-price"><p>1000/ - per session</p> </Row>
                 <Row >
                     <Col className="consultant-image" xs="12" md="6">
@@ -66,6 +67,7 @@ class Consultant extends Component {
                         </Row>
                         </Col>
                 </Row>
+                </div>
 
             </Col>
 
