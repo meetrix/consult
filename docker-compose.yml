@@ -7,7 +7,6 @@ nginx-main:
       - ./frontend-dashboard/build:/usr/share/nginx/html
   links:
     - api-user
-    - api-starter
     - frontend-dashboard
 
 api-user:
