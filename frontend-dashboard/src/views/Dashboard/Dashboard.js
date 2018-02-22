@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ChatApp from "../../components/ChatApp";
 class Dashboard extends Component {
 
   render() {
@@ -7,7 +6,6 @@ class Dashboard extends Component {
       <div className="animated fadeIn">
         Hello World
         {/*<Video/>*/}
-        <ChatApp/>
       </div>
     )
   }

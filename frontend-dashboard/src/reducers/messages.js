@@ -7,6 +7,7 @@ const messages = (state = [], action) => {
             messageAdded(action)
             return state.concat([
                 {
+                    isSent: true,
                     message: action.message,
                     author: action.author,
                     id: action.id
@@ -15,6 +16,7 @@ const messages = (state = [], action) => {
         case REDUX_ACTIONS.MESSAGE_RECEIVED:
             return state.concat([
                 {
+                    isSent: false,
                     message: action.message,
                     author: action.author,
                     id: action.id

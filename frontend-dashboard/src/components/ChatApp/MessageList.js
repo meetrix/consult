@@ -18,6 +18,7 @@ const MessagesList = ({ messages }) => (
 MessagesList.propTypes = {
     messages: PropTypes.arrayOf(
         PropTypes.shape({
+            isSent: PropTypes.bool.isRequired,
             id: PropTypes.number.isRequired,
             message: PropTypes.string.isRequired,
             author: PropTypes.string.isRequired

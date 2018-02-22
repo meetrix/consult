@@ -28,7 +28,7 @@ function addWebRTC(dispatch, getState) {
         }
         dispatch({
             type: REDUX_ACTIONS.MESSAGE_RECEIVED,
-            name: 'MEE',
+            author: 'Other',
             message: data.payload.message
         })
     });
