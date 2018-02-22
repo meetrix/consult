@@ -8,8 +8,8 @@ export const REDUX_ACTIONS = {
     FETCHING_FAILURE:'FETCHING_FAILURE',
     ADD_MESSAGE: 'ADD_MESSAGE',
     MESSAGE_RECEIVED: 'MESSAGE_RECEIVED',
-    // ADD_USER: 'ADD_USER',
-    // USERS_LIST: 'USERS_LIST',
+    ADD_USER: 'ADD_USER',
+    USERS_LIST: 'USERS_LIST',
     //tutor redux action
 
     SET_TUTOR_DATA: "SET_TUTOR_DATA",
@@ -20,7 +20,7 @@ export const REDUX_ACTIONS = {
 
 }
 let nextMessageId = 0
-// let nextUserId = 0
+let nextUserId = 0
 
 export const addMessage = (message, author) => ({
     type: REDUX_ACTIONS.ADD_MESSAGE,
@@ -29,11 +29,11 @@ export const addMessage = (message, author) => ({
     author
 })
 
-// export const addUser = name => ({
-//     type: types.ADD_USER,
-//     id: nextUserId++,
-//     name
-// })
+export const addUser = name => ({
+    type: REDUX_ACTIONS.ADD_USER,
+    id: nextUserId++,
+    name
+})
 
 export const messageReceived = (message, author) => ({
     type: REDUX_ACTIONS.MESSAGE_RECEIVED,
@@ -41,6 +41,11 @@ export const messageReceived = (message, author) => ({
     message,
     author
 });
+
+export const populateUsersList = users => ({
+    type: REDUX_ACTIONS.USERS_LIST,
+    users
+})
 
 export const STORE_INITIATE_VALUE={
     AUTH_INITIATE: [

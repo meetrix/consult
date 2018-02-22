@@ -6,8 +6,8 @@ const Message = ({ message, author }) => (
      <div className="col-xs-10 col-md-10">
         <div className="messages msg_sent">
             <p>
-            {/*<i>{author}</i>: {message}*/}
-            {message}
+            <i>{author}</i>: {message}
+            {/*{message}*/}
             </p>
         </div>
      </div>
@@ -21,7 +21,7 @@ const Message = ({ message, author }) => (
 
 Message.propTypes = {
     message: PropTypes.string.isRequired,
-    // author: PropTypes.string.isRequired
+    author: PropTypes.string.isRequired
 }
 
 export default Message
