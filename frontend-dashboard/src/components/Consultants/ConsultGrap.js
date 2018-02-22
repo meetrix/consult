@@ -5,7 +5,7 @@ import React,{Component} from 'react';
 import {Col,Row} from 'reactstrap';
 import Call from 'react-icons/lib/md/call';
 import Message from 'react-icons/lib/md/chat-bubble-outline';
-import Schedule from 'react-icons/lib/fa/calendar-check-o'
+import Schedule from 'react-icons/lib/fa/calendar-check-o';
 
 class ConsultGrap extends Component{
 
