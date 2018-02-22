@@ -1,6 +1,6 @@
 'use strict';
 const Message = require('../../../server/models/message');
-// const Code = require('code');
+const Code = require('code');
 const Config = require('../../../config');
 const Fixtures = require('../fixtures/index');
 const Lab = require('lab');
@@ -23,6 +23,12 @@ lab.experiment('Message Model', () => {
         await Fixtures.Db.removeAllData();
 
         Message.disconnect();
+    });
+
+    lab.test('Creates a message', async () => {
+
+        const message = await Message.create('test_room', 'that_sender', 'Here is the message');
+        Code.expect(message).to.be.an.instanceOf(Message);
     });
 
 });

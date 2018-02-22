@@ -16,23 +16,23 @@ const schema = Joi.object({
 
 
 class Message extends MongoModels {
-    static async create(name) {
+    static async create(room, sender, body) {
 
-        Assert.ok(name, 'Missing name argument.');
+        Assert.ok(room, 'Missing room argument.');
+        Assert.ok(sender, 'Missing sender argument.');
+        Assert.ok(body, 'Missing body argument.');
 
-        const document = new this({
-            name: this.nameAdapter(name.trim())
-        });
-        const accounts = await this.insertOne(document);
+        const document = new this({ room, sender, body });
+        const messages = await this.insertOne(document);
 
-        return accounts[0];
+        return messages[0];
     }
 
-    static findByUsername(username) {
+    static findByRoom(room) {
 
-        Assert.ok(username, 'Missing username argument.');
+        Assert.ok(room, 'Missing room argument.');
 
-        const query = { 'user.name': username.toLowerCase() };
+        const query = { 'room': room.toLowerCase() };
 
         return this.findOne(query);
     }
@@ -44,8 +44,7 @@ class Message extends MongoModels {
 Message.collectionName = 'messages';
 Message.schema = schema;
 Message.indexes = [
-    { key: { 'user.id': 1 } },
-    { key: { 'user.name': 1 } }
+    { key: { 'room': 1 } }
 ];
 
 
