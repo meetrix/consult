@@ -4,7 +4,6 @@ import FileShare from "../../../components/FileShare";
 import Video from "../../../components/Video";
 
 class Session extends Component {
-
     render() {
         return (
             <div>
@@ -14,7 +13,6 @@ class Session extends Component {
                 <Video/>
                 <FileShare/>
                 <ChatApp/>
-
             </div>
         )
     }
