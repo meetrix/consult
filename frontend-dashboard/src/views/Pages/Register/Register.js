@@ -8,6 +8,7 @@ class Register extends Component {
       super(props);
 
 
+
       this.setName = this.setName.bind(this);
       this.setUserName = this.setUserName.bind(this);
       this.setEmail = this.setEmail.bind(this)
@@ -39,6 +40,7 @@ class Register extends Component {
 
   }
   render() {
+
           return (
               <div className="app flex-row align-items-center">
                 <Container>
@@ -89,7 +91,11 @@ class Register extends Component {
               </div>
           );
 
+
   }
+
+
+
 }
 
 export default Register;

@@ -10,7 +10,9 @@ class SignUpView extends Component{
 
     render(){
         return(
+
             <Register actions={this.props.actions}/>
+
         );
     }
 
