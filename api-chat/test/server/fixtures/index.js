@@ -1,12 +1,19 @@
 'use strict';
-const Hapi = require('./hapi');
+
+const Creds = require('./creds');
 const Db = require('./db');
+const Hapi = require('./hapi');
+
 
 
 class Fixtures {}
 
-Fixtures.Hapi = Hapi;
+
+
+Fixtures.Creds = Creds;
 Fixtures.Db = Db;
+Fixtures.Hapi = Hapi;
+
 
 
 module.exports = Fixtures;
