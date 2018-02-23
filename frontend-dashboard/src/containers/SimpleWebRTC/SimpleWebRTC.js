@@ -11,26 +11,24 @@ const webrtc = new SimpleWebRTC({
         autoRequestMedia: true,
     });
 function addWebRTC(dispatch, getState) {
-    if (room) {
-        webrtc.joinRoom(room, function (res, err) {
+
+    webrtc.joinRoom(room, function (res, err) {
             dispatch({
                 type: REDUX_ACTIONS.ADD_USER,
                 name: 'MEE'
             })
             console.log('joined', room, err, res);
-        });
-    }
+    });
 
     webrtc.connection.on('message', function (data) {
-        console.log("Received");
         if (data.type === 'chat') {
             console.log('chat received', data.payload.message);
+            dispatch({
+                type: REDUX_ACTIONS.MESSAGE_RECEIVED,
+                author: 'Other',
+                message: data.payload.message
+            })
         }
-        dispatch({
-            type: REDUX_ACTIONS.MESSAGE_RECEIVED,
-            author: 'Other',
-            message: data.payload.message
-        })
     });
 }
 
