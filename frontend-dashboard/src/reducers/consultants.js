@@ -6,7 +6,7 @@ import {REDUX_ACTIONS} from '../constants/constant';
 export default (state = [], action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_CONSULTS_DATA: {
-            return action.payload.data;
+                return action.payload.data;
         }
         case REDUX_ACTIONS.HANDLE_CONSULTS_DATA_FETCH_FAILURE: {
             return {

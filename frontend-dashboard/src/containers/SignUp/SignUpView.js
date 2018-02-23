@@ -10,14 +10,14 @@ class SignUpView extends Component{
 
     render(){
         return(
-            <Register auth={this.props.auth}  actions={this.props.actions}/>
+            <Register actions={this.props.actions}/>
         );
     }
 
 }
 SignUpView.propTypes = {
     actions: PropTypes.object.isRequired,
-    auth:PropTypes.array.isRequired
+
 
 };
 
