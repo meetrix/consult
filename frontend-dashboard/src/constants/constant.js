@@ -19,33 +19,6 @@ export const REDUX_ACTIONS = {
     SET_LOGIN_DATA:"SET_LOGIN_DATA",
 
 }
-let nextMessageId = 0
-let nextUserId = 0
-
-export const addMessage = (message, author) => ({
-    type: REDUX_ACTIONS.ADD_MESSAGE,
-    id: nextMessageId++,
-    message,
-    author
-})
-
-export const addUser = name => ({
-    type: REDUX_ACTIONS.ADD_USER,
-    id: nextUserId++,
-    name
-})
-
-export const messageReceived = (message, author) => ({
-    type: REDUX_ACTIONS.MESSAGE_RECEIVED,
-    id: nextMessageId++,
-    message,
-    author
-});
-
-export const populateUsersList = users => ({
-    type: REDUX_ACTIONS.USERS_LIST,
-    users
-})
 
 export const STORE_INITIATE_VALUE={
     AUTH_INITIATE: [

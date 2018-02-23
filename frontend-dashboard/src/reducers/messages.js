@@ -1,10 +1,10 @@
-import { REDUX_ACTIONS} from "../constants/constant";
-import {messageAdded} from "../containers/SimpleWebRTC/SimpleWebRTC";
+import { REDUX_ACTIONS } from "../constants/constant";
+import { notifyWebRTC } from "../containers/SimpleWebRTC/SimpleWebRTC";
 
 const messages = (state = [], action) => {
     switch (action.type) {
         case REDUX_ACTIONS.ADD_MESSAGE:
-            messageAdded(action)
+            notifyWebRTC(action)
             return state.concat([
                 {
                     isSent: true,

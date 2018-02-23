@@ -1,4 +1,5 @@
-import { REDUX_ACTIONS } from '../../constants/constant';
+import {REDUX_ACTIONS} from '../../constants/constant';
+import {addUser, messageReceived} from "../../constants/webrtc";
 const room = 'ChatRoom';
 const listCreated = false;
 const sessionId = null;
@@ -10,33 +11,27 @@ const webrtc = new SimpleWebRTC({
         remoteVideosEl: 'remoteVideos',
         autoRequestMedia: true,
     });
-function addWebRTC(dispatch, getState) {
+
+function notificationsFromWebRTC(dispatch, getState) {
 
     webrtc.joinRoom(room, function (res, err) {
-            dispatch({
-                type: REDUX_ACTIONS.ADD_USER,
-                name: 'MEE'
-            })
-            console.log('joined', room, err, res);
+        //REDUX_ACTIONS.ADD_USER
+        dispatch(addUser('Me'))
+        console.log('joined', room, err, res);
     });
 
     webrtc.connection.on('message', function (data) {
+        //REDUX_ACTIONS.MESSAGE_RECEIVED
         if (data.type === 'chat') {
             console.log('chat received', data.payload.message);
-            dispatch({
-                type: REDUX_ACTIONS.MESSAGE_RECEIVED,
-                author: 'Other',
-                message: data.payload.message
-            })
+            dispatch(messageReceived(data.payload.message, 'Other'))
         }
     });
 }
 
-function messageAdded(action) {
+function notifyWebRTC(action) {
+    //REDUX_ACTIONS.ADD_MESSAGE
     webrtc.sendToAll('chat', {message: action.message});
-    if (action.type === 'ADD_MESSAGE') {
-        console.log("ADD_MESSAGE: " +action.message)
-    }
 }
 
-export {addWebRTC, messageAdded}
+export {notificationsFromWebRTC, notifyWebRTC}
