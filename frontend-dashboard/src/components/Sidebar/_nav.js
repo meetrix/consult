@@ -23,8 +23,13 @@ export default {
                     name: 'Register',
                     url: '/register',
                     icon: 'icon-star'
-                }
+                },
             ]
-        }
+        },
+        {
+            name: 'Schedule',
+            url: '/calendar',
+            icon: 'icon-speedometer'
+        },
     ]
 };

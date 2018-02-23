@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
 import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
+import Calendar from '../../components/Calendar/Calendar'
 
 import Dashboard from '../../views/Dashboard/';
 
@@ -21,6 +22,7 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
+                  <Route path="/calendar" name="Schedular" component={Calendar}/>
                 <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
