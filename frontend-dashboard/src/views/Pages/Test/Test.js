@@ -2,29 +2,41 @@
  * Created by supun on 09/02/18.
  */
 import React,{Component} from 'react'
-
-
+import {Row,Col} from 'reactstrap'
 
 
 import ScheduledWidget from '../../../components/Schedul/ScheduledWidget'
 import ConsultantWidget from '../../../components/Consultants/ConsultantWidget'
 import ImageWidget from '../../../components/Core/ImageWidget'
-import ConsultantsImage from '../../../components/Consultants/ConsultantsImage'
-
+import BaseShowRow from '../../../components/BaseBox/BaseShowRow'
+import ConsultImage from '../../../components/Consultants/ConsultantImage'
+import LiveRoomContainer from '../../../containers/LiveRoomContainer/LiveRoomContainer'
+import ConsultantLiveContainer from '../../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
+import VideoContainer from '../../../containers/VideoContainer/VideoContainer'
+import MyConsultantsContainer from '../../../containers/MyConsutantsContainer/MyConsultantsContainer'
+import {BaseScroll} from '../../../components/BaseBox'
 class Test extends Component{
 
     constructor(props){
         super(props)
-        this.state = {
-            images:["img/avatars/1.jpg","img/avatars/2.jpg","img/avatars/3.jpg","img/avatars/4.jpg"]
-        };
-    }
 
+
+    }
+    componentDidMount() {
+
+    }
     render(){
         return(
-            <div style={{top: '1%',left: '1%',position:'absolute'}}>
-                <ConsultantsImage images={this.state.images}/>
-            </div>
+            <Col>
+                Dashbord
+                <Row className="dash-board-component-wrapper"><MyConsultantsContainer/></Row>
+                <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+                <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+                <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
+                {/*<Row><BaseScroll/></Row>*/}
+
+
+            </Col>
 
         );
     }
