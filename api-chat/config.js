@@ -36,8 +36,8 @@ const config = {
                 db: {
                     $filter: 'env',
                     production: process.env.MONGODB_DB_NAME,
-                    test: 'api-starter-test',
-                    $default: 'api-starter-test'
+                    test: 'api_chat',
+                    $default: 'api_chat'
                 }
             }
         },
