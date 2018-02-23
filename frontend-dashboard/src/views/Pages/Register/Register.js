@@ -6,10 +6,6 @@ class Register extends Component {
 
   constructor(props){
       super(props);
-      this.state={
-          auth:this.props.auth
-
-      }
 
       this.setName = this.setName.bind(this);
       this.setUserName = this.setUserName.bind(this);
@@ -42,11 +38,7 @@ class Register extends Component {
 
   }
   render() {
-      if (this.props.auth[0].user._id != undefined) {
-          return (
-              <Redirect to="/login"/>
-          )
-      } else {
+
           return (
               <div className="app flex-row align-items-center">
                 <Container>
@@ -97,7 +89,7 @@ class Register extends Component {
               </div>
           );
       }
-  }
+
 }
 
 export default Register;
