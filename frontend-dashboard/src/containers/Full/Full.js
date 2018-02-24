@@ -8,7 +8,7 @@ import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
 
 import Dashboard from '../../views/Dashboard/';
-
+import Profile from '../../containers/UserProfileContainer/UserProfileContainer'
 class Full extends Component {
   render() {
     return (
@@ -20,8 +20,9 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Redirect from="/" to="/dashboard"/>
+                  <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
+                  <Route exact path="/profile" name="Test Component" component={Profile} />
+                  <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
           </main>
