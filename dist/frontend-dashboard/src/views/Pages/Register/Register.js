@@ -109,7 +109,7 @@ var Register = function (_Component) {
                     { className: 'mb-3' },
                     _react2.default.createElement(
                       _reactstrap.InputGroupAddon,
-                      null,
+                      { addonType: 'prepend' },
                       _react2.default.createElement('i', { className: 'icon-user' })
                     ),
                     _react2.default.createElement(_reactstrap.Input, { type: 'text', placeholder: 'Name', onChange: function onChange(e) {
@@ -121,7 +121,7 @@ var Register = function (_Component) {
                     { className: 'mb-3' },
                     _react2.default.createElement(
                       _reactstrap.InputGroupAddon,
-                      null,
+                      { addonType: 'prepend' },
                       _react2.default.createElement('i', { className: 'icon-user' })
                     ),
                     _react2.default.createElement(_reactstrap.Input, { type: 'text', placeholder: 'Username', onChange: function onChange(e) {
@@ -133,7 +133,7 @@ var Register = function (_Component) {
                     { className: 'mb-3' },
                     _react2.default.createElement(
                       _reactstrap.InputGroupAddon,
-                      null,
+                      { addonType: 'prepend' },
                       '@'
                     ),
                     _react2.default.createElement(_reactstrap.Input, { type: 'text', placeholder: 'Email', onChange: function onChange(e) {
@@ -145,7 +145,7 @@ var Register = function (_Component) {
                     { className: 'mb-3' },
                     _react2.default.createElement(
                       _reactstrap.InputGroupAddon,
-                      null,
+                      { addonType: 'prepend' },
                       _react2.default.createElement('i', { className: 'icon-lock' })
                     ),
                     _react2.default.createElement(_reactstrap.Input, { type: 'password', placeholder: 'Password',
@@ -158,7 +158,7 @@ var Register = function (_Component) {
                     { className: 'mb-4' },
                     _react2.default.createElement(
                       _reactstrap.InputGroupAddon,
-                      null,
+                      { addonType: 'prepend' },
                       _react2.default.createElement('i', { className: 'icon-lock' })
                     ),
                     _react2.default.createElement(_reactstrap.Input, { type: 'password', placeholder: 'Repeat password',

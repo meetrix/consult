@@ -198,11 +198,7 @@ var UserProfile = function (_Component) {
                                     _react2.default.createElement(
                                         _reactstrap.Col,
                                         { md: '3' },
-                                        _react2.default.createElement(
-                                            _reactstrap.Label,
-                                            { htmlFor: 'file-input' },
-                                            'File input'
-                                        )
+                                        _react2.default.createElement('img', { src: 'img/avatars/6.jpg', className: 'img-avatar', alt: 'admin@meetrix.io' })
                                     ),
                                     _react2.default.createElement(
                                         _reactstrap.Col,

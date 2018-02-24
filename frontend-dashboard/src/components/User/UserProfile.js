@@ -105,7 +105,7 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup row>
                                     <Col md="3">
-                                        <Label htmlFor="file-input">File input</Label>
+                                        <img src={'img/avatars/6.jpg'} className="img-avatar" alt="admin@meetrix.io"/>
                                     </Col>
                                     <Col xs="12" md="9">
                                         <Input type="file" id="file-input" name="file-input"/>
