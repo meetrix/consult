@@ -7,6 +7,8 @@ class Register extends Component {
   constructor(props){
       super(props);
 
+
+
       this.setName = this.setName.bind(this);
       this.setUserName = this.setUserName.bind(this);
       this.setEmail = this.setEmail.bind(this)
@@ -49,24 +51,24 @@ class Register extends Component {
                           <h1>Register</h1>
                           <p className="text-muted">Create your account</p>
                           <InputGroup className="mb-3">
-                            <InputGroupAddon><i className="icon-user"></i></InputGroupAddon>
+                            <InputGroupAddon addonType="prepend"><i className="icon-user"></i></InputGroupAddon>
                             <Input type="text" placeholder="Name" onChange={e => this.setName(e.target.value)}/>
                           </InputGroup>
                           <InputGroup className="mb-3">
-                            <InputGroupAddon><i className="icon-user"></i></InputGroupAddon>
+                            <InputGroupAddon addonType="prepend"><i className="icon-user"></i></InputGroupAddon>
                             <Input type="text" placeholder="Username" onChange={e => this.setUserName(e.target.value)}/>
                           </InputGroup>
                           <InputGroup className="mb-3">
-                            <InputGroupAddon>@</InputGroupAddon>
+                            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
                             <Input type="text" placeholder="Email" onChange={e => this.setEmail(e.target.value)}/>
                           </InputGroup>
                           <InputGroup className="mb-3">
-                            <InputGroupAddon><i className="icon-lock"></i></InputGroupAddon>
+                            <InputGroupAddon addonType="prepend"><i className="icon-lock"></i></InputGroupAddon>
                             <Input type="password" placeholder="Password"
                                    onChange={e => this.setPassword(e.target.value)}/>
                           </InputGroup>
                           <InputGroup className="mb-4">
-                            <InputGroupAddon><i className="icon-lock"></i></InputGroupAddon>
+                            <InputGroupAddon addonType="prepend"><i className="icon-lock"></i></InputGroupAddon>
                             <Input type="password" placeholder="Repeat password"
                                    onChange={e => this.setReEnterPassword(e.target.value)}/>
                           </InputGroup>
@@ -88,7 +90,11 @@ class Register extends Component {
                 </Container>
               </div>
           );
-      }
+
+
+  }
+
+
 
 }
 
