@@ -8,7 +8,8 @@ import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
 
 import Dashboard from '../../views/Dashboard/';
-import Profile from '../../containers/UserProfileContainer/UserProfileContainer'
+import Profile from '../UserContainer/UserProfileContainer'
+import  Account from '../UserContainer/UserAccountContainer'
 class Full extends Component {
   render() {
     return (
@@ -22,6 +23,7 @@ class Full extends Component {
               <Switch>
                   <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                   <Route exact path="/profile" name="Test Component" component={Profile} />
+                  <Route exact path="/account" name="Test Component" component={Account} />
                   <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>

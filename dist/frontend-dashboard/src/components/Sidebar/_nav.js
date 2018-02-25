@@ -20,6 +20,14 @@ exports.default = {
             variant: 'info',
             text: 'NEW'
         }
+    },, {
+        name: 'Account',
+        url: '/account',
+        icon: 'icon-speedometer',
+        badge: {
+            variant: 'info',
+            text: 'NEW'
+        }
     }, {
         name: 'Pages',
         url: '/pages',

@@ -37,4 +37,4 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_UserProfileView2.default);
-//# sourceMappingURL=UserProfileContainer.js.map
+//# sourceMappingURL=UserContainer.js.map

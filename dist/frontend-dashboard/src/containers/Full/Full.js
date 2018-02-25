@@ -38,9 +38,13 @@ var _Dashboard = require('../../views/Dashboard/');
 
 var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-var _UserProfileContainer = require('../../containers/UserProfileContainer/UserProfileContainer');
+var _UserProfileContainer = require('../UserContainer/UserProfileContainer');
 
 var _UserProfileContainer2 = _interopRequireDefault(_UserProfileContainer);
+
+var _UserAccountContainer = require('../UserContainer/UserAccountContainer');
+
+var _UserAccountContainer2 = _interopRequireDefault(_UserAccountContainer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -82,6 +86,7 @@ var Full = function (_Component) {
                 null,
                 _react2.default.createElement(_reactRouterDom.Route, { path: '/dashboard', name: 'Dashboard', component: _Dashboard2.default }),
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/profile', name: 'Test Component', component: _UserProfileContainer2.default }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/account', name: 'Test Component', component: _UserAccountContainer2.default }),
                 _react2.default.createElement(_reactRouterDom.Redirect, { from: '/', to: '/dashboard' })
               )
             )
