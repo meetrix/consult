@@ -14,14 +14,14 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
         }
         case REDUX_ACTIONS.SET_SIGNUP_DATA: {
 
-            return state.map( (item, index) => {
+
 
                 // Otherwise, this is the one we want - return an updated value
                 return {
-                    ...item,
+                    ...state,
                     ...action.payload
                 };
-            });
+
 
         }
         case REDUX_ACTIONS.HANDLE_SIGNUP_DATA_FETCH_FAILURE: {

@@ -30,5 +30,4 @@ lab.experiment('Message Model', () => {
         const message = await Message.create('test_room', 'that_sender', 'Here is the message');
         Code.expect(message).to.be.an.instanceOf(Message);
     });
-
 });
