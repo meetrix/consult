@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ChatApp from "../../components/ChatApp";
-import Video from "../../components/Video";
 class Dashboard extends Component {
 
   render() {
