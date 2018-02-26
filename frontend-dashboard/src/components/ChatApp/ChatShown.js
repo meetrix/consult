@@ -17,7 +17,6 @@ class ChatShown extends Component {
                     <div className="col-xs-12 col-md-12">
                         <div className="panel panel-default">
                             <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}}>
-                                <div className="col-md-12">
                                     <h5 className="panel-title"><span className="glyphicon glyphicon-comment"/>
                                         Messages&nbsp;
                                         <div className="btn-group dropdown">
@@ -27,7 +26,6 @@ class ChatShown extends Component {
                                             </button>
                                         </div>
                                     </h5>
-                                </div>
                                 <div className="col-md-4 col-xs-4" style={{textAlign: 'right'}}>
                                     <a href="#"><span id="minim_chat_window" className="close"/></a>
                                     <a href="#"><span className="close" data-id="chat_window_1"/></a>
