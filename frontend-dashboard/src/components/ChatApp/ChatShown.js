@@ -18,7 +18,7 @@ class ChatShown extends Component {
                         <div className="panel panel-default">
                             <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}}>
                                 <div className="col-md-12">
-                                    <h3 className="panel-title"><span className="glyphicon glyphicon-comment"/>
+                                    <h5 className="panel-title"><span className="glyphicon glyphicon-comment"/>
                                         Messages&nbsp;
                                         <div className="btn-group dropdown">
                                             <button type="button" className="btn btn-info dropdown-toggle"
@@ -26,7 +26,7 @@ class ChatShown extends Component {
                                                     onClick={this.props.action}>
                                             </button>
                                         </div>
-                                    </h3>
+                                    </h5>
                                 </div>
                                 <div className="col-md-4 col-xs-4" style={{textAlign: 'right'}}>
                                     <a href="#"><span id="minim_chat_window" className="close"/></a>

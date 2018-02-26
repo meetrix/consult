@@ -1,5 +1,5 @@
 .container{
-    margin-left: 74%;
+    margin-left: 78%;
 }
 body{
     height:400px;
@@ -17,10 +17,11 @@ ul{
     margin-bottom: 0px;
 }
 .chat-window{
-    bottom:0;
+    bottom:1.5%;
     position:fixed;
     float:right;
     margin-left:10px;
+    max-width: 20%;
 }
 .chat-window > div > .panel{
     border-radius: 5px 5px 0 0;
@@ -130,7 +131,7 @@ img {
     background-color: #555;
 }
 
-h3{
+h5{
     padding: 0px;
     margin: 0px;
 }

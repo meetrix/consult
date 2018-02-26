@@ -10,13 +10,13 @@ class ChatHidden extends Component {
                         <div className="col-xs-12 col-md-12">
                             <div className="panel panel-default">
                                 <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}} >
-                                    <h3 className="panel-title"><span className="glyphicon glyphicon-comment"/>
+                                    <h5 className="panel-title"><span className="glyphicon glyphicon-comment"/>
                                         Messages &nbsp;
                                         <div className="btn-group dropup">
                                             <button type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" onClick={this.props.action} aria-haspopup="true" aria-expanded="false">
                                             </button>
                                         </div>
-                                    </h3>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
