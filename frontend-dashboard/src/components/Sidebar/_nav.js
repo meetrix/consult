@@ -28,11 +28,6 @@ export default {
                     name: 'Session',
                     url: '/session',
                     icon: 'icon-star'
-                },
-                {
-                    name: 'Chat',
-                    url: '/chat',
-                    icon: 'icon-star'
                 }
             ]
         }
