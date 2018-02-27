@@ -34,6 +34,11 @@
     padding: 0;
     transform: scale(0.1);
   }
+
+  .videoRow {
+    top: 1%;
+    margin-left: 62%;
+  }
 }
 
 @media screen and (max-device-height: 425px) {
@@ -48,7 +53,13 @@
     padding: 0;
     transform: scale(0.1);
   }
+
+  .videoRow {
+    top: 1%;
+    margin-left: 62%;
+  }
 }
+
 #callButtonContainer{
   position:absolute;
   z-index: 110;

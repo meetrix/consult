@@ -14,7 +14,6 @@ class ChatShown extends Component {
         return (
             <div className="container">
                 <div className="row chat-window col-xs-5 col-md-3" id="chat_window_1" style={{marginLeft: 10}}>
-                    <div className="col-xs-12 col-md-12">
                         <div className="panel panel-default">
                             <div className="panel-heading top-bar rounded" style={{backgroundColor: "#5bc0de", height: "7vh", textAlign: 'center'}}>
                                     <h5 className="panel-title"><span className="glyphicon glyphicon-comment"/>
@@ -31,12 +30,12 @@ class ChatShown extends Component {
                                     <a href="#"><span className="close" data-id="chat_window_1"/></a>
                                 </div>
                             </div>
-                            <div className="panel-body msg_container_base" style={{backgroundColor: "#e3f2fd", height: "25vh" }}>
+                            <div className="panel-body msg_container_base" id="msg_base">
                                 <MessagesList/>
                             </div>
+                            <AddMessage/>
                         </div>
-                        <AddMessage/>
-                    </div>
+                        {/*<AddMessage/>*/}
                 </div>
             </div>
         );

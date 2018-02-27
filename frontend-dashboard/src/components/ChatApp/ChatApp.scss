@@ -135,3 +135,30 @@ h5{
     padding: 0px;
     margin: 0px;
 }
+
+#msg_base{
+    background-color: #e3f2fd;
+    height: 25vh;
+}
+
+@media screen and (max-device-width: 425px) {
+    #chat_window_1{
+        bottom: 15%;
+        right: 15%;
+        margin-right: 1%;
+    }
+    #msg_base{
+        height: 15vh;
+    }
+}
+
+@media screen and (max-device-height: 425px) {
+    #chat_window_1{
+        bottom: 15%;
+        right: 15%;
+        margin-right: 1%;
+    }
+    #msg_base{
+        height: 15vh;
+    }
+}

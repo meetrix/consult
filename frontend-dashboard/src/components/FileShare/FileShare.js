@@ -38,17 +38,17 @@ class FileShare extends Component {
     }
 
     render() {
-        let divStyle={
-            position: "absolute",
-            bottom: "1.5%",
-            right: "20%",
-            zIndex:"10"
-        };
+        // let divStyle={
+        //     position: "absolute",
+        //     bottom: "1.5%",
+        //     right: "20%",
+        //     zIndex:"10"
+        // };
 
         return (
 
             <div>
-                <div id="classControlContainer" className="" style={divStyle}>
+                <div id="classControlContainer" className="">
                     <button id="fileShareButton" className="btn btn-warning rounded">File Share</button>
                     <div id="fileShareModal" className="modal">
                         <div className="modal-content">
