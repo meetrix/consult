@@ -46,8 +46,6 @@ class FileShare extends Component {
         // };
 
         return (
-
-            <div>
                 <div id="classControlContainer" className="">
                     <button id="fileShareButton" className="btn btn-warning rounded">File Share</button>
                     <div id="fileShareModal" className="modal">
@@ -58,7 +56,6 @@ class FileShare extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

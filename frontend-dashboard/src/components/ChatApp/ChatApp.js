@@ -8,7 +8,7 @@ class ChatApp extends React.Component {
         super(props);
         this._onClick.bind(this);
         this.state = {
-            showMessages: true
+            showMessages: false
         }
     }
     _onClick(e){
@@ -19,15 +19,11 @@ class ChatApp extends React.Component {
 
         if(this.state.showMessages) {
             return (
-                <div >
                     <ChatShown action={this._onClick.bind(this)}/>
-                </div>
             );
         }else{
             return (
-                <div>
                     <ChatHidden action={this._onClick.bind(this)}/>
-                </div>
             );
         }
 
