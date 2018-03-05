@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 
-const config = require('../../../../config.json');
+import {firebaseConfig} from '../../../../config';
 
 class Login extends Component {
 
@@ -14,7 +14,7 @@ class Login extends Component {
             auth:this.props.auth,
             signup:false
         }
-        firebase.initializeApp(config.firebase_config);
+        firebase.initializeApp(firebaseConfig);
 
         this.google_siginin = this.google_siginin.bind(this);
         this.setUsername = this.setUsername.bind(this);
