@@ -31,3 +31,13 @@ export const Branding = {
         "poweredBylink" : "https://meetrix.io"
     }
 }
+
+export const firebaseConfig = {
+    apiKey: "111111111111",
+    authDomain: "xxxx.firebaseapp.com",
+    databaseURL: "https://xxxx.firebaseio.com",
+    projectId: "meetrix-consult",
+    storageBucket: "meetrix-consult",
+    messagingSenderId: "123213123132",
+
+};
