@@ -1,10 +1,22 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
-import firebase from 'firebase';
-import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
-import GoogleButton from 'react-google-button';
+import {Redirect} from 'react-router-dom';
+import {Amplify, A} from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
 
-import {firebaseConfig} from '../../../../config';
+Amplify.configure({
+    Auth: {
+        // REQUIRED - Amazon Cognito Identity Pool ID
+        identityPoolId: 'us-west-2:5776cf11-b9de-43fb-ae73-1430f03a8ccc',
+        // REQUIRED - Amazon Cognito Region
+        region: 'us-west-2',
+        // OPTIONAL - Amazon Cognito User Pool ID
+        userPoolId: 'us-west-2_bjkyFObpw',
+        // OPTIONAL - Amazon Cognito Web Client ID
+        userPoolWebClientId: '35fphtvuuravdlpm0veleocv79',
+    }
+});
+
 
 class Login extends Component {
 
@@ -14,7 +26,7 @@ class Login extends Component {
             auth:this.props.auth,
             signup:false
         }
-        firebase.initializeApp(firebaseConfig);
+        // firebase.initializeApp(config.firebase_config);
 
         this.google_siginin = this.google_siginin.bind(this);
         this.setUsername = this.setUsername.bind(this);
@@ -76,81 +88,10 @@ class Login extends Component {
 
     }
   render() {
-    if(this.props.auth.authHeader!=undefined){
         return(
-
-        <Redirect to="/consultants"/>
-        )
-    }
-    else if(this.state.signup){
-        return(
-        <Redirect to="/signup"/>
-        )
-    }
-    else {
-        return (
-            <div className="app flex-row align-items-center">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col md="8">
-                            <CardGroup>
-                                <Card className="p-4">
-                                    <CardBody>
-                                        <h1>Login</h1>
-                                        <p className="text-muted">Sign In to your account</p>
-                                        <InputGroup className="mb-3">
-                                            <InputGroupAddon addonType="prepend"><i className="icon-user"></i></InputGroupAddon>
-                                            <Input onChange={e => this.setUsername(e.target.value)} type="text"
-                                                   placeholder="Username"/>
-                                        </InputGroup>
-                                        <InputGroup className="mb-4">
-                                            <InputGroupAddon addonType="prepend"><i className="icon-lock"></i></InputGroupAddon>
-                                            <Input onChange={e => this.setPassword(e.target.value)} type="password"
-                                                   placeholder="Password"/>
-                                        </InputGroup>
-                                        <Row>
-                                            <Col xs="6">
-                                                <Button color="primary" className="px-4" onClick={ () => this.login()}>Login</Button>
-                                            </Col>
-                                            <Col xs="6" className="text-right">
-                                                <Button color="link" className="px-0">Forgot password?</Button>
-                                            </Col>
-                                        </Row>
-                                        <br/>
-                                        <Row>
-                                            <Col xs="12" sm="6">
-                                                <Button className="btn-facebook" block><span>facebook</span></Button>
-                                            </Col>
-                                            <Col xs="12" sm="6">
-                                                <Button className="btn-twitter" block><span>twitter</span></Button>
-                                            </Col>
-                                            <Col xs="12" sm="6">
-
-                                                <Button className="btn-google-plus" block
-                                                        onClick={ () => this.google_siginin(this.props)}><span>google</span></Button>
-                                            </Col>
-                                        </Row>
-                                    </CardBody>
-                                </Card>
-                                <Card className="text-white bg-primary py-5 d-md-down-none" style={{width: 44 + '%'}}>
-                                    <CardBody className="text-center">
-                                        <div>
-                                            <h2>Sign up</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut
-                                                labore et dolore magna aliqua.</p>
-                                            <Button color="primary" className="mt-3" active onClick={ () => this.signup()}>Register Now!</Button>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </CardGroup>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+            <Redirect to="/dashboard"/>
         );
-    }
   }
 }
 
-export default Login;
+export default withAuthenticator(Login);
