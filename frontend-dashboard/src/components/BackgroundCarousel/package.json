@@ -1,0 +1,6 @@
+{
+  "name": "BackgroundCarousel",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./BackgroundCarousel.js"
+}
