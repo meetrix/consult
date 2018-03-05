@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 import {Redirect} from 'react-router-dom';
-import {Amplify, A} from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react';
 
 Amplify.configure({
