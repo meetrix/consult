@@ -9,7 +9,8 @@ import Footer from '../../components/Footer/';
 import Calendar from '../../components/Calendar/Calendar'
 
 import Dashboard from '../../views/Dashboard/';
-
+import Profile from '../UserContainer/UserProfileContainer'
+import  Account from '../UserContainer/UserAccountContainer'
 class Full extends Component {
   render() {
     return (
@@ -21,9 +22,12 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
+
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                   <Route path="/calendar" name="Schedular" component={Calendar}/>
-                <Redirect from="/" to="/dashboard"/>
+                  <Route exact path="/profile" name="Test Component" component={Profile} />
+                  <Route exact path="/account" name="Test Component" component={Account} />
+                  <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
           </main>
