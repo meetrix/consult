@@ -1,0 +1,9 @@
+{
+  "name": "Video",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Video.js",
+  "dependencies": {
+    "react-google-material-icons": "^1.0.4"
+  }
+}

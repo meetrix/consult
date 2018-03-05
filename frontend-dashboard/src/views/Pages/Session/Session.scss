@@ -1,0 +1,16 @@
+iframe {
+  border: 0;
+  overflow: hidden;
+}
+
+@media screen and (max-device-width: 425px) {
+  iframe .tool-box > div.row {
+    display: none;
+  }
+}
+
+@media screen and (max-device-height: 425px) {
+  iframe .tool-box > div.row {
+    display: none;
+  }
+}

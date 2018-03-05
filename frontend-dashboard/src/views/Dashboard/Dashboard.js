@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Row,Col} from 'reactstrap'
-
 import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContainer'
 import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
 import VideoContainer from '../../containers/VideoContainer/VideoContainer'

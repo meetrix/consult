@@ -1,0 +1,73 @@
+#videoContainer {
+  position: absolute;
+  float: left;
+}
+
+.videoRow {
+  position: absolute;
+  top: 0;
+  margin-left: 79%;
+  z-index: 100;
+}
+
+#localVideo {
+  height: 200px;
+  width: 250px;
+}
+
+#remoteVideos {
+  height: 37px;
+  width: 50px;
+  padding: 0;
+  transform: scale(0.1);
+}
+
+@media screen and (max-device-width: 425px) {
+  #localVideo {
+    height: 75px;
+    width: 100px;
+  }
+
+  #remoteVideos {
+    height: 18px;
+    width: 25px;
+    padding: 0;
+    transform: scale(0.1);
+  }
+
+  .videoRow {
+    top: 1%;
+    margin-left: 62%;
+  }
+}
+
+@media screen and (max-device-height: 425px) {
+  #localVideo {
+    height: 75px;
+    width: 100px;
+  }
+
+  #remoteVideos {
+    height: 18px;
+    width: 25px;
+    padding: 0;
+    transform: scale(0.1);
+  }
+
+  .videoRow {
+    top: 1%;
+    margin-left: 62%;
+  }
+}
+
+#callButtonContainer{
+  position:absolute;
+  z-index: 110;
+  background: transparent;
+  margin-top: -55px;
+  margin-left: 10px;
+}
+
+#videoCall,#videoRefreshButton{
+  background: transparent;
+}

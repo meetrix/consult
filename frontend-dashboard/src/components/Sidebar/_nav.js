@@ -43,6 +43,11 @@ export default {
                     url: '/register',
                     icon: 'icon-star'
                 },
+                {
+                    name: 'Session',
+                    url: '/session',
+                    icon: 'icon-star'
+                }
             ]
         },
         {

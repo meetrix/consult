@@ -3,7 +3,6 @@ import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Inpu
 import firebase from 'firebase';
 import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
 import GoogleButton from 'react-google-button';
-
 import {firebaseConfig} from '../../../../config';
 
 class Login extends Component {
