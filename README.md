@@ -24,3 +24,4 @@ Contributing
 1. All web containers run on 8080.
 2. Master branch should not be used for development.
 3. Every feature MUST be implemented in a separate branch. They should be merged to master using PRs.
+4. Use Hyphen(`-`) when adding class names to stylesheets ( avoid using Underscore `_`)
