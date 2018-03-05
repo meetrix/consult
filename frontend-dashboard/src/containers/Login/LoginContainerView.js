@@ -10,7 +10,7 @@ import Login from '../../views/Pages/Login'
 class LoginContainerView extends Component {
 
     componentWillMount(){
-        console.log("auth")
+
         console.log(this.props.auth)
     }
     render() {
@@ -22,7 +22,7 @@ class LoginContainerView extends Component {
 
 LoginContainerView.propTypes = {
     actions: PropTypes.object.isRequired,
-    auth:PropTypes.array.isRequired
+    auth:PropTypes.object.isRequired
 
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Route, Switch} from 'react-router-dom';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
@@ -13,6 +12,8 @@ import 'simple-line-icons/css/simple-line-icons.css';
 import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
+//import router
+import Routes from  './routes'
 
 //Views
 import Login from './containers/Login/LoginContainer'
@@ -27,7 +28,7 @@ import Full from './containers/Full/'
 import configure from './configurestore'
 //Initiate store
 const initialState = {
-    tutors: [{id:0, name:'init'}]
+
 };
 
 const store = configure(initialState);

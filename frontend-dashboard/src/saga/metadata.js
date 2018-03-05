@@ -13,6 +13,14 @@ metadata[KEYS.TUTOR] = {
     failureAction: ACTIONS.HANDLE_TUTOR_DATA_FETCH_FAILURE,
     successAction: ACTIONS.SET_TUTOR_DATA
 };
+metadata[KEYS.CONSULTS] = {
+    url: URLS.CONSULTS,
+    options: {
+        method: HTTP_METHODS.GET
+    },
+    failureAction: ACTIONS.HANDLE_CONSULTS_DATA_FETCH_FAILURE,
+    successAction: ACTIONS.SET_CONSULTS_DATA
+};
 metadata[KEYS.LOGIN] = {
     url: URLS.LOGIN,
     options: {
@@ -20,6 +28,14 @@ metadata[KEYS.LOGIN] = {
     },
     failureAction: ACTIONS.HANDLE_LOGIN_DATA_FETCH_FAILURE,
     successAction: ACTIONS.SET_LOGIN_DATA
+};
+metadata[KEYS.SIGNUP] = {
+    url: URLS.SIGNUP,
+    options: {
+        method: HTTP_METHODS.POST
+    },
+    failureAction: ACTIONS.HANDLE_SIGNUP_DATA_FETCH_FAILURE,
+    successAction: ACTIONS.SET_SIGNUP_DATA
 };
 
 export default metadata;

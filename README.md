@@ -3,7 +3,7 @@ Getting things up
 1. Install docker on host machine
 2. Clone the project
 3. `docker-compose up`
-4. Create admin user in api-user
+4. Creating admin user for api-user
     1. Login to container : `docker-compose exec api-user bash`
     2. Run init script : `npm run first-time-setup`
     
@@ -24,3 +24,4 @@ Contributing
 1. All web containers run on 8080.
 2. Master branch should not be used for development.
 3. Every feature MUST be implemented in a separate branch. They should be merged to master using PRs.
+4. Use Hyphen(`-`) when adding class names to stylesheets ( avoid using Underscore `_`)

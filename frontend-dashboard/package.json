@@ -28,7 +28,10 @@
     "uglify-js": "^3.1.4",
     "url-loader": "^0.6.2",
     "webpack": "^3.7.1",
-    "webpack-dev-server": "^2.9.2"
+    "webpack-dev-server": "^2.9.2",
+    "fullcalendar": "^3.2.0",
+    "fullcalendar-scheduler": "^1.5.1",
+    "jquery": "^3.2.1"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -41,11 +44,15 @@
     "history": "4.7.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-big-calendar": "^0.18.0",
     "react-chartjs-2": "2.6.4",
     "react-dom": "^16.0.0",
     "react-google-button": "^0.4.0",
+    "react-icons": "^2.2.7",
+    "react-list": "^0.8.8",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-stars": "^2.2.5",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3",
     "redux": "^3.7.2",

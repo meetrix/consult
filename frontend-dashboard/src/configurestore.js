@@ -5,7 +5,9 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './saga/saga'
 import { createLogger } from 'redux-logger'
 import { notificationsFromWebRTC } from './containers/SimpleWebRTC/SimpleWebRTC'
+import {localState,saveState} from  './localstorage'
 
+//const persistedData= localState();
 const sagaMiddleware = createSagaMiddleware()
 const middleware = [sagaMiddleware,createLogger()]
 const composerEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ ||compose

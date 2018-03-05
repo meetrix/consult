@@ -2,7 +2,7 @@
  * Created by supun on 09/01/18.
  */
 import {REDUX_ACTIONS,HTTP_METHODS} from '../constants/constant';
-import { put, takeEvery,call,takeLatest } from 'redux-saga/effects'
+import { put, takeEvery,call,takeLatest ,select} from 'redux-saga/effects'
 import metadata from  './metadata';
 import fetch from '../helpers/fetchWrapper';
 
@@ -46,12 +46,12 @@ function fetchHandler({key, payload}) {
         fetch(url, optionsClone)
             .then((res) => resolve({
                 successAction: successAction,
-                res: res.data
+                res: res
 
             }))
             .catch((err) => reject({
                 failureAction: failureAction,
-                err: err.data
+                err: err
             }));
     });
 }
@@ -63,7 +63,7 @@ function* fetchAsync(action) {
     try {
         const reply = yield call(fetchHandler,action)
         yield put({...action, type: REDUX_ACTIONS.FETCHING_SUCCESS});
-        console.log(reply.res.data)
+        console.log(reply)
         yield put({type: reply.successAction, payload: reply.res.data, args: {...action.payload, ...action.args}});
     } catch (reply) {
         console.log(reply)
