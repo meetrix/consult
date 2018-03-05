@@ -48,6 +48,7 @@
     "react-chartjs-2": "2.6.4",
     "react-dom": "^16.0.0",
     "react-google-button": "^0.4.0",
+    "react-google-material-icons": "^1.0.4",
     "react-icons": "^2.2.7",
     "react-list": "^0.8.8",
     "react-redux": "^5.0.6",

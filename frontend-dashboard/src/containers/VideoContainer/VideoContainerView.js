@@ -8,7 +8,7 @@
 // Core modules
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Videos from '../../components/Video/Videos'
+import CourseVideos from '../../components/Video/CourseVideos'
 
 class VideoContainerView extends Component {
 
@@ -18,7 +18,7 @@ class VideoContainerView extends Component {
 
     render() {
         return(
-            <Videos videos={this.props.videos} numOfVideoShouldShow={this.props.numOfVideoShouldShow}/>
+            <CourseVideos videos={this.props.videos} numOfVideoShouldShow={this.props.numOfVideoShouldShow}/>
         )
     }
 }

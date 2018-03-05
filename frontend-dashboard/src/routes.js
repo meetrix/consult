@@ -11,7 +11,6 @@ import Life from './views/Pages/Test/LifycycleTest'
 import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/Route/UnauthenticatedRoute";
 
-
 // Containers
 import Full from './containers/Full/'
 import Calendar from "./components/Calendar/Calendar";

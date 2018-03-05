@@ -18,7 +18,6 @@ import Routes from  './routes'
 //Views
 import Login from './containers/Login/LoginContainer'
 import Register from './views/Pages/Register/'
-import TutorsContainer from './containers/Tutors/TutorsContainer'
 import Session from './views/Pages/Session/'
 
 // Containers
@@ -34,14 +33,6 @@ const initialState = {
 const store = configure(initialState);
 ReactDOM.render((
     <Provider store={store}>
-      <HashRouter>
-        <Switch>
-            <Route exact path="/login" name="Login Page" component={Login}/>
-            <Route exact path="/register" name="Register Page" component={Register}/>
-            <Route exact path="/session" name="Session Page" component={Session}/>
-            <Route exact path="/tutors" name="Tutors Page" component={TutorsContainer}/>
-            <Route path="/" name="Home" component={Full}/>
-        </Switch>
-      </HashRouter>
+        <Routes/>
     </Provider>
 ), document.getElementById('root'));

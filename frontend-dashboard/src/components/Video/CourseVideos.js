@@ -5,12 +5,12 @@ import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 import {Row,Button,Col} from 'reactstrap';
 
-import Video from './Video'
+import CourseVideo from './CourseVideo'
 import {BaseShowRow,BaseBox} from '../BaseBox'
 import ReactList from 'react-list';
 
 
-class Videos extends Component{
+class CourseVideos extends Component{
 
     constructor(props){
         super(props)
@@ -27,7 +27,7 @@ class Videos extends Component{
         let availabelVideos = []
         if(this.props.videos!= undefined) {
             this.props.videos.map((video, index) =>
-                availabelVideos.push(<Video key={index} video={video}/>)
+                availabelVideos.push(<CourseVideo key={index} video={video}/>)
             )
 
             this.setState({availabelVideos: availabelVideos});
@@ -53,13 +53,13 @@ class Videos extends Component{
         );
     }
 }
-Videos.propTypes = {
+CourseVideos.propTypes = {
     videos:PropTypes.array.isRequired,
     numOfVideoShouldShow:PropTypes.number.isRequired
 
 };
 
-export default Videos;
+export default CourseVideos;
 /**
  * Created by supun on 16/02/18.
  */
