@@ -76,10 +76,10 @@ class Login extends Component {
 
     }
   render() {
-    if(this.props.auth[0].authHeader!=undefined){
+    if(this.props.auth.authHeader!=undefined){
         return(
 
-        <Redirect to="/"/>
+        <Redirect to="/consultants"/>
         )
     }
     else if(this.state.signup){
@@ -99,12 +99,12 @@ class Login extends Component {
                                         <h1>Login</h1>
                                         <p className="text-muted">Sign In to your account</p>
                                         <InputGroup className="mb-3">
-                                            <InputGroupAddon><i className="icon-user"></i></InputGroupAddon>
+                                            <InputGroupAddon addonType="prepend"><i className="icon-user"></i></InputGroupAddon>
                                             <Input onChange={e => this.setUsername(e.target.value)} type="text"
                                                    placeholder="Username"/>
                                         </InputGroup>
                                         <InputGroup className="mb-4">
-                                            <InputGroupAddon><i className="icon-lock"></i></InputGroupAddon>
+                                            <InputGroupAddon addonType="prepend"><i className="icon-lock"></i></InputGroupAddon>
                                             <Input onChange={e => this.setPassword(e.target.value)} type="password"
                                                    placeholder="Password"/>
                                         </InputGroup>

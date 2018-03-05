@@ -6,7 +6,7 @@ import {REDUX_ACTIONS,STORE_INITIATE_VALUE} from '../constants/constant';
 export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_LOGIN_DATA: {
-            localStorage.setItem('token',action.payload[0].authHeader)
+            localStorage.setItem('token',action.payload.authHeader)
             return action.payload;
         }
         case REDUX_ACTIONS.HANDLE_LOGIN_DATA_FETCH_FAILURE: {
@@ -14,14 +14,14 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
         }
         case REDUX_ACTIONS.SET_SIGNUP_DATA: {
 
-            return state.map( (item, index) => {
+
 
                 // Otherwise, this is the one we want - return an updated value
                 return {
-                    ...item,
-                    ...action.payload[0]
+                    ...state,
+                    ...action.payload
                 };
-            });
+
 
         }
         case REDUX_ACTIONS.HANDLE_SIGNUP_DATA_FETCH_FAILURE: {

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,SAAS;EACP,UAAU,EAAE,qBAAqB;EACjC,MAAM,EAAE,gBAAgB;EACxB,aAAa,EAAE,IAAI;EACnB,gBAAgB,EAAE,KAAK",
+"sources": ["basebox.scss"],
+"names": [],
+"file": "basebox.css"
+}

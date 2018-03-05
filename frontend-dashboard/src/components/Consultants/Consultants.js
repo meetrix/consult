@@ -17,11 +17,13 @@ class Consultants extends Component {
         let consultantCardColumnWidth = 4;
         return (
             consultantsInRow.map((consultant, index) =>
-                <Consultant key={index}
+
+                <Consultant  key={index}
                     {...consultant}
                     actions={this.props.actions}
                     columnWidth = {consultantCardColumnWidth}
                 />
+
             )
         )
     }

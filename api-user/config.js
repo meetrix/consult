@@ -25,18 +25,20 @@ const config = {
         forIp: 50,
         forIpAndUser: 7
     },
-    cookieSecret: {
-        $filter: 'env',
-        production: process.env.COOKIE_SECRET,
-        $default: '!k3yb04rdK4tz~4qu4~k3yb04rdd0gz!'
-    },
     hapiMongoModels: {
         mongodb: {
-            uri: {
-                $filter: 'env',
-                production: process.env.MONGODB_URI,
-                test: 'mongodb://mongodb:27017/frame-test',
-                $default: 'mongodb://mongodb:27017/frame'
+            connection: {
+                uri: {
+                    $filter: 'env',
+                    production: process.env.MONGODB_URI,
+                    $default: 'mongodb://mongodb:27017/'
+                },
+                db: {
+                    $filter: 'env',
+                    production: process.env.MONGODB_DB_NAME,
+                    test: 'frame-test',
+                    $default: 'frame'
+                }
             }
         },
         autoIndex: true

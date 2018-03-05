@@ -24,7 +24,7 @@ export const REDUX_ACTIONS = {
 
 }
 export const STORE_INITIATE_VALUE={
-    AUTH_INITIATE: [
+    AUTH_INITIATE:
     {
         user: {
             _id:undefined,
@@ -35,7 +35,7 @@ export const STORE_INITIATE_VALUE={
         session: undefined,
         authHeader:undefined
     }
-]
+
 
 }
 

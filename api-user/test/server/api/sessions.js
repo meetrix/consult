@@ -1,393 +1,226 @@
 'use strict';
-const AuthPlugin = require('../../../server/auth');
-const AuthenticatedUser = require('../fixtures/credentials-admin');
-const AuthenticatedAccount = require('../fixtures/credentials-account');
+const Auth = require('../../../server/auth');
 const Code = require('code');
-const Config = require('../../../config');
+const Fixtures = require('../fixtures');
 const Hapi = require('hapi');
-const HapiAuthBasic = require('hapi-auth-basic');
 const Lab = require('lab');
-const MakeMockModel = require('../fixtures/make-mock-model');
 const Manifest = require('../../../manifest');
-const Path = require('path');
-const Proxyquire = require('proxyquire');
-const SessionPlugin = require('../../../server/api/sessions');
+const Session = require('../../../server/models/session');
+const Sessions = require('../../../server/api/sessions');
+const User = require('../../../server/models/user');
 
 
 const lab = exports.lab = Lab.script();
-let request;
 let server;
-let stub;
+let rootCredentials;
+let rootSession;
 
 
-lab.before((done) => {
+lab.before(async () => {
 
-    stub = {
-        Session: MakeMockModel()
-    };
+    server = Hapi.Server();
 
-    const proxy = {};
-    proxy[Path.join(process.cwd(), './server/models/session')] = stub.Session;
+    const plugins = Manifest.get('/register/plugins')
+        .filter((entry) => Sessions.dependencies.includes(entry.plugin))
+        .map((entry) => {
 
-    const ModelsPlugin = {
-        register: Proxyquire('hapi-mongo-models', proxy),
-        options: Manifest.get('/registrations').filter((reg) => {
+            entry.plugin = require(entry.plugin);
 
-            if (reg.plugin &&
-                reg.plugin.register &&
-                reg.plugin.register === 'hapi-mongo-models') {
+            return entry;
+        });
 
-                return true;
-            }
+    plugins.push(Auth);
+    plugins.push(Sessions);
 
-            return false;
-        })[0].plugin.options
-    };
+    await server.register(plugins);
+    await server.start();
+    await Fixtures.Db.removeAllData();
 
-    const plugins = [HapiAuthBasic, ModelsPlugin, AuthPlugin, SessionPlugin];
-    server = new Hapi.Server();
-    server.connection({ port: Config.get('/port/web') });
-    server.register(plugins, (err) => {
+    rootCredentials = await Fixtures.Creds.createRootAdminUser();
 
-        if (err) {
-            return done(err);
-        }
-
-        server.initialize(done);
-    });
+    rootSession = rootCredentials.session;
 });
 
 
-lab.after((done) => {
+lab.after(async () => {
 
-    server.plugins['hapi-mongo-models'].MongoModels.disconnect();
-
-    done();
+    await Fixtures.Db.removeAllData();
+    await server.stop();
 });
 
 
-lab.experiment('Session Plugin Result List', () => {
+lab.experiment('GET /api/sessions', () => {
 
-    lab.beforeEach((done) => {
+    let request;
+
+
+    lab.beforeEach(() => {
 
         request = {
             method: 'GET',
-            url: '/sessions',
-            credentials: AuthenticatedUser
+            url: '/api/sessions',
+            credentials: rootCredentials
         };
-
-        done();
     });
 
 
-    lab.test('it returns an error when paged find fails', (done) => {
+    lab.test('it returns HTTP 200 when all is well', async () => {
 
-        stub.Session.pagedFind = function () {
+        const response = await server.inject(request);
 
-            const args = Array.prototype.slice.call(arguments);
-            const callback = args.pop();
-
-            callback(Error('find failed'));
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(500);
-
-            done();
-        });
-    });
-
-
-    lab.test('it returns an array of documents successfully', (done) => {
-
-        stub.Session.pagedFind = function () {
-
-            const args = Array.prototype.slice.call(arguments);
-            const callback = args.pop();
-
-            callback(null, { data: [{}, {}, {}] });
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(200);
-            Code.expect(response.result.data).to.be.an.array();
-            Code.expect(response.result.data[0]).to.be.an.object();
-
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(200);
+        Code.expect(response.result.data).to.be.an.array();
+        Code.expect(response.result.pages).to.be.an.object();
+        Code.expect(response.result.items).to.be.an.object();
     });
 });
 
 
-lab.experiment('Session Plugin Read', () => {
+lab.experiment('GET /api/sessions/{id}', () => {
 
-    lab.beforeEach((done) => {
+    let request;
+
+
+    lab.beforeEach(() => {
 
         request = {
             method: 'GET',
-            url: '/sessions/93EP150D35',
-            credentials: AuthenticatedUser
+            url: '/api/sessions/{id}',
+            credentials: rootCredentials
         };
-
-        done();
     });
 
 
-    lab.test('it returns an error when find by id fails', (done) => {
+    lab.test('it returns HTTP 404 when `Session.findById` misses', async () => {
 
-        stub.Session.findById = function (id, callback) {
+        request.url = request.url.replace(/{id}/, '555555555555555555555555');
 
-            callback(Error('find by id failed'));
-        };
+        const response = await server.inject(request);
 
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(500);
-
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(404);
+        Code.expect(response.result.message).to.match(/not found/i);
     });
 
 
-    lab.test('it returns a not found when find by id misses', (done) => {
+    lab.test('it returns HTTP 200 when all is well', async () => {
 
-        stub.Session.findById = function (id, callback) {
+        const user = await User.create('darcie', 'uplate', 'darcie@late.night');
+        const session = await Session.create(`${user._id}`, '127.0.0.1', 'Lab');
 
-            callback();
-        };
+        request.url = request.url.replace(/{id}/, session._id);
 
-        server.inject(request, (response) => {
+        const response = await server.inject(request);
 
-            Code.expect(response.statusCode).to.equal(404);
-            Code.expect(response.result.message).to.match(/document not found/i);
-
-            done();
-        });
-    });
-
-
-    lab.test('it returns a document successfully', (done) => {
-
-        stub.Session.findById = function (id, callback) {
-
-            callback(null, { _id: '93EP150D35' });
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(200);
-            Code.expect(response.result).to.be.an.object();
-
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(200);
+        Code.expect(response.result).to.be.an.object();
+        Code.expect(response.result.userId).to.equal(`${user._id}`);
     });
 });
 
 
-lab.experiment('Sessions Plugin (My) Read', () => {
+lab.experiment('DELETE /api/sessions/{id}', () => {
 
-    lab.beforeEach((done) => {
-
-        request = {
-            method: 'GET',
-            url: '/sessions/my',
-            credentials: AuthenticatedUser
-        };
-
-        done();
-    });
+    let request;
 
 
-    lab.test('it returns an error when find by id fails', (done) => {
-
-        stub.Session.find = function (id, callback) {
-
-            callback(Error('find by id failed'));
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(500);
-
-            done();
-        });
-    });
-
-
-    lab.test('it returns a not found when find by id misses', (done) => {
-
-        stub.Session.find = function (id, callback) {
-
-            callback();
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(404);
-            Code.expect(response.result.message).to.match(/document not found/i);
-
-            done();
-        });
-    });
-
-
-    lab.test('it returns a document successfully', (done) => {
-
-        stub.Session.find = function (id, callback) {
-
-            callback(null, [{ _id: '93EP150D35' }]);
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(200);
-            Code.expect(response.result[0]).to.be.an.object();
-
-            done();
-        });
-    });
-});
-
-
-lab.experiment('Session Plugin Delete By User', () => {
-
-    lab.beforeEach((done) => {
+    lab.beforeEach(() => {
 
         request = {
             method: 'DELETE',
-            url: '/sessions/my/59dcd4f5f57ad17c99ac3f19',
-            credentials: AuthenticatedAccount
+            url: '/api/sessions/{id}',
+            credentials: rootCredentials
         };
-
-        done();
     });
 
 
-    lab.test('it returns an error when delete by id fails', (done) => {
+    lab.test('it returns HTTP 404 when `Session.findByIdAndDelete` misses', async () => {
 
-        stub.Session.findOneAndDelete = function (query, callback) {
+        request.url = request.url.replace(/{id}/, '555555555555555555555555');
 
-            callback(Error('find one and delete failed'));
-        };
+        const response = await server.inject(request);
 
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(500);
-
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(404);
+        Code.expect(response.result.message).to.match(/not found/i);
     });
 
 
-    lab.test('it returns a not found when update by id misses', (done) => {
+    lab.test('it returns HTTP 200 when all is well', async () => {
 
-        stub.Session.findOneAndDelete = function (query, callback) {
+        const user = await User.create('aldon', 'thirsty', 'aldon@late.night');
+        const session = await Session.create(`${user._id}`, '127.0.0.1', 'Lab');
 
-            callback(null, undefined);
-        };
+        request.url = request.url.replace(/{id}/, session._id);
 
-        server.inject(request, (response) => {
+        const response = await server.inject(request);
 
-            Code.expect(response.statusCode).to.equal(404);
-            Code.expect(response.result.message).to.match(/document not found/i);
-
-            done();
-        });
-    });
-
-
-    lab.test('it updates a document successfully', (done) => {
-
-        stub.Session.findOneAndDelete = function (query, callback) {
-
-            callback(null, 1);
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(200);
-
-            done();
-        });
-    });
-
-    lab.test('it returns an error if you delete the current session', (done) => {
-
-
-        AuthenticatedAccount.session._id = '59dcd4f5f57ad17c99ac3f19';
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(400);
-            Code.expect(response.result.message).to.match(/Unable to close your current session. You can use logout instead./i);
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(200);
+        Code.expect(response.result).to.be.an.object();
+        Code.expect(response.result.message).to.match(/success/i);
     });
 });
 
 
-lab.experiment('Session Plugin Delete by Admin', () => {
+lab.experiment('GET /api/sessions/my', () => {
 
-    lab.beforeEach((done) => {
+    let request;
+
+
+    lab.beforeEach(() => {
+
+        request = {
+            method: 'GET',
+            url: '/api/sessions/my',
+            credentials: rootCredentials
+        };
+    });
+
+    lab.test('it returns HTTP 200 when all is well', async () => {
+
+        const response = await server.inject(request);
+
+        Code.expect(response.statusCode).to.equal(200);
+        Code.expect(response.result).to.be.an.array();
+        Code.expect(response.result.length).to.equal(1);
+    });
+});
+
+
+lab.experiment('DELETE /api/sessions/my/{id}', () => {
+
+    let request;
+
+
+    lab.beforeEach(() => {
 
         request = {
             method: 'DELETE',
-            url: '/sessions/93EP150D35',
-            credentials: AuthenticatedUser
+            url: '/api/sessions/my/{id}',
+            credentials: rootCredentials
         };
-
-        done();
     });
 
 
-    lab.test('it returns an error when delete by id fails', (done) => {
+    lab.test('it returns HTTP 400 when tryint to destroy current session', async () => {
 
-        stub.Session.findByIdAndDelete = function (id, callback) {
+        request.url = request.url.replace(/{id}/, rootSession._id);
 
-            callback(Error('delete by id failed'));
-        };
+        const response = await server.inject(request);
 
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(500);
-
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(400);
+        Code.expect(response.result.message).to.match(/current session/i);
     });
 
 
-    lab.test('it returns a not found when delete by id misses', (done) => {
+    lab.test('it returns HTTP 200 when all is well', async () => {
 
-        stub.Session.findByIdAndDelete = function (id, callback) {
+        const session = await Session.create(rootSession.userId, '127.0.0.2', 'Lab');
 
-            callback(null, undefined);
-        };
+        request.url = request.url.replace(/{id}/, session._id);
 
-        server.inject(request, (response) => {
+        const response = await server.inject(request);
 
-            Code.expect(response.statusCode).to.equal(404);
-            Code.expect(response.result.message).to.match(/document not found/i);
-
-            done();
-        });
-    });
-
-
-    lab.test('it deletes a document successfully', (done) => {
-
-        stub.Session.findByIdAndDelete = function (id, callback) {
-
-            callback(null, 1);
-        };
-
-        server.inject(request, (response) => {
-
-            Code.expect(response.statusCode).to.equal(200);
-            Code.expect(response.result.message).to.match(/success/i);
-
-            done();
-        });
+        Code.expect(response.statusCode).to.equal(200);
+        Code.expect(response.result).to.be.an.object();
+        Code.expect(response.result.message).to.match(/success/i);
     });
 });
