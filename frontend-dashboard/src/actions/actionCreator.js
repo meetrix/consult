@@ -13,3 +13,12 @@ export const actionCreatorFactory = (key, ...argNames) => (...args) => {
     });
     return action;
 };
+
+export const actionCreateStoreUpdateFactory = (actionType, ...argNames) => (...args) => {
+
+    const action = {type: actionType};
+    argNames.forEach((arg, index) => {
+        action[argNames[index]] = args[index];
+    });
+    return action;
+};

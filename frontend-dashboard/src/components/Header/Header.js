@@ -53,7 +53,7 @@ class Header extends Component {
               <NavItem className="d-md-down-none">
                   <NavLink href="#"><i className="icon-location-pin"></i></NavLink>
               </NavItem>
-              <HeaderDropdown/>
+              <HeaderDropdown {...this.props}/>
           </Nav>
           <NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
               <span className="navbar-toggler-icon"></span>

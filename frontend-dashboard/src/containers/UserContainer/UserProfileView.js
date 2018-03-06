@@ -14,13 +14,19 @@ class UserProfileView extends Component{
     render(){
         return(
 
-            <UserProfile {...this.props.user}/>
+            <UserProfile {...this.props} />
         );
     }
 
 }
 UserProfileView.propTypes = {
-        user:PropTypes.object.isRequired
+        user:PropTypes.object.isRequired,
+        actions:PropTypes.shape({
+            updateFirstName:PropTypes.func.isRequired,
+            updateLastName:PropTypes.func.isRequired,
+            updateEmail:PropTypes.func.isRequired,
+            updateImage:PropTypes.func.isRequired,
+        }),
 }
 
 export default UserProfileView;

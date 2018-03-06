@@ -23,14 +23,23 @@ export const REDUX_ACTIONS = {
     SET_CONSULTS_DATA:"SET_CONSULTS_DATA",
 
 }
+export const USER_PROFILE ={
+    UPDATE_FIRST_NAME:'UPDATE_FIRST_NAME',
+    UPDATE_LAST_NAME:'UPDATE_LAST_NAME',
+    UPDATE_EMAIL:'UPDATE_EMAIL',
+    UPDATE_IMAGE:'UPDATE_IMAGE'
+}
 export const STORE_INITIATE_VALUE={
     AUTH_INITIATE:
     {
         user: {
             _id:undefined,
-            username: undefined,
-            email: undefined,
-            roles: undefined
+            firstName:'supuh',
+            lastName:'mad',
+            userName: 'supun',
+            email: 'supun.12@cse.mrt.ac.lk',
+            imageUrl:'http://localhost:8080/img/avatars/1.jpg',
+            roles:'consultee'
         },
         session: undefined,
         authHeader:undefined
@@ -48,7 +57,8 @@ export const ACTION_KEY ={
 }
 
 export const ACTION_ATTR ={
-    PAYLOAD:'payload'
+    PAYLOAD:'payload',
+    DATA:'data'
 }
 export const URLS = {
     TUTOR: BACKEND_URL+'/tutor',
