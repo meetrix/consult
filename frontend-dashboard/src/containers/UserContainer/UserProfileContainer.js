@@ -24,6 +24,11 @@ const mapDispatchToProps = (dispatch) => ({
         updateLastName:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_LAST_NAME, ATTRS.DATA),dispatch),
         updateEmail:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_EMAIL, ATTRS.DATA),dispatch),
         updateImage:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_IMAGE, ATTRS.DATA),dispatch),
+        updateAddress:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_ADDRESS, ATTRS.DATA),dispatch),
+        updateSchool:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_SCHOOL, ATTRS.DATA),dispatch),
+        updateDistrict:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_DISTRICT, ATTRS.DATA),dispatch),
+        updateStream:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_STREAM, ATTRS.DATA),dispatch),
+        updateSubject:bindActionCreators(actionCreateStoreUpdateFactory(USER_PROFILE.UPDATE_SUBJECT, ATTRS.DATA),dispatch),
     }
 })
 

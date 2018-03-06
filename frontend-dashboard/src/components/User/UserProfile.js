@@ -60,6 +60,27 @@ class UserProfile extends Component{
         event.preventDefault();
         this.props.actions.updateEmail({email:event.target.value})
     }
+    _onAddressChange(event){
+        event.preventDefault();
+        this.props.actions.updateAddress({address:event.target.value})
+
+    }
+    _onSchoolChange(event){
+        event.preventDefault();
+        this.props.actions.updateSchool({school:event.target.value})
+    }
+    _onDistrictChange(event){
+        event.preventDefault();
+        this.props.actions.updateDistrict({district:event.target.value})
+    }
+    _onStreamChange(event){
+        event.preventDefault();
+        this.props.actions.updateStream({stream:event.target.value})
+    }
+    _onSubjectChange(event){
+        event.preventDefault();
+        this.props.actions.updateSubject({subject:event.target.value})
+    }
 
     _onImageChange(event){
         event.preventDefault();
@@ -109,7 +130,7 @@ class UserProfile extends Component{
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="address">Address</Label>
-                                    <Input type="text" id="address" placeholder="Enter your address"/>
+                                    <Input type="text" id="address" onChange={this._onAddressChange.bind(this)} value={this.props.user.address}/>
                                 </FormGroup>
                             </CardBody>
                         </Card>
@@ -123,19 +144,19 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup>
                                     <Label htmlFor="school">School</Label>
-                                    <Input type="text" id="school" placeholder="Enter your school"/>
+                                    <Input type="text" id="school" onChange={this._onSchoolChange.bind(this)} value={this.props.user.school}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="district">District</Label>
-                                    <Input type="text" id="district" placeholder="Enter your district"/>
+                                    <Input type="text" id="district" onChange={this._onDistrictChange.bind(this)} value={this.props.user.district}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="stream">Stream</Label>
-                                    <Input type="text" id="stream" placeholder="Enter your stream"/>
+                                    <Input type="text" id="stream" onChange={this._onStreamChange.bind(this)} value={this.props.user.stream}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="subject">Subject</Label>
-                                    <Input type="text" id="subject" placeholder="subject"/>
+                                    <Input type="text" id="subject" onChange={this._onSubjectChange.bind(this)} value={this.props.user.subject}/>
                                 </FormGroup>
                             </CardBody>
                         </Card>
@@ -184,13 +205,23 @@ UserProfile.propTypes={
         lastName: PropTypes.string.isRequired,
         userName: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
-        imageUrl: PropTypes.string.isRequired
+        imageUrl: PropTypes.string.isRequired,
+        address: PropTypes.string.isRequired,
+        school: PropTypes.string.isRequired,
+        district: PropTypes.string.isRequired,
+        stream: PropTypes.string.isRequired,
+        subject: PropTypes.string.isRequired,
     }),
     actions:PropTypes.shape({
         updateFirstName:PropTypes.func.isRequired,
         updateLastName:PropTypes.func.isRequired,
         updateEmail:PropTypes.func.isRequired,
         updateImage:PropTypes.func.isRequired,
+        updateSchool:PropTypes.func.isRequired,
+        updateAddress:PropTypes.func.isRequired,
+        updateDistrict:PropTypes.func.isRequired,
+        updateStream:PropTypes.func.isRequired,
+        updateSubject:PropTypes.func.isRequired,
     }),
 
 }
