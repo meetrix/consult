@@ -10,19 +10,6 @@ nginx-main:
     - frontend-dashboard
     - api-scheduler
 
-api-user:
-  image: node:carbon
-  command: bash -c "npm install && npm start"
-  working_dir: /app
-  volumes:
-    - ./api-user:/app
-  environment:
-    PORT: 8080
-  ports:
-    - "8001:8080"
-  links:
-    - mongodb
-
 frontend-dashboard:
   image: node:carbon
   command: bash -c "npm install && npm start"
@@ -33,34 +20,3 @@ frontend-dashboard:
     PORT: 8080
   ports:
     - "8002:8080"
-
-api-chat:
-  image: node:carbon
-  command: bash -c "npm install && npm start"
-  working_dir: /app
-  volumes:
-    - ./api-chat:/app
-  environment:
-    PORT: 8080
-  ports:
-    - "8003:8080"
-  links:
-    - mongodb
-
-api-scheduler:
-  image: node:carbon
-  command: bash -c "npm install && npm start"
-  working_dir: /app
-  volumes:
-    - ./api-scheduler:/app
-  environment:
-    PORT: 8080
-  ports:
-    - "8004:8080"
-  links:
-    - mongodb
-
-mongodb:
-  image: mongo
-  ports:
-      - "27017:27017"
