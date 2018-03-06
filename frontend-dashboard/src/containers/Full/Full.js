@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Link, Switch, Route, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 import {Container} from 'reactstrap';
 import Header from '../../components/Header/';
 import Sidebar from '../../components/Sidebar/';
@@ -11,11 +14,44 @@ import Calendar from '../../components/Calendar/Calendar'
 import Dashboard from '../../views/Dashboard/';
 import Profile from '../UserContainer/UserProfileContainer'
 import  Account from '../UserContainer/UserAccountContainer'
+
+
+import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
+
+import {actionCreatorFactory} from '../../actions/actionCreator'
+
+const mapStateToProps=(state)=>{
+    return {
+        user: {
+            _id:undefined,
+            firstname:'supuh',
+            lastname:'mad',
+            username: 'supun',
+            email: 'supun.12@cse.mrt.ac.lk',
+            image:'http://localhost:8080/img/avatars/3.jpg',
+            roles:'consultee'
+        },
+    }
+
+}
+const mapDispatchToProps = (dispatch) => ({
+    actions:{signup:bindActionCreators(actionCreatorFactory(KEYS.SIGNUP, ATTRS.PAYLOAD),dispatch)
+    }
+})
+
 class Full extends Component {
+
+    constructor(props){
+        super(props)
+    }
+    componentDidMount(){
+        console.log("Full")
+        console.log(this.props)
+    }
   render() {
     return (
       <div className="app">
-        <Header />
+        <Header {...this.props}/>
         <div className="app-body">
           <Sidebar {...this.props}/>
           <main className="main">
@@ -42,4 +78,4 @@ class Full extends Component {
   }
 }
 
-export default Full;
+export default connect(mapStateToProps,mapDispatchToProps)(Full);

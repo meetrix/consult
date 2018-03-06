@@ -33,12 +33,54 @@ class UserProfile extends Component{
     constructor(props) {
         super(props);
 
+
+        this.state={
+            collapse: true
+
+        }
+        console.log(this.props.user)
         this.toggle = this.toggle.bind(this);
-        this.state = { collapse: true };
     }
 
     toggle() {
         this.setState({ collapse: !this.state.collapse });
+    }
+
+
+    _onFirstNameChange(event){
+        event.preventDefault();
+        this.props.actions.updateFirstName({firstName:event.target.value})
+
+    }
+    _onLastNameChange(event){
+        event.preventDefault();
+        this.props.actions.updateLastName({lastName:event.target.value})
+    }
+    _onEmailChange(event){
+        event.preventDefault();
+        this.props.actions.updateEmail({email:event.target.value})
+    }
+
+    _onImageChange(event){
+        event.preventDefault();
+
+        let reader = new FileReader();
+        let imageFile = event.target.files[0];
+
+        reader.onloadend = () => {
+            this.props.actions.updateImage({
+                imageFile: imageFile,
+                imageUrl: reader.result
+            })
+        }
+
+        reader.readAsDataURL(imageFile)
+
+    }
+
+    _handleSubmit(){
+
+        // console.log(this.state.user)
     }
 
     render() {
@@ -55,15 +97,15 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup>
                                     <Label htmlFor="first-name">First Name</Label>
-                                    <Input type="text" id="first-name" placeholder="Enter your first name"/>
+                                    <Input type="text" id="first-name" onChange={this._onFirstNameChange.bind(this)} value={this.props.user.firstName}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="last-name">Last Name</Label>
-                                    <Input type="text" id="last-name" placeholder="Enter your last name"/>
+                                    <Input type="text" id="last-name" onChange={this._onLastNameChange.bind(this)} value={this.props.user.lastName} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="email">Email</Label>
-                                    <Input type="text" id="emain" placeholder="Enter email address"/>
+                                    <Input type="text" id="email" onChange={this._onEmailChange.bind(this)} value={this.props.user.email}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="address">Address</Label>
@@ -105,10 +147,10 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup row>
                                     <Col md="3">
-                                        <img src={'img/avatars/6.jpg'} className="img-avatar" alt="admin@meetrix.io"/>
+                                        <img src={this.props.user.imageUrl} className="img-avatar" alt="admin@meetrix.io"/>
                                     </Col>
                                     <Col xs="12" md="9">
-                                        <Input type="file" id="file-input" name="file-input"/>
+                                        <Input type="file" id="file-input" name="file-input" onChange={this._onImageChange.bind(this)}/>
                                     </Col>
                                 </FormGroup>
                             </CardBody>
@@ -121,7 +163,7 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup row>
                                     <Col md="3">
-                                        <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                                        <Button type="submit" size="sm" color="primary" onClick={this._handleSubmit.bind(this)}><i className="fa fa-dot-circle-o"></i> Submit</Button>
                                         <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                                     </Col>
 
@@ -137,8 +179,20 @@ class UserProfile extends Component{
 }
 
 UserProfile.propTypes={
-    name:PropTypes.string.isRequired,
-    email:PropTypes.string.isRequired
+    user:PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        userName: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        imageUrl: PropTypes.string.isRequired
+    }),
+    actions:PropTypes.shape({
+        updateFirstName:PropTypes.func.isRequired,
+        updateLastName:PropTypes.func.isRequired,
+        updateEmail:PropTypes.func.isRequired,
+        updateImage:PropTypes.func.isRequired,
+    }),
+
 }
 
 export default UserProfile;
