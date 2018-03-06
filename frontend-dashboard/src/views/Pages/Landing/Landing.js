@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Row, Col, Nav} from 'reactstrap';
 import StepsBox from "../../../components/StepsBox/StepsBox";
 import BackgroundCarousel from "../../../components/BackgroundCarousel/BackgroundCarousel";
+import MenuBarLanding from "../../../components/MenuBar/MenuBarLanding";
 
 class Landing extends Component{
 
@@ -9,6 +10,11 @@ class Landing extends Component{
         return(
             <Fragment>
                 {/*Background Carousel*/}
+                <Row>
+                    <Col>
+                    <MenuBarLanding/>
+                    </Col>
+                </Row>
                 <Row>
                     <BackgroundCarousel/>
                 </Row>
