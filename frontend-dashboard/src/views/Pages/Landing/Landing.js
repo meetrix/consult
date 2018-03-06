@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Row, Col,Button} from 'reactstrap';
+import {Row, Col, Nav} from 'reactstrap';
 import StepsBox from "../../../components/StepsBox/StepsBox";
 import BackgroundCarousel from "../../../components/BackgroundCarousel/BackgroundCarousel";
 

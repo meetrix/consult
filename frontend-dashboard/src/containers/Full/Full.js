@@ -22,10 +22,10 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                  <Route path="/dashboard/summary" name="Dashboard" component={Dashboard}/>
                   <Route path="/dashboard/schedule" name="Schedule" component={Calendar}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
+                  <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
               </Switch>
             </Container>
           </main>

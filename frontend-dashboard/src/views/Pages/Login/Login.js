@@ -61,8 +61,7 @@ class Login extends Component {
 
   render() {
         return(
-            <h1>hi</h1>
-            // {/*<Redirect to="/dashboard"/>*/}
+            <Redirect to="/dashboard"/>
         );
   }
 }
