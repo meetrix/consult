@@ -26,9 +26,9 @@ export default() =>
     <Route exact path="/signup" name="Register Page" component={SignUpContainer} />
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
-    <Route exact path="/landing" name="Landing Page" component={LandingPage} />
     <Route exact path="/basebox" name="BaseBox Component" component={BaseBox} />
     <Route exact path="/consultantlive" name="ConsultantLive Component" component={ConsultantLive} />
-    <Route path="/" name="Home" component={Full} />
+    <Route path="/dashboard" name="Home" component={Full} />
+    <Route exact path="/" name="Landing Page" component={LandingPage} />
   </Switch>
 </HashRouter>
