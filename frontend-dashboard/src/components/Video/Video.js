@@ -18,14 +18,22 @@ class Video extends Component{
 
     }
 
+    _getVideoPlayer(){
+
+        return <div>hi</div>
+    }
+
 
     render(){
+        if(this.videoPlayer){
+
+        }
         return(
             <div style={{float: 'left'}}>
             <Col>
                 <BaseBox>
                     <Row>
-                        <div className="consultant-image">
+                        <div className="consultant-image" onClick={this._getVideoPlayer.bind(this)}>
                             <img   alt="Avatar"  src={this.props.video.url}/>
                         </div>
                     </Row>

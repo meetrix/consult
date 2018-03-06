@@ -11,7 +11,15 @@ class Dashboard extends Component {
     return (
       <div className="animated fadeIn">
         <Col>
-          <Row className="dash-board-component-wrapper"><MyConsultantsContainer/></Row>
+          <Row className="dash-board-component-wrapper">
+            <Col>
+
+            </Col>
+            <Col>
+              <MyConsultantsContainer/>
+            </Col>
+
+          </Row>
           <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
           <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
           <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
