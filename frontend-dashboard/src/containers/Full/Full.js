@@ -24,9 +24,9 @@ class Full extends Component {
               <Switch>
 
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                  <Route path="/calendar" name="Schedular" component={Calendar}/>
+                  <Route path="/schedule" name="Schedule" component={Calendar}/>
                   <Route exact path="/profile" name="Test Component" component={Profile} />
-                  <Route exact path="/account" name="Test Component" component={Account} />
+                  <Route exact path="/billing" name="Test Component" component={Account} />
                   <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>

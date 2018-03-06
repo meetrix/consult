@@ -27,9 +27,7 @@ export default() =>
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
     <Route exact path="/landing" name="Landing Page" component={LandingPage} />
-    <Route exact path="/calendar" name="Calendar Component" component={Calendar} />
     <Route exact path="/basebox" name="BaseBox Component" component={BaseBox} />
-
     <Route exact path="/consultantlive" name="ConsultantLive Component" component={ConsultantLive} />
     <Route path="/" name="Home" component={Full} />
   </Switch>
