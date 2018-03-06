@@ -382,4 +382,16 @@ app-root {
       margin-left: $mobile-sidebar-width !important;
     }
   }
+
+  .aside-mobile-show {
+    .sidebar {
+      width: $mobile-sidebar-width;
+      margin-right: 0;
+    }
+
+    .main {
+      margin-right: - $mobile-sidebar-width !important;
+      margin-left: $mobile-sidebar-width !important;
+    }
+  }
 }

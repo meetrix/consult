@@ -32,6 +32,12 @@ class Header extends Component {
     document.body.classList.toggle('aside-menu-hidden');
   }
 
+  mobileAsideToggle(e) {
+    e.preventDefault();
+    document.body.classList.toggle('aside-mobile-show');
+  }
+
+
   render() {
     return (
       <header className="app-header navbar">
@@ -55,7 +61,10 @@ class Header extends Component {
               </NavItem>
               <HeaderDropdown {...this.props}/>
           </Nav>
-          <NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
+          <NavbarToggler className="d-lg-none" onClick={this.asideToggle}>
+              <span className="navbar-toggler-icon"></span>
+          </NavbarToggler>
+          <NavbarToggler className="d-md-down-none" onClick={this.mobileAsideToggle}>
               <span className="navbar-toggler-icon"></span>
           </NavbarToggler>
       </header>
