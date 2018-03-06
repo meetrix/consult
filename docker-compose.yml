@@ -6,9 +6,7 @@ nginx-main:
       - ./nginx-main/default.conf:/etc/nginx/conf.d/default.conf
       - ./frontend-dashboard/build:/usr/share/nginx/html
   links:
-    - api-user
     - frontend-dashboard
-    - api-scheduler
 
 frontend-dashboard:
   image: node:carbon
