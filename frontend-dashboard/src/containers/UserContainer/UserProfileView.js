@@ -26,6 +26,11 @@ UserProfileView.propTypes = {
             updateLastName:PropTypes.func.isRequired,
             updateEmail:PropTypes.func.isRequired,
             updateImage:PropTypes.func.isRequired,
+            updateSchool:PropTypes.func.isRequired,
+            updateAddress:PropTypes.func.isRequired,
+            updateDistrict:PropTypes.func.isRequired,
+            updateStream:PropTypes.func.isRequired,
+            updateSubject:PropTypes.func.isRequired,
         }),
 }
 

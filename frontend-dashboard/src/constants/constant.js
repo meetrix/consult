@@ -27,7 +27,12 @@ export const USER_PROFILE ={
     UPDATE_FIRST_NAME:'UPDATE_FIRST_NAME',
     UPDATE_LAST_NAME:'UPDATE_LAST_NAME',
     UPDATE_EMAIL:'UPDATE_EMAIL',
-    UPDATE_IMAGE:'UPDATE_IMAGE'
+    UPDATE_IMAGE:'UPDATE_IMAGE',
+    UPDATE_ADDRESS:'UPDATE_ADDRESS',
+    UPDATE_SCHOOL:'UPDATE_SCHOOL',
+    UPDATE_DISTRICT:'UPDATE_DISTRICT',
+    UPDATE_STREAM:'UPDATE_STREAM',
+    UPDATE_SUBJECT:'UPDATE_SUBJECT'
 }
 export const STORE_INITIATE_VALUE={
     AUTH_INITIATE:
@@ -39,7 +44,12 @@ export const STORE_INITIATE_VALUE={
             userName: 'supun',
             email: 'supun.12@cse.mrt.ac.lk',
             imageUrl:'http://localhost:8080/img/avatars/1.jpg',
-            roles:'consultee'
+            roles:'consultee',
+            school:'st.aloysius',
+            address:'nakiyadeniya galle',
+            district:'galle',
+            stream:'a/l',
+            subject:'maths'
         },
         session: undefined,
         authHeader:undefined
