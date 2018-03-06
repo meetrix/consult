@@ -17,6 +17,8 @@ import MyConsultantsContainer from '../../../containers/MyConsutantsContainer/My
 import {BaseScroll} from '../../../components/BaseBox'
 
 import RequestTimeSlot from '../../../components/Scheduler/RequestTimeSlot'
+import ContactConsult from '../../../components/Consultants/ContactConsult'
+import ConsultantLive from '../../../components/Consultants/ConsultantLive'
 class Test extends Component{
 
     constructor(props){
@@ -36,7 +38,7 @@ class Test extends Component{
                 {/*<Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>*/}
                 {/*<Row className="dash-board-component-wrapper"><VideoContainer/></Row>*/}
                 {/*<Row><BaseScroll/></Row>*/}
-                <Row><RequestTimeSlot/></Row>
+                <Row><ContactConsult /></Row>
 
 
             </Col>
