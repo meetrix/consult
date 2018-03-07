@@ -10,7 +10,9 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    DropdownItem ,
+    Badge
+} from 'reactstrap';
 
 class MenuBarLanding extends Component{
     constructor(props) {
@@ -33,9 +35,9 @@ class MenuBarLanding extends Component{
                     <NavbarBrand className="navbarlandingbranding" href="/">The Maths Lab</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto navbartoplist" navbar>
+                        <Nav className="ml-auto" pills>
                             <NavItem>
-                                <NavLink  href="http://themathslab.com/getting-started/">Getting Started</NavLink>
+                                <NavLink  href="http://themathslab.com/getting-started/" active>Getting Started</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="http://themathslab.com/our-technology-expertise/">Our Technology & Expertise</NavLink>
