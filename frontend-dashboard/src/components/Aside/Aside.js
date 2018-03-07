@@ -57,9 +57,9 @@ class Aside extends Component {
 
 
                     <div className="card text-white bg-primary text-center">
-                        <div className="card-body">
+                        {/*<div className="card-body">*/}
                             <DayPicker />
-                        </div>
+                        {/*</div>*/}
                     </div>
                 </TabPane>
               </TabContent>

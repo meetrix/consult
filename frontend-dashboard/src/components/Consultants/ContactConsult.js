@@ -39,41 +39,66 @@ class ContactConsult extends Component{
                         {/*</Row>*/}
                     {/*</CardFooter>*/}
                 {/*</Card>*/}
-                <Card>
-                    <CardBody>
-                        <Row>
-                            <Col>
-                                <Media>
-                                    <Media left href="#">
-                                        <Row>
-                                            <Col>
-                                                <Media className="img-avatar" object style={{minWidth: "128px",}}src="img/avatars/5.jpg" alt="admin@meetrix.io" />
-                                            </Col>
+                {/*<Card>*/}
+                    {/*<CardBody>*/}
+                        {/*<Row>*/}
+                            {/*<Col>*/}
+                                {/*<Media>*/}
+                                    {/*<Media left href="#">*/}
+                                        {/*<Row>*/}
+                                            {/*<Col>*/}
+                                                {/*<Media className="img-avatar" object style={{minWidth: "128px",}}src="img/avatars/5.jpg" alt="admin@meetrix.io" />*/}
+                                            {/*</Col>*/}
 
-                                        </Row>
+                                        {/*</Row>*/}
 
-                                    </Media>
-                                </Media>
-                            </Col>
-                            <Col style={{ margin:"auto",display:'block' }}><Call size={50} color='blue' style={{ marginLeft:"auto",marginRight:"auto" }}/></Col>
-                            <Col style={{ margin:"auto",display:'block' }}><Message size={50} color='green' style={{ margin:"auto" }}/></Col>
+                                    {/*</Media>*/}
+                                {/*</Media>*/}
+                            {/*</Col>*/}
+                            {/*<Col style={{ margin:"auto",display:'block' }}><Call size={50} color='blue' style={{ marginLeft:"auto",marginRight:"auto" }}/></Col>*/}
+                            {/*<Col style={{ margin:"auto",display:'block' }}><Message size={50} color='green' style={{ margin:"auto" }}/></Col>*/}
 
-                        </Row>
+                        {/*</Row>*/}
 
-                        <Row/>
-                        <Row ><Col className="text-center"><h3>Andrew Dias</h3></Col></Row>
-                        <Row><Col className="text-center"><h6>Lecture,University of Sidney</h6></Col></Row>
-                        <Row/>
-                        <Row><Col className="text-center"><h6>Bsc University of Melbourne</h6></Col></Row>
-                        <Row><Col className="text-center"><h6>5 years teaching experience</h6></Col></Row>
-                        <Row/>
+                        {/*<Row/>*/}
+                        {/*<Row ><Col className="text-center"><h3>Andrew Dias</h3></Col></Row>*/}
+                        {/*<Row><Col className="text-center"><h6>Lecture,University of Sidney</h6></Col></Row>*/}
+                        {/*<Row/>*/}
+                        {/*<Row><Col className="text-center"><h6>Bsc University of Melbourne</h6></Col></Row>*/}
+                        {/*<Row><Col className="text-center"><h6>5 years teaching experience</h6></Col></Row>*/}
+                        {/*<Row/>*/}
 
-                    </CardBody>
-                    <CardFooter  style={{ backgroundColor: '#3CB371', borderColor: '#333' }}>
-                        <Row><Col className="text-center"><h6>+94711135012</h6></Col></Row>
-                        <Row><Col className="text-center"><h6>andrew@mathslab.com</h6></Col></Row>
-                    </CardFooter>
-                </Card>
+                    {/*</CardBody>*/}
+                    {/*<CardFooter  style={{ backgroundColor: '#3CB371', borderColor: '#333' }}>*/}
+                        {/*<Row><Col className="text-center"><h6>+94711135012</h6></Col></Row>*/}
+                        {/*<Row><Col className="text-center"><h6>andrew@mathslab.com</h6></Col></Row>*/}
+                    {/*</CardFooter>*/}
+                {/*</Card>*/}
+                <Row style={{backgroundColor:'white'}}>
+                    <Col md={{size:3}}style={{background: 'linear-gradient(to right, transparent 50%, white 50%)'}}>
+                        <Media className="img-avatar" object style={{minWidth: "128px",}}src="img/avatars/5.jpg" alt="admin@meetrix.io" />
+                    </Col>
+                    <Col md="3"style={{margin:'auto',display:'block',backgroundColor:'white'}}>
+                        <span style={{margin:'auto',display:'block'}} className="fa-stack fa-2x">
+                            <i style={{color:'green'}} className="fa fa-circle fa-stack-2x"></i>
+                            <i className="fa fa-phone fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </Col>
+                    <Col md ="3"style={{margin:'auto',display:'block',backgroundColor:'white'}}>
+                        <span style={{margin:'auto',display:'block'}} className="fa-stack fa-2x">
+                            <i style={{color:'green'}} className="fa fa-circle fa-stack-2x"></i>
+                            <i className="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </Col>
+                </Row>
+                <Row ><Col className="text-center"><h3>Andrew Dias</h3></Col></Row>
+                <Row><Col className="text-center"><h6>Lecture,University of Sidney</h6></Col></Row>
+                <Row/>
+                <Row><Col className="text-center"><h6>Bsc University of Melbourne</h6></Col></Row>
+                <Row><Col className="text-center"><h6>5 years teaching experience</h6></Col></Row>
+                <Row><Col className="text-center"><h6>+94711135012</h6></Col></Row>
+                <Row><Col className="text-center"><h6>andrew@mathslab.com</h6></Col></Row>
+
 
             </Col>
         )
