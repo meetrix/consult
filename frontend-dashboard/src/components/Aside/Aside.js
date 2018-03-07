@@ -35,32 +35,32 @@ class Aside extends Component {
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
                 <TabPane tabId="1">
-                  <div className="callout m-0 py-2 text-muted text-center bg-light">
-                    <small><h4>Next Class</h4></small>
-                  </div>
-                  <hr className="transparent mx-3 my-0"/>
-                  <div className="callout callout-warning m-0 py-3 text-center">
-                    <p><Badge>24th March</Badge></p>
-                    <small><b>Time Left</b></small>
-                    <h4><span className="label label-default">04 : 49 hours</span></h4>
-                  </div>
+                    <div className="card text-white bg-primary text-center">
+                        <div className="card-body">
+                            <h3>Next Class</h3>
+                            <p><Badge>24th March</Badge></p>
+                            <small><b>Time Left</b></small>
+                            <h4><span className="label label-default">04 : 49 hours</span></h4>
+                        </div>
+                    </div>
 
-                  <div className="callout m-0 py-2 text-muted text-center bg-light">
-                    <small><h4>Today</h4></small>
-                  </div>
-                  <hr className="transparent mx-3 my-0"/>
-                  <div className ="callout callout-warning m-0 py-3 text-center">
-                      <span className="fa-stack fa-3x">
-                            <i className="fa fa-calendar-o fa-stack-2x"/>
-                            <span className="fa-stack-1x calendar-text">27</span>
-                      </span>
-                      <p>No Classes<br/>Home Work</p>
-                  </div>
-                  <div className="callout m-0 py-2 text-muted text-center bg-light">
-                  </div>
-                  <div className="callout callout-warning m-0 py-3 text-center">
-                      <DayPicker />
-                  </div>
+                    <div className="card text-white bg-primary text-center">
+                        <div className="card-header">Today</div>
+                        <div className="card-body">
+                            <span className="fa-stack fa-3x">
+                                <i className="fa fa-calendar-o fa-stack-2x"/>
+                                <span className="fa-stack-1x calendar-text">27</span>
+                            </span>
+                            <p>No Classes<br/>Home Work</p>
+                        </div>
+                    </div>
+
+
+                    <div className="card text-white bg-primary text-center">
+                        <div className="card-body">
+                            <DayPicker />
+                        </div>
+                    </div>
                 </TabPane>
               </TabContent>
             </aside>
