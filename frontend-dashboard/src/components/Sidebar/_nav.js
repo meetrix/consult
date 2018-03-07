@@ -1,24 +1,24 @@
 export default {
     items: [
         {
-            name: 'Dashboard',
+            name: 'Summary',
             url: '/dashboard/summary',
-            icon: 'icon-speedometer'
+            icon: 'icon-home'
         },
         {
             name: 'Schedule',
             url: '/dashboard/schedule',
-            icon: 'icon-speedometer'
+            icon: 'icon-calendar'
         },
         {
             name: 'Billing',
             url: '/dashboard/billing',
-            icon: 'icon-speedometer'
+            icon: 'icon-credit-card'
         },
         {
             name: 'Profile',
             url: '/dashboard/profile',
-            icon: 'icon-speedometer'
+            icon: 'icon-user'
         },
     ]
 };
