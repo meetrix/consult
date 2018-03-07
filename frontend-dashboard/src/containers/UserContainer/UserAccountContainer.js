@@ -18,10 +18,10 @@ function mapStateToProps(state){
     return {
         account: {
             records:[
-                {id:"1",date:"Sat Feb 24 2018 16:35:22 GMT+0530 (+0530)",account:"123456",amount:"1000.00"},
-                {id:"2",date:"Sat Feb 24 2018 16:35:22 GMT+0530 (+0530)",account:"123456",amount:"1000.00"},
-                {id:"3",date:"Sat Feb 24 2018 16:35:22 GMT+0530 (+0530)",account:"123456",amount:"1000.00"},
-                {id:"4",date:"Sat Feb 24 2018 16:35:22 GMT+0530 (+0530)",account:"123456",amount:"1000.00"},
+                {id:"1",date:"2011/02/23",amount:"1000.00",status:'verified'},
+                {id:"2",date:"2011/02/25",amount:"1000.00",status:'verified'},
+                {id:"3",date:"2011/02/27",amount:"1000.00",status:'verified'},
+                {id:"4",date:"2011/02/30",amount:"1000.00",status:'verified'},
             ]
 
         }
