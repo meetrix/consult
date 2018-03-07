@@ -40,7 +40,6 @@ class ContactConsult extends Component{
                     {/*</CardFooter>*/}
                 {/*</Card>*/}
                 <Card>
-                    <CardHeader  style={{ backgroundColor: '#3CB371', borderColor: '#333' }}><Row><Col className="text-center"><Label><h3>Contact Tutor</h3></Label></Col></Row></CardHeader>
                     <CardBody>
                         <Row>
                             <Col>
@@ -48,7 +47,7 @@ class ContactConsult extends Component{
                                     <Media left href="#">
                                         <Row>
                                             <Col>
-                                                <Media className="img-avatar" object style={{minWidth: "128px",}}src="img/avatars/1.jpg" alt="admin@meetrix.io" />
+                                                <Media className="img-avatar" object style={{minWidth: "128px",}}src="img/avatars/5.jpg" alt="admin@meetrix.io" />
                                             </Col>
 
                                         </Row>
@@ -56,8 +55,8 @@ class ContactConsult extends Component{
                                     </Media>
                                 </Media>
                             </Col>
-                            <Col style={{ margin:"auto",display:'block' }}><Call size={30} color='blue' style={{ marginLeft:"auto",marginRight:"auto" }}/></Col>
-                            <Col style={{ margin:"auto",display:'block' }}><Message size={30} color='green' style={{ margin:"auto" }}/></Col>
+                            <Col style={{ margin:"auto",display:'block' }}><Call size={50} color='blue' style={{ marginLeft:"auto",marginRight:"auto" }}/></Col>
+                            <Col style={{ margin:"auto",display:'block' }}><Message size={50} color='green' style={{ margin:"auto" }}/></Col>
 
                         </Row>
 

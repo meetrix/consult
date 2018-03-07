@@ -5,10 +5,16 @@ import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContai
 import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
 import VideoContainer from '../../containers/VideoContainer/VideoContainer'
 import MyConsultantsContainer from '../../containers/MyConsutantsContainer/MyConsultantsContainer'
+import ContactConsult from '../../components/Consultants/ContactConsult';
+
 class Dashboard extends Component {
 
   render() {
     return (
+        <Col>
+          <Row><ContactConsult /></Row>
+        </Col>
+        /*
       <div className="animated fadeIn">
         <Col>
           <Row className="dash-board-component-wrapper">
@@ -25,6 +31,7 @@ class Dashboard extends Component {
           <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
         </Col>
       </div>
+      */
     )
   }
 }
