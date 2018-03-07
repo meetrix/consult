@@ -95,3 +95,26 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.navbartop{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 100%;
+}
+
+.navbartoplist{
+  font-size: 16px;
+}
+
+.navbarlandingbranding{
+  font-color: #00aced;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.landing-page-stepsblock{
+  bottom:2px;
+}
