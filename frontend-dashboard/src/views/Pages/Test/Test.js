@@ -19,7 +19,7 @@ import {BaseScroll} from '../../../components/BaseBox'
 import RequestTimeSlot from '../../../components/Scheduler/RequestTimeSlot'
 import ContactConsult from '../../../components/Consultants/ContactConsult'
 import ConsultantLive from '../../../components/Consultants/ConsultantLive'
-import ConsulteeContainer from '../../../containers/ConsulteeContainer/ConsulteeContainer'
+import ConsulteeList from '../../../components/Consultee/ConsulteeList'
 class Test extends Component{
 
     constructor(props){
@@ -39,7 +39,7 @@ class Test extends Component{
                 {/*<Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>*/}
                 {/*<Row className="dash-board-component-wrapper"><VideoContainer/></Row>*/}
                 {/*<Row><BaseScroll/></Row>*/}
-                <Row><ConsulteeContainer /></Row>
+                <Row><ConsulteeList user={ {role:2}} records={[{id:'0',consulteeName:'supunconsultee',consulteeProfile:'img/avatars/1.jpg',nextSession:'2012/3/5',consultantName:'supunconsultant',consultantProfile:'img/avatars/2.jpg'},{id:'1',consulteeName:'supunconsultee',consulteeProfile:'img/avatars/1.jpg',nextSession:'2012/3/5',consultantName:'supunconsultant',consultantProfile:'img/avatars/2.jpg'}]} /></Row>
 
 
             </Col>
