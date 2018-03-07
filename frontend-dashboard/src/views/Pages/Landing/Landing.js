@@ -27,7 +27,7 @@ class Landing extends Component{
                 </Row>
 
                 {/*Steps*/}
-                <Row>
+                <Row className="landing-page-stepsblock">
                     <StepsBox/>
                 </Row>
 

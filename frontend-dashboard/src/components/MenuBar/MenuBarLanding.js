@@ -30,10 +30,10 @@ class MenuBarLanding extends Component{
         return (
             <div>
                 <Navbar className="navbartop" color="white" light expand="md" >
-                    <NavbarBrand href="/">The Maths Lab</NavbarBrand>
+                    <NavbarBrand className="navbarlandingbranding" href="/">The Maths Lab</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+                        <Nav className="ml-auto navbartoplist" navbar>
                             <NavItem>
                                 <NavLink  href="http://themathslab.com/getting-started/">Getting Started</NavLink>
                             </NavItem>
@@ -42,6 +42,9 @@ class MenuBarLanding extends Component{
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/#/dashboard">The Maths Lab Dashboard</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="http://themathslab.com/contact-us/">Contact Us</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
