@@ -13,7 +13,7 @@ import {actionCreatorFactory} from '../../actions/actionCreator';
 
 function mapStateToProps(state){
     return {
-        consultants: state.consultants,
+        consultants: [{_id:1,username:'supun'},{_id:2,username:'supun'},{_id:3,username:'supun'}],
 
     }
 

@@ -99,3 +99,12 @@ export const TIMEOUTS = {
     LOCAL_PROXY_SEND_RETRY: 1000,
     SECOND_IN_MILLIS: 1000
 };
+
+export const ROLE={
+    ADMIN:0,
+    CONSULTANT:1,
+    CONSULTEE:2,
+
+
+
+}

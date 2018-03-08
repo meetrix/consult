@@ -11,19 +11,16 @@ class Dashboard extends Component {
 
   render() {
     return (
-        <Col>
-          <Row><ContactConsult /></Row>
-        </Col>
-        /*
+        // {/*<Col>*/}
+        //   {/*<Row><ContactConsult /></Row>*/}
+        // {/*</Col>*/}
+
       <div className="animated fadeIn">
         <Col>
           <Row className="dash-board-component-wrapper">
-            <Col>
 
-            </Col>
-            <Col>
               <MyConsultantsContainer/>
-            </Col>
+
 
           </Row>
           <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
@@ -31,7 +28,7 @@ class Dashboard extends Component {
           <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
         </Col>
       </div>
-      */
+
     )
   }
 }
