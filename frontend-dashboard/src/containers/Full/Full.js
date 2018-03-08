@@ -14,7 +14,7 @@ import Calendar from '../../components/Calendar/Calendar'
 import Dashboard from '../../views/Dashboard/';
 import Profile from '../UserContainer/UserProfileContainer'
 import  Account from '../UserContainer/UserAccountContainer'
-import SessionList from '../../components/Session/session_list'
+import SessionListContainer from '../../components/Session/session_list_container'
 
 import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
 
@@ -59,7 +59,7 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                   <Route path="/dashboard/schedule" name="Schedule" component={Calendar}/>
-                  <Route path="/dashboard/sessions" name="Session" component={SessionList}/>
+                  <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
                   <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
