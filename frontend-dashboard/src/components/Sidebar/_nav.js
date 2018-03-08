@@ -11,6 +11,11 @@ export default {
             icon: 'icon-calendar'
         },
         {
+            name:'Sessions',
+            url: '/dashboard/sessions',
+            icon: 'icon-calendar'
+        },
+        {
             name: 'Billing',
             url: '/dashboard/billing',
             icon: 'icon-credit-card'
@@ -20,5 +25,6 @@ export default {
             url: '/dashboard/profile',
             icon: 'icon-user'
         },
+
     ]
 };
