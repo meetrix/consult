@@ -3,6 +3,7 @@
 const uuid = require('uuid');
 const dynamodb = require('./dynamodb');
 const Joi = require('joi');
+const Boom = require('boom');
 
 module.exports.create = (event, context, callback) => {
   const data = JSON.parse(event.body);
@@ -16,7 +17,7 @@ module.exports.create = (event, context, callback) => {
       return new Promise((resolve, reject)=>{
           Joi.validate(data, schema, function (err) {
               if(err){
-                  reject(err)
+                  reject(Boom.badRequest(JSON.stringify(err.details)).output.payload)
               }
               else{
                   resolve(data)
@@ -66,24 +67,9 @@ module.exports.create = (event, context, callback) => {
   catch((err)=>{
       console.error('Validation Failed');
       callback(null, {
-          statusCode: 400,
-          headers: { 'Content-Type': 'text/plain' },
-          body: err,
+          headers: { 'Content-Type': 'application/json' },
+          ...err
       });
   })
-
-    // callback(null, {
-    //     statusCode: error.statusCode || 501,
-    //     headers: { 'Content-Type': 'text/plain' },
-    //     body: 'Couldn\'t create the todo item.',
-    // });
-    //
-    //
-    // // create a response
-    // const response = {
-    //     statusCode: 200,
-    //     body: JSON.stringify(params.Item),
-    // };
-    // callback(null, response);
 
 };
