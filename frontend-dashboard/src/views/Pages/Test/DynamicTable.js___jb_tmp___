@@ -1,0 +1,79 @@
+/**
+ * Created by supun on 07/03/18.
+ */
+import React,{Component} from 'react'
+import PropTypes from 'prop-types'
+import {
+    Row,
+    Col,
+    Card,
+    CardHeader,
+    CardBody,
+    Badge,
+    InputGroupText,
+    Table,
+    Pagination,
+    PaginationItem,
+    PaginationLink
+} from 'reactstrap';
+
+class DynamicTable extends Component{
+
+
+    _tableHeadres(){
+        const headersElements =  this.props.tableProp.headers.map((header,index)=>
+
+            <th key={index}>{header}</th>
+
+        )
+        console.log(headersElements)
+        return headersElements;
+    }
+    render(){
+        return(
+            <Col>
+                <div className="animated fadeIn">
+                    <Row>
+                        <Col xs="12" lg="12">
+                            <Card>
+                                <CardHeader>
+                                    <i className="fa fa-align-justify"></i> {this.props.tableProp.title}
+                                </CardHeader>
+                                <CardBody>
+                                    <Table responsive striped>
+                                        <thead>
+                                            <tr>
+                                                {this._tableHeadres()}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </Table>
+                                    {/*<Pagination>*/}
+                                    {/*<PaginationItem disabled><PaginationLink previous href="#">Prev</PaginationLink></PaginationItem>*/}
+                                    {/*<PaginationItem active>*/}
+                                    {/*<PaginationLink href="#">1</PaginationLink>*/}
+                                    {/*</PaginationItem>*/}
+                                    {/*<PaginationItem><PaginationLink href="#">2</PaginationLink></PaginationItem>*/}
+                                    {/*<PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>*/}
+                                    {/*<PaginationItem><PaginationLink href="#">4</PaginationLink></PaginationItem>*/}
+                                    {/*<PaginationItem><PaginationLink next href="#">Next</PaginationLink></PaginationItem>*/}
+                                    {/*</Pagination>*/}
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
+            </Col>
+        )
+    }
+}
+DynamicTable.propTypes={
+
+    tableProp:PropTypes.shape({
+        title:PropTypes.string.isRequired,
+        headers:PropTypes.arrayOf(PropTypes.string.isRequired),
+        numberOfHeaders:PropTypes.number.isRequired
+    }),
+}
+export default DynamicTable

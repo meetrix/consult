@@ -20,6 +20,7 @@ import RequestTimeSlot from '../../../components/Scheduler/RequestTimeSlot'
 import ContactConsult from '../../../components/Consultants/ContactConsult'
 import ConsultantLive from '../../../components/Consultants/ConsultantLive'
 import ConsulteeList from '../../../components/Consultee/ConsulteeList'
+import {API, Auth} from 'aws-amplify';
 class Test extends Component{
 
     constructor(props){
@@ -28,6 +29,26 @@ class Test extends Component{
 
     }
     componentDidMount() {
+        Auth.currentSession().then((idToken)=>{
+            console.log(idToken.idToken.jwtToken)
+
+            const options = {
+                headers: {
+                    Authorization: idToken.idToken.jwtToken
+                }
+            }
+            console.log(API, options)
+            API.get('PetStore','/pets',options)
+                .then(resp => {
+                    // this.setState({
+                    //     data: resp
+                    // });
+                    console.log("response is : ", resp);
+                })
+                .catch (err => console.log(err))
+        })
+
+
 
     }
     render(){

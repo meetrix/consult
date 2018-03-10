@@ -77,10 +77,3 @@ export  function* takeEveryFetchSaga() {
 export function* takeLatestFetchSaga() {
     yield takeLatest(REDUX_ACTIONS.FETCH_LATEST, fetchAsync);
 }
-
-
-
-
-
-
-export default rootSaga
