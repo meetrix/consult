@@ -71,16 +71,13 @@ function* fetchAsync(action) {
         yield put({type: reply.failureAction, payload: reply.err.data, args: {...action.payload, ...action.args}});
     }
 }
-function* takeEveryFetchSaga() {
+export  function* takeEveryFetchSaga() {
     yield takeEvery(REDUX_ACTIONS.FETCHING, fetchAsync)
 }
 export function* takeLatestFetchSaga() {
     yield takeLatest(REDUX_ACTIONS.FETCH_LATEST, fetchAsync);
 }
 
-function* rootSaga () {
-    yield [takeEveryFetchSaga(),takeLatestFetchSaga()]
-}
 
 
 
