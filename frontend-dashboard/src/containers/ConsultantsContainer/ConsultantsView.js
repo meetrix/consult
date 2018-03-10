@@ -14,7 +14,7 @@ import TextSearch from '../../components/Search/TextSearch/TextSearch';
 class ConsultantsView extends Component {
 
     componentWillMount(){
-        this.props.actions.getConsultants();
+        this.props.actions.getPets();
     }
     render() {
         return(
