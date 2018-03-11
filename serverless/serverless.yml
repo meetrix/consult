@@ -18,6 +18,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs4.3
+  region: us-west-2
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   iamRoleStatements:
@@ -71,6 +72,14 @@ functions:
           path: todos/{id}
           method: delete
           cors: true
+
+  JwtDecorde:
+      handler: jwtTokenDecorder/get.get
+      events:
+        - http:
+            path: jwt
+            method: get
+            cors: true
 
 resources:
   Resources:
