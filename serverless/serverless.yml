@@ -49,10 +49,10 @@ functions:
           cors: true
 
   get:
-    handler: todos/get.get
+    handler: scheduler/get.get
     events:
       - http:
-          path: todos/{id}
+          path: schedule/{id}
           method: get
           cors: true
 
