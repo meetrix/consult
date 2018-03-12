@@ -13,8 +13,9 @@ class Calendar extends Component{
   componentDidMount(){
     this.props.actions.getScheduleEvents(
       {
-        startAt:'31231313123',
-        endAt:'43423424243'
+        start:'31231313123',
+        end:'43423424243',
+        title:'example event'
       }
     )
   }
