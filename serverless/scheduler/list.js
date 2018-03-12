@@ -24,30 +24,49 @@ module.exports.list = (event, context, callback) =>{
 
   function handler(data) {
 
+    console.log('table name : '+process.env.DYNAMODB_TABLE);
+    //
+    // const params = {
+    //   RequestItems: {
+    //     'serverless-rest-api-with-dynamodb-dev' : {
+    //       Keys: [
+    //         {'id': {'S': '469ce3d0-2518-11e8-9271-3777bb2c31cd'}}
+    //       ]
+    //     }
+    //   }
+    // };
+    //
+    // // read
+    // return new Promise((resolve, reject)=>{
+    //   dynamodb.batchGetItem(params, (error, result) => {
+    //     // handle potential errors
+    //     console.log('test');
+    //     if (error) {
+    //       console.error(error);
+    //       reject(error);
+    //     }
+    //     else {
+    //       resolve(result);
+    //       context.succeed(result);
+    //     }
+    //   });
+    // });
+
     const params = {
-      RequestItems: {
-        'consult-schedule-event-dev' : {
-          Keys: [
-            {'id': {'S': '469ce3d0-2518-11e8-9271-3777bb2c31cd'}}
-          ]
-        }
-      }
+      TableName: process.env.DYNAMODB_TABLE,
     };
 
-    // read
     return new Promise((resolve, reject)=>{
-      dynamodb.batchGetItem(params, (error, result) => {
-        // handle potential errors
-        console.log('test');
-        if (error) {
-          console.error(error);
+      dynamodb.scan(params, (error, result) =>{
+        if(error){
+          console.log(error);
           reject(error);
         }
         else {
           resolve(result);
         }
-      });
-    });
+      })
+    })
   }
 
   validate(data, schema).then((result)=>{
@@ -56,13 +75,14 @@ module.exports.list = (event, context, callback) =>{
     // create a response
     const response = {
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
       body: JSON.stringify(result)
     };
     callback(null, response);
   }).
   catch((err)=>{
     callback(null, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
       ...err
     });
   })
