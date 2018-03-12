@@ -15,7 +15,8 @@ custom:
       migrate: true
     migration:
       dir: offline/migrations
-    webpackIncludeModules: true
+    webpack:
+      IncludeModules: true
 
 provider:
   name: aws
