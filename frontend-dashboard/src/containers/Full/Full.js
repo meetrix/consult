@@ -9,7 +9,7 @@ import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
 import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
-import Calendar from '../../components/Calendar/Calendar'
+import SchedulerContainer from '../../containers/SchedulerContainer/SchedulerContainer'
 
 import Dashboard from '../../views/Dashboard/';
 import Profile from '../UserContainer/UserProfileContainer'
@@ -58,7 +58,7 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                  <Route path="/dashboard/schedule" name="Schedule" component={Calendar}/>
+                  <Route path="/dashboard/schedule" name="Schedule" component={SchedulerContainer}/>
                   <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
