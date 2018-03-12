@@ -9,8 +9,9 @@ module.exports.create = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   const schema = Joi.object().keys({
-      startAt: Joi.string().required(),
-      endAt: Joi.string().required()
+      start: Joi.string().required(),
+      end: Joi.string().required(),
+      title: Joi.string().required()
   });
 
   function validate  (data, schema) {
@@ -35,6 +36,9 @@ module.exports.create = (event, context, callback) => {
               id: uuid.v1(),
               createdAt: timestamp,
               updatedAt: timestamp,
+              start: data.start,
+              end: data.end,
+              title:data.title,
               ...data
           },
       };

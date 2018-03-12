@@ -24,5 +24,24 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
               }
             ))
       })
+
+      case 'POST':
+        return new Promise((resolve, reject) =>{
+          API.post(endPoint,apiRoute,options)
+            .then(res => {
+              console.log(res)
+              console.log("schedulte event")
+              resolve({
+                successAction: successAction,
+                res: res
+
+              })
+            })
+            .catch (err =>reject({
+                failureAction: failureAction,
+                err: err
+              }
+            ))
+        })
     }
 }
