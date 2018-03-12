@@ -17,7 +17,8 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs4.3
+  region: us-west-2
+  runtime: nodejs6.10
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   iamRoleStatements:
@@ -29,6 +30,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
@@ -41,10 +43,10 @@ functions:
           cors: true
 
   list:
-    handler: todos/list.list
+    handler: scheduler/list.list
     events:
       - http:
-          path: todos
+          path: schedule
           method: get
           cors: true
 
