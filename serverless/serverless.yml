@@ -77,6 +77,14 @@ functions:
           method: delete
           cors: true
 
+  JwtDecorde:
+      handler: jwtTokenDecorder/get.get
+      events:
+        - http:
+            path: jwt
+            method: get
+            cors: true
+
 resources:
   Resources:
     TodosDynamoDbTable:
