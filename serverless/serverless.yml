@@ -5,6 +5,7 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
+  - serverless-webpack
 
 custom:
   dynamodb:
@@ -14,6 +15,7 @@ custom:
       migrate: true
     migration:
       dir: offline/migrations
+    webpackIncludeModules: true
 
 provider:
   name: aws
