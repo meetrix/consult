@@ -5,6 +5,7 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
+  - serverless-webpack
 
 custom:
   dynamodb:
@@ -14,11 +15,12 @@ custom:
       migrate: true
     migration:
       dir: offline/migrations
+    webpackIncludeModules: true
 
 provider:
   name: aws
-  runtime: nodejs4.3
   region: us-west-2
+  runtime: nodejs6.10
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   iamRoleStatements:
@@ -30,6 +32,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
@@ -42,18 +45,18 @@ functions:
           cors: true
 
   list:
-    handler: todos/list.list
+    handler: scheduler/list.list
     events:
       - http:
-          path: todos
+          path: schedule
           method: get
           cors: true
 
   get:
-    handler: todos/get.get
+    handler: scheduler/get.get
     events:
       - http:
-          path: todos/{id}
+          path: schedule/{id}
           method: get
           cors: true
 
