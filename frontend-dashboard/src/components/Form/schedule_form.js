@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import DatePicker from 'react-datepicker';
+import Autosuggest from 'react-autosuggest';
 
 class ScheduleForm extends Component{
   render(){
