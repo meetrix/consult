@@ -4,6 +4,19 @@ import {Redirect} from 'react-router-dom';
 import Amplify,{API, Auth} from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react';
 
+Auth.signUp({
+  username,
+  password,
+  attributes: {
+    email,          // optional
+    phone_number,   // optional - E.164 number convention
+    // other custom attributes
+  },
+  validationData: []  //optional
+})
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
 Amplify.configure({
     Auth: {
         // REQUIRED - Amazon Cognito Identity Pool ID
@@ -37,7 +50,7 @@ class Login extends Component {
 
 
     componentDidMount(){
-
+      Auth.signOut()
     }
 
 
@@ -49,4 +62,7 @@ class Login extends Component {
   }
 }
 
-export default withAuthenticator(Login);
+export default withAuthenticator(Login,false,[
+
+
+]);

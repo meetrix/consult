@@ -74,6 +74,7 @@ class Full extends Component {
             copyrightYear="2018"
             poweredByText="Meetrix"
         />
+
       </div>
     );
   }

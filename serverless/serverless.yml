@@ -85,6 +85,7 @@ functions:
             method: get
             cors: true
 
+
 resources:
   Resources:
     TodosDynamoDbTable:
@@ -103,3 +104,7 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
+
+
+
+
