@@ -22,6 +22,8 @@ class Calendar extends Component{
 
     this.toggle = this.toggle.bind(this);
     this.setPopupText = this.setPopupText.bind(this);
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleEndDateChange = this.handleEndDateChange.bind(this);
   }
 
   componentDidMount(){
@@ -41,6 +43,18 @@ class Calendar extends Component{
         end: moment(slotinfo.end)
       })
       this.toggle();
+  }
+
+  handleStartDateChange(date){
+    this.setState({
+      start:date
+    })
+  }
+
+  handleEndDateChange(date){
+    this.setState({
+      end:date
+    })
   }
 
   toggle() {
@@ -72,7 +86,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end}/>
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)}/>
                  </ModalBody>
                  <ModalFooter>
                    <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}

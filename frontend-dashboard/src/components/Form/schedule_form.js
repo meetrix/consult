@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
 class ScheduleForm extends Component{
+
   render(){
     return(
       <Form>
@@ -12,12 +13,16 @@ class ScheduleForm extends Component{
           <Input type="textarea" name="text" id="exampleText" />
         </FormGroup>
         <Label for="exampleDate">Start</Label>
-        <DatePicker selected={this.props.start} showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
+        <DatePicker selected={this.props.start} onChange={this.props.handleStartDateChange} showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
         <Label for="exampleDate">End</Label>
-        <DatePicker selected={this.props.end} showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
+        <DatePicker selected={this.props.end} onChange={this.props.handleEndDateChange}showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
         <FormGroup>
           <Label for="exampleColor">Color</Label>
           <Input type="color" name="color" id="exampleColor" placeholder="color placeholder" />
+        </FormGroup>
+        <FormGroup>
+          <Label>Select Student</Label>
+        <ConsulteeSuggest/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleSelect">Select Student</Label>
@@ -33,7 +38,7 @@ class ScheduleForm extends Component{
           <Label for="exampleText">Description</Label>
           <Input type="textarea" name="text" id="exampleText" />
         </FormGroup>
-        <ConsulteeSuggest/>
+
       </Form>
     )
   }
