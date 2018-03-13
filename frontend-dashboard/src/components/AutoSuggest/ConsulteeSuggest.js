@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
+import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 
 const people = [
   {
@@ -75,21 +77,26 @@ class ConsulteeSuggest extends Component {
       value: '',
       suggestions: []
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
   }
 
-  onChange = (event, { newValue, method }) => {
+
+  onChange (event, { newValue, method }) {
     this.setState({
       value: newValue
     });
   };
 
-  onSuggestionsFetchRequested = ({ value }) => {
+  onSuggestionsFetchRequested ({ value })  {
     this.setState({
       suggestions: getSuggestions(value)
     });
   };
 
-  onSuggestionsClearRequested = () => {
+  onSuggestionsClearRequested () {
     this.setState({
       suggestions: []
     });
@@ -114,5 +121,7 @@ class ConsulteeSuggest extends Component {
     );
   }
 }
+
+export default ConsulteeSuggest;
 
 

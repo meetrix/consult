@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import DatePicker from 'react-datepicker';
-import Autosuggest from 'react-autosuggest';
+import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
 class ScheduleForm extends Component{
   render(){
@@ -33,6 +33,7 @@ class ScheduleForm extends Component{
           <Label for="exampleText">Description</Label>
           <Input type="textarea" name="text" id="exampleText" />
         </FormGroup>
+        <ConsulteeSuggest/>
       </Form>
     )
   }
