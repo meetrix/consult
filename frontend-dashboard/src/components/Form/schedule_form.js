@@ -21,6 +21,10 @@ class ScheduleForm extends Component{
           <Input type="color" name="color" id="exampleColor" placeholder="color placeholder" />
         </FormGroup>
         <FormGroup>
+          <Label>Select Student</Label>
+        <ConsulteeSuggest/>
+        </FormGroup>
+        <FormGroup>
           <Label for="exampleSelect">Select Student</Label>
           <Input type="select" name="select" id="exampleSelect">
             <option>1</option>
@@ -34,7 +38,7 @@ class ScheduleForm extends Component{
           <Label for="exampleText">Description</Label>
           <Input type="textarea" name="text" id="exampleText" />
         </FormGroup>
-        <ConsulteeSuggest/>
+
       </Form>
     )
   }
