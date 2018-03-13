@@ -13,11 +13,13 @@ Serverless backend
 5. start the service `serverless offline start`
 6. follow the usual commands of serverless framework for deploy
 
-Endpoints
+API Documentation
 -
-1. `post` `/schedule/`
-2. `get` `/schedule`
-3. `get` `/schedule/{id}`
+Documentation is done with swagger-node
+
+1. `cd doc`
+2. `npm install`
+3. open swagger editor `swagger project edit`
 
     
     
