@@ -16,7 +16,6 @@ import events from '../../components/Calendar/example_events';
 function mapStateToProps(state){
   return {
     events:state.schedule ,
-
   }
 
 }
