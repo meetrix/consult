@@ -18,7 +18,7 @@ import {
 } from '../../../node_modules/aws-amplify-react/dist/AmplifyUI';
 
 import { Auth, I18n, Logger, JS } from 'aws-amplify';
-export default class CustomSignUpConfirmation extends ConfirmSignUp {
+export default class CustomConfirmSignUp extends ConfirmSignUp {
 
   confirm() {
     const username = this.usernameFromAuthData() || this.inputs.username;

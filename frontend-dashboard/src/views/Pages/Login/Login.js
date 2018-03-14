@@ -14,7 +14,7 @@ import {REDUX_ACTIONS as ACTION_TYPE,ACTION_ATTR as ATTRS }from '../../../consta
 
 import CustomSignIn from '../../../components/AutheticationForm/CustomSignIn'
 import CustomSignUp from '../../../components/AutheticationForm/CustomSignUp'
-import CustomSignUpConfirmation from '../../../components/AutheticationForm/CustomSignUpConfirmation'
+import CustomConfirmSignUp from '../../../components/AutheticationForm/CustomConfirmSignUp'
 import CustomForgetPassword from '../../../components/AutheticationForm/CustomForgetPassword'
 Amplify.configure({
     Auth: {
@@ -79,25 +79,26 @@ class Login extends Component {
 
     }
 
-  handleAuthStateChange(state) {
-    if (state === 'signedIn') { this.setState({signedIn:true})}
-  }
+  // handleAuthStateChange(state) {
+  //   if (state === 'signedIn') { this.setState({signedIn:true})}
+  // }
 
     render() {
 
-          if(this.state.signedIn){
-            return <Redirect to="/dashboard"/>
-          }
+          // if(this.state.signedIn){
+          //   return <Redirect to="/dashboard"/>
+          // }
           return(
               <Col>
 
-                  {/*//profile ? <div><Redirect to="/dashboard/profile"/></div> : <Redirect to="/dashboard"/>*/}
-                <Authenticator hideDefault={true} onStateChange={this.handleAuthStateChange.bind(this)}>
-                  <CustomSignIn/>
-                  <CustomSignUp/>
-                  <CustomSignUpConfirmation/>
-                  <CustomForgetPassword/>
-                </Authenticator>
+                  <Redirect to="/dashboard"/>
+                {/*<Authenticator hideDefault={true} onStateChange={this.handleAuthStateChange.bind(this)}>*/}
+                  {/*<CustomSignIn/>*/}
+                  {/*<CustomSignUp/>*/}
+                  {/*<CustomConfirmSignUp/>*/}
+                  {/*<CustomForgetPassword/>*/}
+                  {/*<VerifyContact/>*/}
+                {/*</Authenticator>*/}
 
               </Col>
 
@@ -118,13 +119,12 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-// export default withAuthenticator(connect(mapStateToProps, mapDispatchToProps)(Login),false,[
-//   <MySignIn hide={false}/>,
-//   <ConfirmSignIn/>,
-//   <MySignUp hide={true} />,
-//   <ConfirmSignUp/>,
-//   <VerifyContact/>,
-//   <ForgotPassword/>
-// ]);
+export default withAuthenticator(connect(mapStateToProps, mapDispatchToProps)(Login),false,[
+  <CustomSignIn/>,
+  <CustomSignUp/>,
+  <CustomConfirmSignUp/>,
+  <CustomForgetPassword/>,
+  <VerifyContact/>,
+]);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+//export default connect(mapStateToProps, mapDispatchToProps)(Login);
