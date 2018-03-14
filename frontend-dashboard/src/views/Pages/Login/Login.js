@@ -54,7 +54,7 @@ class Login extends Component {
         }
     }
     componentWillMount(){
-      Auth.signOut()
+      //Auth.signOut()
       //current auth user
       this.setAuthUser();
       //check custom attribute is set
