@@ -7,8 +7,8 @@ import {Authenticator, withAuthenticator,Greetings,RequireNewPassword,ConfirmSig
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {actionCreateStoreUpdateFactory} from '../../../actions/actionCreator';
-import {REDUX_ACTIONS as ACTION_TYPE,ACTION_ATTR as ATTRS }from '../../../constants/constant';
+import {actionCreatorAwsAmplifyFactory} from '../../../actions/actionCreator';
+import {ACTION_KEY as AWS_AMPLIFY_KEYS,ACTION_ATTR as AWS_AMPLIFY_ATTRS }from '../../../constants/apiAmlifyConstant';
 
 //Custom Sign Up Ui
 
@@ -56,11 +56,11 @@ class Login extends Component {
     componentWillMount(){
       //Auth.signOut()
       //current auth user
-      this.setAuthUser();
+      //this.setAuthUser();
       //check custom attribute is set
       //this.checkUserCustomAttributes()
       console.log("before render")
-      //this.props.actions.setAuthUser();
+      this.props.actions.getAuthUser();
     }
 
     async setAuthUser(){
@@ -68,37 +68,16 @@ class Login extends Component {
       this.props.actions.setAuthUser(auth);
     }
 
-    async checkUserCustomAttributes(){
-      let user = await Auth.currentAuthenticatedUser();
-      let result = await Auth.updateUserAttributes(user, {
-        'custom:role': 'student',
-        'custom:tenant': 'siplo'
-      });
-      console.log(user)
-      console.log(await Auth.currentUserInfo())
 
-    }
-
-  // handleAuthStateChange(state) {
-  //   if (state === 'signedIn') { this.setState({signedIn:true})}
-  // }
 
     render() {
 
-          // if(this.state.signedIn){
-          //   return <Redirect to="/dashboard"/>
-          // }
+
           return(
               <Col>
 
-                  <Redirect to="/dashboard"/>
-                {/*<Authenticator hideDefault={true} onStateChange={this.handleAuthStateChange.bind(this)}>*/}
-                  {/*<CustomSignIn/>*/}
-                  {/*<CustomSignUp/>*/}
-                  {/*<CustomConfirmSignUp/>*/}
-                  {/*<CustomForgetPassword/>*/}
-                  {/*<VerifyContact/>*/}
-                {/*</Authenticator>*/}
+                  {/*<Redirect to="/dashboard"/>*/}
+
 
               </Col>
 
@@ -115,7 +94,8 @@ function mapStateToProps(state){
 }
 const mapDispatchToProps = (dispatch) => ({
   actions:{
-    setAuthUser:bindActionCreators(actionCreateStoreUpdateFactory(ACTION_TYPE.SET_AUTH_USER, ATTRS.PAYLOAD),dispatch),
+    getAuthUser:bindActionCreators(actionCreatorAwsAmplifyFactory(AWS_AMPLIFY_KEYS.GET_AUTH_USER, AWS_AMPLIFY_ATTRS.PAYLOAD),dispatch),
+    //getAuthUser:() => {dispatch({type:ACTION_TYPE.GET_AUTH_USER})}
   }
 })
 

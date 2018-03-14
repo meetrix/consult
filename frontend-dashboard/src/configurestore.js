@@ -7,7 +7,6 @@ import { createLogger } from 'redux-logger'
 
 import {localState,saveState} from  './localstorage'
 
-import {AmplifyMiddleWare} from './CustomMiddleWare/AmplifyMiddleWare'
 
 //const persistedData= localState();
 const sagaMiddleware = createSagaMiddleware()

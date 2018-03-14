@@ -2,7 +2,7 @@
  * Created by supun on 15/01/18.
  */
 import {REDUX_ACTIONS,STORE_INITIATE_VALUE,USER_PROFILE} from '../constants/constant';
-
+import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant'
 export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_LOGIN_DATA: {
@@ -45,8 +45,8 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
                 }
             };
         }
-      case REDUX_ACTIONS.SET_AUTH_USER:{
-          
+      case REDUX_AWS_AMPLIFY_ACTIONS.GET_AUTH_USER_SUCCESS:{
+        console.log(action)
         return {
           ...state,
           user:{
