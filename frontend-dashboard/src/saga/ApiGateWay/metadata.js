@@ -19,4 +19,11 @@ metadata[KEYS.GET_SCHEDULE_EVENTS] = {
   failureAction: ACTIONS.GET_SCHEDULE_EVENT_FAILE,
   successAction: ACTIONS.GET_SCHEDULE_EVENT_SUCCESS
 };
+metadata[KEYS.POST_SCHEDULE_EVENTS] = {
+  method:'GET',
+  endPoint: ENDPOINTS.CONSULT_API,
+  apiRoute:API_ROUTE.SCHEDULE,
+  failureAction: ACTIONS.GET_SCHEDULE_EVENT_FAILE,
+  successAction: ACTIONS.GET_SCHEDULE_EVENT_SUCCESS
+};
 export default metadata;
