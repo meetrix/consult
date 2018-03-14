@@ -1,22 +1,21 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, CardGroup, Card, CardBody,CardFooter,  Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
-import {Redirect} from 'react-router-dom';
+import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
 import Amplify,{API, Auth} from 'aws-amplify';
-import { withAuthenticator } from 'aws-amplify-react';
+import {Authenticator, withAuthenticator,Greetings,RequireNewPassword,ConfirmSignIn, ConfirmSignUp, ForgotPassword, SignIn, SignUp, VerifyContact } from 'aws-amplify-react';
 
-Auth.signUp({
-  username,
-  password,
-  attributes: {
-    email,          // optional
-    phone_number,   // optional - E.164 number convention
-    // other custom attributes
-  },
-  validationData: []  //optional
-})
-  .then(data => console.log(data))
-  .catch(err => console.log(err));
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import {actionCreateStoreUpdateFactory} from '../../../actions/actionCreator';
+import {REDUX_ACTIONS as ACTION_TYPE,ACTION_ATTR as ATTRS }from '../../../constants/constant';
+
+//Custom Sign Up Ui
+
+import CustomSignIn from '../../../components/AutheticationForm/CustomSignIn'
+import CustomSignUp from '../../../components/AutheticationForm/CustomSignUp'
+import CustomSignUpConfirmation from '../../../components/AutheticationForm/CustomSignUpConfirmation'
+import CustomForgetPassword from '../../../components/AutheticationForm/CustomForgetPassword'
 Amplify.configure({
     Auth: {
         // REQUIRED - Amazon Cognito Identity Pool ID
@@ -45,24 +44,87 @@ Amplify.configure({
     }
 });
 
-
 class Login extends Component {
 
 
-    componentDidMount(){
+    constructor(props){
+        super(props)
+        this.state= {
+          signedIn:false
+        }
+    }
+    componentWillMount(){
       Auth.signOut()
+      //current auth user
+      this.setAuthUser();
+      //check custom attribute is set
+      //this.checkUserCustomAttributes()
+      console.log("before render")
+      //this.props.actions.setAuthUser();
     }
 
+    async setAuthUser(){
+      let auth = await Auth.currentUserInfo();
+      this.props.actions.setAuthUser(auth);
+    }
 
+    async checkUserCustomAttributes(){
+      let user = await Auth.currentAuthenticatedUser();
+      let result = await Auth.updateUserAttributes(user, {
+        'custom:role': 'student',
+        'custom:tenant': 'siplo'
+      });
+      console.log(user)
+      console.log(await Auth.currentUserInfo())
 
-  render() {
-        return(
-            <Redirect to="/dashboard"/>
-        );
+    }
+
+  handleAuthStateChange(state) {
+    if (state === 'signedIn') { this.setState({signedIn:true})}
   }
+
+    render() {
+
+          if(this.state.signedIn){
+            return <Redirect to="/dashboard"/>
+          }
+          return(
+              <Col>
+
+                  {/*//profile ? <div><Redirect to="/dashboard/profile"/></div> : <Redirect to="/dashboard"/>*/}
+                <Authenticator hideDefault={true} onStateChange={this.handleAuthStateChange.bind(this)}>
+                  <CustomSignIn/>
+                  <CustomSignUp/>
+                  <CustomSignUpConfirmation/>
+                  <CustomForgetPassword/>
+                </Authenticator>
+
+              </Col>
+
+          );
+    }
 }
 
-export default withAuthenticator(Login,false,[
+function mapStateToProps(state){
+  return {
+    auth:state.auth ,
 
+  }
 
-]);
+}
+const mapDispatchToProps = (dispatch) => ({
+  actions:{
+    setAuthUser:bindActionCreators(actionCreateStoreUpdateFactory(ACTION_TYPE.SET_AUTH_USER, ATTRS.PAYLOAD),dispatch),
+  }
+})
+
+// export default withAuthenticator(connect(mapStateToProps, mapDispatchToProps)(Login),false,[
+//   <MySignIn hide={false}/>,
+//   <ConfirmSignIn/>,
+//   <MySignUp hide={true} />,
+//   <ConfirmSignUp/>,
+//   <VerifyContact/>,
+//   <ForgotPassword/>
+// ]);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

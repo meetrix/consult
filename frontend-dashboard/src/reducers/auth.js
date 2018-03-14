@@ -29,13 +29,13 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
         }
         case USER_PROFILE.UPDATE_FIRST_NAME:
         case USER_PROFILE.UPDATE_EMAIL:
-        case  USER_PROFILE.UPDATE_LAST_NAME:
-        case  USER_PROFILE.UPDATE_IMAGE:
+        case USER_PROFILE.UPDATE_LAST_NAME:
+        case USER_PROFILE.UPDATE_IMAGE:
         case USER_PROFILE.UPDATE_SCHOOL:
         case USER_PROFILE.UPDATE_ADDRESS:
-        case  USER_PROFILE.UPDATE_DISTRICT:
-        case  USER_PROFILE.UPDATE_STREAM:
-        case  USER_PROFILE.UPDATE_SUBJECT:{
+        case USER_PROFILE.UPDATE_DISTRICT:
+        case USER_PROFILE.UPDATE_STREAM:
+        case USER_PROFILE.UPDATE_SUBJECT:{
             return {
                 ...state,
                 user:{
@@ -45,6 +45,18 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
                 }
             };
         }
+      case REDUX_ACTIONS.SET_AUTH_USER:{
+          
+        return {
+          ...state,
+          user:{
+            ...state.user,
+            ...action.payload
+
+          }
+        };
+
+      }
         default:
             return state;
     }

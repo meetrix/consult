@@ -23,6 +23,11 @@ export const actionCreateStoreUpdateFactory = (actionType, ...argNames) => (...a
     });
     return action;
 };
+export const actionCreatorTypeFactory = (actionType)  => {
+
+  const action = {type: actionType};
+  return action ;
+};
 
 export const actionCreateApiGateWayFactory = (key, ...argNames) => (...args) => {
 
