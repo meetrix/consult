@@ -12,6 +12,7 @@ import {actionCreateApiGateWayFactory} from '../../actions/actionCreator';
 
 //events json
 import events from '../../components/Calendar/example_events';
+import {ACTION_ATTR, SCHEDULAR_FORM} from "../../constants/constant";
 
 function mapStateToProps(state){
   return {
@@ -20,7 +21,10 @@ function mapStateToProps(state){
 
 }
 const mapDispatchToProps = (dispatch) => ({
-  actions:{getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch)
+  actions:{getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
+    postScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.POST_SCHEDULE_EVENTS,API_GATEWAY_ATTRS.PAYLOAD),dispatch),
+    updateStartDate:bindActionCreators(actionCreateApiGateWayFactory(SCHEDULAR_FORM.UPDATE_STARTDATE,ACTION_ATTR),dispatch),
+    updateEndDate:bindActionCreators(actionCreateApiGateWayFactory(SCHEDULAR_FORM.UPDATE_ENDDATE,ACTION_ATTR.DATA),dispatch)
   }
 })
 

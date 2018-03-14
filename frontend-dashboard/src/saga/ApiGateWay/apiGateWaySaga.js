@@ -15,6 +15,7 @@ import {api} from './api'
  * @param {string} payload - payload to be sent by ws client
  */
 function apiGateWayHandler({key, payload}) {
+    console.log("apiGatewayHandler");
     console.log(key)
     let {method,endPoint, apiRoute, failureAction, successAction} = metadata[key];
     return Auth.currentSession().then((idToken)=> {
@@ -38,6 +39,7 @@ function apiGateWayHandler({key, payload}) {
 function* apiGateWayActionHandler(action) {
 
   try {
+    console.log("apiGateWayActionHandler")
     const reply = yield call(apiGateWayHandler, action);
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_SUCCESS});
     console.log("reply")
@@ -55,5 +57,6 @@ function* apiGateWayActionHandler(action) {
  * Saga: Capture all API_SOCKET_EMIT actions and call method to handle side-effects
  */
 export function* takeEveryApiGateWaySaga() {
+    console.log("takeEveryApiGateWaySaga")
     yield takeEvery(REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING, apiGateWayActionHandler);
 }

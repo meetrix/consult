@@ -27,6 +27,7 @@ class Calendar extends Component{
   }
 
   componentDidMount(){
+    console.log("getScheduleEvents Start");
     this.props.actions.getScheduleEvents(
       {
         start:'31231313123',
@@ -34,6 +35,7 @@ class Calendar extends Component{
         title:'example event'
       }
     )
+    console.log("getScheduleEvents End");
   }
 
   setPopupText(slotinfo){
@@ -46,9 +48,7 @@ class Calendar extends Component{
   }
 
   handleStartDateChange(date){
-    this.setState({
-      start:date
-    })
+    this.props.actions.updateStartDate({start:date})
   }
 
   handleEndDateChange(date){
@@ -62,6 +62,15 @@ class Calendar extends Component{
       modal: !this.state.modal,
     });
   }
+
+  onClickForm() {
+    console.log("OnClickForm");
+    this.props.actions.postScheduleEvents(
+
+    )
+  }
+
+
    render(){
        return(
            <div style={{height: '100%'}}>
@@ -89,7 +98,7 @@ class Calendar extends Component{
                    <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)}/>
                  </ModalBody>
                  <ModalFooter>
-                   <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
+                   <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}
                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                  </ModalFooter>
                </Modal>
