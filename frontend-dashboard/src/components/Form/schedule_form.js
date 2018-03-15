@@ -10,12 +10,12 @@ class ScheduleForm extends Component{
       <Form>
         <FormGroup>
           <Label for="exampleText">Title</Label>
-          <Input type="textarea" name="text" id="exampleText" />
+          <Input type="textarea" name="text" id="exampleText" onChange={this.props.onTitleChange}/>
         </FormGroup>
         <Label for="exampleDate">Start</Label>
         <DatePicker selected={this.props.start} onChange={this.props.handleStartDateChange} showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
         <Label for="exampleDate">End</Label>
-        <DatePicker selected={this.props.end} onChange={this.props.handleEndDateChange}showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
+        <DatePicker selected={this.props.end} onChange={this.props.handleEndDateChange} showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
         <FormGroup>
           <Label for="exampleColor">Color</Label>
           <Input type="color" name="color" id="exampleColor" placeholder="color placeholder" />

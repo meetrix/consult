@@ -17,6 +17,14 @@ API Documentation
 -
 Documentation is done with swagger-node
 
+1. `npm install -g swagger`
+2. `cd docs`
+2. `npm install`
+3. open swagger editor `swagger project edit`
+
+
+
+
 1. `cd doc`
 2. `npm install`
 3. open swagger editor `swagger project edit`
@@ -29,9 +37,9 @@ Components
 1. frontend-dashboard (host port 8080)
     1. [CoreUI Admin](https://github.com/mrholek/CoreUI-React) based React frontend
     2. proxy url `/`
-    
 
-    
+
+
 Contributing
 -
 

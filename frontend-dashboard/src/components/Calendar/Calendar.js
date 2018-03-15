@@ -17,23 +17,27 @@ class Calendar extends Component{
       modal: false,
       popupText: "NAN",
       start: "NAN",
-      end: "NAN"
+      end: "NAN",
+      title: "NAN"
     };
 
     this.toggle = this.toggle.bind(this);
     this.setPopupText = this.setPopupText.bind(this);
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.onClickForm = this.onClickForm.bind(this);
   }
 
   componentDidMount(){
+    console.log("getScheduleEvents Start");
     this.props.actions.getScheduleEvents(
       {
-        start:'31231313123',
-        end:'43423424243',
+        start:moment().toDate(),
+        end:moment().add(4,"hours").toDate(),
         title:'example event'
       }
     )
+    console.log("getScheduleEvents End");
   }
 
   setPopupText(slotinfo){
@@ -49,6 +53,7 @@ class Calendar extends Component{
     this.setState({
       start:date
     })
+    console.log(this.state.start);
   }
 
   handleEndDateChange(date){
@@ -57,11 +62,27 @@ class Calendar extends Component{
     })
   }
 
+  onTitleChange(event){
+    this.setState({title:event.target.value});
+  }
+
   toggle() {
     this.setState({
       modal: !this.state.modal,
     });
   }
+
+  onClickForm() {
+    console.log("OnClickForm");
+    this.props.actions.postScheduleEvents({
+        start: this.state.start.toDate(),
+        end: this.state.end.toDate(),
+        title: this.state.title
+      }
+    )
+  }
+
+
    render(){
        return(
            <div style={{height: '100%'}}>
@@ -89,7 +110,7 @@ class Calendar extends Component{
                    <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)}/>
                  </ModalBody>
                  <ModalFooter>
-                   <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
+                   <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}
                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                  </ModalFooter>
                </Modal>

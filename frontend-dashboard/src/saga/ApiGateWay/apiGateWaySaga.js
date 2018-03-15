@@ -15,6 +15,7 @@ import {api} from './api'
  * @param {string} payload - payload to be sent by ws client
  */
 function apiGateWayHandler({key, payload}) {
+    console.log("apiGatewayHandler");
     console.log(key)
     let {method,endPoint, apiRoute, failureAction, successAction} = metadata[key];
     return Auth.currentSession().then((idToken)=> {
@@ -38,15 +39,17 @@ function apiGateWayHandler({key, payload}) {
 function* apiGateWayActionHandler(action) {
 
   try {
+    console.log("apiGateWayActionHandler");
+    console.log("action "+action.key);
     const reply = yield call(apiGateWayHandler, action);
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_SUCCESS});
     console.log("reply")
     console.log(reply)
-    yield put({type: reply.successAction, payload: reply.res.Items, args: {...action.payload, ...action.args}});
+    yield put({type: reply.successAction, payload: reply.res, args: {...action.payload, ...action.args}});
   } catch (reply) {
     console.log(reply)
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_FAILURE});
-    yield put({type: reply.failureAction, payload: reply.err.data, args: {...action.payload, ...action.args}});
+    yield put({type: reply.failureAction, payload: reply.err, args: {...action.payload, ...action.args}});
   }
 
 }
@@ -55,5 +58,6 @@ function* apiGateWayActionHandler(action) {
  * Saga: Capture all API_SOCKET_EMIT actions and call method to handle side-effects
  */
 export function* takeEveryApiGateWaySaga() {
+    console.log("takeEveryApiGateWaySaga")
     yield takeEvery(REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING, apiGateWayActionHandler);
 }
