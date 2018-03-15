@@ -24,6 +24,13 @@ Documentation is done with swagger-node
 
 
 
+
+1. `cd doc`
+2. `npm install`
+3. open swagger editor `swagger project edit`
+
+    
+    
 Components
 -
 
