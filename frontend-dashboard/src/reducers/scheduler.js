@@ -31,20 +31,22 @@ export default (state = events, action) => {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
       console.log("state :"+state)
       console.log("Success Action Payload" + action.payload);
+      let convertEvents=[]
+
       function createEventsArray(item) {
         startDate = moment(item.start).toDate();
         endDate = moment(item.end).toDate();
         title = item.title;
         event = {start:startDate,end:endDate,title:title}
-        events.push(event)
+        convertEvents.push(event)
       }
-      action.payload.Items.map(createEventsArray);
+       action.payload.Items.map(createEventsArray);
+      return[
+        ...state,...convertEvents
+      ]
+      // return events;
     }
     case REDUX_API_GATEWAY_ACTIONS.POST_SCHEDULE_EVENT_SUCCESS: {
-      // return {
-      //   ...state,
-      //   arr: [...state.arr,action.payload.Item]
-      // }
 
       return events;
     }
