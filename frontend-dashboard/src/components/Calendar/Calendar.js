@@ -17,21 +17,23 @@ class Calendar extends Component{
       modal: false,
       popupText: "NAN",
       start: "NAN",
-      end: "NAN"
+      end: "NAN",
+      title: "NAN"
     };
 
     this.toggle = this.toggle.bind(this);
     this.setPopupText = this.setPopupText.bind(this);
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.onClickForm = this.onClickForm.bind(this);
   }
 
   componentDidMount(){
     console.log("getScheduleEvents Start");
     this.props.actions.getScheduleEvents(
       {
-        start:'31231313123',
-        end:'43423424243',
+        start:moment().toDate(),
+        end:moment().add(4,"hours").toDate(),
         title:'example event'
       }
     )
@@ -48,13 +50,20 @@ class Calendar extends Component{
   }
 
   handleStartDateChange(date){
-    this.props.actions.updateStartDate({start:date})
+    this.setState({
+      start:date
+    })
+    console.log(this.state.start);
   }
 
   handleEndDateChange(date){
     this.setState({
       end:date
     })
+  }
+
+  onTitleChange(event){
+    this.setState({title:event.target.value});
   }
 
   toggle() {
@@ -65,8 +74,11 @@ class Calendar extends Component{
 
   onClickForm() {
     console.log("OnClickForm");
-    this.props.actions.postScheduleEvents(
-
+    this.props.actions.postScheduleEvents({
+        start: new Date(2015, 3, 13, 7,0,0),
+        end: new Date(2015, 3, 13, 10, 30,0),
+        title: "Test Event"
+      }
     )
   }
 

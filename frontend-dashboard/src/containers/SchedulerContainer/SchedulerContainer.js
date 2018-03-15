@@ -8,23 +8,24 @@ import {bindActionCreators} from 'redux';
 import CalendarView from '../../components/Calendar/Calendar';
 
 import {ACTION_KEY as API_GATEWAY_KEYS,ACTION_ATTR as API_GATEWAY_ATTRS  }from '../../constants/apiGateWayConstant';
-import {actionCreateApiGateWayFactory} from '../../actions/actionCreator';
+import {actionCreateApiGateWayFactory, actionCreateStoreUpdateFactory} from '../../actions/actionCreator';
 
 //events json
 import events from '../../components/Calendar/example_events';
 import {ACTION_ATTR, SCHEDULAR_FORM} from "../../constants/constant";
 
 function mapStateToProps(state){
+  console.log("schedular container state : "+state.schedule);
   return {
-    events:state.schedule ,
+    events:state.schedule,
   }
 
 }
 const mapDispatchToProps = (dispatch) => ({
   actions:{getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     postScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.POST_SCHEDULE_EVENTS,API_GATEWAY_ATTRS.PAYLOAD),dispatch),
-    updateStartDate:bindActionCreators(actionCreateApiGateWayFactory(SCHEDULAR_FORM.UPDATE_STARTDATE,ACTION_ATTR),dispatch),
-    updateEndDate:bindActionCreators(actionCreateApiGateWayFactory(SCHEDULAR_FORM.UPDATE_ENDDATE,ACTION_ATTR.DATA),dispatch)
+    updateStartDate:bindActionCreators(actionCreateStoreUpdateFactory(SCHEDULAR_FORM.UPDATE_STARTDATE,ACTION_ATTR.DATA),dispatch),
+    updateEndDate:bindActionCreators(actionCreateStoreUpdateFactory(SCHEDULAR_FORM.UPDATE_ENDDATE,ACTION_ATTR.DATA),dispatch)
   }
 })
 
