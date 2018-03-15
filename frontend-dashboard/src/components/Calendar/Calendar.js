@@ -75,9 +75,9 @@ class Calendar extends Component{
   onClickForm() {
     console.log("OnClickForm");
     this.props.actions.postScheduleEvents({
-        start: new Date(2015, 3, 13, 7,0,0),
-        end: new Date(2015, 3, 13, 10, 30,0),
-        title: "Test Event"
+        start: this.state.start.toDate(),
+        end: this.state.end.toDate(),
+        title: this.state.title
       }
     )
   }
