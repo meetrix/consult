@@ -63,6 +63,7 @@ class Calendar extends Component{
   }
 
   onTitleChange(event){
+    console.log("title: "+ event.target.value);
     this.setState({title:event.target.value});
   }
 
@@ -80,6 +81,7 @@ class Calendar extends Component{
         title: this.state.title
       }
     )
+    this.toggle();
   }
 
 
@@ -107,7 +109,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)}/>
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)}/>
                  </ModalBody>
                  <ModalFooter>
                    <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}

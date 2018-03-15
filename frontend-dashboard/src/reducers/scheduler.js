@@ -21,7 +21,7 @@ var events = [{
     end: new Date(2015, 3, 13, 10, 30, 0),
   }];
 
-var startDate,endDate,title;
+var startDate,endDate,title,event;
 //var event = [];
 
 export default (state = events, action) => {
@@ -31,12 +31,14 @@ export default (state = events, action) => {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
       console.log("state :"+state)
       console.log("Success Action Payload" + action.payload);
-      startDate = moment(action.payload.Items[0].start).toDate();
-      endDate = moment(action.payload.Items[0].end).toDate();
-      title = action.payload.Items[0].title;
-      events = [{start:startDate,end:endDate,title:title}];
-
-
+      function createEventsArray(item) {
+        startDate = moment(item.start).toDate();
+        endDate = moment(item.end).toDate();
+        title = item.title;
+        event = {start:startDate,end:endDate,title:title}
+        events.push(event)
+      }
+      action.payload.Items.map(createEventsArray);
     }
     case REDUX_API_GATEWAY_ACTIONS.POST_SCHEDULE_EVENT_SUCCESS: {
       // return {
