@@ -30,7 +30,7 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
           API.post(endPoint,apiRoute,options)
             .then(res => {
               console.log(res)
-              console.log("schedulte event")
+              console.log("schedulte event post")
               resolve({
                 successAction: successAction,
                 res: res
