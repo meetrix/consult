@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {TabContent, TabPane, Nav, NavItem, NavLink, Progress, Label, Input, Badge} from 'reactstrap';
 import classnames from 'classnames';
-import Calendar from '../../components/Calendar/Calendar';
-import DayPicker from 'react-day-picker';
+import SummaryPane from './SummaryPane';
+import MessagePane from './MessagePane';
+import SettingsPane from './SettingsPane';
+import NotificationPane from "./NotificationPane";
 
 class Aside extends Component {
     constructor(props) {
@@ -41,209 +43,21 @@ class Aside extends Component {
                 <NavItem>
                   <NavLink className={classnames({ active: this.state.activeTab === '3' })}
                            onClick={() => { this.toggle('3'); }}>
+                    <i className="icon-bell"></i>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className={classnames({ active: this.state.activeTab === '4' })}
+                           onClick={() => { this.toggle('4'); }}>
                     <i className="icon-settings"></i>
                   </NavLink>
                 </NavItem>
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1">
-                    <div className="card text-white bg-primary text-center">
-                        <div className="card-body">
-                            <h3>Next Class</h3>
-                            <p><Badge>24th March</Badge></p>
-                            <small><b>Time Left</b></small>
-                            <h4><span className="label label-default">04 : 49 hours</span></h4>
-                        </div>
-                    </div>
-
-                    <div className="card text-white bg-primary text-center">
-                        <div className="card-header">Today</div>
-                        <div className="card-body">
-                            <span className="fa-stack fa-3x">
-                                <i className="fa fa-calendar-o fa-stack-2x"/>
-                                <span className="fa-stack-1x calendar-text">27</span>
-                            </span>
-                            <p>No Classes<br/>Home Work</p>
-                        </div>
-                    </div>
-
-
-                    <div className="card text-white bg-primary text-center">
-                        {/*<div className="card-body">*/}
-                            <DayPicker />
-                        {/*</div>*/}
-                    </div>
-                </TabPane>
-                <TabPane tabId="2" className="p-3">
-                  <div className="message">
-                    <div className="py-3 pb-5 mr-3 float-left">
-                      <div className="avatar">
-                        <img src={'img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                        <span className="avatar-status badge-success"></span>
-                      </div>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lukasz Holeczek</small>
-                      <small className="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div className="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt...
-                    </small>
-                  </div>
-                  <hr/>
-                  <div className="message">
-                    <div className="py-3 pb-5 mr-3 float-left">
-                      <div className="avatar">
-                        <img src={'img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                        <span className="avatar-status badge-success"></span>
-                      </div>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lukasz Holeczek</small>
-                      <small className="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div className="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt...
-                    </small>
-                  </div>
-                  <hr/>
-                  <div className="message">
-                    <div className="py-3 pb-5 mr-3 float-left">
-                      <div className="avatar">
-                        <img src={'img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                        <span className="avatar-status badge-success"></span>
-                      </div>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lukasz Holeczek</small>
-                      <small className="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div className="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt...
-                    </small>
-                  </div>
-                  <hr/>
-                  <div className="message">
-                    <div className="py-3 pb-5 mr-3 float-left">
-                      <div className="avatar">
-                        <img src={'img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                        <span className="avatar-status badge-success"></span>
-                      </div>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lukasz Holeczek</small>
-                      <small className="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div className="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt...
-                    </small>
-                  </div>
-                  <hr/>
-                  <div className="message">
-                    <div className="py-3 pb-5 mr-3 float-left">
-                      <div className="avatar">
-                        <img src={'img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                        <span className="avatar-status badge-success"></span>
-                      </div>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lukasz Holeczek</small>
-                      <small className="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div className="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt...
-                    </small>
-                  </div>
-                </TabPane>
-                <TabPane tabId="3" className="p-3">
-                  <h6>Settings</h6>
-
-                  <div className="aside-options">
-                    <div className="clearfix mt-4">
-                      <small><b>Option 1</b></small>
-                      <Label className="switch switch-text switch-pill switch-success switch-sm float-right">
-                        <Input type="checkbox" className="switch-input" defaultChecked/>
-                        <span className="switch-label" data-on="On" data-off="Off"></span>
-                        <span className="switch-handle"></span>
-                      </Label>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                      </small>
-                    </div>
-                  </div>
-
-                  <div className="aside-options">
-                    <div className="clearfix mt-3">
-                      <small><b>Option 2</b></small>
-                      <Label className="switch switch-text switch-pill switch-success switch-sm float-right">
-                        <Input type="checkbox" className="switch-input"/>
-                        <span className="switch-label" data-on="On" data-off="Off"></span>
-                        <span className="switch-handle"></span>
-                      </Label>
-                    </div>
-                    <div>
-                      <small className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                      </small>
-                    </div>
-                  </div>
-
-                  <div className="aside-options">
-                    <div className="clearfix mt-3">
-                      <small><b>Option 3</b></small>
-                      <Label className="switch switch-text switch-pill switch-success switch-sm float-right">
-                        <Input type="checkbox" className="switch-input"/>
-                        <span className="switch-label" data-on="On" data-off="Off"></span>
-                        <span className="switch-handle"></span>
-                      </Label>
-                    </div>
-                  </div>
-
-                  <div className="aside-options">
-                    <div className="clearfix mt-3">
-                      <small><b>Option 4</b></small>
-                      <Label className="switch switch-text switch-pill switch-success switch-sm float-right">
-                        <Input type="checkbox" className="switch-input" defaultChecked/>
-                        <span className="switch-label" data-on="On" data-off="Off"></span>
-                        <span className="switch-handle"></span>
-                      </Label>
-                    </div>
-                  </div>
-
-                  <hr/>
-                  <h6>System Utilization</h6>
-
-                  <div className="text-uppercase mb-1 mt-4">
-                    <small><b>CPU Usage</b></small>
-                  </div>
-                  <Progress className="progress-xs" color="info" value="25"/>
-                  <small className="text-muted">348 Processes. 1/4 Cores.</small>
-
-                  <div className="text-uppercase mb-1 mt-2">
-                    <small><b>Memory Usage</b></small>
-                  </div>
-                  <Progress className="progress-xs" color="warning" value="70"/>
-                  <small className="text-muted">11444GB/16384MB</small>
-
-                  <div className="text-uppercase mb-1 mt-2">
-                    <small><b>SSD 1 Usage</b></small>
-                  </div>
-                  <Progress className="progress-xs" color="danger" value="95"/>
-                  <small className="text-muted">243GB/256GB</small>
-
-                  <div className="text-uppercase mb-1 mt-2">
-                    <small><b>SSD 2 Usage</b></small>
-                  </div>
-                  <Progress className="progress-xs" color="success" value="10"/>
-                  <small className="text-muted">25GB/256GB</small>
-                </TabPane>
+                <SummaryPane/>
+                <MessagePane/>
+                <NotificationPane/>
+                <SettingsPane/>
               </TabContent>
             </aside>
         )

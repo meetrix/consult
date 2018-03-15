@@ -19,7 +19,6 @@ import SessionListContainer from '../../components/Session/session_list_containe
 import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant';
 
 import {actionCreatorFactory} from '../../actions/actionCreator';
-import { Widget } from 'react-chat-widget';
 
 const mapStateToProps=(state)=>{
     return {
@@ -69,11 +68,6 @@ class Full extends Component {
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
                   <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
               </Switch>
-              <Widget
-                showCloseButton={true}
-                badge= {3}
-                handleNewUserMessage={this.handleNewUserMessage}
-              />
             </Container>
           </main>
           <Aside />
