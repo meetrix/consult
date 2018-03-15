@@ -49,6 +49,10 @@ class Full extends Component {
         console.log("Full")
         console.log(this.props)
     }
+  handleNewUserMessage (newMessage)  {
+    console.log(`New message incomig! ${newMessage}`);
+    // Now send the message throught the backend API
+  }
   render() {
     return (
       <div className="app">
@@ -65,7 +69,11 @@ class Full extends Component {
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
                   <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
               </Switch>
-              <Widget />
+              <Widget
+                showCloseButton={true}
+                badge= {3}
+                handleNewUserMessage={this.handleNewUserMessage}
+              />
             </Container>
           </main>
           <Aside />
