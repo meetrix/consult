@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import PickTimeSlotView from './PickTimeSlotView'
+import {REDUX_ACTIONS as ACTIONS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
+
+import {actionCreateStoreUpdateFactory} from '../../actions/actionCreator'
+
 function mapStateToProps(state){
   return {
     timeSlots: [
@@ -96,6 +100,7 @@ function mapStateToProps(state){
 }
 const mapDispatchToProps = (dispatch) => ({
   actions:{
+    selectTimeSlot:bindActionCreators(actionCreateStoreUpdateFactory(ACTIONS.CONSULTEE_TIME_SLOT_SELECT, ATTRS.PAYLOAD),dispatch)
   }
 })
 

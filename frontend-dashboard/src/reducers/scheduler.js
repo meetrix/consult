@@ -7,7 +7,7 @@ import {SCHEDULAR_FORM} from "../constants/constant";
 //import events from '../components/Calendar/example_events';
 import moment from 'moment';
 
-var events = [{
+var scheduler = {events:[{
   id: 0,
   title: 'All Day Event very long title',
   allDay: true,
@@ -19,18 +19,15 @@ var events = [{
     title: 'Birthday Party',
     start: new Date(2015, 3, 13, 7, 0, 0),
     end: new Date(2015, 3, 13, 10, 30, 0),
-  }];
+  }]};
 
 var startDate,endDate,title,event;
 //var event = [];
 
-export default (state = events, action) => {
-  console.log("Schedular Reducer");
-  console.log(action.type);
+export default (state = scheduler, action) => {
+
   switch (action.type) {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
-      console.log("state :"+state)
-      console.log("Success Action Payload" + action.payload);
       let convertEvents=[]
 
       function createEventsArray(item) {
@@ -42,16 +39,13 @@ export default (state = events, action) => {
       }
        action.payload.Items.map(createEventsArray);
       return[
-        ...state,...convertEvents
+        ...state.events,...convertEvents
       ]
       // return events;
     }
     case REDUX_API_GATEWAY_ACTIONS.POST_SCHEDULE_EVENT_SUCCESS: {
 
       return events;
-    }
-    case SCHEDULAR_FORM.UPDATE_STARTDATE :{
-      return [{start:action.data}]
     }
 
     default:

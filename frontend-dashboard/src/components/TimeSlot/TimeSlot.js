@@ -21,7 +21,7 @@ class TimeSlot extends Component{
       consultSubjectElm = <CardTitle className="text-center" >Mathematics</CardTitle>
     }
     return(
-      <div style={{float: 'left'}}>
+      <div style={{float: 'left'}} onClick={this.actions.selectTimeSlot({timeSlotId:1234})}>
         <Col>
           <Card>
             {consultantImgElm}
@@ -43,6 +43,9 @@ class TimeSlot extends Component{
 }
 TimeSlot.propTypes = {
   timeSlot:PropTypes.object.isRequired,
+  actions:PropTypes.shape({
+    selectTimeSlot:PropTypes.func.isRequired,
+  }),
 
 
 }
