@@ -27,6 +27,7 @@ class Calendar extends Component{
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.onClickForm = this.onClickForm.bind(this);
+    this.editForm = this.editForm.bind(this);
   }
 
   componentDidMount(){
@@ -48,6 +49,16 @@ class Calendar extends Component{
         end: moment(slotinfo.end)
       })
       this.toggle();
+  }
+
+  editForm(event){
+    console.log("event consultee "+event.consultee);
+    this.setState({
+      start: moment(event.start),
+      end: moment(event.end),
+      title: event.title,
+    })
+    this.toggle();
   }
 
   handleStartDateChange(date){
@@ -100,7 +111,7 @@ class Calendar extends Component{
                defaultView="week"
                scrollToTime={new Date(1970, 1, 1, 6)}
                defaultDate={new Date(2015, 3, 12)}
-               onSelectEvent={event => alert(event.title)}
+               onSelectEvent={event => this.editForm(event)}
                onSelectSlot={slotInfo =>
                    // alert(
                    //     `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
@@ -115,7 +126,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)}/>
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
                  </ModalBody>
                  <ModalFooter>
                    <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}
