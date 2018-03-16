@@ -18,7 +18,8 @@ class Calendar extends Component{
       popupText: "NAN",
       start: "NAN",
       end: "NAN",
-      title: "NAN"
+      title: "NAN",
+      consultee: "NAN"
     };
 
     this.toggle = this.toggle.bind(this);
@@ -67,8 +68,8 @@ class Calendar extends Component{
     this.setState({title:event.target.value});
   }
 
-  onConsulteeChange(event){
-    this.setState({consultee:event.target.value});
+  onConsulteeChange(newValue){
+    this.setState({consultee:newValue});
   }
 
   toggle() {
@@ -82,7 +83,8 @@ class Calendar extends Component{
     this.props.actions.postScheduleEvents({
         start: this.state.start.toDate(),
         end: this.state.end.toDate(),
-        title: this.state.title
+        title: this.state.title,
+        consultee: this.state.consultee
       }
     )
     this.toggle();
@@ -113,7 +115,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)}/>
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)}/>
                  </ModalBody>
                  <ModalFooter>
                    <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}

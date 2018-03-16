@@ -22,7 +22,7 @@ class ScheduleForm extends Component{
         </FormGroup>
         <FormGroup>
           <Label>Select Student</Label>
-        <ConsulteeSuggest/>
+        <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange}/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleSelect">Select Student</Label>

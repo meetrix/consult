@@ -11,7 +11,8 @@ module.exports.create = (event, context, callback) => {
   const schema = Joi.object().keys({
       start: Joi.string().required(),
       end: Joi.string().required(),
-      title: Joi.string().required()
+      title: Joi.string().required(),
+      consultee: Joi.string().required()
   });
 
   function validate  (data, schema) {
@@ -39,6 +40,7 @@ module.exports.create = (event, context, callback) => {
               start: data.start,
               end: data.end,
               title:data.title,
+              consultee:data.consultee,
               ...data
           },
       };
