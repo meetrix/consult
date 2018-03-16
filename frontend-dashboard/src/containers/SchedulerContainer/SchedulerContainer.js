@@ -15,9 +15,9 @@ import events from '../../components/Calendar/example_events';
 import {ACTION_ATTR, SCHEDULAR_FORM} from "../../constants/constant";
 
 function mapStateToProps(state){
-  console.log("schedular container state : "+state.schedule);
+  console.log(state.scheduler);
   return {
-    events:state.schedule.events,
+    events:state.scheduler.events,
   }
 
 }

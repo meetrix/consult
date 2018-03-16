@@ -67,6 +67,10 @@ class Calendar extends Component{
     this.setState({title:event.target.value});
   }
 
+  onConsulteeChange(event){
+    this.setState({consultee:event.target.value});
+  }
+
   toggle() {
     this.setState({
       modal: !this.state.modal,

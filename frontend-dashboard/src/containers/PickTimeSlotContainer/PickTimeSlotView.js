@@ -23,7 +23,7 @@ class PickTimeSlotView extends Component{
     let availabelTimeSlots = []
     if(this.props.timeSlots!= undefined) {
       this.props.timeSlots.map((timeSlot, index) =>
-        availabelTimeSlots.push(<TimeSlot key={index} timeSlot={timeSlot}/>)
+        availabelTimeSlots.push(<TimeSlot key={index} actions={this.props.actions}timeSlot={timeSlot}/>)
       )
 
       this.setState({availabelTimeSlots: availabelTimeSlots});
@@ -57,6 +57,7 @@ class PickTimeSlotView extends Component{
 }
 PickTimeSlotView.propTypes = {
   timeSlots:PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
 
 }
 export default PickTimeSlotView;

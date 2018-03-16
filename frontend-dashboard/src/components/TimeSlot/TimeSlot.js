@@ -21,7 +21,7 @@ class TimeSlot extends Component{
       consultSubjectElm = <CardTitle className="text-center" >Mathematics</CardTitle>
     }
     return(
-      <div style={{float: 'left'}} onClick={this.actions.selectTimeSlot({timeSlotId:1234})}>
+      <div style={{float: 'left'}} >
         <Col>
           <Card>
             {consultantImgElm}

@@ -21,31 +21,54 @@ var scheduler = {events:[{
     end: new Date(2015, 3, 13, 10, 30, 0),
   }]};
 
-var startDate,endDate,title,event;
+var startDate,endDate,title,consultee,event;
 //var event = [];
 
 export default (state = scheduler, action) => {
+  console.log("Schedular Reducer");
+  console.log(action.type);
+  let convertEvents=[];
 
+  function createEventsArray(item) {
+    console.log(item)
+    startDate = moment(item.start).toDate();
+    endDate = moment(item.end).toDate();
+    title = item.title;
+    if(item.consultee) consultee = item.consultee;
+    event = {start:startDate,end:endDate,title:title,consultee:consultee}
+    convertEvents.push(event)
+  }
   switch (action.type) {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
-      let convertEvents=[]
+      console.log("state :"+state)
+      console.log(action.payload);
 
-      function createEventsArray(item) {
-        startDate = moment(item.start).toDate();
-        endDate = moment(item.end).toDate();
-        title = item.title;
-        event = {start:startDate,end:endDate,title:title}
-        convertEvents.push(event)
-      }
-       action.payload.Items.map(createEventsArray);
-      return[
-        ...state.events,...convertEvents
+       convertEvents = action.payload.Items.map((item)=>{
+         console.log("item")
+         console.log(item.start)
+         startDate = moment(item.start).toDate();
+         endDate = moment(item.end).toDate();
+         title = item.title;
+         if(item.consultee) consultee = item.consultee;
+         return event = {start:startDate,end:endDate,title:title,consultee:consultee}
+       });
+      return {
+            events: [
+              ...state.events, ...convertEvents
+
       ]
+      }
+
       // return events;
     }
     case REDUX_API_GATEWAY_ACTIONS.POST_SCHEDULE_EVENT_SUCCESS: {
+      createEventsArray(action.payload.Item);
+      return{
+        events: [
+          ...state.events, ...convertEvents
 
-      return events;
+        ]
+      }
     }
 
     default:
