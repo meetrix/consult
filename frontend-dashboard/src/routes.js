@@ -18,8 +18,8 @@ import Calendar from "./components/Calendar/Calendar";
 import BaseBox from "./components/BaseBox/BaseBox";
 import ConsultantLive from "./components/Consultants/ConsultantLive";
 
+import Spinner from './components/Spinners/Spinners'
 export default() =>
-
 <HashRouter>
   <Switch>
     <Route exact path="/login" name="Login Page" component={Login} />
