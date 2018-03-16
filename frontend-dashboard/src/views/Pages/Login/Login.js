@@ -16,6 +16,7 @@ import CustomSignIn from '../../../components/AutheticationForm/CustomSignIn'
 import CustomSignUp from '../../../components/AutheticationForm/CustomSignUp'
 import CustomConfirmSignUp from '../../../components/AutheticationForm/CustomConfirmSignUp'
 import CustomForgetPassword from '../../../components/AutheticationForm/CustomForgetPassword'
+
 Amplify.configure({
     Auth: {
         // REQUIRED - Amazon Cognito Identity Pool ID
@@ -76,7 +77,7 @@ class Login extends Component {
           return(
               <Col>
 
-                  {/*<Redirect to="/dashboard"/>*/}
+                  <Redirect to="/dashboard"/>
 
 
               </Col>

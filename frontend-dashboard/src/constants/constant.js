@@ -53,7 +53,15 @@ export const STORE_INITIATE_VALUE={
             // lastName:'mad',
             // userName: 'supun',
             // email: 'supun.12@cse.mrt.ac.lk',
-            // imageUrl:'http://localhost:8080/img/avatars/1.jpg',
+            image:'/img/avatars/1.jpg',
+            attributes:{
+              'custom:role':"student",
+              email:"supunmadushanka12219@gmail.com",
+              email_verified:true,
+              phone_number:"+94711135012",
+              phone_number_verified:false,
+              },
+              username:'supun'
             // roles:'consultee',
             // school:'st.aloysius',
             // address:'nakiyadeniya galle',
