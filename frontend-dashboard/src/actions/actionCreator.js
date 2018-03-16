@@ -4,7 +4,7 @@
 
 import {REDUX_ACTIONS} from '../constants/constant'
 import {REDUX_API_GATEWAY_ACTIONS} from '../constants/apiGateWayConstant'
-
+import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant'
 
 export const actionCreatorFactory = (key, ...argNames) => (...args) => {
 
@@ -22,6 +22,14 @@ export const actionCreateStoreUpdateFactory = (actionType, ...argNames) => (...a
         action[argNames[index]] = args[index];
     });
     return action;
+};
+export const actionCreatorAwsAmplifyFactory =(key, ...argNames) => (...args)  => {
+
+  const action = {type: REDUX_AWS_AMPLIFY_ACTIONS.AWS_AMPLIFY_FETCHING,key};
+  argNames.forEach((arg, index) => {
+    action[argNames[index]] = args[index];
+  });
+  return action;
 };
 
 export const actionCreateApiGateWayFactory = (key, ...argNames) => (...args) => {

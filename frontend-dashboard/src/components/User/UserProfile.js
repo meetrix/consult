@@ -52,6 +52,11 @@ class UserProfile extends Component{
         this.props.actions.updateFirstName({firstName:event.target.value})
 
     }
+    _onUserNameChange(event){
+      event.preventDefault();
+      //this.props.actions.updateFirstName({firstName:event.target.value})
+
+    }
     _onLastNameChange(event){
         event.preventDefault();
         this.props.actions.updateLastName({lastName:event.target.value})
@@ -116,21 +121,29 @@ class UserProfile extends Component{
                                 {/*<small> Form</small>*/}
                             </CardHeader>
                             <CardBody>
+                              <FormGroup>
+                                <Label htmlFor="first-name">User Name</Label>
+                                <Input type="text" id="first-name" onChange={this._onUserNameChange.bind(this)} value={this.props.user.username}/>
+                              </FormGroup>
+                              <FormGroup>
+                                <Label htmlFor="first-name">Role</Label>
+                                <Input type="text" id="first-name" onChange={this._onUserNameChange.bind(this)} value={this.props.user.username}/>
+                              </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="first-name">First Name</Label>
-                                    <Input type="text" id="first-name" onChange={this._onFirstNameChange.bind(this)} value={this.props.user.firstName}/>
+                                    {/*<Input type="text" id="first-name" onChange={this._onFirstNameChange.bind(this)} value={this.props.user.firstName}/>*/}
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="last-name">Last Name</Label>
-                                    <Input type="text" id="last-name" onChange={this._onLastNameChange.bind(this)} value={this.props.user.lastName} />
+                                    {/*<Input type="text" id="last-name" onChange={this._onLastNameChange.bind(this)} value={this.props.user.lastName} />*/}
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="email">Email</Label>
-                                    <Input type="text" id="email" onChange={this._onEmailChange.bind(this)} value={this.props.user.email}/>
+                                    {/*<Input type="text" id="email" onChange={this._onEmailChange.bind(this)} value={this.props.user.email}/>*/}
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="address">Address</Label>
-                                    <Input type="text" id="address" onChange={this._onAddressChange.bind(this)} value={this.props.user.address}/>
+                                    {/*<Input type="text" id="address" onChange={this._onAddressChange.bind(this)} value={this.props.user.address}/>*/}
                                 </FormGroup>
                             </CardBody>
                         </Card>
@@ -144,19 +157,19 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup>
                                     <Label htmlFor="school">School</Label>
-                                    <Input type="text" id="school" onChange={this._onSchoolChange.bind(this)} value={this.props.user.school}/>
+                                    {/*<Input type="text" id="school" onChange={this._onSchoolChange.bind(this)} value={this.props.user.school}/>*/}
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="district">District</Label>
-                                    <Input type="text" id="district" onChange={this._onDistrictChange.bind(this)} value={this.props.user.district}/>
+                                    {/*<Input type="text" id="district" onChange={this._onDistrictChange.bind(this)} value={this.props.user.district}/>*/}
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="stream">Stream</Label>
-                                    <Input type="text" id="stream" onChange={this._onStreamChange.bind(this)} value={this.props.user.stream}/>
+                                    {/*<Input type="text" id="stream" onChange={this._onStreamChange.bind(this)} value={this.props.user.stream}/>*/}
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="subject">Subject</Label>
-                                    <Input type="text" id="subject" onChange={this._onSubjectChange.bind(this)} value={this.props.user.subject}/>
+                                    {/*<Input type="text" id="subject" onChange={this._onSubjectChange.bind(this)} value={this.props.user.subject}/>*/}
                                 </FormGroup>
                             </CardBody>
                         </Card>
@@ -168,10 +181,10 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup row>
                                     <Col md="3">
-                                        <img src={this.props.user.imageUrl} className="img-avatar" alt="admin@meetrix.io"/>
+                                        {/*<img src={this.props.user.imageUrl} className="img-avatar" alt="admin@meetrix.io"/>*/}
                                     </Col>
                                     <Col xs="12" md="9">
-                                        <Input type="file" id="file-input" name="file-input" onChange={this._onImageChange.bind(this)}/>
+                                        {/*<Input type="file" id="file-input" name="file-input" onChange={this._onImageChange.bind(this)}/>*/}
                                     </Col>
                                 </FormGroup>
                             </CardBody>
@@ -201,16 +214,16 @@ class UserProfile extends Component{
 
 UserProfile.propTypes={
     user:PropTypes.shape({
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        userName: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
-        imageUrl: PropTypes.string.isRequired,
-        address: PropTypes.string.isRequired,
-        school: PropTypes.string.isRequired,
-        district: PropTypes.string.isRequired,
-        stream: PropTypes.string.isRequired,
-        subject: PropTypes.string.isRequired,
+        // firstName: PropTypes.string.isRequired,
+        // lastName: PropTypes.string.isRequired,
+        username: PropTypes.string,
+        // email: PropTypes.string.isRequired,
+        // imageUrl: PropTypes.string.isRequired,
+        // address: PropTypes.string.isRequired,
+        // school: PropTypes.string.isRequired,
+        // district: PropTypes.string.isRequired,
+        // stream: PropTypes.string.isRequired,
+        // subject: PropTypes.string.isRequired,
     }),
     actions:PropTypes.shape({
         updateFirstName:PropTypes.func.isRequired,

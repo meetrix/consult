@@ -8,6 +8,10 @@ export const REDUX_ACTIONS = {
     FETCHING_FAILURE:'FETCHING_FAILURE',
     //tutor redux action
 
+    //Auth User Action
+    SET_AUTH_USER:'SET_AUTH_USER',
+    GET_AUTH_USER:'GET_AUTH_USER',
+
     SET_TUTOR_DATA: "SET_TUTOR_DATA",
     HANDLE_TUTOR_DATA_FETCH_FAILURE: "HANDLE_TUTOR_DATA_FETCH_FAILURE",
     //login redux action
@@ -23,6 +27,7 @@ export const REDUX_ACTIONS = {
     SET_CONSULTS_DATA:"SET_CONSULTS_DATA",
 
 }
+//user profile update action
 export const USER_PROFILE ={
     UPDATE_FIRST_NAME:'UPDATE_FIRST_NAME',
     UPDATE_LAST_NAME:'UPDATE_LAST_NAME',
@@ -44,17 +49,17 @@ export const STORE_INITIATE_VALUE={
     {
         user: {
             _id:undefined,
-            firstName:'supuh',
-            lastName:'mad',
-            userName: 'supun',
-            email: 'supun.12@cse.mrt.ac.lk',
-            imageUrl:'http://localhost:8080/img/avatars/1.jpg',
-            roles:'consultee',
-            school:'st.aloysius',
-            address:'nakiyadeniya galle',
-            district:'galle',
-            stream:'a/l',
-            subject:'maths'
+            // firstName:'supuh',
+            // lastName:'mad',
+            // userName: 'supun',
+            // email: 'supun.12@cse.mrt.ac.lk',
+            // imageUrl:'http://localhost:8080/img/avatars/1.jpg',
+            // roles:'consultee',
+            // school:'st.aloysius',
+            // address:'nakiyadeniya galle',
+            // district:'galle',
+            // stream:'a/l',
+            // subject:'maths'
         },
         session: undefined,
         authHeader:undefined

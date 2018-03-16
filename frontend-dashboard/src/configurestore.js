@@ -7,6 +7,7 @@ import { createLogger } from 'redux-logger'
 
 import {localState,saveState} from  './localstorage'
 
+
 //const persistedData= localState();
 const sagaMiddleware = createSagaMiddleware()
 const middleware = [sagaMiddleware,createLogger()]
