@@ -2,7 +2,7 @@
  * Created by supun on 12/03/18.
  */
 import {REDUX_API_GATEWAY_ACTIONS} from '../constants/apiGateWayConstant';
-import {SCHEDULAR_FORM} from "../constants/constant";
+import {REDUX_ACTIONS} from "../constants/constant";
 
 //import events from '../components/Calendar/example_events';
 import moment from 'moment';
@@ -19,7 +19,12 @@ var scheduler = {events:[{
     title: 'Birthday Party',
     start: new Date(2015, 3, 13, 7, 0, 0),
     end: new Date(2015, 3, 13, 10, 30, 0),
-  }]};
+  }],
+  consulteeSelectSlot:{
+    isTimeSlotSelect:false
+  }
+
+};
 
 var startDate,endDate,title,consultee,event;
 //var event = [];
@@ -53,6 +58,7 @@ export default (state = scheduler, action) => {
          return event = {start:startDate,end:endDate,title:title,consultee:consultee}
        });
       return {
+        ...state,
             events: [
               ...state.events, ...convertEvents
 
@@ -64,13 +70,25 @@ export default (state = scheduler, action) => {
     case REDUX_API_GATEWAY_ACTIONS.POST_SCHEDULE_EVENT_SUCCESS: {
       createEventsArray(action.payload.Item);
       return{
+        ...state,
         events: [
           ...state.events, ...convertEvents
 
         ]
       }
     }
+    case REDUX_ACTIONS.CONSULTEE_TIME_SLOT_SELECT:
+      return{
+        ...state,
+        consulteeSelectSlot:{
+          timeSlot:{
+            ...state.consulteeSelectSlot.timeSlot,...action.payload
+          },
+          isTimeSlotSelect: action.data.isTimeSlotSelect
+        }
+      }
 
+      break;
     default:
       return state;
   }

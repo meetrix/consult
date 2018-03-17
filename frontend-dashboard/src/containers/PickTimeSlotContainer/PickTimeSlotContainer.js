@@ -11,96 +11,13 @@ import {actionCreateStoreUpdateFactory} from '../../actions/actionCreator'
 
 function mapStateToProps(state){
   return {
-    timeSlots: [
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-      {
-        consultantName:'supun',
-        consultantImage:'',
-        consultSubject:'',
-        timeSlot:{
-          startAt:'',
-          endAt:''
-        }
-      },
-    ],
-
+    scheduler:state.scheduler
   }
 
 }
 const mapDispatchToProps = (dispatch) => ({
   actions:{
-    selectTimeSlot:bindActionCreators(actionCreateStoreUpdateFactory(ACTIONS.CONSULTEE_TIME_SLOT_SELECT, ATTRS.PAYLOAD),dispatch)
+    selectTimeSlot:bindActionCreators(actionCreateStoreUpdateFactory(ACTIONS.CONSULTEE_TIME_SLOT_SELECT, ATTRS.PAYLOAD,ATTRS.DATA),dispatch)
   }
 })
 
