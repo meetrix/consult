@@ -25,6 +25,7 @@ provider:
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
     CONSULT_TABLE: consultUser
+
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -61,12 +62,13 @@ functions:
           path: schedule/{id}
           method: get
           cors: true
+
   updateScheduler:
       handler: scheduler/update.update
       events:
         - http:
-            path: schedule/update
-            method: post
+            path: schedule
+            method: put
             cors: true
 
   update:
