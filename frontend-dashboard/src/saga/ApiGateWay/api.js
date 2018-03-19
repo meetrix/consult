@@ -4,7 +4,12 @@
 import {API, Auth} from 'aws-amplify';
 
 export const api = (method,endPoint,apiRoute,options,failureAction, successAction)=>{
-
+    console.log(method)
+  console.log(endPoint)
+  console.log(apiRoute)
+  console.log(options)
+  console.log(failureAction)
+  console.log(successAction)
     switch (method){
       case 'GET':
           return new Promise((resolve, reject) =>{

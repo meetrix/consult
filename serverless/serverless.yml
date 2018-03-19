@@ -24,6 +24,7 @@ provider:
   runtime: nodejs6.10
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    USER_TABLE:"consultUser"
   iamRoleStatements:
     - Effect: Allow
       Action:
