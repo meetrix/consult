@@ -19,7 +19,8 @@ class Calendar extends Component{
       start: "NAN",
       end: "NAN",
       title: "NAN",
-      consultee: "NAN"
+      consultee: "NAN",
+      editing: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -28,6 +29,7 @@ class Calendar extends Component{
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.onClickForm = this.onClickForm.bind(this);
     this.editForm = this.editForm.bind(this);
+    this.toggleEditing = this.toggleEditing.bind(this);
   }
 
   componentDidMount(){
@@ -59,6 +61,7 @@ class Calendar extends Component{
       title: event.title,
     })
     this.toggle();
+    this.toggleEditing();
   }
 
   handleStartDateChange(date){
@@ -93,7 +96,7 @@ class Calendar extends Component{
     console.log("OnClickForm");
 
     if(this.state.editing){
-      this.props.updateScheduleEvents({
+      this.props.actions.updateScheduleEvents({
         start:this.state.start.toDate(),
 
       })
@@ -102,21 +105,23 @@ class Calendar extends Component{
           start: this.state.start.toDate(),
           end: this.state.end.toDate(),
           title: this.state.title,
-          consultee: this.state.consultee
+          consultee: this.state.consultee,
+          user:this.props.user
         }
       )
     }
 
-    this.props.actions.postScheduleEvents({
-        start: this.state.start.toDate(),
-        end: this.state.end.toDate(),
-        title: this.state.title,
-        user:this.props.user
-      }
-    )
 
     this.toggle();
   }
+
+  toggleEditing(){
+    this.setState({
+      editing: !this.state.editing
+    })
+  }
+
+
 
 
    render(){

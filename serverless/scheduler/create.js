@@ -12,11 +12,8 @@ module.exports.create = (event, context, callback) => {
       start: Joi.string().required(),
       end: Joi.string().required(),
       title: Joi.string().required(),
-<<<<<<< HEAD
-      consultee: Joi.string().required()
-=======
+      consultee: Joi.string().required(),
       user: Joi.object().required()
->>>>>>> origin
   });
 
   function validate  (data, schema) {
@@ -43,12 +40,9 @@ module.exports.create = (event, context, callback) => {
               start: data.start,
               end: data.end,
               title:data.title,
-<<<<<<< HEAD
               consultee:data.consultee,
-              ...data
-=======
-              users:[data.user]
->>>>>>> origin
+              users:[data.user],
+              ...data,
           },
       };
 
