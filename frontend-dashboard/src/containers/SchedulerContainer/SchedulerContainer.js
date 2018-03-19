@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions:{
     getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     postScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.POST_SCHEDULE_EVENTS,API_GATEWAY_ATTRS.PAYLOAD),dispatch),
+    updateScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.UPDATE_SCHEDULE_EVENTS,API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     updateStartDate:bindActionCreators(actionCreateStoreUpdateFactory(SCHEDULAR_FORM.UPDATE_STARTDATE,ACTION_ATTR.DATA),dispatch),
     updateEndDate:bindActionCreators(actionCreateStoreUpdateFactory(SCHEDULAR_FORM.UPDATE_ENDDATE,ACTION_ATTR.DATA),dispatch)
   }

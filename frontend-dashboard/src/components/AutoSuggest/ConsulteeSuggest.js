@@ -3,28 +3,6 @@ import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 
-// const people = [
-//   {
-//     first: 'Charlie',
-//     last: 'Brown',
-//     twitter: 'dancounsell'
-//   },
-//   {
-//     first: 'Charlotte',
-//     last: 'White',
-//     twitter: 'mtnmissy'
-//   },
-//   {
-//     first: 'Chloe',
-//     last: 'Jones',
-//     twitter: 'ladylexy'
-//   },
-//   {
-//     first: 'Cooper',
-//     last: 'King',
-//     twitter: 'steveodom'
-//   }
-// ];
 var people = [];
 
 function escapeRegexCharacters(str) {
@@ -112,6 +90,7 @@ class ConsulteeSuggest extends Component {
     this.setState({
       value: newValue
     });
+    this.props.onConsulteeChange(newValue);
   };
 
   onSuggestionsFetchRequested ({ value })  {
