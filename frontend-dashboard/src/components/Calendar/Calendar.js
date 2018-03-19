@@ -31,15 +31,15 @@ class Calendar extends Component{
   }
 
   componentDidMount(){
-    console.log("getScheduleEvents Start");
     this.props.actions.getScheduleEvents(
       {
+
         start:moment().toDate(),
         end:moment().add(4,"hours").toDate(),
         title:'example event'
       }
     )
-    console.log("getScheduleEvents End");
+
   }
 
   setPopupText(slotinfo){
@@ -91,10 +91,11 @@ class Calendar extends Component{
 
   onClickForm() {
     console.log("OnClickForm");
+
     if(this.state.editing){
       this.props.updateScheduleEvents({
         start:this.state.start.toDate(),
-        
+
       })
     }else {
       this.props.actions.postScheduleEvents({
@@ -105,6 +106,15 @@ class Calendar extends Component{
         }
       )
     }
+
+    this.props.actions.postScheduleEvents({
+        start: this.state.start.toDate(),
+        end: this.state.end.toDate(),
+        title: this.state.title,
+        user:this.props.user
+      }
+    )
+
     this.toggle();
   }
 
@@ -149,7 +159,8 @@ class Calendar extends Component{
 
 Calendar.propTypes = {
   events : PropTypes.array.isRequired,
-  actions:PropTypes.object.isRequired
+  actions:PropTypes.object.isRequired,
+  user:PropTypes.object.isRequired
 
 }
 

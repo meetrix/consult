@@ -20,6 +20,8 @@ import RequestTimeSlot from '../../../components/Scheduler/RequestTimeSlot'
 import ContactConsult from '../../../components/Consultants/ContactConsult'
 import ConsultantLive from '../../../components/Consultants/ConsultantLive'
 import ConsulteeList from '../../../components/Consultee/ConsulteeList'
+
+import PickSlotContainer from '../../../containers/PickTimeSlotContainer/PickTimeSlotContainer'
 import {API, Auth} from 'aws-amplify';
 class Test extends Component{
 
@@ -60,9 +62,9 @@ class Test extends Component{
                 {/*<Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>*/}
                 {/*<Row className="dash-board-component-wrapper"><VideoContainer/></Row>*/}
                 {/*<Row><BaseScroll/></Row>*/}
-                <Row><ConsulteeList user={ {role:2}} records={[{id:'0',consulteeName:'supunconsultee',consulteeProfile:'img/avatars/1.jpg',nextSession:'2012/3/5',consultantName:'supunconsultant',consultantProfile:'img/avatars/2.jpg'},{id:'1',consulteeName:'supunconsultee',consulteeProfile:'img/avatars/1.jpg',nextSession:'2012/3/5',consultantName:'supunconsultant',consultantProfile:'img/avatars/2.jpg'}]} /></Row>
+                {/*<Row><ConsulteeList user={ {role:2}} records={[{id:'0',consulteeName:'supunconsultee',consulteeProfile:'img/avatars/1.jpg',nextSession:'2012/3/5',consultantName:'supunconsultant',consultantProfile:'img/avatars/2.jpg'},{id:'1',consulteeName:'supunconsultee',consulteeProfile:'img/avatars/1.jpg',nextSession:'2012/3/5',consultantName:'supunconsultant',consultantProfile:'img/avatars/2.jpg'}]} /></Row>*/}
 
-
+                <PickSlotContainer/>
             </Col>
 
         );

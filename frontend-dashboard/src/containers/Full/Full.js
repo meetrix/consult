@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link, Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types'
 
 import {Container} from 'reactstrap';
 import Header from '../../components/Header/';
@@ -16,21 +17,14 @@ import Profile from '../UserContainer/UserProfileContainer'
 import  Account from '../UserContainer/UserAccountContainer'
 import SessionListContainer from '../../components/Session/session_list_container'
 
+
 import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
 
 import {actionCreatorFactory} from '../../actions/actionCreator'
 
 const mapStateToProps=(state)=>{
     return {
-        user: {
-            _id:undefined,
-            firstname:'supuh',
-            lastname:'mad',
-            username: 'supun',
-            email: 'supun.12@cse.mrt.ac.lk',
-            image:'http://localhost:8080/img/avatars/3.jpg',
-            roles:'consultee'
-        },
+        auth: state.auth
     }
 
 }
@@ -58,11 +52,11 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                  <Route path="/dashboard/schedule" name="Schedule" component={SchedulerContainer}/>
+                  <Route path="/dashboard/schedule" name="Schedule"  component={SchedulerContainer}/>
                   <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
-                  <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
+                  <Route path="/dashboard" name="Dashboard" render={()=><Dashboard  auth={this.props.auth}/>} />
               </Switch>
             </Container>
           </main>
@@ -79,5 +73,7 @@ class Full extends Component {
     );
   }
 }
-
+Full.propTypes = {
+  auth:PropTypes.object.isRequired,
+}
 export default connect(mapStateToProps,mapDispatchToProps)(Full);
