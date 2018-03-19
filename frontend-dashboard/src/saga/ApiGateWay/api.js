@@ -51,6 +51,27 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
         })
       break;
 
+      case 'PUT':
+        return new Promise((resolve, reject) =>{
+          API.put(endPoint,apiRoute,options)
+            .then(res => {
+              console.log(res)
+              console.log("schedulte event PUT")
+              resolve({
+                successAction: successAction,
+                res: res
+
+              })
+            })
+            .catch (err =>reject({
+                failureAction: failureAction,
+                err: err
+              }
+            ))
+        })
+        break;
+
+
 
     }
 }

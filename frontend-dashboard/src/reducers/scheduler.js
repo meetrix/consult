@@ -29,7 +29,7 @@ var scheduler = {events:[{
 
 };
 
-var startDate,endDate,title,consultee,event;
+var startDate,endDate,title,consultee,event,id;
 //var event = [];
 
 export default (state = scheduler, action) => {
@@ -38,12 +38,13 @@ export default (state = scheduler, action) => {
   let convertEvents=[];
 
   function createEventsArray(item) {
-    console.log(item)
+    console.log(item);
+    id = item.id;
     startDate = moment(item.start).toDate();
     endDate = moment(item.end).toDate();
     title = item.title;
     if(item.consultee) consultee = item.consultee;
-    event = {start:startDate,end:endDate,title:title,consultee:consultee}
+    event = {id:id,start:startDate,end:endDate,title:title,consultee:consultee}
     convertEvents.push(event)
   }
   switch (action.type) {
@@ -71,6 +72,17 @@ export default (state = scheduler, action) => {
     }
     case REDUX_API_GATEWAY_ACTIONS.POST_SCHEDULE_EVENT_SUCCESS: {
       createEventsArray(action.payload.Item);
+      return{
+        ...state,
+        events: [
+          ...state.events, ...convertEvents
+
+        ]
+      }
+    }
+
+    case REDUX_API_GATEWAY_ACTIONS.UPDATE_SCHEDULE_EVENT_SUCCESS: {
+      createEventsArray(action.payload.Attributes);
       return{
         ...state,
         events: [

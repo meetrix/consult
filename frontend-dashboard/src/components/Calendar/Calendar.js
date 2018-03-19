@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 //import localizer from 'react-big-calendar/lib/localizers/globalize'
 import moment from 'moment'
 
-BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class Calendar extends Component{
   constructor() {
@@ -18,9 +18,10 @@ class Calendar extends Component{
       popupText: "NAN",
       start: "NAN",
       end: "NAN",
-      title: "NAN",
+      title: "Title",
       consultee: "NAN",
-      editing: false
+      editing: false,
+      id:null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -29,7 +30,8 @@ class Calendar extends Component{
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.onClickForm = this.onClickForm.bind(this);
     this.editForm = this.editForm.bind(this);
-    this.toggleEditing = this.toggleEditing.bind(this);
+    this.toggleEditingFalse = this.toggleEditingFalse.bind(this);
+    this.toggleEditingTrue = this.toggleEditingTrue.bind(this);
   }
 
   componentDidMount(){
@@ -54,14 +56,16 @@ class Calendar extends Component{
   }
 
   editForm(event){
-    console.log("event consultee "+event.consultee);
+    console.log("event consultee "+event.id);
     this.setState({
+      id: event.id,
       start: moment(event.start),
       end: moment(event.end),
       title: event.title,
-    })
+      consultee:event.consultee
+    });
     this.toggle();
-    this.toggleEditing();
+    this.toggleEditingTrue();
   }
 
   handleStartDateChange(date){
@@ -92,13 +96,29 @@ class Calendar extends Component{
     });
   }
 
+  toggleEditingTrue(){
+    this.setState({
+      editing: true
+    })
+  }
+
+  toggleEditingFalse(){
+    this.setState({
+      editing: false
+    })
+  }
+
   onClickForm() {
     console.log("OnClickForm");
 
     if(this.state.editing){
+      console.log("id: "+typeof this.state.id);
       this.props.actions.updateScheduleEvents({
+        id:this.state.id,
         start:this.state.start.toDate(),
-
+        end:this.state.end.toDate(),
+        title:this.state.title,
+        consultee:this.state.consultee,
       })
     }else {
       this.props.actions.postScheduleEvents({
@@ -111,16 +131,9 @@ class Calendar extends Component{
       )
     }
 
-
     this.toggle();
+    this.toggleEditingFalse();
   }
-
-  toggleEditing(){
-    this.setState({
-      editing: !this.state.editing
-    })
-  }
-
 
 
 
@@ -145,7 +158,7 @@ class Calendar extends Component{
            />
              <div>
 
-               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} onExit={this.toggleEditingFalse}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
                    <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
