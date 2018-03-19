@@ -60,6 +60,13 @@ functions:
           path: schedule/{id}
           method: get
           cors: true
+  updateScheduler:
+      handler: scheduler/update.update
+      events:
+        - http:
+            path: schedule/update
+            method: post
+            cors: true
 
   update:
     handler: todos/update.update

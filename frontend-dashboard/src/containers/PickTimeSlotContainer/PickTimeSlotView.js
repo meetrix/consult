@@ -6,6 +6,7 @@ import {Col,Row,Card,CardTitle,Button,Alert} from 'reactstrap'
 import ReactList from 'react-list';
 import TimeSlot from '../../components/TimeSlot/TimeSlot'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 class PickTimeSlotView extends Component{
 
   constructor(props){
@@ -20,7 +21,13 @@ class PickTimeSlotView extends Component{
 
   }
   componentDidMount(){
-    this.getAvailableTimeSlots();
+    this.props.actions.getScheduleEvents(
+      {
+        start:moment().toDate(),
+        end:moment().add(4,"hours").toDate(),
+        title:'example event'
+      }
+    )
 
   }
   getAvailableTimeSlots(){
@@ -30,8 +37,9 @@ class PickTimeSlotView extends Component{
         availabelTimeSlots.push(<TimeSlot key={index} actions={this.props.actions}event={event}/>)}
       )
 
-      this.setState({availabelTimeSlots: availabelTimeSlots});
+
     }
+    return availabelTimeSlots
   }
 
   _scheduleTimeSlot(){
@@ -40,6 +48,9 @@ class PickTimeSlotView extends Component{
           message:'Select a Time Slot',
           isError:true
         }})
+    }
+    else {
+      this.props.actions.scheduleConsult({timeSlot:this.props.scheduler.consulteeSelectSlot.timeSlot,user:this.props.user});
     }
   }
   render(){
@@ -50,25 +61,28 @@ class PickTimeSlotView extends Component{
     else {
       error =null;
     }
-
+    let timeSlot = this.getAvailableTimeSlots()
+    let timeSlotList;
+    if(timeSlot.length>0){
+      timeSlotList = <ReactList
+        itemRenderer={(index,key)=>timeSlot[index]}
+        length={timeSlot.length}
+        type='uniform'
+        axis='x'
+        useTranslate3d={true}
+      />
+    }
     return(
       <Col>
         <Card body>
           <CardTitle>Pick a time slot</CardTitle>
           <Row>
             <Col style={{overflow: 'auto'}}>
-              <ReactList
-                itemRenderer={(index,key)=>this.state.availabelTimeSlots[index]}
-                length={this.state.availabelTimeSlots.length}
-                type='uniform'
-                axis='x'
-                useTranslate3d={true}
-              />
+              {timeSlotList}
             </Col>
           </Row>
           <Row>{error}</Row>
           <Row>
-
             <Button color="primary"  onClick={this._scheduleTimeSlot.bind(this)}>Schedule</Button>
           </Row>
 
@@ -82,8 +96,10 @@ PickTimeSlotView.propTypes = {
     events:PropTypes.array.isRequired,
     consulteeSelectSlot:PropTypes.shape({
       isTimeSlotSelect:PropTypes.bool.isRequired,
+      timeSlot:PropTypes.object.isRequired
     }),
   }),
+  user:PropTypes.object.isRequired,
 
   actions: PropTypes.object.isRequired,
 

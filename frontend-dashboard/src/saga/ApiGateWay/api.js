@@ -24,6 +24,7 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
               }
             ))
       })
+      break;
 
       case 'POST':
         return new Promise((resolve, reject) =>{
@@ -43,5 +44,8 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
               }
             ))
         })
+      break;
+
+
     }
 }

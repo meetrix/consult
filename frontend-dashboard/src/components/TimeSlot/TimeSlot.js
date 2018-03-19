@@ -11,10 +11,11 @@ class TimeSlot extends Component{
   constructor(props){
     super(props)
 
+
   }
 
   _selectTimeSlot(){
-      this.props.actions.selectTimeSlot({timeSlotId:1234566},{isTimeSlotSelect:true})
+      this.props.actions.selectTimeSlot({selectSlot:this.props.event},{isTimeSlotSelect:true})
   }
   render(){
     let consultantImgElm;

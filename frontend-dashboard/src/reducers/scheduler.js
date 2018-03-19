@@ -21,7 +21,10 @@ var scheduler = {events:[{
     end: new Date(2015, 3, 13, 10, 30, 0),
   }],
   consulteeSelectSlot:{
-    isTimeSlotSelect:false
+    isTimeSlotSelect:false,
+    timeSlot:{
+
+    }
   }
 
 };
@@ -55,14 +58,13 @@ export default (state = scheduler, action) => {
          endDate = moment(item.end).toDate();
          title = item.title;
          if(item.consultee) consultee = item.consultee;
-         return event = {start:startDate,end:endDate,title:title,consultee:consultee}
+         return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee}
        });
       return {
         ...state,
-            events: [
-              ...state.events, ...convertEvents
+            events: convertEvents
 
-      ]
+
       }
 
       // return events;
@@ -81,9 +83,7 @@ export default (state = scheduler, action) => {
       return{
         ...state,
         consulteeSelectSlot:{
-          timeSlot:{
-            ...state.consulteeSelectSlot.timeSlot,...action.payload
-          },
+          timeSlot: action.payload.selectSlot,
           isTimeSlotSelect: action.data.isTimeSlotSelect
         }
       }
