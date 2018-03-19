@@ -11,7 +11,8 @@ module.exports.create = (event, context, callback) => {
   const schema = Joi.object().keys({
       start: Joi.string().required(),
       end: Joi.string().required(),
-      title: Joi.string().required()
+      title: Joi.string().required(),
+      user: Joi.object().required()
   });
 
   function validate  (data, schema) {
@@ -35,11 +36,10 @@ module.exports.create = (event, context, callback) => {
           Item: {
               id: uuid.v1(),
               createdAt: timestamp,
-              updatedAt: timestamp,
               start: data.start,
               end: data.end,
               title:data.title,
-              ...data
+              users:[data.user]
           },
       };
 
@@ -56,6 +56,34 @@ module.exports.create = (event, context, callback) => {
               }
           });
       });
+  }
+  function updateUserWithEvent(){
+    const timestamp = new Date().getTime();
+    const params = {
+      TableName: process.env.DYNAMODB_TABLE,
+      Item: {
+        id: uuid.v1(),
+        createdAt: timestamp,
+        start: data.start,
+        end: data.end,
+        title:data.title,
+        users:[data.user]
+      },
+    };
+
+    // write the todo to the database
+    return new Promise((resolve, reject)=>{
+      dynamodb.put(params, (error) => {
+        // handle potential errors
+        if (error) {
+          console.error(error);
+          reject(error);
+        }
+        else {
+          resolve(params)
+        }
+      });
+    });
   }
 
   validate(data, schema).then((result)=>{

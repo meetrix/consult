@@ -15,14 +15,16 @@ import events from '../../components/Calendar/example_events';
 import {ACTION_ATTR, SCHEDULAR_FORM} from "../../constants/constant";
 
 function mapStateToProps(state){
-  console.log("schedular container state : "+state.schedule);
+  console.log(state.scheduler);
   return {
-    events:state.schedule,
+    events:state.scheduler.events,
+    user:state.auth.user
   }
 
 }
 const mapDispatchToProps = (dispatch) => ({
-  actions:{getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
+  actions:{
+    getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     postScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.POST_SCHEDULE_EVENTS,API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     updateStartDate:bindActionCreators(actionCreateStoreUpdateFactory(SCHEDULAR_FORM.UPDATE_STARTDATE,ACTION_ATTR.DATA),dispatch),
     updateEndDate:bindActionCreators(actionCreateStoreUpdateFactory(SCHEDULAR_FORM.UPDATE_ENDDATE,ACTION_ATTR.DATA),dispatch)

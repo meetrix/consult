@@ -436,6 +436,13 @@ definitions:
       id:
         type: "integer"
         format: "int64"
+      role:
+        type: "object"
+        properties: 
+          mainRole:
+            type: "string"
+          subRole:
+            type: "string"
       username:
         type: "string"
       firstName:
@@ -452,6 +459,30 @@ definitions:
         type: "integer"
         format: "int32"
         description: "User Status"
+      consultee: 
+        type: "array"
+        items:
+          type: object
+          properties:
+            id:
+              type: "integer"
+              format: "int64"
+      consultant: 
+        type: "array"
+        items:
+          type: object
+          properties:
+            id:
+              type: "integer"
+              format: "int64" 
+      events: 
+        type: "array"
+        items:
+          type: object
+          properties:
+            id:
+              type: "integer"
+              format: "int64"              
     xml:
       name: "User"
       

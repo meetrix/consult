@@ -24,8 +24,13 @@ export default class CustomSignUp extends SignUp {
 
   signUp() {
     const { username, password, email, phone_number,role } = this.inputs;
-    console.log(role)
-
+    let mainRole
+    if(role=="student"){
+      mainRole = 'consultee'
+    }
+    else  if(role=="teacher"){
+      mainRole = 'consultant'
+    }
     Auth.signUp({
       username,
       password,
@@ -33,7 +38,9 @@ export default class CustomSignUp extends SignUp {
         email,          // optional
         phone_number,   // optional - E.164 number convention
         // other custom attributes
-        'custom:role': role,
+        'custom:tenant': 'siplo',
+        'custom:mainRole': mainRole,
+        'custom:subRole': role
       },
       validationData: []  //optional
     })

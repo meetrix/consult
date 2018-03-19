@@ -24,6 +24,7 @@ provider:
   runtime: nodejs6.10
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    USER_TABLE:"consultUser"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -60,6 +61,13 @@ functions:
           path: schedule/{id}
           method: get
           cors: true
+  updateScheduler:
+      handler: scheduler/update.update
+      events:
+        - http:
+            path: schedule/update
+            method: post
+            cors: true
 
   update:
     handler: todos/update.update
