@@ -91,13 +91,20 @@ class Calendar extends Component{
 
   onClickForm() {
     console.log("OnClickForm");
-    this.props.actions.postScheduleEvents({
-        start: this.state.start.toDate(),
-        end: this.state.end.toDate(),
-        title: this.state.title,
-        consultee: this.state.consultee
-      }
-    )
+    if(this.state.editing){
+      this.props.updateScheduleEvents({
+        start:this.state.start.toDate(),
+        
+      })
+    }else {
+      this.props.actions.postScheduleEvents({
+          start: this.state.start.toDate(),
+          end: this.state.end.toDate(),
+          title: this.state.title,
+          consultee: this.state.consultee
+        }
+      )
+    }
     this.toggle();
   }
 
