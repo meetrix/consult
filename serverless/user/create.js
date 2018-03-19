@@ -1,5 +1,5 @@
 /**
- * Created by supun on 18/03/18.
+ * Created by supun on 19/03/18.
  */
 'use strict';
 
@@ -8,13 +8,10 @@ const dynamodb = require('./dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
-module.exports.update = (event, context, callback) => {
+module.exports.create = (event, context, callback) => {
   const data = JSON.parse(event.body);
-  const timestamp = new Date().getTime();
-
   const schema = Joi.object().keys({
-    timeSlot: Joi.object().required(),
-    user: Joi.object().required()
+    username: Joi.string().required()
   });
 
   function validate  (data, schema) {
@@ -32,21 +29,47 @@ module.exports.update = (event, context, callback) => {
 
   function handler(data) {
 
+    const timestamp = new Date().getTime();
     const params = {
-      TableName: process.env.DYNAMODB_TABLE,
+      TableName: process.env.CONSULT_TABLE,
+      Item: {
+        id: uuid.v1(),
+        createdAt: timestamp,
+        username: data.username
+
+      },
+    };
+    // write the todo to the database
+    return new Promise((resolve, reject)=>{
+      dynamodb.put(params, (error) => {
+        // handle potential errors
+        if (error) {
+          console.error(error);
+          reject(error);
+        }
+        else {
+          resolve(params)
+        }
+      });
+    });
+  }
+  function updateUserWithEvent(data){
+    const timestamp = new Date().getTime();
+    const params = {
+      TableName: process.env.CONSULT_TABLE,
       Key: {
-        id: data.timeSlot.id,
+        id: 'a0dfdaf0-2b85-11e8-818b-1f6245b3b3e6',
       },
       ExpressionAttributeValues: {
-        ':user': [data.user],
-        ':empty_users': [],
+        ':event': ['0d534cf0-2b93-11e8-ab74-39ece3a4aacf'],
+        ':empty_events': [],
         ':updatedAt': timestamp,
 
       },
       ExpressionAttributeNames: {
-        '#users': 'users'
+        '#events': 'events'
       },
-      UpdateExpression: 'set #users = list_append(if_not_exists(#users, :empty_users), :user),updatedAt= :updatedAt',
+      UpdateExpression: 'set #events = list_append(if_not_exists(#events, :empty_events), :event),updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };
 
@@ -65,8 +88,8 @@ module.exports.update = (event, context, callback) => {
     });
   }
 
-  validate(data, schema).then((result)=>{
-    return handler(result)
+  validate(data,schema).then((result)=>{
+      return  updateUserWithEvent(result)
   }).then((result)=>{
     // create a response
     const response = {

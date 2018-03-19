@@ -5,14 +5,21 @@ const dynamodb = require('./dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
+var https = require('https');
+var jose = require('node-jose');
+
+var region = 'us-west-2';
+var userpool_id = 'us-west-2_bjkyFObpw';
+var app_client_id = '35fphtvuuravdlpm0veleocv79';
+var keys_url = 'https://cognito-idp.' + region + '.amazonaws.com/' + userpool_id + '/.well-known/jwks.json';
+
+
 module.exports.create = (event, context, callback) => {
   const data = JSON.parse(event.body);
-
   const schema = Joi.object().keys({
       start: Joi.string().required(),
       end: Joi.string().required(),
-      title: Joi.string().required(),
-      user: Joi.object().required()
+      title: Joi.string().required()
   });
 
   function validate  (data, schema) {
@@ -28,7 +35,7 @@ module.exports.create = (event, context, callback) => {
       });
   }
 
-  function handler(data) {
+  function handler(data,user) {
 
       const timestamp = new Date().getTime();
       const params = {
@@ -39,7 +46,7 @@ module.exports.create = (event, context, callback) => {
               start: data.start,
               end: data.end,
               title:data.title,
-              users:[data.user]
+              users:[user]
           },
       };
 
@@ -57,23 +64,30 @@ module.exports.create = (event, context, callback) => {
           });
       });
   }
-  function updateUserWithEvent(){
+  function updateUserWithEvent(data){
+    console.log(data)
     const timestamp = new Date().getTime();
     const params = {
-      TableName: process.env.DYNAMODB_TABLE,
-      Item: {
-        id: uuid.v1(),
-        createdAt: timestamp,
-        start: data.start,
-        end: data.end,
-        title:data.title,
-        users:[data.user]
+      TableName: process.env.CONSULT_TABLE,
+      Key: {
+        id: data.Item.users[0].sub,
       },
+      ExpressionAttributeValues: {
+        ':event': [data.Item.id],
+        ':empty_events': [],
+        ':updatedAt': timestamp,
+
+      },
+      ExpressionAttributeNames: {
+        '#events': 'events'
+      },
+      UpdateExpression: 'set #events = list_append(if_not_exists(#events, :empty_events), :event),updatedAt= :updatedAt',
+      ReturnValues: 'UPDATED_NEW',
     };
 
     // write the todo to the database
     return new Promise((resolve, reject)=>{
-      dynamodb.put(params, (error) => {
+      dynamodb.update(params, (error) => {
         // handle potential errors
         if (error) {
           console.error(error);
@@ -86,23 +100,81 @@ module.exports.create = (event, context, callback) => {
     });
   }
 
+  function decodeToken(event){
+
+   const token = event.authorizationToken;
+   var sections = token.split('.');
+   // get the kid from the headers prior to verification
+   var header = jose.util.base64url.decode(sections[0]);
+   header = JSON.parse(header);
+   var kid = header.kid;
+   // download the public keys
+   return new Promise((resolve, reject)=>{
+     https.get(keys_url, function(response) {
+       if (response.statusCode == 200) {
+         response.on('data', function(body) {
+           var keys = JSON.parse(body)['keys'];
+           // search for the kid in the downloaded public keys
+           var key_index = -1;
+           for (var i=0; i < keys.length; i++) {
+             if (kid == keys[i].kid) {
+               key_index = i;
+               break;
+             }
+           }
+           if (key_index == -1) {
+             console.log('Public key not found in jwks.json');
+             callback('Public key not found in jwks.json');
+           }
+           // construct the public key
+           jose.JWK.asKey(keys[key_index]).
+           then(function(result) {
+             // verify the signature
+             jose.JWS.createVerify(result).
+             verify(token).
+             then(function(result) {
+               // now we can use the claims
+               var claims = JSON.parse(result.payload);
+               let user = {
+                 sub:claims.sub,
+                 username:claims.username
+               }
+               resolve(user)
+             }).
+             catch(function() {
+               reject(claims)
+             });
+           });
+         });
+       }
+     });
+   });
+
+ };
+
+
   validate(data, schema).then((result)=>{
-    return handler(result)
+     return decodeToken(event).then((user) =>{
+       return  handler(result,user).then((result)=>{
+         return updateUserWithEvent(result)
+       })
+     })
+
   }).then((result)=>{
-      // create a response
-      const response = {
-          statusCode: 200,
-          headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
-          body: JSON.stringify(result)
-      };
-      callback(null, response);
+    // create a response
+    const response = {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
+      body: JSON.stringify(result)
+    };
+    callback(null, response);
   }).
   catch((err)=>{
-      console.error('Validation Failed');
-      callback(null, {
-          headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
-          ...err
-      });
-  })
+    console.error('Validation Failed');
+    callback(null, {
+      headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
+      body: JSON.stringify(err)
+    });
+    })
 
 };

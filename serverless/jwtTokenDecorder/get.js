@@ -13,7 +13,7 @@ var keys_url = 'https://cognito-idp.' + region + '.amazonaws.com/' + userpool_id
 
 
 module.exports.get = (event, context, callback) => {
-    var token = 'eyJraWQiOiJQN0M3bHVhTk01VWgyMkpyUTdNQzQ2VExFeHRoeTllczVkUUlkb3QxdHNrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlY2YxYzM4MS1kZDhhLTQyOGMtYTdiMC1mYzNmOGY2MmNhNWYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLXdlc3QtMi5hbWF6b25hd3MuY29tXC91cy13ZXN0LTJfYmpreUZPYnB3IiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjpmYWxzZSwiY29nbml0bzp1c2VybmFtZSI6ImJ1ZGRoaWthamF5NiIsImF1ZCI6IjM1ZnBodHZ1dXJhdmRscG0wdmVsZW9jdjc5IiwiZXZlbnRfaWQiOiJmMzYwYjdjMC0yNDIyLTExZTgtOGRjMy01NTk5MmZmNmI0MDciLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTUyMDY1OTMxNiwicGhvbmVfbnVtYmVyIjoiKzk0NzE1Nzc2MzE2IiwiZXhwIjoxNTIwNzU2NDcyLCJpYXQiOjE1MjA3NTI4NzIsImVtYWlsIjoiYnVkZGhpa2EuYW51c2hrYUBnbWFpbC5jb20ifQ.Xs9I6tRvMIQCuyeQ1RhlFCxxdqOqtnnDXeF4r77t60ZuXpKHc-cO6J5WlWuX42KK6IaZ7jdSTdWe0mRQH4GubXrK0azOy9BVCEEj7i8VOucEvFCG3dkPOTxVHDKISlMVCiROmCDltiymcPZWq2DOLBnkwGiytOYA7cCdBIvuYf8rcNAbD0kU_9PXTZ6aZm88Qix3kafSnYx29KysxTkWnMr-guEHdjGoeLGDk6LgT15EmsMaATzv043Fb_lxcQyCvB5kXv2N-9S6-wt7cAH6zZMx6AHmdYwAO3hlNS-WMeujieNYo91tQjLGt91kAVKrB5EkhyPPB_E5TlVof1F_bg';
+    var token = 'eyJraWQiOiIrUFdkeE9sRzFcL1AwcFQ4UWs2S29FOCtxQUhXQ1BSY3h3QzRJcVBuUGZVYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIwNjU2NGM1Mi0zY2NhLTQ3NTgtYTcxNy1hZWYzYjg3YzFiMzYiLCJkZXZpY2Vfa2V5IjoidXMtd2VzdC0yX2Q0ZDU3OThlLWE4MzMtNDY3NS1iMmJkLTdiNjFkOWY1N2MzOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1MjE0NTc4MDQsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX2Jqa3lGT2JwdyIsImV4cCI6MTUyMTQ2MTQwNCwiaWF0IjoxNTIxNDU3ODA0LCJqdGkiOiIzNzE0YWYyMi03NjQ5LTRmN2ItODNhMC1kM2JhM2IxZDVhOGYiLCJjbGllbnRfaWQiOiIzNWZwaHR2dXVyYXZkbHBtMHZlbGVvY3Y3OSIsInVzZXJuYW1lIjoidHN1cHVuIn0.MG92TRUPzEiD2iVuTOYa4_2WMm2-Xm5jvDXexn1qTL_QowmYeSVogWvm5E4rlVk3AYeR8obIFO4YHtffynW6HTgeGEgL_I9TF0xa9do4nFkTgUDK_xrNBXYL1-pT1cEfzO_Xl7CLJSQysBgDTF9Mfn851v8_WqSoWayqSpIutDQDi7N1P2ArxDxzp9l_nKIFtRcOIaLo_XOgi97UgqVbwbH9P-kaafKZAr9G1YL7J7RvFMCmfhP1z7aJmH3q-ObJ06A_rFisaf1fyKQmJAzXk39VSOXZxRzK6OrK1a9dyGyfCm8xEpN0IMxBVdGgwau8xAKZ0P9tciXmhasCjUAd9Q';
     console.log(event)
     var sections = token.split('.');
     // get the kid from the headers prior to verification
@@ -64,7 +64,7 @@ module.exports.get = (event, context, callback) => {
                         if (claims.aud != app_client_id) {
                             callback('Token was not issued for this audience');
                         }
-                        callback(null, response);
+                        callback(null, claims);
                     }).
                     catch(function() {
                         callback('Signature verification failed');

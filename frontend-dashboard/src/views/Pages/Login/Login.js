@@ -55,12 +55,12 @@ class Login extends Component {
         }
     }
     componentWillMount(){
-      //Auth.signOut()
+      Auth.signOut()
       //current auth user
       //this.setAuthUser();
       //check custom attribute is set
       //this.checkUserCustomAttributes()
-      console.log("before render")
+      // console.log("before render")
       this.props.actions.getAuthUser();
     }
 

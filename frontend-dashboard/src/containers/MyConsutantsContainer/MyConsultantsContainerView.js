@@ -15,7 +15,7 @@ import BaseBox from '../../components/BaseBox/BaseBox'
 class MyConsultantsContainer extends Component {
 
     componentWillMount(){
-        this.props.actions.getConsultants();
+        //this.props.actions.getConsultants();
     }
     render() {
         return(
