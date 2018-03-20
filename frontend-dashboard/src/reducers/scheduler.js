@@ -82,12 +82,23 @@ export default (state = scheduler, action) => {
     }
 
     case REDUX_API_GATEWAY_ACTIONS.UPDATE_SCHEDULE_EVENT_SUCCESS: {
-      createEventsArray(action.payload.Attributes);
+      let updatedEvent;
+      let start,end,title,consultee;
+      const updatedEvents = state.events.map(event=>{
+        if(event.id == action.payload.Attributes.id){
+          start = moment(action.payload.Attributes.start).toDate();
+          end = moment(action.payload.Attributes.end).toDate();
+          title = action.payload.Attributes.title;
+          consultee = action.payload.Attributes.consultee;
+          updatedEvent = {start:start,end:end,title:title,consultee:consultee};
+          return updatedEvent;
+        }
+        return event;
+      });
       return{
         ...state,
         events: [
-          ...state.events, ...convertEvents
-
+           ...updatedEvents
         ]
       }
     }
