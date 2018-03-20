@@ -41,13 +41,13 @@ module.exports.update = (event, context, callback) => {
         ':start': data.start,
         ':end': data.end,
         ':title':data.title,
-
+        ':consultee':data.consultee,
       },
       ExpressionAttributeNames: {
         '#startAt': 'start',
         '#endAt' : 'end'
       },
-      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,updatedAt= :updatedAt',
+      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,consultee=:consultee,updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };
 
