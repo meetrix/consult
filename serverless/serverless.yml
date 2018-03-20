@@ -70,6 +70,14 @@ functions:
             method: put
             cors: true
 
+  deleteSchedular:
+      handler: scheduler/delete.delete
+      events:
+        - http:
+            path: schedule
+            method: delete
+            cors: true
+
   update:
     handler: todos/update.update
     events:
