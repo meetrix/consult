@@ -71,7 +71,25 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
         })
         break;
 
+      case 'DELETE':
+        return new Promise((resolve, reject) =>{
+          API.del(endPoint,apiRoute,options)
+            .then(res => {
+              console.log(res)
+              console.log("schedulte event DELETE")
+              resolve({
+                successAction: successAction,
+                res: res
 
+              })
+            })
+            .catch (err =>reject({
+                failureAction: failureAction,
+                err: err
+              }
+            ))
+        })
+        break;
 
     }
 }
