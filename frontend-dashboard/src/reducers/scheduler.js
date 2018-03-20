@@ -86,6 +86,7 @@ export default (state = scheduler, action) => {
       let start,end,title,consultee;
       const updatedEvents = state.events.map(event=>{
         if(event.id == action.payload.Attributes.id){
+          id = action.payload.Attributes.id;
           start = moment(action.payload.Attributes.start).toDate();
           end = moment(action.payload.Attributes.end).toDate();
           title = action.payload.Attributes.title;
