@@ -37,6 +37,16 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CONSULT_TABLE}"
 
 functions:
   create:
@@ -102,6 +112,13 @@ functions:
             path: user
             method: post
             cors: true
+  testAuthToken:
+        handler: scheduler/test.create
+        events:
+          - http:
+              path: scheduler/test
+              method: post
+              cors: true
 
 
 resources:

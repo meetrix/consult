@@ -15,11 +15,14 @@ var keys_url = 'https://cognito-idp.' + region + '.amazonaws.com/' + userpool_id
 
 
 module.exports.create = (event, context, callback) => {
-  const data = JSON.parse(event.body);
+
+  let data = JSON.parse(event.body);
+  //data['token'] = 'eyJraWQiOiJQN0M3bHVhTk01VWgyMkpyUTdNQzQ2VExFeHRoeTllczVkUUlkb3QxdHNrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIwNmQ0ODUyOS1mMTg2LTQxZjgtODc4NC0xYjUwYTVkZGMxMTIiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLXdlc3QtMi5hbWF6b25hd3MuY29tXC91cy13ZXN0LTJfYmpreUZPYnB3IiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjpmYWxzZSwiY29nbml0bzp1c2VybmFtZSI6InRzdXB1biIsImF1ZCI6IjM1ZnBodHZ1dXJhdmRscG0wdmVsZW9jdjc5IiwiZXZlbnRfaWQiOiJiYTA3ZTcyYy0yYmYyLTExZTgtYWIxZS1lMWUxODNlNmNkYjYiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTUyMTUxODIxMywiY3VzdG9tOm1haW5Sb2xlIjoiY29uc3VsdGFudCIsImN1c3RvbTpzdWJSb2xlIjoidGVhY2hlciIsImN1c3RvbTp0ZW5hbnQiOiJzaXBsbyIsInBob25lX251bWJlciI6Iis5NDcxMTEzNTAxMiIsImV4cCI6MTUyMTUyMTgxMywiaWF0IjoxNTIxNTE4MjEzLCJlbWFpbCI6InN1cHVubWFkdXNoYW5rYTEyMjE5QGdtYWlsLmNvbSJ9.fnBqtC7ka0g1XXN7iAsqXQ68l2RJGY30VvrSbvc1pWEI6m1VFnR3VIcPVhcNrI3NAimwysWLPCRWgaJb1tjLi8ReTYD3d2pBCYRaIxbJOkzjmx1jt4F9eEG2e0xy_RdMugj0O1crRHmeryHMm0ogD00WE3nVxJde9TdQ8v4mX8yxTt-MowqFH1i5WHc6A0B_OASDNyOZvU-1Qsn1E2JB5icZG7CAzbf3gDrntiV7dFXbMrzG5D05pbxFCECD7aioFy-jKyvi8yr5AhFm31NPcq4w_f2kiStTh8NedYURD4XmDlYFlfoIa2t0BXkZXMDMLMsl8v1WCt7yYEhh3zsoaw';
   const schema = Joi.object().keys({
       start: Joi.string().required(),
       end: Joi.string().required(),
-      title: Joi.string().required()
+      title: Joi.string().required(),
+      consultee: Joi.string().required()
 
   });
 
@@ -47,7 +50,9 @@ module.exports.create = (event, context, callback) => {
               start: data.start,
               end: data.end,
               title:data.title,
+              consultee:data.consultee,
               users:[user],
+
 
           },
       };
@@ -84,19 +89,19 @@ module.exports.create = (event, context, callback) => {
         '#events': 'events'
       },
       UpdateExpression: 'set #events = list_append(if_not_exists(#events, :empty_events), :event),updatedAt= :updatedAt',
-      ReturnValues: 'UPDATED_NEW',
+      ReturnValues: 'ALL_NEW',
     };
 
     // write the todo to the database
     return new Promise((resolve, reject)=>{
-      dynamodb.update(params, (error) => {
+      dynamodb.update(params, (error,data) => {
         // handle potential errors
         if (error) {
           console.error(error);
           reject(error);
         }
         else {
-          resolve(params)
+          resolve(data)
         }
       });
     });
@@ -104,7 +109,7 @@ module.exports.create = (event, context, callback) => {
 
   function decodeToken(event){
 
-   const token = event.authorizationToken;
+   const token = event.headers.Authorization;
    var sections = token.split('.');
    // get the kid from the headers prior to verification
    var header = jose.util.base64url.decode(sections[0]);

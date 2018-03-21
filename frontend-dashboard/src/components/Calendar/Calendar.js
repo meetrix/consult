@@ -125,8 +125,7 @@ class Calendar extends Component{
           start: this.state.start.toDate(),
           end: this.state.end.toDate(),
           title: this.state.title,
-          consultee: this.state.consultee,
-          user:this.props.user
+          consultee: this.state.consultee
         }
       )
     }
