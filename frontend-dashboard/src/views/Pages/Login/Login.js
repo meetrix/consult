@@ -7,8 +7,9 @@ import {Authenticator, withAuthenticator,Greetings,RequireNewPassword,ConfirmSig
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {actionCreatorAwsAmplifyFactory} from '../../../actions/actionCreator';
+import {actionCreatorAwsAmplifyFactory,actionCreateApiGateWayFactory} from '../../../actions/actionCreator';
 import {ACTION_KEY as AWS_AMPLIFY_KEYS,ACTION_ATTR as AWS_AMPLIFY_ATTRS }from '../../../constants/apiAmlifyConstant';
+import {ACTION_KEY as AWS_API_GATEWAY_KEYS,ACTION_ATTR as AWS_API_GATEWAY_ATTRS} from '../../../constants/apiGateWayConstant'
 
 //Custom Sign Up Ui
 
@@ -62,6 +63,8 @@ class Login extends Component {
       //this.checkUserCustomAttributes()
       // console.log("before render")
       this.props.actions.getAuthUser();
+      this.props.actions.getAuthUserInitData();
+
     }
 
     async setAuthUser(){
@@ -96,6 +99,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => ({
   actions:{
     getAuthUser:bindActionCreators(actionCreatorAwsAmplifyFactory(AWS_AMPLIFY_KEYS.GET_AUTH_USER, AWS_AMPLIFY_ATTRS.PAYLOAD),dispatch),
+    getAuthUserInitData:bindActionCreators(actionCreateApiGateWayFactory(AWS_API_GATEWAY_KEYS.GET_AUTH_USER_INIT_DATA, AWS_API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     //getAuthUser:() => {dispatch({type:ACTION_TYPE.GET_AUTH_USER})}
   }
 })
