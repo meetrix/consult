@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
@@ -38,7 +38,12 @@ class ScheduleForm extends Component{
           <Label for="exampleText">Description</Label>
           <Input type="textarea" name="text" id="exampleText" />
         </FormGroup>
-
+        <FormGroup check>
+          <Label check>
+          <Input type="checkbox"/>
+            Booked
+          </Label>
+        </FormGroup>
       </Form>
     )
   }
