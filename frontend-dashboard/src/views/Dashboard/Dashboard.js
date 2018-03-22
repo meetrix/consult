@@ -18,7 +18,7 @@ class Dashboard extends Component {
   }
   render() {
 
-    if(this.props.auth.user.attributes['custom:role'] == role.consultee){
+    if(this.props.auth.user.attributes['custom:subRole'] == role.consultee){
       return(
         <Col>
           <Row>
@@ -44,7 +44,7 @@ class Dashboard extends Component {
           <Col>
             <Row className="dash-board-component-wrapper">
 
-              <MyConsultantsContainer/>
+              {/*<MyConsultantsContainer/>*/}
 
 
             </Row>
@@ -64,7 +64,7 @@ Dashboard.propTypes = {
   auth:PropTypes.shape({
     user:PropTypes.shape({
       attributes:PropTypes.shape({
-        'custom:role':PropTypes.string.isRequired
+        'custom:subRole':PropTypes.string.isRequired
       })
     })
   })

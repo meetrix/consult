@@ -51,14 +51,13 @@ export const STORE_INITIATE_VALUE={
     AUTH_INITIATE:
     {
         user: {
-            _id:undefined,
             // firstName:'supuh',
             // lastName:'mad',
             // userName: 'supun',
             // email: 'supun.12@cse.mrt.ac.lk',
             image:'/img/avatars/1.jpg',
             attributes:{
-              'custom:role':"student",
+              'custom:subRole':"student",
               email:"supunmadushanka12219@gmail.com",
               email_verified:true,
               phone_number:"+94711135012",

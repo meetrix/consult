@@ -60,7 +60,7 @@ class Login extends Component {
       //this.setAuthUser();
       //check custom attribute is set
       //this.checkUserCustomAttributes()
-      console.log("before render")
+      // console.log("before render")
       this.props.actions.getAuthUser();
     }
 

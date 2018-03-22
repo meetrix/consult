@@ -24,6 +24,7 @@ provider:
   runtime: nodejs6.10
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    CONSULT_TABLE: consultUser
 
   iamRoleStatements:
     - Effect: Allow
@@ -36,6 +37,16 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CONSULT_TABLE}"
 
 functions:
   create:
@@ -102,6 +113,21 @@ functions:
             method: get
             cors: true
 
+  userCreate:
+      handler: user/create.create
+      events:
+        - http:
+            path: user
+            method: post
+            cors: true
+  testAuthToken:
+        handler: scheduler/test.create
+        events:
+          - http:
+              path: scheduler/test
+              method: post
+              cors: true
+
 
 resources:
   Resources:
@@ -121,6 +147,23 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
+
+    UserDynamoDbTable:
+          Type: 'AWS::DynamoDB::Table'
+          DeletionPolicy: Retain
+          Properties:
+            AttributeDefinitions:
+              -
+                AttributeName: id
+                AttributeType: S
+            KeySchema:
+              -
+                AttributeName: id
+                KeyType: HASH
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+            TableName:  ${self:provider.environment.CONSULT_TABLE}
 
 
 

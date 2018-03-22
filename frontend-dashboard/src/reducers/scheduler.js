@@ -33,8 +33,6 @@ var startDate,endDate,title,consultee,event,id;
 //var event = [];
 
 export default (state = scheduler, action) => {
-  console.log("Schedular Reducer");
-  console.log(action.type);
   let convertEvents=[];
 
   function createEventsArray(item) {
@@ -49,12 +47,14 @@ export default (state = scheduler, action) => {
   }
   switch (action.type) {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
+
       console.log("state :"+state);
       console.log(action.payload);
 
        convertEvents = action.payload.Items.map((item)=>{
          console.log("item");
          console.log(item.start);
+
          startDate = moment(item.start).toDate();
          endDate = moment(item.end).toDate();
          title = item.title;
