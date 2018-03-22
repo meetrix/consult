@@ -73,6 +73,7 @@ module.exports.create = (event, context, callback) => {
   }
   function updateUserWithEvent(data){
     console.log(data)
+    let that = this;
     const timestamp = new Date().getTime();
     const params = {
       TableName: process.env.CONSULT_TABLE,
@@ -94,16 +95,17 @@ module.exports.create = (event, context, callback) => {
 
     // write the todo to the database
     return new Promise((resolve, reject)=>{
-      dynamodb.update(params, (error,data) => {
+      dynamodb.update(params, (error,res) => {
         // handle potential errors
         if (error) {
           console.error(error);
           reject(error);
         }
         else {
+
           resolve(data)
         }
-      });
+      },data);
     });
   }
 
