@@ -32,6 +32,7 @@ class Calendar extends Component{
     this.editForm = this.editForm.bind(this);
     this.toggleEditingFalse = this.toggleEditingFalse.bind(this);
     this.toggleEditingTrue = this.toggleEditingTrue.bind(this);
+    this.onDeleteEvent = this.onDeleteEvent.bind(this);
   }
 
   componentDidMount(){
@@ -108,6 +109,15 @@ class Calendar extends Component{
     })
   }
 
+  onDeleteEvent(){
+    this.props.actions.deleteScheduleEvents({
+      id:this.state.id,
+    });
+
+    this.toggle();
+    this.toggleEditingFalse();
+  }
+
   onClickForm() {
     console.log("OnClickForm");
 
@@ -163,6 +173,7 @@ class Calendar extends Component{
                    <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
                  </ModalBody>
                  <ModalFooter>
+                   {this.state.editing && <Button color="danger" onClick={this.onDeleteEvent}>Delete Event</Button>}
                    <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}
                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                  </ModalFooter>

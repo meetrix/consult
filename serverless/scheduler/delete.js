@@ -4,16 +4,11 @@ const dynamodb = require('./dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
-module.exports.update = (event, context, callback) => {
+module.exports.delete = (event, context, callback) => {
   const data = JSON.parse(event.body);
-  const timestamp = new Date().getTime();
 
   const schema = Joi.object().keys({
     id:Joi.string().required(),
-    start: Joi.string().required(),
-    end: Joi.string().required(),
-    title: Joi.string().required(),
-    consultee: Joi.string().required(),
   });
 
   function validate  (data, schema) {
@@ -35,32 +30,19 @@ module.exports.update = (event, context, callback) => {
       TableName: process.env.DYNAMODB_TABLE,
       Key: {
         id: data.id,
-      },
-      ExpressionAttributeValues: {
-        ':updatedAt': timestamp,
-        ':start': data.start,
-        ':end': data.end,
-        ':title':data.title,
-        ':consultee':data.consultee,
-      },
-      ExpressionAttributeNames: {
-        '#startAt': 'start',
-        '#endAt' : 'end'
-      },
-      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,consultee=:consultee,updatedAt= :updatedAt',
-      ReturnValues: 'ALL_NEW',
+      }
     };
 
     // write the todo to the database
     return new Promise((resolve, reject)=>{
-      dynamodb.update(params, (error,data) => {
+      dynamodb.delete(params, (error) => {
         // handle potential errors
         if (error) {
           console.error(error);
           reject(error);
         }
         else {
-          resolve(data)
+          resolve(params);
         }
       });
     });

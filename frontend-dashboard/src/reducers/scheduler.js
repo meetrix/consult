@@ -47,7 +47,14 @@ export default (state = scheduler, action) => {
   }
   switch (action.type) {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
+
+      console.log("state :"+state);
+      console.log(action.payload);
+
        convertEvents = action.payload.Items.map((item)=>{
+         console.log("item");
+         console.log(item.start);
+
          startDate = moment(item.start).toDate();
          endDate = moment(item.end).toDate();
          title = item.title;
@@ -75,15 +82,39 @@ export default (state = scheduler, action) => {
     }
 
     case REDUX_API_GATEWAY_ACTIONS.UPDATE_SCHEDULE_EVENT_SUCCESS: {
-      createEventsArray(action.payload.Attributes);
+      let updatedEvent;
+      let start,end,title,consultee;
+      const updatedEvents = state.events.map(event=>{
+        if(event.id == action.payload.Attributes.id){
+          id = action.payload.Attributes.id;
+          start = moment(action.payload.Attributes.start).toDate();
+          end = moment(action.payload.Attributes.end).toDate();
+          title = action.payload.Attributes.title;
+          consultee = action.payload.Attributes.consultee;
+          updatedEvent = {start:start,end:end,title:title,consultee:consultee};
+          return updatedEvent;
+        }
+        return event;
+      });
       return{
         ...state,
         events: [
-          ...state.events, ...convertEvents
-
+           ...updatedEvents
         ]
       }
     }
+
+    case REDUX_API_GATEWAY_ACTIONS.DELETE_SCHEDULE_EVENT_SUCCESS: {
+
+      const updatedEvents = state.events.filter(event => event.id != action.payload.Key.id);
+      return{
+        ...state,
+        events: [
+          ...updatedEvents
+        ]
+      }
+    }
+
     case REDUX_ACTIONS.CONSULTEE_TIME_SLOT_SELECT:
       return{
         ...state,
