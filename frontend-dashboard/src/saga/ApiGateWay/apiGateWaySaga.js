@@ -19,7 +19,7 @@ function apiGateWayHandler({key, payload}) {
     // console.log(key)
     let {method,endPoint, apiRoute, failureAction, successAction} = metadata[key];
     console.log( Auth)
-     Auth.currentSession().then((idToken)=> {
+     return Auth.currentSession().then((idToken)=> {
        console.log("current log")
        console.log(idToken.idToken.jwtToken)
       // console.log(payload)
