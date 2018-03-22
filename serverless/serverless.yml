@@ -121,12 +121,27 @@ functions:
             method: post
             cors: true
   testAuthToken:
-        handler: scheduler/test.create
-        events:
-          - http:
-              path: scheduler/test
-              method: post
-              cors: true
+      handler: scheduler/test.create
+      events:
+        - http:
+            path: scheduler/test
+            method: post
+            cors: true
+  getAuthUserInitData:
+      handler: user/AuthUserInitData.get
+      events:
+        - http:
+            path: user/init
+            method: get
+            cors: true
+  getFreeEventsFromUser:
+      handler: user/userEventsFree.get
+      events:
+        - http:
+            path: user/events/free
+            method: get
+            cors: true
+
 
 
 resources:

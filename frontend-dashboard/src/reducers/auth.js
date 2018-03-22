@@ -3,6 +3,7 @@
  */
 import {REDUX_ACTIONS,STORE_INITIATE_VALUE,USER_PROFILE} from '../constants/constant';
 import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant'
+import {REDUX_API_GATEWAY_ACTIONS} from "../constants/apiGateWayConstant";
 export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_LOGIN_DATA: {
@@ -13,6 +14,7 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
             //TODO when login error
             break;
         }
+
         case REDUX_ACTIONS.SET_SIGNUP_DATA: {
                 // Otherwise, this is the one we want - return an updated value
                 return {
@@ -44,6 +46,7 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
                 }
             };
         }
+
       case REDUX_AWS_AMPLIFY_ACTIONS.GET_AUTH_USER_SUCCESS:{
         console.log(action)
         return {
@@ -55,7 +58,25 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
           }
         };
 
+
       }
+      case REDUX_API_GATEWAY_ACTIONS.GET_AUTH_USER_INIT_DATA_SUCCESS:{
+        console.log(action)
+        return {
+          ...state,
+          user:{
+            ...state.user,
+            initData:{
+              ...state.user.initData,...action.payload.Item
+
+            },
+
+          }
+        };
+
+
+      }
+
         default:
             return state;
     }
