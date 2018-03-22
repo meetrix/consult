@@ -40,7 +40,7 @@ class ScheduleForm extends Component{
         </FormGroup>
         <FormGroup check>
           <Label check>
-          <Input type="checkbox"/>
+          <Input type="checkbox" onChange={this.props.onBookChange} />
             Booked
           </Label>
         </FormGroup>

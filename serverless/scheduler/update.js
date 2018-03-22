@@ -14,6 +14,7 @@ module.exports.update = (event, context, callback) => {
     end: Joi.string().required(),
     title: Joi.string().required(),
     consultee: Joi.string().required(),
+    booked:Joi.boolean().required()
   });
 
   function validate  (data, schema) {
@@ -42,12 +43,13 @@ module.exports.update = (event, context, callback) => {
         ':end': data.end,
         ':title':data.title,
         ':consultee':data.consultee,
+        ':booked':data.booked
       },
       ExpressionAttributeNames: {
         '#startAt': 'start',
         '#endAt' : 'end'
       },
-      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,consultee=:consultee,updatedAt= :updatedAt',
+      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,consultee=:consultee,booked=:booked,updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };
 

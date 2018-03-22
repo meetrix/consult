@@ -22,8 +22,8 @@ module.exports.create = (event, context, callback) => {
       start: Joi.string().required(),
       end: Joi.string().required(),
       title: Joi.string().required(),
-      consultee: Joi.string().required()
-
+      consultee: Joi.string().required(),
+      booked: Joi.boolean().required()
   });
 
   function validate  (data, schema) {
@@ -51,8 +51,8 @@ module.exports.create = (event, context, callback) => {
               end: data.end,
               title:data.title,
               consultee:data.consultee,
+              booked:data.booked,
               users:[user],
-
 
           },
       };

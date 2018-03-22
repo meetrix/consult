@@ -21,6 +21,7 @@ class Calendar extends Component{
       title: "Title",
       consultee: "NAN",
       editing: false,
+      booked: false,
       id:null
     };
 
@@ -87,6 +88,13 @@ class Calendar extends Component{
     this.setState({title:event.target.value});
   }
 
+  onBookChange(event){
+    console.log("checked: "+event.target.value);
+    if(event.target.value == "on") this.setState({booked:true});
+    else this.setState({booked:false});
+    //this.setState({booked:event.target.value});
+  }
+
   onConsulteeChange(newValue){
     this.setState({consultee:newValue});
   }
@@ -120,7 +128,7 @@ class Calendar extends Component{
 
   onClickForm() {
     console.log("OnClickForm");
-
+    console.log("booked "+this.state.booked);
     if(this.state.editing){
       console.log("id: "+typeof this.state.id);
       this.props.actions.updateScheduleEvents({
@@ -129,13 +137,15 @@ class Calendar extends Component{
         end:this.state.end.toDate(),
         title:this.state.title,
         consultee:this.state.consultee,
+        booked:this.state.booked
       })
     }else {
       this.props.actions.postScheduleEvents({
           start: this.state.start.toDate(),
           end: this.state.end.toDate(),
           title: this.state.title,
-          consultee: this.state.consultee
+          consultee: this.state.consultee,
+          booked: this.state.booked
         }
       )
     }
@@ -170,7 +180,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} onExit={this.toggleEditingFalse}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onBookChange={this.onBookChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
                  </ModalBody>
                  <ModalFooter>
                    {this.state.editing && <Button color="danger" onClick={this.onDeleteEvent}>Delete Event</Button>}
