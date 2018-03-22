@@ -35,10 +35,12 @@ class UserProfile extends Component{
 
 
         this.state={
-            collapse: true
-
-        }
-        console.log(this.props.user)
+            collapse: true,
+            username:'',
+            role:'',
+            email:''
+        };
+        console.log(this.props.user);
         this.toggle = this.toggle.bind(this);
     }
 
@@ -46,67 +48,19 @@ class UserProfile extends Component{
         this.setState({ collapse: !this.state.collapse });
     }
 
-
-    _onFirstNameChange(event){
-        event.preventDefault();
-        this.props.actions.updateFirstName({firstName:event.target.value})
-
-    }
-    _onUserNameChange(event){
-      event.preventDefault();
-      //this.props.actions.updateFirstName({firstName:event.target.value})
-
-    }
-    _onLastNameChange(event){
-        event.preventDefault();
-        this.props.actions.updateLastName({lastName:event.target.value})
-    }
-    _onEmailChange(event){
-        event.preventDefault();
-        this.props.actions.updateEmail({email:event.target.value})
-    }
-    _onAddressChange(event){
-        event.preventDefault();
-        this.props.actions.updateAddress({address:event.target.value})
-
-    }
-    _onSchoolChange(event){
-        event.preventDefault();
-        this.props.actions.updateSchool({school:event.target.value})
-    }
-    _onDistrictChange(event){
-        event.preventDefault();
-        this.props.actions.updateDistrict({district:event.target.value})
-    }
-    _onStreamChange(event){
-        event.preventDefault();
-        this.props.actions.updateStream({stream:event.target.value})
-    }
-    _onSubjectChange(event){
-        event.preventDefault();
-        this.props.actions.updateSubject({subject:event.target.value})
-    }
-
-    _onImageChange(event){
-        event.preventDefault();
-
-        let reader = new FileReader();
-        let imageFile = event.target.files[0];
-
-        reader.onloadend = () => {
-            this.props.actions.updateImage({
-                imageFile: imageFile,
-                imageUrl: reader.result
-            })
-        }
-
-        reader.readAsDataURL(imageFile)
-
-    }
-
     _handleSubmit(){
 
         // console.log(this.state.user)
+    }
+
+    handleInputChange(event){
+      const target = event.target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      const name = target.name;
+
+      this.setState({
+        [name]: value
+      });
     }
 
     render() {
@@ -117,17 +71,17 @@ class UserProfile extends Component{
                     <Col xs="12" sm="6">
                         <Card>
                             <CardHeader>
-                                <strong>ME</strong>
+                                <strong>{this.props.user.username}</strong>
                                 {/*<small> Form</small>*/}
                             </CardHeader>
                             <CardBody>
                               <FormGroup>
                                 <Label htmlFor="first-name">User Name</Label>
-                                <Input type="text" id="first-name" onChange={this._onUserNameChange.bind(this)} value={this.props.user.username}/>
+                                <Input type="text" name="firstName" onChange={this.handleInputChange} value={this.props.user.username}/>
                               </FormGroup>
                               <FormGroup>
                                 <Label htmlFor="first-name">Role</Label>
-                                <Input type="text" id="first-name" onChange={this._onUserNameChange.bind(this)} value={this.props.user.username}/>
+                                <Input type="text" name="role" onChange={this.handleInputChange} value={this.props.user.username}/>
                               </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="first-name">First Name</Label>
@@ -139,7 +93,7 @@ class UserProfile extends Component{
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="email">Email</Label>
-                                    {/*<Input type="text" id="email" onChange={this._onEmailChange.bind(this)} value={this.props.user.email}/>*/}
+                                    <Input type="text" id="email" name="email" onChange={this.handleInputChange} value={this.props.user.attributes.email}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="address">Address</Label>
@@ -224,19 +178,7 @@ UserProfile.propTypes={
         // district: PropTypes.string.isRequired,
         // stream: PropTypes.string.isRequired,
         // subject: PropTypes.string.isRequired,
-    }),
-    actions:PropTypes.shape({
-        updateFirstName:PropTypes.func.isRequired,
-        updateLastName:PropTypes.func.isRequired,
-        updateEmail:PropTypes.func.isRequired,
-        updateImage:PropTypes.func.isRequired,
-        updateSchool:PropTypes.func.isRequired,
-        updateAddress:PropTypes.func.isRequired,
-        updateDistrict:PropTypes.func.isRequired,
-        updateStream:PropTypes.func.isRequired,
-        updateSubject:PropTypes.func.isRequired,
-    }),
-
+    })
 }
 
 export default UserProfile;
