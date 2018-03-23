@@ -150,6 +150,13 @@ functions:
             method: get
             cors: true
 
+  getConsultants:
+    handler:  admin/consultant/list.list
+    events:
+      - http:
+          path: admin/consultant
+          method: get
+          cors: true
 
 
 resources:

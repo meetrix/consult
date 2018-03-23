@@ -64,8 +64,6 @@ export default (state = scheduler, action) => {
       return {
         ...state,
             events: convertEvents
-
-
       }
 
       // return events;
