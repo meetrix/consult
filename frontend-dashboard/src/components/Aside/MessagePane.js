@@ -24,6 +24,10 @@ class MessagePane extends Component {
                 </small>
               </div>
           )}
+          <div>
+            <input/>
+            <button>send</button>
+          </div>
       </TabPane>
 
     )
