@@ -60,7 +60,7 @@ export const STORE_INITIATE_VALUE={
             phone_number_verified:false,
             },
           username:'supun',
-          initData:{},
+          initData:{relatedUsers:[]},
         },
         session: undefined,
         authHeader:undefined

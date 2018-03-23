@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Row,Col,Form,FormGroup,Input,Label} from 'reactstrap'
+import {Row,Col,Button,Form,FormGroup,Input,Label} from 'reactstrap'
 
 import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContainer'
 import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
@@ -20,6 +20,10 @@ class Dashboard extends Component {
       selectConsultant:''
 
     }
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false
+    };
   }
 
   componentDidMount(){
@@ -27,80 +31,92 @@ class Dashboard extends Component {
 
   }
   _selectConsultant(event){
-    console.log(event)
+    console.log(event.target.value)
   }
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+  _viewTimeSlot(){
+
+
   }
   render() {
 
     let consultantSelectElm =
       <Row>
-        <Form>
-        <FormGroup>
-          <Label for="exampleSelect">Select</Label>
-          <Input onChange={this._selectConsultant.bind(this)} type="select" name="select" id="exampleSelect" >
-            {this.props.auth.user.initData ? null :this.props.auth.user.initData.relatedUser.map((consultant,index)=>{
-            <option  key={index}>consultant.email</option>
-          })}
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
-        </FormGroup>
+        <Form >
+          <FormGroup>
+            <Label for="exampleSelectMulti">Select Multiple</Label>
+            <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
+
+              {this.props.auth.user.initData !=null ? this.props.auth.user.initData.relatedUsers.map((consultant,index)=>
+
+                <option value={consultant.id} key={index}>{consultant.email} </option>
+              ):null}
+            </Input>
+          </FormGroup>
+          <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
         </Form>
+
+
       </Row>
+      let view ;
     if(this.props.auth.user.attributes['custom:subRole'] == role.consultee){
+      view = <Col>
+
+        <Row>
+          <h3>Hi {this.capitalizeFirstLetter(this.props.auth.user.username)} !</h3>
+        </Row>
+        <Row>
+          <h6>Let's schedule your class</h6>
+
+        </Row>
+        <Row>
+          <PickTimeSlotContainer/>
+        </Row>
+      </Col>
+    }
+    else if(this.props.auth.user.attributes['custom:subRole'] == role.consultant){
+          view = <div className="animated fadeIn">
+            <Col>
+              <Row className="dash-board-component-wrapper">
+
+                {/*<MyConsultantsContainer/>*/}
+
+
+              </Row>
+              <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+              <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+              <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
+            </Col>
+          </div>
+    }
       return(
+
         <Col>
-          {consultantSelectElm}
-          <Row>
-            <h3>Hi {this.capitalizeFirstLetter(this.props.auth.user.username)} !</h3>
-          </Row>
-          <Row>
-            <h6>Let's schedule your class</h6>
-
-          </Row>
-          <Row>
-            <PickTimeSlotContainer/>
-          </Row>
+          <Row>{consultantSelectElm}</Row>
+          <Row>{view}</Row>
         </Col>
-      )
-    }
-    else{
-      return (
-        // {/*<Col>*/}
-        //   {/*<Row><ContactConsult /></Row>*/}
-        // {/*</Col>*/}
-
-        <div className="animated fadeIn">
-          <Col>
-            <Row className="dash-board-component-wrapper">
-
-              {/*<MyConsultantsContainer/>*/}
+      );
 
 
-            </Row>
-            <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
-            <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
-            <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
-          </Col>
-        </div>
-
-      )
-    }
 
   }
 
 }
+
 Dashboard.propTypes = {
   auth:PropTypes.shape({
     user:PropTypes.shape({
       attributes:PropTypes.shape({
         'custom:subRole':PropTypes.string.isRequired
-      })
+      }),
+    initData:PropTypes.object
     })
   })
 }

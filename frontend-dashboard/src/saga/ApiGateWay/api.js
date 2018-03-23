@@ -17,7 +17,7 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
           headers: {
             Authorization: token,
           },
-          queryStringParameters:payload
+           queryStringParameters:payload
         }
           return new Promise((resolve, reject) =>{
           API.get(endPoint,apiRoute,options)

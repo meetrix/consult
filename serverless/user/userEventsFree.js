@@ -4,14 +4,6 @@ const dynamodb = require('./dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
-var https = require('https');
-var jose = require('node-jose');
-
-var region = 'us-west-2';
-var userpool_id = 'us-west-2_bjkyFObpw';
-var app_client_id = '35fphtvuuravdlpm0veleocv79';
-var keys_url = 'https://cognito-idp.' + region + '.amazonaws.com/' + userpool_id + '/.well-known/jwks.json';
-
 
 
 module.exports.get = (event, context, callback) => {
@@ -43,10 +35,9 @@ module.exports.get = (event, context, callback) => {
     const params = {
       TableName: process.env.CONSULT_TABLE,
       Key: {
-        id: data.id,
-      },
+        id:  'b4295be3-c675-4ca7-a553-c14b3cf46c16',
+      }
     };
-
     // fetch from db
     return new Promise((resolve, reject)=>{
       dynamodb.get(params, (error, result) => {
@@ -54,12 +45,6 @@ module.exports.get = (event, context, callback) => {
         if (error) {
           console.error(error);
           reject(error);
-
-          // } else if (!Object.keys(result).length){
-          //   let errorResponse = Boom.notFound("No Records Found for id : "+data.id).output.payload;
-          //   console.error(errorResponse);
-          //   reject(errorResponse);
-
         }
         else {
           resolve(result)
@@ -70,29 +55,28 @@ module.exports.get = (event, context, callback) => {
 
   function getEventFromUser(user){
     let keys = []
-    if(user.events!=null){
-      keys= user.events.map((event)=>{
-          return {id:event.id}
-        }
-      );
-    }
-    else{
-      return {error:'no event pound from user'};
-    }
+      if(user.Item.events!=null){
+        keys = user.Item.events.map((event)=>{
+            return {id:event}
+          }
+        );
+      }
+      else{
+        return {error:'no event pound from user'};
+      }
 
     const params = {
-      TableName: process.env.DYNAMODB_TABLE,
-      Keys: keys,
-      ExpressionAttributeValues: {
-        ':isBooking': false
-
-      },
-      KeyConditionExpression: "isBooking = :isBooking",
+      RequestItems: {
+          'serverless-rest-api-with-dynamodb-dev': {
+          Keys: keys
+        }
+      }
     };
+
 
     // fetch from db
     return new Promise((resolve, reject)=>{
-      dynamodb.get(params, (error, result) => {
+      dynamodb.batchGet(params, (error, result) => {
         // handle potential errors
         if (error) {
           console.error(error);
@@ -105,7 +89,13 @@ module.exports.get = (event, context, callback) => {
 
         }
         else {
-          resolve(result)
+          let timeSlotes = result.Responses['serverless-rest-api-with-dynamodb-dev']
+          let filterFreeTimeSlot;
+          if(timeSlotes!=null){
+            filterFreeTimeSlot = timeSlotes.filter((timeSlot)=> (timeSlot.booked==null || timeSlot.booked==false))
+            resolve(filterFreeTimeSlot)
+          }
+          resolve({error:'no free slot'})
         }
       });
     });
@@ -113,8 +103,11 @@ module.exports.get = (event, context, callback) => {
   }
 
 
-  validate(data,schema).then((data)=>{
-    return handler(data)
+  validate(data,schema).then((result)=>{
+    return handler(result).then((user)=>{
+
+      return getEventFromUser(user);
+    });
   }).then((result)=>{
     // create a response
     const response = {
