@@ -7,6 +7,8 @@ import {
   Dropdown
 } from 'reactstrap';
 import Amplify,{API, Auth} from 'aws-amplify';
+import { Link, withRouter } from "react-router-dom";
+
 class HeaderDropdown extends Component {
 
   constructor(props) {
@@ -23,8 +25,10 @@ class HeaderDropdown extends Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
-  _logOut(){
+  _logOut (){
     Auth.signOut();
+    this.props.history.push("/login");
+
   }
 
   dropAccnt() {
@@ -60,4 +64,4 @@ class HeaderDropdown extends Component {
   }
 }
 
-export default HeaderDropdown;
+export default withRouter(HeaderDropdown);

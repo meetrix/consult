@@ -125,6 +125,14 @@ functions:
             method: get
             cors: true
 
+  updateProfile:
+      handler: user/profile/update.update
+      events:
+        - http:
+            path: user/profile
+            method: put
+            cors: true
+
   userCreate:
       handler: user/create.create
       events:
@@ -154,6 +162,13 @@ functions:
             method: get
             cors: true
 
+  getConsultants:
+    handler:  admin/consultant/list.list
+    events:
+      - http:
+          path: admin/consultant
+          method: get
+          cors: true
 
 
 resources:
