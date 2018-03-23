@@ -38,12 +38,14 @@ class Aside extends Component {
                   <NavLink className={classnames({ active: this.state.activeTab === '2' })}
                            onClick={() => { this.toggle('2'); }}>
                     <i className="icon-speech"></i>
+                    <Badge pill color="danger">5</Badge>
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className={classnames({ active: this.state.activeTab === '3' })}
                            onClick={() => { this.toggle('3'); }}>
                     <i className="icon-bell"></i>
+                    <Badge pill color="danger">5</Badge>
                   </NavLink>
                 </NavItem>
                 <NavItem>

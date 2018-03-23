@@ -5,7 +5,7 @@ class NotificationPane extends Component {
 
   render() {
     return (
-          <TabPane tabId="2" className="p-3">
+          <TabPane tabId="3" className="p-3">
             <div className="message">
               <div className="py-3 pb-5 mr-3 float-left">
                 <div className="avatar">

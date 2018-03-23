@@ -5,7 +5,7 @@ class SettingsPane extends Component {
 
   render() {
     return (
-      <TabPane tabId="3" className="p-3">
+      <TabPane tabId="4" className="p-3">
         <h6>Settings</h6>
 
         <div className="aside-options">
