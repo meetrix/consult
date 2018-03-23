@@ -49,8 +49,6 @@ export const ACTION_KEY ={
 export const ENDPOINTS = {
     PETSTORE: 'PetStore',
     CONSULT_API:'ConsultantApi'
-
-
 };
 export const API_ROUTE = {
     PETS: '/pets',
@@ -58,7 +56,7 @@ export const API_ROUTE = {
     UPDATE_SCHEDULE:'/schedule/update',
     USER:'/user/init',
     USER_EVENTS_FREE:'/user/events/free',
-    PROFILE:'/profile'
+    USER_PROFILE:'/user/profile'
 };
 export const ACTION_ATTR ={
     PAYLOAD:'payload',

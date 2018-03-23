@@ -1,6 +1,6 @@
 'use strict';
 
-const dynamodb = require('./dynamodb');
+const dynamodb = require('../dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
@@ -41,9 +41,7 @@ module.exports.update = (event, context, callback) => {
         ':lastname': data.lastname,
         ':address':data.address
       },
-      ExpressionAttributeNames: {
 
-      },
       UpdateExpression: 'SET firstname=:firstname,lastname=:lastname,address=:address,updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };

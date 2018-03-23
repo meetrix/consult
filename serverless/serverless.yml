@@ -114,10 +114,10 @@ functions:
             cors: true
 
   updateProfile:
-      handler: user/updateProfile.update
+      handler: user/profile/update.update
       events:
         - http:
-            path: profile
+            path: user/profile
             method: put
             cors: true
 
