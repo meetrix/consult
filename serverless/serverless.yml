@@ -113,6 +113,14 @@ functions:
             method: get
             cors: true
 
+  updateProfile:
+      handler: user/updateProfile.update
+      events:
+        - http:
+            path: profile
+            method: put
+            cors: true
+
   userCreate:
       handler: user/create.create
       events:

@@ -36,12 +36,13 @@ class UserProfile extends Component{
 
         this.state={
             collapse: true,
-            username:'',
-            role:'',
-            email:''
+            firstname: '',
+            lastname: '',
+            address: ''
         };
         console.log(this.props.user);
         this.toggle = this.toggle.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     toggle() {
@@ -49,7 +50,13 @@ class UserProfile extends Component{
     }
 
     _handleSubmit(){
-
+      console.log("id: "+this.props.user.initData.id);
+        this.props.actions.updateProfileInfo({
+          id:this.props.user.initData.id,
+          firstname:this.state.firstname,
+          lastname:this.state.lastname,
+          address:this.state.address,
+        });
         // console.log(this.state.user)
     }
 
@@ -77,27 +84,27 @@ class UserProfile extends Component{
                             <CardBody>
                               <FormGroup>
                                 <Label htmlFor="first-name">User Name</Label>
-                                <Input type="text" name="firstName" onChange={this.handleInputChange} value={this.props.user.username}/>
+                                <Input  plaintext name="userName">{this.props.user.username}</Input>
                               </FormGroup>
                               <FormGroup>
                                 <Label htmlFor="first-name">Role</Label>
-                                <Input type="text" name="role" onChange={this.handleInputChange} value={this.props.user.username}/>
+                                <Input plaintext>{this.props.user.attributes['custom:subRole']}</Input>
+                              </FormGroup>
+                              <FormGroup>
+                                <Label htmlFor="email">Email</Label>
+                                <Input plaintext>{this.props.user.attributes.email}</Input>
                               </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="first-name">First Name</Label>
-                                    {/*<Input type="text" id="first-name" onChange={this._onFirstNameChange.bind(this)} value={this.props.user.firstName}/>*/}
+                                    <Input type="text" id="first-name" name="firstName" onChange={this.handleInputChange} value={this.props.user.firstName}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="last-name">Last Name</Label>
-                                    {/*<Input type="text" id="last-name" onChange={this._onLastNameChange.bind(this)} value={this.props.user.lastName} />*/}
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label htmlFor="email">Email</Label>
-                                    <Input type="text" id="email" name="email" onChange={this.handleInputChange} value={this.props.user.attributes.email}/>
+                                    <Input type="text" id="last-name" name="lastName" onChange={this.handleInputChange} value={this.props.user.lastName} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="address">Address</Label>
-                                    {/*<Input type="text" id="address" onChange={this._onAddressChange.bind(this)} value={this.props.user.address}/>*/}
+                                    <Input type="text" id="address" name="address" onChange={this.handleInputChange} value={this.props.user.address}/>
                                 </FormGroup>
                             </CardBody>
                         </Card>
@@ -151,7 +158,7 @@ class UserProfile extends Component{
                             <CardBody>
                                 <FormGroup row>
                                     <Col md="3">
-                                        <Button type="submit" size="sm" color="primary" onClick={this._handleSubmit.bind(this)}><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                                        <Button type="submit" size="sm" color="primary" onClick={this._handleSubmit.bind(this)}><i className="fa fa-dot-circle-o"></i>Update Profile</Button>
                                         <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                                     </Col>
 
