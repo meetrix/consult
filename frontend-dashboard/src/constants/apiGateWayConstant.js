@@ -31,6 +31,7 @@ export const REDUX_API_GATEWAY_ACTIONS = {
     GET_FREE_EVENT_FROM_CONSULTANT_FAILE:'GET_FREE_EVENT_FROM_CONSULTANT_FAILE',
 
 
+
 };
 
 
@@ -55,7 +56,7 @@ export const API_ROUTE = {
     SCHEDULE:'/schedule',
     UPDATE_SCHEDULE:'/schedule/update',
     USER:'/user/init',
-    USER_EVENTS_FREE:'/user/events/free',
+    USER_EVENTS_FREE:'/user/events/free?id=/:id',
 
 };
 export const ACTION_ATTR ={

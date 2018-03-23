@@ -3,6 +3,24 @@
  */
 import {API, Auth} from 'aws-amplify';
 
+
+const pathParam=(payload,url)=>{
+  const payloadClone = {...payload},
+    pathTokens = url.split('/:');
+  if (url.indexOf('/:') !== 0) {
+    pathTokens.shift();
+  }
+
+  pathTokens.forEach((token) => {
+    const paramKey = token.split('/')[0];
+    url = url.replace(`/:${paramKey}`, `${payloadClone[paramKey]}`);
+
+    // Assume that same data will not be sent as both path param and query/body
+    delete payloadClone[paramKey];
+  });
+  return url
+
+}
 export const api = (method,endPoint,apiRoute,failureAction, successAction,token,payload)=>{
     console.log(method)
   console.log(endPoint)
@@ -10,6 +28,7 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
   console.log(options)
   console.log(failureAction)
   console.log(successAction)
+
   let options;
     switch (method){
       case 'GET':
@@ -19,8 +38,11 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
           },
            queryStringParameters:payload
         }
+        const url = pathParam(payload,apiRoute)
           return new Promise((resolve, reject) =>{
-          API.get(endPoint,apiRoute,options)
+            console.log(options)
+            console.log(url)
+          API.get(endPoint,url,options)
             .then(res => {
               console.log(res)
               console.log("schedulte event")
