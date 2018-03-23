@@ -1,0 +1,50 @@
+[
+    {
+      "createdAt": 1521693159225,
+      "consultee": "Charlotte White",
+      "end": "2015-04-13T22:30:00.000Z",
+      "id":  "0da1e290-2d8a-11e8-9fbb-d5e357ff519d",
+      "users":  [
+          {
+
+              "sub": "b4295be3-c675-4ca7-a553-c14b3cf46c16"
+
+          }
+        ],
+      "booked":false,
+      "start": "2015-04-13T19:00:00.000Z",
+      "title": "Test Event "
+    },
+    {
+      "createdAt": 1521692641619,
+      "consultee": "Charlie Brown",
+      "end": "2015-04-15T21:00:00.000Z",
+      "id": "d91da140-2d88-11e8-9fbb-d5e357ff519d",
+      "users":  [
+        {
+              "sub": "b4295be3-c675-4ca7-a553-c14b3cf46c16"
+
+          }
+        ],
+      "start": "2015-04-15T19:00:00.000Z",
+      "title":  "Test Event",
+      "booked":false
+    },
+    {
+      "createdAt": 1521643809411,
+
+      "consultee": "supun",
+      "end": "111111",
+      "id": "26d9dd30-2d17-11e8-b1b4-f504addc5927",
+      "users":  [
+          {
+              "sub": "06d48529-f186-41f8-8784-1b50a5ddc112",
+              "username":"tsupun"
+
+          }
+        ],
+      "start": "111112",
+      "title": "test",
+      "booked":false
+    }
+  ]

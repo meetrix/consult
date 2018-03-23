@@ -27,7 +27,9 @@ export const REDUX_ACTIONS = {
     SET_CONSULTS_DATA:"SET_CONSULTS_DATA",
 
     //timeSlotAction
-    CONSULTEE_TIME_SLOT_SELECT:'CONSULTEE_TIME_SLOT_SELECT'
+    CONSULTEE_TIME_SLOT_SELECT:'CONSULTEE_TIME_SLOT_SELECT',
+    //select consultant
+    SELECT_CONSULTANT:'SELECT_CONSULTANT'
 
 }
 //user profile update action
@@ -51,25 +53,16 @@ export const STORE_INITIATE_VALUE={
     AUTH_INITIATE:
     {
         user: {
-            // firstName:'supuh',
-            // lastName:'mad',
-            // userName: 'supun',
-            // email: 'supun.12@cse.mrt.ac.lk',
-            image:'/img/avatars/1.jpg',
-            attributes:{
-              'custom:subRole':"student",
-              email:"supunmadushanka12219@gmail.com",
-              email_verified:true,
-              phone_number:"+94711135012",
-              phone_number_verified:false,
-              },
-              username:'supun'
-            // roles:'consultee',
-            // school:'st.aloysius',
-            // address:'nakiyadeniya galle',
-            // district:'galle',
-            // stream:'a/l',
-            // subject:'maths'
+          image:'/img/avatars/1.jpg',
+          attributes:{
+            'custom:subRole':"student",
+            email:"supunmadushanka12219@gmail.com",
+            email_verified:true,
+            phone_number:"+94711135012",
+            phone_number_verified:false,
+            },
+          username:'supun',
+          initData:{relatedUsers:[]},
         },
         session: undefined,
         authHeader:undefined
