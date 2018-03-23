@@ -10,7 +10,8 @@ import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
 import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
-import SchedulerContainer from '../../containers/SchedulerContainer/SchedulerContainer'
+import SchedulerContainer from '../../containers/SchedulerContainer/SchedulerContainer';
+import AdminPanelContainer from '../../containers/AdminPanelContainer/AdminPanelContainer';
 
 import Dashboard from '../../views/Dashboard/';
 import Profile from '../UserContainer/UserProfileContainer'
@@ -56,6 +57,7 @@ class Full extends Component {
                   <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
+                  <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
                   <Route path="/dashboard" name="Dashboard" render={()=><Dashboard  auth={this.props.auth}/>} />
               </Switch>
             </Container>

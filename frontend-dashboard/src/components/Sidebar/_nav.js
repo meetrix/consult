@@ -25,6 +25,11 @@ export default {
             url: '/dashboard/profile',
             icon: 'icon-user'
         },
+        {
+            name: 'Admin Panel',
+            url: '/dashboard/admin_panel',
+            icon: 'icon-user'
+        }
 
     ]
 };
