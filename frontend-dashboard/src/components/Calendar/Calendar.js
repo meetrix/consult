@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 //import localizer from 'react-big-calendar/lib/localizers/globalize'
 import moment from 'moment'
 
-BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class Calendar extends Component{
   constructor() {
@@ -18,7 +18,10 @@ class Calendar extends Component{
       popupText: "NAN",
       start: "NAN",
       end: "NAN",
-      title: "NAN"
+      title: "Title",
+      consultee: "NAN",
+      editing: false,
+      id:null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -26,18 +29,22 @@ class Calendar extends Component{
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.onClickForm = this.onClickForm.bind(this);
+    this.editForm = this.editForm.bind(this);
+    this.toggleEditingFalse = this.toggleEditingFalse.bind(this);
+    this.toggleEditingTrue = this.toggleEditingTrue.bind(this);
+    this.onDeleteEvent = this.onDeleteEvent.bind(this);
   }
 
   componentDidMount(){
-    console.log("getScheduleEvents Start");
     this.props.actions.getScheduleEvents(
       {
+
         start:moment().toDate(),
         end:moment().add(4,"hours").toDate(),
         title:'example event'
       }
     )
-    console.log("getScheduleEvents End");
+
   }
 
   setPopupText(slotinfo){
@@ -47,6 +54,19 @@ class Calendar extends Component{
         end: moment(slotinfo.end)
       })
       this.toggle();
+  }
+
+  editForm(event){
+    console.log("event consultee "+event.id);
+    this.setState({
+      id: event.id,
+      start: moment(event.start),
+      end: moment(event.end),
+      title: event.title,
+      consultee:event.consultee
+    });
+    this.toggle();
+    this.toggleEditingTrue();
   }
 
   handleStartDateChange(date){
@@ -63,7 +83,12 @@ class Calendar extends Component{
   }
 
   onTitleChange(event){
+    console.log("title: "+ event.target.value);
     this.setState({title:event.target.value});
+  }
+
+  onConsulteeChange(newValue){
+    this.setState({consultee:newValue});
   }
 
   toggle() {
@@ -72,15 +97,53 @@ class Calendar extends Component{
     });
   }
 
+  toggleEditingTrue(){
+    this.setState({
+      editing: true
+    })
+  }
+
+  toggleEditingFalse(){
+    this.setState({
+      editing: false
+    })
+  }
+
+  onDeleteEvent(){
+    this.props.actions.deleteScheduleEvents({
+      id:this.state.id,
+    });
+
+    this.toggle();
+    this.toggleEditingFalse();
+  }
+
   onClickForm() {
     console.log("OnClickForm");
-    this.props.actions.postScheduleEvents({
-        start: this.state.start.toDate(),
-        end: this.state.end.toDate(),
-        title: this.state.title
-      }
-    )
+
+    if(this.state.editing){
+      console.log("id: "+typeof this.state.id);
+      this.props.actions.updateScheduleEvents({
+        id:this.state.id,
+        start:this.state.start.toDate(),
+        end:this.state.end.toDate(),
+        title:this.state.title,
+        consultee:this.state.consultee,
+      })
+    }else {
+      this.props.actions.postScheduleEvents({
+          start: this.state.start.toDate(),
+          end: this.state.end.toDate(),
+          title: this.state.title,
+          consultee: this.state.consultee
+        }
+      )
+    }
+
+    this.toggle();
+    this.toggleEditingFalse();
   }
+
 
 
    render(){
@@ -92,7 +155,7 @@ class Calendar extends Component{
                defaultView="week"
                scrollToTime={new Date(1970, 1, 1, 6)}
                defaultDate={new Date(2015, 3, 12)}
-               onSelectEvent={event => alert(event.title)}
+               onSelectEvent={event => this.editForm(event)}
                onSelectSlot={slotInfo =>
                    // alert(
                    //     `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
@@ -104,12 +167,13 @@ class Calendar extends Component{
            />
              <div>
 
-               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} onExit={this.toggleEditingFalse}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)}/>
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
                  </ModalBody>
                  <ModalFooter>
+                   {this.state.editing && <Button color="danger" onClick={this.onDeleteEvent}>Delete Event</Button>}
                    <Button color="primary" onClick={this.onClickForm}>Submit</Button>{' '}
                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                  </ModalFooter>
@@ -123,7 +187,8 @@ class Calendar extends Component{
 
 Calendar.propTypes = {
   events : PropTypes.array.isRequired,
-  actions:PropTypes.object.isRequired
+  actions:PropTypes.object.isRequired,
+  user:PropTypes.object.isRequired
 
 }
 

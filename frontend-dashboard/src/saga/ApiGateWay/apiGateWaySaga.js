@@ -15,19 +15,22 @@ import {api} from './api'
  * @param {string} payload - payload to be sent by ws client
  */
 function apiGateWayHandler({key, payload}) {
-    console.log("apiGatewayHandler");
-    console.log(key)
+    // console.log("apiGatewayHandler");
+    // console.log(key)
     let {method,endPoint, apiRoute, failureAction, successAction} = metadata[key];
-    return Auth.currentSession().then((idToken)=> {
-      console.log(idToken.idToken.jwtToken)
-      console.log(payload)
+    console.log( Auth)
+     return Auth.currentSession().then((idToken)=> {
+       console.log("current log")
+       console.log(idToken.idToken.jwtToken)
+      // console.log(payload)
       const options = {
         headers: {
           Authorization: idToken.idToken.jwtToken,
         },
         body:payload
       }
-      return api(method, endPoint, apiRoute, options, failureAction, successAction)
+
+       return api(method, endPoint, apiRoute, options, failureAction, successAction)
 
     });
 }
@@ -39,15 +42,15 @@ function apiGateWayHandler({key, payload}) {
 function* apiGateWayActionHandler(action) {
 
   try {
-    console.log("apiGateWayActionHandler");
-    console.log("action "+action.key);
+
     const reply = yield call(apiGateWayHandler, action);
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_SUCCESS});
-    console.log("reply")
-    console.log(reply)
+    // console.log("reply")
+    // console.log(reply)
     yield put({type: reply.successAction, payload: reply.res, args: {...action.payload, ...action.args}});
   } catch (reply) {
-    console.log(reply)
+      console.log("faile")
+     console.log(reply)
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_FAILURE});
     yield put({type: reply.failureAction, payload: reply.err, args: {...action.payload, ...action.args}});
   }

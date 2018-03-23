@@ -6,7 +6,7 @@ import {
   DropdownToggle,
   Dropdown
 } from 'reactstrap';
-
+import Amplify,{API, Auth} from 'aws-amplify';
 class HeaderDropdown extends Component {
 
   constructor(props) {
@@ -23,12 +23,15 @@ class HeaderDropdown extends Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
+  _logOut(){
+    Auth.signOut();
+  }
 
   dropAccnt() {
     return (
       <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle nav>
-          <img src={this.props.user.image} className="img-avatar" alt="admin@bootstrapmaster.com"/>
+          <img src="/img/avatars/1.jpg" className="img-avatar" alt="admin@bootstrapmaster.com"/>
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
@@ -43,7 +46,7 @@ class HeaderDropdown extends Component {
           <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
           <DropdownItem divider/>
           <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
-          <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
+          <DropdownItem onClick={this._logOut.bind(this)}><i className="fa fa-lock"></i> Logout</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

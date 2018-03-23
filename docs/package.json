@@ -19,3 +19,4 @@
     "start": "node app.js",
     "test": "swagger project test"
   }
+}

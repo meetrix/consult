@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
@@ -10,7 +10,7 @@ class ScheduleForm extends Component{
       <Form>
         <FormGroup>
           <Label for="exampleText">Title</Label>
-          <Input type="textarea" name="text" id="exampleText" onChange={this.props.onTitleChange}/>
+          <Input type="textarea" name="text" id="exampleText" onChange={this.props.onTitleChange} value={this.props.title}/>
         </FormGroup>
         <Label for="exampleDate">Start</Label>
         <DatePicker selected={this.props.start} onChange={this.props.handleStartDateChange} showTimeSelect timeFormat="HH:mm" dateFormat="LLL"/>
@@ -22,7 +22,7 @@ class ScheduleForm extends Component{
         </FormGroup>
         <FormGroup>
           <Label>Select Student</Label>
-        <ConsulteeSuggest/>
+        <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange}/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleSelect">Select Student</Label>
@@ -38,7 +38,12 @@ class ScheduleForm extends Component{
           <Label for="exampleText">Description</Label>
           <Input type="textarea" name="text" id="exampleText" />
         </FormGroup>
-
+        <FormGroup check>
+          <Label check>
+          <Input type="checkbox"/>
+            Booked
+          </Label>
+        </FormGroup>
       </Form>
     )
   }
