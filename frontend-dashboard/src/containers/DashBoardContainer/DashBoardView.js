@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Row,Col,Button,Form,FormGroup,Input,Label} from 'reactstrap'
 
-
-
 import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContainer'
 import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
 import VideoContainer from '../../containers/VideoContainer/VideoContainer'
@@ -17,7 +15,7 @@ import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTi
 
 
 
-class Dashboard extends Component {
+class DashBoardView extends Component {
 
 
   constructor(props){
@@ -29,7 +27,7 @@ class Dashboard extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      consultantId:null
+      consultantId: ''
     };
   }
 
@@ -38,6 +36,7 @@ class Dashboard extends Component {
 
   }
   _selectConsultant(event){
+    console.log("======================================")
     console.log(event.target.value)
     this.setState({consultantId:event.target.value})
   }
@@ -50,9 +49,18 @@ class Dashboard extends Component {
     });
   }
   _viewTimeSlot(){
-      if(this.state.consultantId!=null){
-        this.actions.selectConsultant({id:this.state.consultantId})
+    if(this.props.auth.user.initData.relatedUsers!=null){
+
+      if(this.state.consultantId!=''){
+
+        this.props.actions.getFreeEventFromConsultant({id:this.state.consultantId})
       }
+      else {
+
+        this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.initData.relatedUsers[0].id})
+      }
+
+    }
 
 
   }
@@ -76,7 +84,7 @@ class Dashboard extends Component {
 
 
       </Row>
-      let view ;
+    let view ;
     if(this.props.auth.user.attributes['custom:subRole'] == role.consultee){
       view = <Col>
 
@@ -93,27 +101,27 @@ class Dashboard extends Component {
       </Col>
     }
     else if(this.props.auth.user.attributes['custom:subRole'] == role.consultant){
-          view = <div className="animated fadeIn">
-            <Col>
-              <Row className="dash-board-component-wrapper">
-
-                {/*<MyConsultantsContainer/>*/}
-
-
-              </Row>
-              <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
-              <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
-              <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
-            </Col>
-          </div>
-    }
-      return(
-
+      view = <div className="animated fadeIn">
         <Col>
-          <Row>{consultantSelectElm}</Row>
-          <Row>{view}</Row>
+          <Row className="dash-board-component-wrapper">
+
+            {/*<MyConsultantsContainer/>*/}
+
+
+          </Row>
+          <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+          <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+          <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
         </Col>
-      );
+      </div>
+    }
+    return(
+
+      <Col>
+        <Row>{consultantSelectElm}</Row>
+        <Row>{view}</Row>
+      </Col>
+    );
 
 
 
@@ -121,14 +129,15 @@ class Dashboard extends Component {
 
 }
 
-Dashboard.propTypes = {
+DashBoardView.propTypes = {
   auth:PropTypes.shape({
     user:PropTypes.shape({
       attributes:PropTypes.shape({
         'custom:subRole':PropTypes.string.isRequired
       }),
-    initData:PropTypes.object
+      initData:PropTypes.object
     })
-  })
+  }),
+  actions:PropTypes.object.isRequired
 }
-export default connect(mapDispatchToProps)(Dashboard);
+export default DashBoardView;

@@ -3,9 +3,10 @@ service: serverless-rest-api-with-dynamodb
 frameworkVersion: ">=1.1.0 <2.0.0"
 
 plugins:
+  - serverless-webpack
   - serverless-dynamodb-local
   - serverless-offline
-  - serverless-webpack
+
 
 custom:
   dynamodb:
@@ -13,6 +14,15 @@ custom:
       port: 8000
       inMemory: true
       migrate: true
+      seed: true
+    seed:
+        domain:
+          sources:
+            - table: consultUser
+              sources: [./dynamodbTest/consultUserTable.json]
+            - table: serverless-rest-api-with-dynamodb-dev
+              sources: [./dynamodbTest/eventTable.json]
+
     migration:
       dir: offline/migrations
     webpack:
@@ -22,9 +32,11 @@ provider:
   name: aws
   region: us-west-2
   runtime: nodejs6.10
+  stage: dev
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
     CONSULT_TABLE: consultUser
+
 
   iamRoleStatements:
     - Effect: Allow
@@ -121,12 +133,27 @@ functions:
             method: post
             cors: true
   testAuthToken:
-        handler: scheduler/test.create
-        events:
-          - http:
-              path: scheduler/test
-              method: post
-              cors: true
+      handler: scheduler/test.create
+      events:
+        - http:
+            path: scheduler/test
+            method: post
+            cors: true
+  getAuthUserInitData:
+      handler: user/AuthUserInitData.get
+      events:
+        - http:
+            path: user/init
+            method: get
+            cors: true
+  getFreeEventsFromUser:
+      handler: user/userEventsFree.get
+      events:
+        - http:
+            path: user/events/free
+            method: get
+            cors: true
+
 
 
 resources:

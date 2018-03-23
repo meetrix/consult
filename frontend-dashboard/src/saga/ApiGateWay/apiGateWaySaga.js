@@ -23,14 +23,15 @@ function apiGateWayHandler({key, payload}) {
        console.log("current log")
        console.log(idToken.idToken.jwtToken)
       // console.log(payload)
-      const options = {
-        headers: {
-          Authorization: idToken.idToken.jwtToken,
-        },
-        body:payload
-      }
+       let token = idToken.idToken.jwtToken
+      // const options = {
+      //   headers: {
+      //     Authorization: idToken.idToken.jwtToken,
+      //   },
+      //   body:payload
+      // }
 
-       return api(method, endPoint, apiRoute, options, failureAction, successAction)
+       return api(method, endPoint, apiRoute, failureAction, successAction,token,payload)
 
     });
 }

@@ -3,17 +3,46 @@
  */
 import {API, Auth} from 'aws-amplify';
 
-export const api = (method,endPoint,apiRoute,options,failureAction, successAction)=>{
+
+const pathParam=(payload,url)=>{
+  const payloadClone = {...payload},
+    pathTokens = url.split('/:');
+  if (url.indexOf('/:') !== 0) {
+    pathTokens.shift();
+  }
+
+  pathTokens.forEach((token) => {
+    const paramKey = token.split('/')[0];
+    url = url.replace(`/:${paramKey}`, `${payloadClone[paramKey]}`);
+
+    // Assume that same data will not be sent as both path param and query/body
+    delete payloadClone[paramKey];
+  });
+  return url
+
+}
+export const api = (method,endPoint,apiRoute,failureAction, successAction,token,payload)=>{
     console.log(method)
   console.log(endPoint)
   console.log(apiRoute)
   console.log(options)
   console.log(failureAction)
   console.log(successAction)
+
+  let options;
     switch (method){
       case 'GET':
+         options = {
+          headers: {
+            Authorization: token,
+          },
+           queryStringParameters:payload
+        }
+        const url = pathParam(payload,apiRoute)
           return new Promise((resolve, reject) =>{
-          API.get(endPoint,apiRoute,options)
+            console.log(options)
+            console.log(url)
+          API.get(endPoint,url,options)
             .then(res => {
               console.log(res)
               console.log("schedulte event")
@@ -32,6 +61,12 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
       break;
 
       case 'POST':
+         options = {
+          headers: {
+            Authorization: token,
+          },
+          body:payload
+        }
         return new Promise((resolve, reject) =>{
           API.post(endPoint,apiRoute,options)
             .then(res => {
@@ -52,6 +87,12 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
       break;
 
       case 'PUT':
+         options = {
+          headers: {
+            Authorization: token,
+          },
+          body:payload
+        }
         return new Promise((resolve, reject) =>{
           API.put(endPoint,apiRoute,options)
             .then(res => {
@@ -72,6 +113,12 @@ export const api = (method,endPoint,apiRoute,options,failureAction, successActio
         break;
 
       case 'DELETE':
+         options = {
+          headers: {
+            Authorization: token,
+          },
+          queryStringParameters:payload
+        }
         return new Promise((resolve, reject) =>{
           API.del(endPoint,apiRoute,options)
             .then(res => {

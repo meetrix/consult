@@ -10,17 +10,17 @@ import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
 import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
-import SchedulerContainer from '../../containers/SchedulerContainer/SchedulerContainer'
+import SchedulerContainer from '../../containers/SchedulerContainer/SchedulerContainer';
 
-import Dashboard from '../../views/Dashboard/';
+
+import DashBoardContainer from '../DashBoardContainer/DashBoardContainer';
 import Profile from '../UserContainer/UserProfileContainer'
 import  Account from '../UserContainer/UserAccountContainer'
 import SessionListContainer from '../../components/Session/session_list_container'
 
 
-import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
-
-import {actionCreatorFactory} from '../../actions/actionCreator'
+import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant';
+import {actionCreatorFactory} from '../../actions/actionCreator';
 
 const mapStateToProps=(state)=>{
     return {
@@ -42,6 +42,10 @@ class Full extends Component {
         console.log("Full")
         console.log(this.props)
     }
+  handleNewUserMessage (newMessage)  {
+    console.log(`New message incomig! ${newMessage}`);
+    // Now send the message throught the backend API
+  }
   render() {
     return (
       <div className="app">
@@ -56,7 +60,7 @@ class Full extends Component {
                   <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
-                  <Route path="/dashboard" name="Dashboard" render={()=><Dashboard  auth={this.props.auth}/>} />
+                  <Route path="/dashboard" name="Dashboard Container" component={DashBoardContainer} />
               </Switch>
             </Container>
           </main>
