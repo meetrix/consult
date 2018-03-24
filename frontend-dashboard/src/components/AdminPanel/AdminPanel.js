@@ -16,9 +16,6 @@ class AdminPanel extends Component{
       <div>
         <h2> Teachers </h2>
       <ListGroup>
-        {/*{this.props.admin.consultants.map(consultant => {*/}
-          {/**/}
-        {/*})}*/}
         <ListGroupItem disabled tag="a" href="#">Cras justo odio</ListGroupItem>
         <ListGroupItem tag="a" href="#">Dapibus ac facilisis in</ListGroupItem>
         <ListGroupItem tag="a" href="#">Morbi leo risus</ListGroupItem>

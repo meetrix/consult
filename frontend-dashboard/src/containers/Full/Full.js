@@ -63,10 +63,10 @@ class Full extends Component {
                   <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={Profile} />
                   <Route exact path="/dashboard/billing" name="Test Component" component={Account} />
-
+                  <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
                   <Route path="/dashboard" name="Dashboard Container" component={DashBoardContainer} />
 
-                  <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
+
 
               </Switch>
             </Container>
