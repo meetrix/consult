@@ -58,8 +58,9 @@ export default (state = scheduler, action) => {
          startDate = moment(item.start).toDate();
          endDate = moment(item.end).toDate();
          title = item.title;
+         users = item.users || [];
          if(item.consultee) consultee = item.consultee;
-         return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee}
+         return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee,users:users}
        });
       return {
         ...state,
@@ -132,6 +133,13 @@ export default (state = scheduler, action) => {
       return{
         ...state,
         events:convertEvents
+
+      }
+    case REDUX_API_GATEWAY_ACTIONS.SCHEDULE_TIME_SLOT_CONSULTEE_SUCCESS:
+      const updatedEvents = state.events.filter(event => event.id != action.args.event.id);
+      return{
+        ...state,
+        events: updatedEvents
 
       }
     default:
