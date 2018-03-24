@@ -62,42 +62,42 @@ provider:
 
 functions:
   create:
-    handler: scheduler/create.create
+    handler: event/create.create
     events:
       - http:
-          path: schedule
+          path: event
           method: post
           cors: true
 
   list:
-    handler: scheduler/list.list
+    handler: event/list.list
     events:
       - http:
-          path: schedule
+          path: event
           method: get
           cors: true
 
   get:
-    handler: scheduler/get.get
+    handler: event/get.get
     events:
       - http:
-          path: schedule/{id}
+          path: event/{id}
           method: get
           cors: true
 
-  updateScheduler:
-      handler: scheduler/update.update
+  updateevent:
+      handler: event/update.update
       events:
         - http:
-            path: schedule
+            path: event
             method: put
             cors: true
 
   deleteSchedular:
-      handler: scheduler/delete.delete
+      handler: event/delete.delete
       events:
         - http:
-            path: schedule
+            path: event
             method: delete
             cors: true
 
@@ -133,10 +133,10 @@ functions:
             method: put
             cors: true
   testAuthToken:
-      handler: scheduler/test.create
+      handler: event/test.create
       events:
         - http:
-            path: scheduler/test
+            path: event/test
             method: post
             cors: true
   getAuthUserInitData:
@@ -154,7 +154,7 @@ functions:
             method: get
             cors: true
   eventSchedule:
-        handler: scheduler/eventSchedule.update
+        handler: event/eventSchedule.update
         events:
           - http:
               path: user/event/schedule
