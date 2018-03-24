@@ -58,6 +58,7 @@ export default (state = scheduler, action) => {
          startDate = moment(item.start).toDate();
          endDate = moment(item.end).toDate();
          title = item.title;
+         users = item.users || [];
          if(item.consultee) consultee = item.consultee;
          return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee}
        });

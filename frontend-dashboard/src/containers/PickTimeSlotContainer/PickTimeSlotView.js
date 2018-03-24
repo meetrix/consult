@@ -21,13 +21,13 @@ class PickTimeSlotView extends Component{
 
   }
   componentDidMount(){
-    this.props.actions.getScheduleEvents(
-      {
-        start:moment().toDate(),
-        end:moment().add(4,"hours").toDate(),
-        title:'example event'
-      }
-    )
+    // this.props.actions.getScheduleEvents(
+    //   {
+    //     start:moment().toDate(),
+    //     end:moment().add(4,"hours").toDate(),
+    //     title:'example event'
+    //   }
+    // )
 
   }
   getAvailableTimeSlots(){
@@ -50,7 +50,14 @@ class PickTimeSlotView extends Component{
         }})
     }
     else {
-      this.props.actions.scheduleConsult({timeSlot:this.props.scheduler.consulteeSelectSlot.timeSlot,user:this.props.user});
+      this.props.actions.scheduleConsult({
+          event:{
+            id:this.props.scheduler.consulteeSelectSlot.timeSlot.id
+          },
+          user:{
+          id:this.props.user.initData.id,
+          email:this.props.user.attributes.email
+        }});
     }
   }
   render(){

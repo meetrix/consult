@@ -161,7 +161,13 @@ functions:
             path: user/events/free
             method: get
             cors: true
-
+  eventSchedule:
+        handler: scheduler/eventSchedule.update
+        events:
+          - http:
+              path: user/event/schedule
+              method: put
+              cors: true
   getConsultants:
     handler:  admin/consultant/list.list
     events:
