@@ -132,14 +132,6 @@ functions:
             path: user/profile
             method: put
             cors: true
-
-  userCreate:
-      handler: user/create.create
-      events:
-        - http:
-            path: user
-            method: post
-            cors: true
   testAuthToken:
       handler: scheduler/test.create
       events:
@@ -148,10 +140,10 @@ functions:
             method: post
             cors: true
   getAuthUserInitData:
-      handler: user/AuthUserInitData.get
+      handler: user/get.get
       events:
         - http:
-            path: user/init
+            path: user
             method: get
             cors: true
   getFreeEventsFromUser:

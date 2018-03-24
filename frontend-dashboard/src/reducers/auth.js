@@ -49,11 +49,11 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
 
       case REDUX_AWS_AMPLIFY_ACTIONS.GET_AUTH_USER_SUCCESS:{
         console.log(action)
+
         return {
           ...state,
           user:{
-            ...state.user,
-            ...action.payload
+            phoneNumber:payload.attributes.phone_number
 
           }
         };
