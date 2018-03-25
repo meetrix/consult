@@ -16,13 +16,8 @@ class DashBoardView extends Component {
 
   constructor(props){
     super(props)
-    this.state={
-      selectConsultant:undefined
-
-    }
-
     this.state = {
-      consultantId: ''
+      consultantId: undefined
     };
   }
 
@@ -42,9 +37,7 @@ class DashBoardView extends Component {
       else {
         this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.relatedUsers[0].id})
       }
-
     }
-
 
   }
   render() {
@@ -52,8 +45,8 @@ class DashBoardView extends Component {
     let consultantSelectElm = null;
     let view = null;
     if(this.props.auth.user.role== role.consultee){
-      view = <Col>
-
+      view =
+      <Col>
         <Row>
           <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
         </Row>
@@ -66,40 +59,37 @@ class DashBoardView extends Component {
         </Row>
       </Col>
 
+     consultantSelectElm =
+      <Row>
+        <Form >
+          <FormGroup>
+            <Label for="exampleSelectMulti">Select Multiple</Label>
+            <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
 
-       consultantSelectElm =
-        <Row>
-          <Form >
-            <FormGroup>
-              <Label for="exampleSelectMulti">Select Multiple</Label>
-              <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
+              {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
 
-                {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
-
-                  <option value={consultant.id} key={index}>{consultant.email} </option>
-                ):null}
-              </Input>
-            </FormGroup>
-            <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
-          </Form>
+                <option value={consultant.id} key={index}>{consultant.email} </option>
+              ):null}
+            </Input>
+          </FormGroup>
+          <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
+        </Form>
 
 
-        </Row>
+      </Row>
     }
     else if(this.props.auth.user.role == role.consultant){
-      view = <div className="animated fadeIn">
-        <Col>
-          <Row className="dash-board-component-wrapper">
-
-            {/*<MyConsultantsContainer/>*/}
-
-
-          </Row>
-          <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
-          <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
-          <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
-        </Col>
-      </div>
+      view =
+        <div className="animated fadeIn">
+          <Col>
+            <Row className="dash-board-component-wrapper">
+              {/*<MyConsultantsContainer/>*/}
+            </Row>
+            <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+            <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+            <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
+          </Col>
+        </div>
     }
     return(
 
