@@ -36,8 +36,8 @@ class UserProfile extends Component{
 
         this.state={
             collapse: true,
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             address: ''
         };
         console.log(this.props.user);
@@ -53,8 +53,8 @@ class UserProfile extends Component{
       console.log("id: "+this.props.user.initData.id);
         this.props.actions.updateProfileInfo({
           id:this.props.user.initData.id,
-          firstname:this.state.firstname,
-          lastname:this.state.lastname,
+          firstname:this.state.firstName,
+          lastname:this.state.lastName,
           address:this.state.address,
         });
         // console.log(this.state.user)
