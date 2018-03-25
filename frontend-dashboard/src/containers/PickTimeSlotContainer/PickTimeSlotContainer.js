@@ -1,14 +1,19 @@
 /**
  * Created by supun on 16/03/18.
  */
+//core library
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import PickTimeSlotView from './PickTimeSlotView'
-import {REDUX_ACTIONS as ACTIONS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
-import {REDUX_API_GATEWAY_ACTIONS,ACTION_KEY as API_GATEWAY_KEYS } from '../../constants/apiGateWayConstant'
+//view
+import PickTimeSlotView from './PickTimeSlotView';
 
-import {actionCreateStoreUpdateFactory,actionCreateApiGateWayFactory} from '../../actions/actionCreator'
+//constant
+import {REDUX_ACTIONS as ACTIONS,ACTION_ATTR as ATTRS  }from '../../constants/constant';
+import {ACTION_KEY as API_GATEWAY_KEYS,ACTION_ATTR as API_GATEWAY_ATTRS  }from '../../constants/apiGateWayConstant';
+
+//action creator
+import {actionCreateStoreUpdateFactory,actionCreateApiGateWayFactory} from '../../actions/actionCreator';
 
 function mapStateToProps(state){
   return {
@@ -20,9 +25,8 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => ({
   actions:{
     selectTimeSlot:bindActionCreators(actionCreateStoreUpdateFactory(ACTIONS.CONSULTEE_TIME_SLOT_SELECT, ATTRS.PAYLOAD,ATTRS.DATA),dispatch),
-    scheduleConsult:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.SCHEDULE_TIME_SLOT_CONSULTEE, ATTRS.PAYLOAD),dispatch),
-    getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, ATTRS.PAYLOAD),dispatch),
-    //getFreeEventFromConsultant:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_FREE_EVENT_FROM_CONSULTANT, ATTRS.PAYLOAD),dispatch),
+    scheduleConsultant:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.SCHEDULE_TIME_SLOT_CONSULTEE, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
+    getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
   }
 })
 

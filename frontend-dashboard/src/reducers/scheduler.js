@@ -114,14 +114,6 @@ export default (state = scheduler, action) => {
       }
     }
 
-    case REDUX_ACTIONS.CONSULTEE_TIME_SLOT_SELECT:
-      return{
-        ...state,
-        consulteeSelectSlot:{
-          timeSlot: action.payload.selectSlot,
-          isTimeSlotSelect: action.data.isTimeSlotSelect
-        }
-      }
     case REDUX_API_GATEWAY_ACTIONS.GET_FREE_EVENT_FROM_CONSULTANT_SUCCESS:
       convertEvents = action.payload.map((item)=>{
         startDate = moment(item.start).toDate();

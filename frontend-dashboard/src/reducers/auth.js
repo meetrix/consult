@@ -73,6 +73,17 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
 
           }
         };
+      case REDUX_ACTIONS.CONSULTEE_TIME_SLOT_SELECT:
+        return{
+          ...state,
+          user: {
+            ...state.user,
+            selectSlot: {
+                timeSlot: action.payload.selectSlot,
+                isTimeSlotSelect: action.data.isTimeSlotSelect
+            }
+          }
+        }
 
       default:
           return state;

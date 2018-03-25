@@ -5,7 +5,11 @@ export const STORE_INITIATE_VALUE={
         email:undefined,
         role:undefined,
         phone_number:undefined,
-        relatedUsers:[]
+        relatedUsers:[],
+        selectSlot:{
+          isTimeSlotSelect:undefined,
+          timeSlot:undefined
+        }
 
       }
     }
