@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Link, Switch, Route, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import PropTypes from 'prop-types'
+
 
 import {Container} from 'reactstrap';
 import Header from '../../components/Header/';
@@ -22,33 +20,13 @@ import  Account from '../UserContainer/UserAccountContainer'
 import SessionListContainer from '../../components/Session/session_list_container'
 
 
-import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant';
-import {actionCreatorFactory} from '../../actions/actionCreator';
-
-const mapStateToProps=(state)=>{
-    return {
-        auth: state.auth
-    }
-
-}
-const mapDispatchToProps = (dispatch) => ({
-    actions:{signup:bindActionCreators(actionCreatorFactory(KEYS.SIGNUP, ATTRS.PAYLOAD),dispatch)
-    }
-})
 
 class Full extends Component {
 
     constructor(props){
         super(props)
     }
-    componentDidMount(){
-        console.log("Full")
-        console.log(this.props)
-    }
-  handleNewUserMessage (newMessage)  {
-    console.log(`New message incomig! ${newMessage}`);
-    // Now send the message throught the backend API
-  }
+
   render() {
     return (
       <div className="app">
@@ -84,7 +62,5 @@ class Full extends Component {
     );
   }
 }
-Full.propTypes = {
-  auth:PropTypes.object.isRequired,
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Full);
+
+export default Full;
