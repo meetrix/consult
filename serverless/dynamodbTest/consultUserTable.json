@@ -1,0 +1,53 @@
+ [
+    {
+      "phone_number":  "+94711135012",
+      "email":  "supunmadushanka12219@gmail.com",
+      "events":  [
+
+            "26d9dd30-2d17-11e8-b1b4-f504addc5927"
+        ],
+      "id":  "06d48529-f186-41f8-8784-1b50a5ddc112",
+      "updatedAt":  1521711953440,
+      "relatedUsers": [
+
+        {
+          "email": "supunmadushanka12219@gmail.com",
+          "id": "40e9c0b4-e037-4487-a76b-0efb69d2044c"
+        }
+      ]
+    },
+    {
+      "phone_number":  "+94717601024",
+      "email": "yasithph@live.com",
+      "events":[
+          "0da1e290-2d8a-11e8-9fbb-d5e357ff519d","d91da140-2d88-11e8-9fbb-d5e357ff519d"
+        ],
+      "id":  "b4295be3-c675-4ca7-a553-c14b3cf46c16",
+      "updatedAt": 1521693159280,
+      "relatedUsers": [
+
+        {
+          "email": "supunmadushanka12219@gmail.com",
+          "id": "40e9c0b4-e037-4487-a76b-0efb69d2044c"
+        }
+      ]
+
+    },
+   {
+     "phone_number": "+94711135012",
+     "email": "supunmadushanka12219@gmail.com",
+     "id": "40e9c0b4-e037-4487-a76b-0efb69d2044c",
+     "events": [],
+     "relatedUsers": [
+       {
+         "email": "yasithph@live.com",
+         "id": "b4295be3-c675-4ca7-a553-c14b3cf46c16"
+       },
+       {
+         "email": "supunmadushanka12219@gmail.com",
+         "id": "06d48529-f186-41f8-8784-1b50a5ddc112"
+       }
+     ]
+   }
+
+ ]

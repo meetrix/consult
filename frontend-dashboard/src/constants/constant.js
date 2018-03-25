@@ -27,7 +27,9 @@ export const REDUX_ACTIONS = {
     SET_CONSULTS_DATA:"SET_CONSULTS_DATA",
 
     //timeSlotAction
-    CONSULTEE_TIME_SLOT_SELECT:'CONSULTEE_TIME_SLOT_SELECT'
+    CONSULTEE_TIME_SLOT_SELECT:'CONSULTEE_TIME_SLOT_SELECT',
+    //select consultant
+    SELECT_CONSULTANT:'SELECT_CONSULTANT'
 
 }
 //user profile update action
@@ -60,7 +62,7 @@ export const STORE_INITIATE_VALUE={
             phone_number_verified:false,
             },
           username:'supun',
-          initData:{},
+          initData:{relatedUsers:[]},
         },
         session: undefined,
         authHeader:undefined

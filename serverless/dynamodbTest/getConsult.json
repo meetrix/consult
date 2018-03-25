@@ -1,5 +1,11 @@
 
 {
-"id": {"S": "b4295be3-c675-4ca7-a553-c14b3cf46c16"}
-
+  "serverless-rest-api-with-dynamodb-dev": {
+    "Keys": [
+      {
+          "id": {"S": "0da1e290-2d8a-11e8-9fbb-d5e357ff519d"}
+      }
+    ],
+    "ProjectionExpression":"title"
+  }
 }

@@ -10,9 +10,9 @@
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
+  /* MainContainer width */
   height: 100%;
-  /* Full height */
+  /* MainContainer height */
   overflow: auto;
   /* Enable scroll if needed */
   background-color: black;

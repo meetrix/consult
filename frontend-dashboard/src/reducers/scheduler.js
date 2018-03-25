@@ -58,8 +58,9 @@ export default (state = scheduler, action) => {
          startDate = moment(item.start).toDate();
          endDate = moment(item.end).toDate();
          title = item.title;
+         users = item.users || [];
          if(item.consultee) consultee = item.consultee;
-         return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee}
+         return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee,users:users}
        });
       return {
         ...state,
@@ -121,8 +122,26 @@ export default (state = scheduler, action) => {
           isTimeSlotSelect: action.data.isTimeSlotSelect
         }
       }
+    case REDUX_API_GATEWAY_ACTIONS.GET_FREE_EVENT_FROM_CONSULTANT_SUCCESS:
+      convertEvents = action.payload.map((item)=>{
+        startDate = moment(item.start).toDate();
+        endDate = moment(item.end).toDate();
+        title = item.title;
+        if(item.consultee) consultee = item.consultee;
+        return event = {id:item.id,start:startDate,end:endDate,title:title,consultee:consultee}
+      });
+      return{
+        ...state,
+        events:convertEvents
 
-      break;
+      }
+    case REDUX_API_GATEWAY_ACTIONS.SCHEDULE_TIME_SLOT_CONSULTEE_SUCCESS:
+      const updatedEvents = state.events.filter(event => event.id != action.args.event.id);
+      return{
+        ...state,
+        events: updatedEvents
+
+      }
     default:
       return state;
   }

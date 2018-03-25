@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {TabContent, TabPane, Nav, NavItem, NavLink, Progress, Label, Input, Badge} from 'reactstrap';
 import classnames from 'classnames';
-import Calendar from '../../components/Calendar/Calendar';
-import DayPicker from 'react-day-picker';
+import SummaryPane from './SummaryPane';
+import MessagePane from './MessagePane';
+import SettingsPane from './SettingsPane';
+import NotificationPane from "./NotificationPane";
 
 class Aside extends Component {
     constructor(props) {
@@ -32,36 +34,34 @@ class Aside extends Component {
                     <i className="icon-list"></i>
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink className={classnames({ active: this.state.activeTab === '2' })}
+                           onClick={() => { this.toggle('2'); }}>
+                    <i className="icon-speech"></i>
+                    <Badge pill color="danger">5</Badge>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className={classnames({ active: this.state.activeTab === '3' })}
+                           onClick={() => { this.toggle('3'); }}>
+                    <i className="icon-bell"></i>
+                    <Badge pill color="danger">5</Badge>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className={classnames({ active: this.state.activeTab === '4' })}
+                           onClick={() => { this.toggle('4'); }}>
+                    <i className="icon-settings"></i>
+                  </NavLink>
+                </NavItem>
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1">
-                    <div className="card text-white bg-primary text-center">
-                        <div className="card-body">
-                            <h3>Next Class</h3>
-                            <p><Badge>24th March</Badge></p>
-                            <small><b>Time Left</b></small>
-                            <h4><span className="label label-default">04 : 49 hours</span></h4>
-                        </div>
-                    </div>
-
-                    <div className="card text-white bg-primary text-center">
-                        <div className="card-header">Today</div>
-                        <div className="card-body">
-                            <span className="fa-stack fa-3x">
-                                <i className="fa fa-calendar-o fa-stack-2x"/>
-                                <span className="fa-stack-1x calendar-text">27</span>
-                            </span>
-                            <p>No Classes<br/>Home Work</p>
-                        </div>
-                    </div>
-
-
-                    <div className="card text-white bg-primary text-center">
-                        {/*<div className="card-body">*/}
-                            <DayPicker />
-                        {/*</div>*/}
-                    </div>
-                </TabPane>
+                <SummaryPane/>
+                <MessagePane
+                  messages={[{id: '1231223', author: 'John', text: 'test text'}]}
+                />
+                <NotificationPane/>
+                <SettingsPane/>
               </TabContent>
             </aside>
         )

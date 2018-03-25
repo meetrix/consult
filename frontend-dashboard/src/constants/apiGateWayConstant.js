@@ -36,6 +36,7 @@ export const REDUX_API_GATEWAY_ACTIONS = {
     GET_CONSULTANTS_SUCCESS:'GET_CONSULTANTS_SUCCESS',
     GET_CONSULTANTS_FAIL:'GET_CONSULTANTS_FAIL'
 
+
 };
 
 
@@ -58,11 +59,12 @@ export const ENDPOINTS = {
 export const API_ROUTE = {
     PETS: '/pets',
     SCHEDULE:'/schedule',
-    UPDATE_SCHEDULE:'/schedule/update',
+    EVENT_SCHEDULE:'/user/event/schedule',
     USER:'/user/init',
-    USER_EVENTS_FREE:'/user/events/free',
+    USER_EVENTS_FREE:'/user/events/free?id=/:id',
     USER_PROFILE:'/user/profile',
     ADMIN_CONSULTANT:'/admin/consultant'
+
 };
 export const ACTION_ATTR ={
     PAYLOAD:'payload',
