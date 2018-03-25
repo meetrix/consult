@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 
 //React Component
 import ConsultantsView from './ConsultantsView';
-import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant';
+import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/apiSagaConstant';
 import {ACTION_KEY as API_GATWAY_KEYS,ACTION_ATTR as API_GATEWAY_ATTRS  }from '../../constants/apiGateWayConstant';
 import {actionCreatorFactory,actionCreateApiGateWayFactory} from '../../actions/actionCreator';
 

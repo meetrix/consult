@@ -2,7 +2,7 @@
  * Created by supun on 12/03/18.
  */
 import {REDUX_API_GATEWAY_ACTIONS} from '../constants/apiGateWayConstant';
-import {REDUX_ACTIONS} from "../constants/constant";
+import {REDUX_ACTIONS} from "../constants/apiSagaConstant";
 
 //import events from '../components/Calendar/example_events';
 import moment from 'moment';

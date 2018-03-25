@@ -1,5 +1,5 @@
 //constant
-import {REDUX_ACTIONS} from '../constants/constant';
+import {REDUX_ACTIONS} from '../constants/apiSagaConstant';
 import {REDUX_API_GATEWAY_ACTIONS} from '../constants/apiGateWayConstant'
 import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant'
 import {STORE_INITIATE_VALUE} from '../constants/initialstore'

@@ -12,7 +12,7 @@ import {actionCreateApiGateWayFactory, actionCreateStoreUpdateFactory} from '../
 
 //events json
 import events from '../../components/Calendar/example_events';
-import {ACTION_ATTR, SCHEDULAR_FORM} from "../../constants/constant";
+import {ACTION_ATTR, SCHEDULAR_FORM} from "../../constants/apiSagaConstant";
 
 function mapStateToProps(state){
   console.log(state.scheduler);

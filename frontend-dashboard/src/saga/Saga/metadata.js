@@ -1,7 +1,7 @@
 /**
  * Created by supun on 10/01/18.
  */
-import {ACTION_KEY as KEYS, REDUX_ACTIONS as ACTIONS, URLS, HTTP_METHODS, FETCH_KEYS} from '../constants/constant';
+import {ACTION_KEY as KEYS, REDUX_ACTIONS as ACTIONS, URLS, HTTP_METHODS, FETCH_KEYS} from '../../constants/apiSagaConstant';
 
 
 let metadata = {};

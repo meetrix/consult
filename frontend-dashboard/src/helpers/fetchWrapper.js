@@ -1,4 +1,4 @@
-import {HTTP_CODES, TIMEOUTS} from '../constants/constant';
+import {HTTP_CODES, TIMEOUTS} from '../constants/apiSagaConstant';
 
 export default (url, options) =>
     new Promise((resolve, reject) => {
