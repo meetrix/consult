@@ -8,15 +8,6 @@ import {STORE_INITIATE_VALUE} from '../constants/initialstore'
 import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant';
 import {REDUX_API_GATEWAY_ACTIONS} from "../constants/apiGateWayConstant";
 
-const createUser = (action)=>{
-
-  let user = {};
-  let userFromDb = action.payload.Item;
-  user['role'] = userFromDb['custom:subRole']
-  return user;
-
-};
-
 export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_LOGIN_DATA: {
@@ -78,20 +69,12 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
         console.log(action)
         return {
           ...state,
-          user:{
-            ...state.user,
-            initData:{
-              ...state.user.initData,...action.payload.Item
-
-            },
+          user:action.payload.Item,
 
           }
         };
 
-
-      }
-
-        default:
-            return state;
+      default:
+          return state;
     }
 };

@@ -78,7 +78,7 @@ class DashBoardView extends Component {
       view = <Col>
 
         <Row>
-          <h3>Hi {this.capitalizeFirstLetter(this.props.auth.user.username)} !</h3>
+          <h3>Hi {this.capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
         </Row>
         <Row>
           <h6>Let's schedule your class</h6>
