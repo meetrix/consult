@@ -1,74 +1,73 @@
 /**
  * Created by supun on 16/03/18.
  */
+//core library
 import React,{Component} from 'react';
 import {Col,Row,Card,CardTitle,Button,Alert} from 'reactstrap'
-import ReactList from 'react-list';
-import TimeSlot from '../../components/TimeSlot/TimeSlot'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import ReactList from 'react-list';
+
+//component
+import TimeSlot from '../../components/TimeSlot/TimeSlot'
+
+
 class PickTimeSlotView extends Component{
 
   constructor(props){
     super(props)
     this.state = {
-      availabelTimeSlots:[],
       error:{
-        message:'',
+        message:undefined,
         isError:false
       }
     };
 
   }
-  componentDidMount(){
-    // this.props.actions.getScheduleEvents(
-    //   {
-    //     start:moment().toDate(),
-    //     end:moment().add(4,"hours").toDate(),
-    //     title:'example event'
-    //   }
-    // )
-
-  }
-  getAvailableTimeSlots(){
+  _getAvailableTimeSlots(){
     let availabelTimeSlots = []
     if(this.props.scheduler.events!= undefined) {
       this.props.scheduler.events.map((event, index) =>{
         availabelTimeSlots.push(<TimeSlot key={index} actions={this.props.actions}event={event}/>)}
       )
 
-
     }
     return availabelTimeSlots
   }
 
   _scheduleTimeSlot(){
-    if(!this.props.scheduler.consulteeSelectSlot.isTimeSlotSelect){
+    if(!this.props.user.selectSlot.isTimeSlotSelect){
         this.setState({error:{
           message:'Select a Time Slot',
           isError:true
         }})
     }
     else {
-      this.props.actions.scheduleConsult({
+      this.props.actions.scheduleConsultant({
           event:{
-            id:this.props.scheduler.consulteeSelectSlot.timeSlot.id
+            id:this.props.user.selectSlot.timeSlot.id
           },
           user:{
-          id:this.props.user.initData.id,
-          email:this.props.user.attributes.email
+          id:this.props.user.id,
+          email:this.props.user .email
         }});
     }
   }
+
   render(){
-    let error
-    if(this.state.error.isError && !this.props.scheduler.consulteeSelectSlot.isTimeSlotSelect){
+
+    //check consultant is check time slot
+    let error;
+    if(this.state.error.isError && !this.props.user.selectSlot.isTimeSlotSelect){
       error = <Alert color="danger">{this.state.error.message}</Alert>
     }
     else {
       error =null;
     }
-    let timeSlot = this.getAvailableTimeSlots()
+
+    //get time slot components
+    let timeSlot = this._getAvailableTimeSlots();
+
+    //generate time slot list
     let timeSlotList;
     if(timeSlot.length>0){
       timeSlotList = <ReactList
@@ -79,6 +78,7 @@ class PickTimeSlotView extends Component{
         useTranslate3d={true}
       />
     }
+
     return(
       <Col>
         <Card body>
@@ -100,13 +100,15 @@ class PickTimeSlotView extends Component{
 }
 PickTimeSlotView.propTypes = {
   scheduler:PropTypes.shape({
-    events:PropTypes.array.isRequired,
-    consulteeSelectSlot:PropTypes.shape({
-      isTimeSlotSelect:PropTypes.bool.isRequired,
-      timeSlot:PropTypes.object.isRequired
+    events:PropTypes.array,
+
+  }),
+  user:PropTypes.shape({
+    selectSlot:PropTypes.shape({
+      isTimeSlotSelect:PropTypes.bool,
+      timeSlot:PropTypes.object
     }),
   }),
-  user:PropTypes.object.isRequired,
 
   actions: PropTypes.object.isRequired,
 
