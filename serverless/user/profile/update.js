@@ -10,8 +10,8 @@ module.exports.update = (event, context, callback) => {
 
   const schema = Joi.object().keys({
     id:Joi.string().required(),
-    firstname:Joi.string().required(),
-    lastname: Joi.string().required(),
+    firstName:Joi.string().required(),
+    lastName: Joi.string().required(),
     address: Joi.string().required(),
   });
 
@@ -37,12 +37,12 @@ module.exports.update = (event, context, callback) => {
       },
       ExpressionAttributeValues: {
         ':updatedAt': timestamp,
-        ':firstname': data.firstname,
-        ':lastname': data.lastname,
+        ':firstName': data.firstName,
+        ':lastName': data.lastName,
         ':address':data.address
       },
 
-      UpdateExpression: 'SET firstname=:firstname,lastname=:lastname,address=:address,updatedAt= :updatedAt',
+      UpdateExpression: 'SET firstName=:firstName,lastName=:lastName,address=:address,updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };
 
