@@ -1,17 +1,18 @@
 //core library
 import React, { Component } from 'react';
 import {Row,Col,Button,Form,FormGroup,Input,Label} from 'reactstrap';
+import PropTypes from 'prop-types';
 
 //container
 import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContainer';
 import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer';
 import VideoContainer from '../../containers/VideoContainer/VideoContainer';
-import PropTypes from 'prop-types';
-import role from '../../../ProjectConfiguration/role.json';
 import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer';
 
-class DashBoardView extends Component {
+//constant
+import role from '../../../ProjectConfiguration/role.json';
 
+class DashBoardView extends Component {
 
   constructor(props){
     super(props)
@@ -19,9 +20,8 @@ class DashBoardView extends Component {
       selectConsultant:''
 
     }
-    this.toggle = this.toggle.bind(this);
+
     this.state = {
-      dropdownOpen: false,
       consultantId: ''
     };
   }
@@ -29,14 +29,11 @@ class DashBoardView extends Component {
   _selectConsultant(event){
     this.setState({consultantId:event.target.value})
   }
-  capitalizeFirstLetter(string) {
+
+  _capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
-  }
+
   _viewTimeSlot(){
     if(this.props.auth.user.relatedUsers!=null){
 
@@ -62,7 +59,7 @@ class DashBoardView extends Component {
             <Label for="exampleSelectMulti">Select Multiple</Label>
             <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
 
-              {this.props.auth.user.relatedUser !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
+              {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
 
                 <option value={consultant.id} key={index}>{consultant.email} </option>
               ):null}
@@ -78,7 +75,7 @@ class DashBoardView extends Component {
       view = <Col>
 
         <Row>
-          <h3>Hi {this.capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
+          <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
         </Row>
         <Row>
           <h6>Let's schedule your class</h6>
@@ -122,6 +119,7 @@ DashBoardView.propTypes = {
   auth:PropTypes.shape({
     user:PropTypes.shape({
       role:PropTypes.string,
+      firstName:PropTypes.string,
       relatedUser:PropTypes.array,
     })
   }),
