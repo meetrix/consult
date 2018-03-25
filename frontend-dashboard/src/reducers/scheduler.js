@@ -7,32 +7,12 @@ import {REDUX_ACTIONS} from "../constants/constant";
 //import events from '../components/Calendar/example_events';
 import moment from 'moment';
 
-var scheduler = {events:[{
-  id: 0,
-  title: 'All Day Event very long title',
-  allDay: true,
-  start: new Date(2015, 3, 0),
-  end: new Date(2015, 3, 1),
-},
-  {
-    id: 1,
-    title: 'Birthday Party',
-    start: new Date(2015, 3, 13, 7, 0, 0),
-    end: new Date(2015, 3, 13, 10, 30, 0),
-  }],
-  consulteeSelectSlot:{
-    isTimeSlotSelect:false,
-    timeSlot:{
-
-    }
-  }
-
-};
-
+//intiate store
+import {STORE_INITIATE_VALUE} from '../constants/initialstore'
 var startDate,endDate,title,consultee,event,id;
 //var event = [];
 
-export default (state = scheduler, action) => {
+export default (state = STORE_INITIATE_VALUE.EVENT_INITIALE, action) => {
   let convertEvents=[];
 
   function createEventsArray(item) {

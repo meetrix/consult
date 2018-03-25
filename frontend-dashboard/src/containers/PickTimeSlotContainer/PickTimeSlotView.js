@@ -100,7 +100,7 @@ class PickTimeSlotView extends Component{
 }
 PickTimeSlotView.propTypes = {
   scheduler:PropTypes.shape({
-    events:PropTypes.array.isRequired,
+    events:PropTypes.array,
 
   }),
   user:PropTypes.shape({

@@ -1,6 +1,6 @@
 //core library
 import React, { Component } from 'react';
-import {Row,Col,Button,Form,FormGroup,Input,Label} from 'reactstrap';
+import {Row,Col,Button,Form,FormGroup,Input,Label,Alert} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 //container
@@ -22,7 +22,7 @@ class DashBoardView extends Component {
   }
 
   _selectConsultant(event){
-    this.setState({consultantId:event.target.value})
+    this.setState({consultantId:event.target.value});
   }
 
   _capitalizeFirstLetter(string) {
@@ -31,12 +31,10 @@ class DashBoardView extends Component {
 
   _viewTimeSlot(){
     if(this.props.auth.user.relatedUsers!=null){
-      if(this.state.consultantId!=undefined){
-        this.props.actions.getFreeEventFromConsultant({id:this.state.consultantId})
+      if(this.state.consultantId===undefined){
+        this.setState({consultantId:this.props.auth.user.relatedUsers[0].id});
       }
-      else {
-        this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.relatedUsers[0].id})
-      }
+      this.props.actions.getFreeEventFromConsultant({id:this.state.consultantId});
     }
 
   }
@@ -44,20 +42,35 @@ class DashBoardView extends Component {
 
     let consultantSelectElm = null;
     let view = null;
-    if(this.props.auth.user.role== role.consultee){
-      view =
-      <Col>
-        <Row>
-          <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
-        </Row>
-        <Row>
-          <h6>Let's schedule your class</h6>
+    if(this.props.auth.user.role=== role.consultee ){
+      if(!(this.props.scheduler.events ===undefined || this.props.scheduler.events ===null || this.props.scheduler.events.length ===0) ) {
+        view =
+          <Col>
+            <Row>
+              <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
+            </Row>
+            <Row>
+              <h6>Let's schedule your class</h6>
 
-        </Row>
-        <Row>
-          <PickTimeSlotContainer/>
-        </Row>
-      </Col>
+            </Row>
+            <Row>
+              <PickTimeSlotContainer/>
+            </Row>
+          </Col>
+      }
+      //TODO when time slot not availble shwo message
+      // else {
+      //
+      //   view =
+      //     <Col>
+      //       <Row>
+      //         <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
+      //       </Row>
+      //       <Row>
+      //         <Alert color="danger"> There ara not any free timeslot of {this.state.consultantId}</Alert>
+      //       </Row>
+      //     </Col>
+      // }
 
      consultantSelectElm =
       <Row>
@@ -78,7 +91,7 @@ class DashBoardView extends Component {
 
       </Row>
     }
-    else if(this.props.auth.user.role == role.consultant){
+    else if(this.props.auth.user.role === role.consultant){
       view =
         <div className="animated fadeIn">
           <Col>
@@ -113,6 +126,7 @@ DashBoardView.propTypes = {
       relatedUser:PropTypes.array,
     })
   }),
+  scheduler:PropTypes.object,
   actions:PropTypes.object.isRequired
 }
 export default DashBoardView;
