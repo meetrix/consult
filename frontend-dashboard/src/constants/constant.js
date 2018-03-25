@@ -49,27 +49,7 @@ export const SCHEDULAR_FORM = {
     UPDATE_STARTDATE:'UPDATE_STARTDATE',
     UPDATE_ENDDATE:'UPDATE_ENDDATE'
 }
-export const STORE_INITIATE_VALUE={
-    AUTH_INITIATE:
-    {
-        user: {
-          image:'/img/avatars/1.jpg',
-          attributes:{
-            'custom:subRole':"student",
-            email:"supunmadushanka12219@gmail.com",
-            email_verified:true,
-            phone_number:"+94711135012",
-            phone_number_verified:false,
-            },
-          username:'supun',
-          initData:{relatedUsers:[]},
-        },
-        session: undefined,
-        authHeader:undefined
-    }
 
-
-}
 
 export const ACTION_KEY ={
 
