@@ -8,10 +8,10 @@ import {ACTION_KEY as AWS_API_GATEWAY_KEYS,ACTION_ATTR as AWS_API_GATEWAY_ATTRS}
 
 //view
 import MainView from './MainView'
+
 function mapStateToProps(state){
   return {
     auth:state.auth ,
-
   }
 
 }

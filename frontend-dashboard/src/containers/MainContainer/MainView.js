@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import {Container} from 'reactstrap';
 
 //core components
@@ -18,9 +18,11 @@ import  UserAccountContainer from '../UserContainer/UserAccountContainer'
 import SessionListContainer from '../../components/Session/session_list_container'
 
 class MainView extends Component{
+
   constructor(props){
     super(props)
   }
+
   componentDidMount(){
     this.props.actions.getAuthUserInitData();
   }

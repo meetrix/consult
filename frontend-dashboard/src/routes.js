@@ -2,22 +2,21 @@ import React from 'react';
 import {HashRouter, Route, Switch} from 'react-router-dom';
 
 // Containers
-import MainContainer from './containers/MainContainer/MainContainer'
-import Login from './containers/Login/LoginContainer';
-import SignUpContainer from './containers/SignUp/SignUpContainer';
+import MainContainer from './containers/MainContainer/MainContainer';
 import Consultants from './views/Pages/Consultant/Consultants';
 import LandingPage from './views/Pages/Landing';
 import BaseBox from "./components/BaseBox/BaseBox";
 import ConsultantLive from "./components/Consultants/ConsultantLive";
 
+//view
+import LoginPage from './views/Pages/Login/Login';
 //TestComponet
-import Test from './views/Pages/Test/Test'
+import Test from './views/Pages/Test/Test';
 
 export default() =>
 <HashRouter>
   <Switch>
-    <Route exact path="/login" name="Login Page" component={Login} />
-    <Route exact path="/signup" name="Register Page" component={SignUpContainer} />
+    <Route exact path="/login" name="Login Page" component={LoginPage} />
     <Route exact path="/consultants" name="Consultants Page" component={Consultants} />
     <Route exact path="/test" name="Test Component" component={Test} />
     <Route exact path="/basebox" name="BaseBox Component" component={BaseBox} />
