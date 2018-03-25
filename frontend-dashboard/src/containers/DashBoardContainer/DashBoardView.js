@@ -17,7 +17,7 @@ class DashBoardView extends Component {
   constructor(props){
     super(props)
     this.state={
-      selectConsultant:''
+      selectConsultant:undefined
 
     }
 
@@ -36,13 +36,10 @@ class DashBoardView extends Component {
 
   _viewTimeSlot(){
     if(this.props.auth.user.relatedUsers!=null){
-
-      if(this.state.consultantId!=''){
-
+      if(this.state.consultantId!=undefined){
         this.props.actions.getFreeEventFromConsultant({id:this.state.consultantId})
       }
       else {
-
         this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.relatedUsers[0].id})
       }
 
@@ -52,25 +49,8 @@ class DashBoardView extends Component {
   }
   render() {
 
-    let consultantSelectElm =
-      <Row>
-        <Form >
-          <FormGroup>
-            <Label for="exampleSelectMulti">Select Multiple</Label>
-            <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
-
-              {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
-
-                <option value={consultant.id} key={index}>{consultant.email} </option>
-              ):null}
-            </Input>
-          </FormGroup>
-          <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
-        </Form>
-
-
-      </Row>
-    let view ;
+    let consultantSelectElm = null;
+    let view = null;
     if(this.props.auth.user.role== role.consultee){
       view = <Col>
 
@@ -85,6 +65,26 @@ class DashBoardView extends Component {
           <PickTimeSlotContainer/>
         </Row>
       </Col>
+
+
+       consultantSelectElm =
+        <Row>
+          <Form >
+            <FormGroup>
+              <Label for="exampleSelectMulti">Select Multiple</Label>
+              <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
+
+                {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
+
+                  <option value={consultant.id} key={index}>{consultant.email} </option>
+                ):null}
+              </Input>
+            </FormGroup>
+            <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
+          </Form>
+
+
+        </Row>
     }
     else if(this.props.auth.user.role == role.consultant){
       view = <div className="animated fadeIn">
