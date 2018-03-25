@@ -16,6 +16,10 @@ export const STORE_INITIATE_VALUE={
   EVENT_INITIALE:{
     events:undefined
 
+  },
+  SPINNER_INITIATE: {
+    value:false
+
   }
 
 
