@@ -1,19 +1,14 @@
+//core library
 import React, { Component } from 'react';
-import {Row,Col,Button,Form,FormGroup,Input,Label} from 'reactstrap'
+import {Row,Col,Button,Form,FormGroup,Input,Label} from 'reactstrap';
 
-import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContainer'
-import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer'
-import VideoContainer from '../../containers/VideoContainer/VideoContainer'
-import MyConsultantsContainer from '../../containers/MyConsutantsContainer/MyConsultantsContainer'
-import ContactConsult from '../../components/Consultants/ContactConsult';
-import PropTypes from 'prop-types'
-import role from '../../../ProjectConfiguration/role.json'
-
-
-import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer'
-
-
-
+//container
+import LiveRoomContainer from '../../containers/LiveRoomContainer/LiveRoomContainer';
+import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/ConsultantLiveContainer';
+import VideoContainer from '../../containers/VideoContainer/VideoContainer';
+import PropTypes from 'prop-types';
+import role from '../../../ProjectConfiguration/role.json';
+import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer';
 
 class DashBoardView extends Component {
 
@@ -31,13 +26,7 @@ class DashBoardView extends Component {
     };
   }
 
-  componentDidMount(){
-
-
-  }
   _selectConsultant(event){
-    console.log("======================================")
-    console.log(event.target.value)
     this.setState({consultantId:event.target.value})
   }
   capitalizeFirstLetter(string) {
@@ -49,7 +38,7 @@ class DashBoardView extends Component {
     });
   }
   _viewTimeSlot(){
-    if(this.props.auth.user.initData.relatedUsers!=null){
+    if(this.props.auth.user.relatedUsers!=null){
 
       if(this.state.consultantId!=''){
 
@@ -57,7 +46,7 @@ class DashBoardView extends Component {
       }
       else {
 
-        this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.initData.relatedUsers[0].id})
+        this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.relatedUsers[0].id})
       }
 
     }
@@ -73,7 +62,7 @@ class DashBoardView extends Component {
             <Label for="exampleSelectMulti">Select Multiple</Label>
             <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
 
-              {this.props.auth.user.initData !=null ? this.props.auth.user.initData.relatedUsers.map((consultant,index)=>
+              {this.props.auth.user.relatedUser !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
 
                 <option value={consultant.id} key={index}>{consultant.email} </option>
               ):null}
@@ -85,7 +74,7 @@ class DashBoardView extends Component {
 
       </Row>
     let view ;
-    if(this.props.auth.user.attributes['custom:subRole'] == role.consultee){
+    if(this.props.auth.user.role== role.consultee){
       view = <Col>
 
         <Row>
@@ -100,7 +89,7 @@ class DashBoardView extends Component {
         </Row>
       </Col>
     }
-    else if(this.props.auth.user.attributes['custom:subRole'] == role.consultant){
+    else if(this.props.auth.user.role == role.consultant){
       view = <div className="animated fadeIn">
         <Col>
           <Row className="dash-board-component-wrapper">
@@ -132,10 +121,8 @@ class DashBoardView extends Component {
 DashBoardView.propTypes = {
   auth:PropTypes.shape({
     user:PropTypes.shape({
-      attributes:PropTypes.shape({
-        'custom:subRole':PropTypes.string.isRequired
-      }),
-      initData:PropTypes.object
+      role:PropTypes.string,
+      relatedUser:PropTypes.array,
     })
   }),
   actions:PropTypes.object.isRequired

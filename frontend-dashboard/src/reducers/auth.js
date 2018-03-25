@@ -1,9 +1,22 @@
 /**
  * Created by supun on 15/01/18.
  */
-import {REDUX_ACTIONS,STORE_INITIATE_VALUE,USER_PROFILE} from '../constants/constant';
-import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant'
+
+//constant
+import {REDUX_ACTIONS,USER_PROFILE} from '../constants/constant';
+import {STORE_INITIATE_VALUE} from '../constants/initialstore'
+import {REDUX_AWS_AMPLIFY_ACTIONS} from '../constants/apiAmlifyConstant';
 import {REDUX_API_GATEWAY_ACTIONS} from "../constants/apiGateWayConstant";
+
+const createUser = (action)=>{
+
+  let user = {};
+  let userFromDb = action.payload.Item;
+  user['role'] = userFromDb['custom:subRole']
+  return user;
+
+};
+
 export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_LOGIN_DATA: {
@@ -61,6 +74,7 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
 
       }
       case REDUX_API_GATEWAY_ACTIONS.GET_AUTH_USER_INIT_DATA_SUCCESS:{
+        console.log("initail dataaaa")
         console.log(action)
         return {
           ...state,
