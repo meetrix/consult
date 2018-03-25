@@ -36,9 +36,9 @@ class UserProfile extends Component{
 
         this.state={
             collapse: true,
-            firstName: '',
-            lastName: '',
-            address: ''
+            firstName: 'First Name',
+            lastName: 'Last Name',
+            address: 'Address'
         };
         console.log(this.props.user);
         this.toggle = this.toggle.bind(this);
@@ -50,17 +50,18 @@ class UserProfile extends Component{
     }
 
     _handleSubmit(){
-      console.log("id: "+this.props.user.initData.id);
+      //console.log("id: "+this.props.user.initData.id);
         this.props.actions.updateProfileInfo({
-          id:this.props.user.initData.id,
-          firstname:this.state.firstName,
-          lastname:this.state.lastName,
+          id:this.props.user.id,
+          firstName:this.state.firstName,
+          lastName:this.state.lastName,
           address:this.state.address,
         });
         // console.log(this.state.user)
     }
 
     handleInputChange(event){
+      console.log("handleInputChange");
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
@@ -78,30 +79,26 @@ class UserProfile extends Component{
                     <Col xs="12" sm="6">
                         <Card>
                             <CardHeader>
-                                <strong>{this.props.user.username}</strong>
+                                <strong>{this.props.user.firstName}</strong>
                                 {/*<small> Form</small>*/}
                             </CardHeader>
                             <CardBody>
                               <FormGroup>
-                                <Label htmlFor="first-name">User Name</Label>
-                                <Input  plaintext name="userName">{this.props.user.username}</Input>
+                                <Label htmlFor="first-name">First Name</Label>
+                                <Input type="text" id="first-name" name="firstName" onChange={this.handleInputChange} value={this.props.user.firstName}/>
+                              </FormGroup>
+                              <FormGroup>
+                                <Label htmlFor="last-name">Last Name</Label>
+                                <Input type="text" id="last-name" name="lastName" onChange={this.handleInputChange} value={this.props.user.lastName} />
                               </FormGroup>
                               <FormGroup>
                                 <Label htmlFor="first-name">Role</Label>
-                                <Input plaintext>{this.props.user.attributes['custom:subRole']}</Input>
+                                <Input plaintext>{this.props.user.role}</Input>
                               </FormGroup>
                               <FormGroup>
                                 <Label htmlFor="email">Email</Label>
-                                <Input plaintext>{this.props.user.attributes.email}</Input>
+                                <Input plaintext>{this.props.user.email}</Input>
                               </FormGroup>
-                                <FormGroup>
-                                    <Label htmlFor="first-name">First Name</Label>
-                                    <Input type="text" id="first-name" name="firstName" onChange={this.handleInputChange} value={this.props.user.firstName}/>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label htmlFor="last-name">Last Name</Label>
-                                    <Input type="text" id="last-name" name="lastName" onChange={this.handleInputChange} value={this.props.user.lastName} />
-                                </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="address">Address</Label>
                                     <Input type="text" id="address" name="address" onChange={this.handleInputChange} value={this.props.user.address}/>
