@@ -9,7 +9,8 @@ export const STORE_INITIATE_VALUE={
         selectSlot:{
           isTimeSlotSelect:undefined,
           timeSlot:undefined
-        }
+        },
+        nextEvent:undefined
 
       }
     },

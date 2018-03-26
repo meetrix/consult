@@ -84,7 +84,14 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
             }
           }
         }
-
+      case REDUX_API_GATEWAY_ACTIONS.GET_USER_NEXT_EVENT_SUCCESS:
+        return{
+          ...state,
+          user: {
+            ...state.user,
+            nextEvent: action.payload.Items[0]
+          }
+        }
       default:
           return state;
     }
