@@ -197,6 +197,13 @@ functions:
           path: user/event/next
           method: get
           cors: true
+  getConsultees:
+      handler:  admin/consultee/list.list
+      events:
+        - http:
+            path: admin/consultee
+            method: get
+            cors: true
 
 
 

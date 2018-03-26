@@ -82,4 +82,12 @@ metadata[KEYS.GET_USER_NEXT_EVENT] = {
   failureAction: ACTIONS.GET_USER_NEXT_EVENT_FAILE,
   successAction: ACTIONS.GET_USER_NEXT_EVENT_SUCCESS
 };
+metadata[KEYS.GET_CONSULTEES] = {
+  method:'GET',
+  endPoint: ENDPOINTS.CONSULT_API,
+  apiRoute: API_ROUTE.ADMIN_CONSULTEE,
+  failureAction: ACTIONS.GET_CONSULTEES_FAIL,
+  successAction: ACTIONS.GET_CONSULTEES_SUCCESS
+};
+
 export default metadata;
