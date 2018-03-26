@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import PickTimeSlotView from './PickTimeSlotView';
 
 //constant
-import {REDUX_ACTIONS as ACTIONS,ACTION_ATTR as ATTRS  }from '../../constants/constant';
+import {REDUX_ACTIONS as ACTIONS,ACTION_ATTR as ATTRS  }from '../../constants/apiSagaConstant';
 import {ACTION_KEY as API_GATEWAY_KEYS,ACTION_ATTR as API_GATEWAY_ATTRS  }from '../../constants/apiGateWayConstant';
 
 //action creator

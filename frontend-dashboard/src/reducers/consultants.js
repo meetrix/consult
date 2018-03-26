@@ -1,7 +1,7 @@
 /**
  * Created by supun on 08/01/18.
  */
-import {REDUX_ACTIONS} from '../constants/constant';
+import {REDUX_ACTIONS} from '../constants/apiSagaConstant';
 
 export default (state = [], action) => {
     switch (action.type) {

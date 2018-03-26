@@ -12,7 +12,7 @@ import {bindActionCreators} from 'redux';
 import LiveRoomContainerView from './LiveRoomContainerView'
 
 //
-import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
+import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/apiSagaConstant'
 
 import {actionCreatorFactory} from '../../actions/actionCreator'
 
