@@ -3,8 +3,8 @@ import {Row,Col,ListGroup,ListGroupItem,Card,CardHeader,CardBody} from 'reactstr
 
 class AdminPanel extends Component{
 
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
   }
   componentDidMount(){
     this.props.actions.getConsultants({
@@ -12,8 +12,17 @@ class AdminPanel extends Component{
     });
     this.props.actions.getConsultees({
 
-    })
+    });
   }
+
+  handleConsultantClick(id,event){
+    console.log("id : "+id);
+    this.props.actions.setConsultantId({
+      id : id
+    })
+
+
+  };
 
   render(){
       return (
@@ -27,8 +36,8 @@ class AdminPanel extends Component{
                 <CardBody>
                   <ListGroup>
                     {this.props.admin.consultants.map(function(consultant, index){
-                      return <ListGroupItem key={index}>{consultant.firstName+" "+consultant.lastName}</ListGroupItem>
-                    })}
+                      return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id)} href="#" tag="a">{consultant.firstName+" "+consultant.lastName }</ListGroupItem>
+                    },this)}
                   </ListGroup>
                 </CardBody>
               </Card>

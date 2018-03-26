@@ -1,4 +1,5 @@
 import {REDUX_API_GATEWAY_ACTIONS} from "../constants/apiGateWayConstant";
+import {REDUX_ACTIONS} from "../constants/apiSagaConstant";
 
 var admin = {consultants:[{
     id: 1,
@@ -30,6 +31,12 @@ export default (state=admin,action) => {
         }
       }
         break;
+      case REDUX_ACTIONS.SET_CONSULTANT_ID:{
+        return{
+          ...state,
+          consultantId:action.payload.id
+        }
+      }
       default: return state;
     }
 }
