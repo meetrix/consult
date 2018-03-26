@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Table} from 'reactstrap';
 import PropTypes from 'prop-types'
-import {ROLE} from '../../constants/constant'
+import {ROLE} from '../../constants/apiSagaConstant'
 
 class SessionList extends Component{
     constructor(props){

@@ -57,7 +57,7 @@ module.exports.list = (event, context, callback) =>{
       FilterExpression:'#subRole=:value',
       ExpressionAttributeValues: {':value': "teacher"},
       ExpressionAttributeNames: {
-        '#subRole' : 'custom:subRole'
+        '#subRole' : 'role'
       }
     };
 

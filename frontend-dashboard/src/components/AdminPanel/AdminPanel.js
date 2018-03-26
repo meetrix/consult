@@ -2,31 +2,32 @@ import React,{Component} from 'react';
 import {ListGroup,ListGroupItem} from 'reactstrap';
 
 class AdminPanel extends Component{
-  constructor(){
-    super();
+
+  constructor(props){
+    super(props);
   }
   componentDidMount(){
+    console.log("ADMIN PANEL MOUNTED");
     this.props.actions.getConsultants({
 
     });
   }
 
   render(){
-    return(
-      <div>
-        <h2> Teachers </h2>
-      <ListGroup>
-        {/*{this.props.admin.consultants.map(consultant => {*/}
-          {/**/}
-        {/*})}*/}
-        <ListGroupItem disabled tag="a" href="#">Cras justo odio</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Morbi leo risus</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Porta ac consectetur ac</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Vestibulum at eros</ListGroupItem>
-      </ListGroup>
-      </div>
-    )
+    if(this.props.consultants) {
+      return (
+        <div>
+          <h2> Teachers </h2>
+          <ListGroup>
+            {this.props.consultants.map(consultant, index => {
+              <ListGroupItem key={index}>{consultant.firstName}</ListGroupItem>
+            })}
+          </ListGroup>
+        </div>
+      )
+    }else{
+      return null;
+    }
   }
 }
 

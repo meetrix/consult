@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 
-import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS ,USER_PROFILE }from '../../constants/constant'
+import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS ,USER_PROFILE }from '../../constants/apiSagaConstant'
 
 import {
   actionCreatorFactory, actionCreateStoreUpdateFactory,

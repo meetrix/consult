@@ -15,7 +15,7 @@ import {bindActionCreators} from 'redux';
 import VideoContainerView from './VideoContainerView'
 
 //
-import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/constant'
+import {ACTION_KEY as KEYS,ACTION_ATTR as ATTRS  }from '../../constants/apiSagaConstant'
 
 import {actionCreatorFactory} from '../../actions/actionCreator'
 

@@ -17,7 +17,7 @@ import {
     PaginationLink
 } from 'reactstrap';
 
-import {ROLE} from '../../constants/constant'
+import {ROLE} from '../../constants/apiSagaConstant'
 
 class ConsulteeList extends Component{
 

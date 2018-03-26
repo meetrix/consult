@@ -12,16 +12,6 @@ export const REDUX_ACTIONS = {
     SET_AUTH_USER:'SET_AUTH_USER',
     GET_AUTH_USER:'GET_AUTH_USER',
 
-    SET_TUTOR_DATA: "SET_TUTOR_DATA",
-    HANDLE_TUTOR_DATA_FETCH_FAILURE: "HANDLE_TUTOR_DATA_FETCH_FAILURE",
-    //login redux action
-    HANDLE_LOGIN_DATA_FETCH_FAILURE:"HANDLE_LOGIN_DATA_FETCH_FAILURE",
-    SET_LOGIN_DATA:"SET_LOGIN_DATA",
-
-    //signup redux action
-    HANDLE_SIGNUP_DATA_FETCH_FAILURE:"HANDLE_SIGNUP_DATA_FETCH_FAILURE",
-    SET_SIGNUP_DATA:"SET_SIGNUP_DATA",
-
     //consults redux action
     HANDLE_CONSULTS_DATA_FETCH_FAILURE:"HANDLE_CONSULTS_DATA_FETCH_FAILURE",
     SET_CONSULTS_DATA:"SET_CONSULTS_DATA",
@@ -49,27 +39,7 @@ export const SCHEDULAR_FORM = {
     UPDATE_STARTDATE:'UPDATE_STARTDATE',
     UPDATE_ENDDATE:'UPDATE_ENDDATE'
 }
-export const STORE_INITIATE_VALUE={
-    AUTH_INITIATE:
-    {
-        user: {
-          image:'/img/avatars/1.jpg',
-          attributes:{
-            'custom:subRole':"student",
-            email:"supunmadushanka12219@gmail.com",
-            email_verified:true,
-            phone_number:"+94711135012",
-            phone_number_verified:false,
-            },
-          username:'supun',
-          initData:{relatedUsers:[]},
-        },
-        session: undefined,
-        authHeader:undefined
-    }
 
-
-}
 
 export const ACTION_KEY ={
 

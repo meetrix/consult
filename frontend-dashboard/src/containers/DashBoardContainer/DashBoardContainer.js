@@ -9,7 +9,8 @@ import DashBoardView from './DashBoardView'
 
 function mapStateToProps(state){
   return {
-    auth:state.auth
+    auth:state.auth,
+    scheduler:state.scheduler
   }
 
 }
