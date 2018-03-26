@@ -39,6 +39,7 @@ class MainView extends Component{
               <Switch>
                 <Route path="/dashboard/schedule" name="Schedule"  component={SchedulerContainer}/>
                 <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
+                <Route exact path="/dashboard/admin_panel/test" name="Student List" component={DashBoardContainer}/>
                 <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
                 <Route exact path="/dashboard/profile" name="Test Component" component={UserProfileContainer} />
                 <Route exact path="/dashboard/billing" name="Test Component" component={UserAccountContainer} />
