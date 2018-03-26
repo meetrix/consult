@@ -113,7 +113,7 @@ class UserProfile extends Component{
               <Col xs="12" sm="6">
                 <Card>
                   <CardHeader>
-                    <strong>Education</strong>
+                    <strong>Consultees</strong>
                     {/*<small> Form</small>*/}
                   </CardHeader>
                   <CardBody>

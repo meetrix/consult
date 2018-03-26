@@ -39,10 +39,10 @@ class MainView extends Component{
               <Switch>
                 <Route path="/dashboard/schedule" name="Schedule"  component={SchedulerContainer}/>
                 <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
+                <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
                 <Route exact path="/dashboard/profile" name="Test Component" component={UserProfileContainer} />
                 <Route exact path="/dashboard/billing" name="Test Component" component={UserAccountContainer} />
                 <Route path="/dashboard" name="Dashboard Container" component={DashBoardContainer} />
-                <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
 
               </Switch>
             </Container>

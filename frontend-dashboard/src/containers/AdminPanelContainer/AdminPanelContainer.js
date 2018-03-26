@@ -8,6 +8,7 @@ import {ACTION_KEY as API_GATEWAY_KEYS,ACTION_ATTR as API_GATEWAY_ATTR} from "..
 import AdminPanelView from '../../components/AdminPanel/AdminPanel';
 
 function mapStateToProps(state){
+  console.log("AdminPanelConatiner");
   return{
     user : state.auth.user,
     admin: state.admin,
@@ -20,4 +21,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(AdminPanelView)
+export default connect(mapStateToProps,mapDispatchToProps)(AdminPanelView);
