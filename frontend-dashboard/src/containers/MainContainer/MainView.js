@@ -28,6 +28,7 @@ class MainView extends Component{
   }
 
   render() {
+
     if(this.props.auth.user.id!==undefined) {
       return (
         <div className="app">
