@@ -17,7 +17,8 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = (dispatch) => ({
   actions: {
-    getConsultants: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTANTS,API_GATEWAY_ATTR.PAYLOAD),dispatch)
+    getConsultants: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTANTS,API_GATEWAY_ATTR.PAYLOAD),dispatch),
+    getConsultees: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTEES,API_GATEWAY_ATTR.PAYLOAD),dispatch),
   }
 });
 
