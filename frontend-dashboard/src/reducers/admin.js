@@ -10,6 +10,7 @@ var admin = {consultants:[{
     id:1,
     role:"student",
     events:[],
+    firstName:"Yasith",
     consultants:[]
   }]};
 
