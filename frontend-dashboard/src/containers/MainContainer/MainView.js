@@ -28,37 +28,42 @@ class MainView extends Component{
   }
 
   render() {
-    return (
-      <div className="app">
-        <Header {...this.props}/>
-        <div className="app-body">
-          <Sidebar {...this.props}/>
-          <main className="main">
-            <Breadcrumb />
-            <Container fluid>
-              <Switch>
-                <Route path="/dashboard/schedule" name="Schedule"  component={SchedulerContainer}/>
-                <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
-                <Route exact path="/dashboard/admin_panel/test" name="Student List" component={DashBoardContainer}/>
-                <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer} />
-                <Route exact path="/dashboard/profile" name="Test Component" component={UserProfileContainer} />
-                <Route exact path="/dashboard/billing" name="Test Component" component={UserAccountContainer} />
-                <Route path="/dashboard" name="Dashboard Container" component={DashBoardContainer} />
 
-              </Switch>
-            </Container>
-          </main>
-          <Aside />
+    if(this.props.auth.user.id!==undefined) {
+      return (
+        <div className="app">
+          <Header {...this.props}/>
+          <div className="app-body">
+            <Sidebar {...this.props}/>
+            <main className="main">
+              <Breadcrumb/>
+              <Container fluid>
+                <Switch>
+                  <Route path="/dashboard/schedule" name="Schedule" component={SchedulerContainer}/>
+                  <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
+                  <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer}/>
+                  <Route exact path="/dashboard/profile" name="Test Component" component={UserProfileContainer}/>
+                  <Route exact path="/dashboard/billing" name="Test Component" component={UserAccountContainer}/>
+                  <Route path="/dashboard" name="Dashboard Container" component={DashBoardContainer}/>
+
+                </Switch>
+              </Container>
+            </main>
+            <Aside {...this.props} />
+          </div>
+          <Footer
+            applicationName="Consult"
+            organization="Meetrix"
+            copyrightYear="2018"
+            poweredByText="Meetrix"
+          />
+
         </div>
-        <Footer
-          applicationName="Consult"
-          organization="Meetrix"
-          copyrightYear="2018"
-          poweredByText="Meetrix"
-        />
-
-      </div>
-    );
+      );
+    }
+    else {
+      return(null);
+    }
   }
 }
 

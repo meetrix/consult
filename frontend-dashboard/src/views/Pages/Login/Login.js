@@ -18,11 +18,13 @@ Amplify.configure(aws_exports );
 class Login extends Component {
 
     render() {
-          return(
-              <Col>
-                  <Redirect to="/dashboard"/>
-              </Col>
+
+          return (
+            <Col>
+              <Redirect to="/dashboard"/>
+            </Col>
           );
+
     }
 }
 export default withAuthenticator(Login,false,[

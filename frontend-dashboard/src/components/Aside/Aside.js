@@ -56,7 +56,7 @@ class Aside extends Component {
                 </NavItem>
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
-                <SummaryPane/>
+                <SummaryPane {...this.props}/>
                 <MessagePane
                   messages={[{id: '1231223', author: 'John', text: 'test text'}]}
                 />

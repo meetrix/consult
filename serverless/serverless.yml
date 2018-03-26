@@ -22,6 +22,8 @@ custom:
               sources: [./dynamodbTest/consultUserTable.json]
             - table: serverless-rest-api-with-dynamodb-dev
               sources: [./dynamodbTest/eventTable.json]
+            - table: UserEventMapper
+              sources: [./dynamodbTest/UserEventMapperTable.json]
 
     migration:
       dir: offline/migrations
@@ -36,6 +38,7 @@ provider:
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
     CONSULT_TABLE: consultUser
+    USER_EVENT_MAPPER_TABLE: UserEventMapper
 
 
   iamRoleStatements:
@@ -59,6 +62,18 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CONSULT_TABLE}"
+
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.USER_EVENT_MAPPER_TABLE}"
+
 
 functions:
   create:
@@ -175,6 +190,13 @@ functions:
           path: admin/consultant
           method: get
           cors: true
+  GetUserNextEvent:
+    handler:  user/NextEvent/get.get
+    events:
+      - http:
+          path: user/event/next
+          method: get
+          cors: true
   getConsultees:
       handler:  admin/consultee/list.list
       events:
@@ -182,6 +204,7 @@ functions:
             path: admin/consultee
             method: get
             cors: true
+
 
 
 resources:
@@ -221,5 +244,26 @@ resources:
             TableName:  ${self:provider.environment.CONSULT_TABLE}
 
 
-
+    UserEventMapperDynamoDbTable:
+              Type: 'AWS::DynamoDB::Table'
+              DeletionPolicy: Retain
+              Properties:
+                AttributeDefinitions:
+                  -
+                    AttributeName: id
+                    AttributeType: S
+                  -
+                    AttributeName: date
+                    AttributeType: S
+                KeySchema:
+                  -
+                    AttributeName: id
+                    KeyType: HASH
+                  -
+                    AttributeName: date
+                    KeyType: RANGE
+                ProvisionedThroughput:
+                  ReadCapacityUnits: 1
+                  WriteCapacityUnits: 1
+                TableName:  ${self:provider.environment.USER_EVENT_MAPPER_TABLE}
 

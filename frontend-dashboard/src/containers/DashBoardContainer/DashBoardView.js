@@ -20,6 +20,12 @@ class DashBoardView extends Component {
       consultantId: undefined
     };
   }
+  componentDidMount(){
+    //get user next event
+    if(this.props.auth.user.id!==undefined){
+      this.props.actions.getNextEvent({id:this.props.auth.user.id})
+    }
+  }
 
   _selectConsultant(event){
     this.setState({consultantId:event.target.value});
@@ -121,9 +127,11 @@ class DashBoardView extends Component {
 DashBoardView.propTypes = {
   auth:PropTypes.shape({
     user:PropTypes.shape({
+      id:PropTypes.string,
       role:PropTypes.string,
       firstName:PropTypes.string,
       relatedUser:PropTypes.array,
+
     })
   }),
   scheduler:PropTypes.object,
