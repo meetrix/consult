@@ -16,6 +16,7 @@ import DashBoardContainer from '../DashBoardContainer/DashBoardContainer';
 import UserProfileContainer from '../UserContainer/UserProfileContainer'
 import  UserAccountContainer from '../UserContainer/UserAccountContainer'
 import SessionListContainer from '../../components/Session/session_list_container'
+import ConsulteeViewContainer from "../../containers/AdminPanelContainer/ConsulteeViewContainer";
 
 class MainView extends Component{
 
@@ -41,6 +42,7 @@ class MainView extends Component{
                 <Switch>
                   <Route path="/dashboard/schedule" name="Schedule" component={SchedulerContainer}/>
                   <Route path="/dashboard/sessions" name="Session" component={SessionListContainer}/>
+                  <Route path="/dashboard/admin_panel/consultant" name="AdminPanel Consultant" component={ConsulteeViewContainer}/>
                   <Route path="/dashboard/admin_panel" name="AdminPanel" component={AdminPanelContainer}/>
                   <Route exact path="/dashboard/profile" name="Test Component" component={UserProfileContainer}/>
                   <Route exact path="/dashboard/billing" name="Test Component" component={UserAccountContainer}/>
