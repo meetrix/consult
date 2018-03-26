@@ -75,5 +75,13 @@ metadata[KEYS.GET_CONSULTANTS] = {
   failureAction: ACTIONS.GET_CONSULTANTS_FAIL,
   successAction: ACTIONS.GET_CONSULTANTS_SUCCESS
 };
+metadata[KEYS.GET_CONSULTEES] = {
+  method:'GET',
+  endPoint: ENDPOINTS.CONSULT_API,
+  apiRoute: API_ROUTE.ADMIN_CONSULTEE,
+  failureAction: ACTIONS.GET_CONSULTEES_FAIL,
+  successAction: ACTIONS.GET_CONSULTEES_SUCCESS
+};
+
 
 export default metadata;
