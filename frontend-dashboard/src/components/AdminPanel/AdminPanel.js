@@ -14,20 +14,16 @@ class AdminPanel extends Component{
   }
 
   render(){
-    if(this.props.consultants) {
       return (
         <div>
           <h2> Teachers </h2>
           <ListGroup>
-            {this.props.consultants.map(consultant, index => {
-              <ListGroupItem key={index}>{consultant.firstName}</ListGroupItem>
+            {this.props.admin.consultants.map(function(consultant, index){
+              return <ListGroupItem key={index}>{consultant.firstName+" "+consultant.lastName}</ListGroupItem>
             })}
           </ListGroup>
         </div>
       )
-    }else{
-      return null;
-    }
   }
 }
 
