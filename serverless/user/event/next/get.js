@@ -1,5 +1,5 @@
 'use strict';
-const dynamodb = require('./dynamodb');
+const dynamodb = require('../../dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
