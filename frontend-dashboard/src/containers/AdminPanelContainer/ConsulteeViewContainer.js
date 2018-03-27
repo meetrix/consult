@@ -17,8 +17,8 @@ function mapStateToProps(state){
 
 const mapDispatchToProps =(dispatch)=>({
   action:{
-    getConsultants: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTANTS,API_GATEWAY_ATTR.PAYLOAD),dispatch),
+    updateRelatedUsers: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.UPDATE_RELATED_USERS,API_GATEWAY_ATTR.PAYLOAD),dispatch),
   }
-})
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(ConsulteeView);

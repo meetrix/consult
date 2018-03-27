@@ -15,15 +15,29 @@ function AvailableStudents(props) {
   }
 }
 
+
+
 function OtherAvailableStudents(props) {
+
+  function handleConsulteeClick(id,firstName,lastName,event){
+    console.log("handleConsulteeClick : "+firstName);
+    props.updateRelatedUsers({
+      id : props.consultantId,
+      consulteeId : id,
+      consulteeFirstName:firstName,
+      consulteeLastName:lastName
+    })
+  }
+
+
   if(!props.consultees){
     return null;
   }else{
     return(
       <ListGroup>
     {props.consultees.map(function (consultee,index) {
-      return (<ListGroupItem key={index}>{consultee.firstName}</ListGroupItem>);
-    })}
+      return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this,consultee.id,consultee.firstName,consultee.lastName)}>{consultee.firstName +" "+consultee.lastName}</ListGroupItem>);
+    },this)}
       </ListGroup>
     )
   }
@@ -77,7 +91,7 @@ class ConsulteeView extends Component{
               <strong>Other Students</strong>
               </CardHeader>
               <CardBody>
-                  <OtherAvailableStudents consultees={this.props.admin.consultees}/>
+                  <OtherAvailableStudents consultees={this.props.admin.consultees} consultantId={this.props.admin.consultantId} updateRelatedUsers={this.props.action.updateRelatedUsers}/>
               </CardBody>
             </Card>
           </Row>
