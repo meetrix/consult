@@ -169,8 +169,20 @@ functions:
           path: admin/consultant
           method: get
           cors: true
-
-
+  GetUserNextEvent:
+    handler:  user/NextEvent/get.get
+    events:
+      - http:
+          path: user/event/next
+          method: get
+          cors: true
+  GetConsultees:
+      handler:  admin/consultee/list.list
+      events:
+        - http:
+            path: admin/consultee
+            method: get
+            cors: true
   TestAuthToken:
           handler: scheduler/test.create
           events:

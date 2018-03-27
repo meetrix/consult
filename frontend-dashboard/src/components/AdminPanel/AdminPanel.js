@@ -1,27 +1,62 @@
 import React,{Component} from 'react';
-import {ListGroup,ListGroupItem} from 'reactstrap';
+import {Row,Col,ListGroup,ListGroupItem,Card,CardHeader,CardBody} from 'reactstrap';
 
 class AdminPanel extends Component{
 
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
   }
   componentDidMount(){
-    console.log("ADMIN PANEL MOUNTED");
     this.props.actions.getConsultants({
+
+    });
+    this.props.actions.getConsultees({
 
     });
   }
 
+  handleConsultantClick(id,event){
+    console.log("id : "+id);
+    this.props.actions.setConsultantId({
+      id : id
+    })
+
+
+  };
+
   render(){
       return (
         <div>
-          <h2> Teachers </h2>
-          <ListGroup>
-            {this.props.admin.consultants.map(function(consultant, index){
-              return <ListGroupItem key={index}>{consultant.firstName+" "+consultant.lastName}</ListGroupItem>
-            })}
-          </ListGroup>
+          <Row>
+            <Col xs="12" sm="6">
+              <Card>
+                <CardHeader>
+                  <strong>Teachers</strong>
+                </CardHeader>
+                <CardBody>
+                  <ListGroup>
+                    {this.props.admin.consultants.map(function(consultant, index){
+                      return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id)} href="#" tag="a">{consultant.firstName+" "+consultant.lastName }</ListGroupItem>
+                    },this)}
+                  </ListGroup>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="12" sm="6">
+              <Card>
+                <CardHeader>
+                  <strong>Students</strong>
+                </CardHeader>
+                <CardBody>
+                  <ListGroup>
+                    {this.props.admin.consultees.map(function(consultee, index){
+                      return <ListGroupItem key={index} href="#" tag="a">{consultee.firstName+" "+consultee.lastName} </ListGroupItem>
+                    })}
+                  </ListGroup>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
         </div>
       )
   }
