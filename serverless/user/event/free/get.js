@@ -33,9 +33,9 @@ module.exports.get = (event, context, callback) => {
   function handler(data) {
 
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       Key: {
-        id:  'b4295be3-c675-4ca7-a553-c14b3cf46c16',
+        id:  data.id,
       }
     };
     // fetch from db
@@ -67,7 +67,7 @@ module.exports.get = (event, context, callback) => {
 
     const params = {
       RequestItems: {
-          'serverless-rest-api-with-dynamodb-dev': {
+          'Event': {
           Keys: keys
         }
       }
@@ -89,7 +89,7 @@ module.exports.get = (event, context, callback) => {
 
         }
         else {
-          let timeSlotes = result.Responses['serverless-rest-api-with-dynamodb-dev']
+          let timeSlotes = result.Responses['Event']
           let filterFreeTimeSlot;
           if(timeSlotes!=null){
             filterFreeTimeSlot = timeSlotes.filter((timeSlot)=> (timeSlot.booked==null || timeSlot.booked==false))

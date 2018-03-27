@@ -22,7 +22,7 @@ module.exports.get = (event, context, callback) => {
   function handler(data) {
 
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       Key: {
         id: data.sub,
       },

@@ -1,4 +1,4 @@
-service: serverless-rest-api-with-dynamodb
+service: consult-rest-api
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
@@ -18,9 +18,9 @@ custom:
     seed:
         domain:
           sources:
-            - table: consultUser
+            - table: User
               sources: [./dynamodbTest/consultUserTable.json]
-            - table: serverless-rest-api-with-dynamodb-dev
+            - table: Event
               sources: [./dynamodbTest/eventTable.json]
             - table: UserEventMapper
               sources: [./dynamodbTest/UserEventMapperTable.json]
@@ -36,8 +36,8 @@ provider:
   runtime: nodejs6.10
   stage: dev
   environment:
-    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-    CONSULT_TABLE: consultUser
+    EVENT_TABLE: Event
+    USER_TABLE: User
     USER_EVENT_MAPPER_TABLE: UserEventMapper
 
 
@@ -51,7 +51,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.EVENT_TABLE}"
     - Effect: Allow
       Action:
         - dynamodb:Query
@@ -61,7 +61,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CONSULT_TABLE}"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.USER_TABLE}"
 
     - Effect: Allow
       Action:
@@ -169,13 +169,6 @@ functions:
           path: admin/consultant
           method: get
           cors: true
-  GetUserNextEvent:
-    handler:  user/NextEvent/get.get
-    events:
-      - http:
-          path: user/event/next
-          method: get
-          cors: true
   GetConsultees:
       handler:  admin/consultee/list.list
       events:
@@ -201,7 +194,7 @@ functions:
 
 resources:
   Resources:
-    TodosDynamoDbTable:
+    EventDynamoDbTable:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Retain
       Properties:
@@ -216,7 +209,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        TableName: ${self:provider.environment.EVENT_TABLE}
 
     UserDynamoDbTable:
           Type: 'AWS::DynamoDB::Table'
@@ -233,7 +226,7 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
-            TableName:  ${self:provider.environment.CONSULT_TABLE}
+            TableName:  ${self:provider.environment.USER_TABLE}
 
 
     UserEventMapperDynamoDbTable:

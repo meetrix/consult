@@ -24,7 +24,7 @@ module.exports.list = (event, context, callback) =>{
 
   function handler(data) {
 
-    console.log('table name : '+process.env.DYNAMODB_TABLE);
+    console.log('table name : '+process.env.EVENT_TABLE);
     //
     // const params = {
     //   RequestItems: {
@@ -53,7 +53,7 @@ module.exports.list = (event, context, callback) =>{
     // });
 
     const params = {
-      TableName: process.env.DYNAMODB_TABLE,
+      TableName: process.env.EVENT_TABLE,
     };
 
     return new Promise((resolve, reject)=>{

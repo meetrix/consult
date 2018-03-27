@@ -43,7 +43,7 @@ module.exports.create = (event, context, callback) => {
 
       const timestamp = new Date().getTime();
       const params = {
-          TableName: process.env.DYNAMODB_TABLE,
+          TableName: process.env.EVENT_TABLE,
           Item: {
               id: uuid.v1(),
               createdAt: timestamp,
