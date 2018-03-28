@@ -204,6 +204,13 @@ functions:
             path: admin/consultee
             method: get
             cors: true
+  UpdateRelatedUsers:
+        handler:  admin/relatedUser/update.update
+        events:
+          - http:
+              path: admin/relatedUser
+              method: put
+              cors: true
 
 
 
