@@ -14,12 +14,12 @@ export const aws_exports={
     endpoints: [
       {
         name: "PetStore",
-        endpoint: "https://f9u26pe19l.execute-api.us-west-2.amazonaws.com/beta",
+        endpoint: "https://ty9r0vyxbl.execute-api.us-west-2.amazonaws.com/dev",
 
       },
       {
         name: "ConsultantApi",
-        endpoint: "https://zr25rl45gk.execute-api.us-west-2.amazonaws.com/dev",
+        endpoint: "https://ty9r0vyxbl.execute-api.us-west-2.amazonaws.com/dev",
 
       }
     ]
