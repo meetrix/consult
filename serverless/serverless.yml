@@ -1,4 +1,4 @@
-service: serverless-rest-api-with-dynamodb
+service: consult-rest-api
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
@@ -18,9 +18,9 @@ custom:
     seed:
         domain:
           sources:
-            - table: consultUser
+            - table: User
               sources: [./dynamodbTest/consultUserTable.json]
-            - table: serverless-rest-api-with-dynamodb-dev
+            - table: Event
               sources: [./dynamodbTest/eventTable.json]
             - table: UserEventMapper
               sources: [./dynamodbTest/UserEventMapperTable.json]
@@ -36,8 +36,8 @@ provider:
   runtime: nodejs6.10
   stage: dev
   environment:
-    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-    CONSULT_TABLE: consultUser
+    EVENT_TABLE: Event
+    USER_TABLE: User
     USER_EVENT_MAPPER_TABLE: UserEventMapper
 
 
@@ -51,7 +51,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.EVENT_TABLE}"
     - Effect: Allow
       Action:
         - dynamodb:Query
@@ -61,7 +61,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:BatchGetItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CONSULT_TABLE}"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.USER_TABLE}"
 
     - Effect: Allow
       Action:
@@ -76,7 +76,7 @@ provider:
 
 
 functions:
-  create:
+  CreateScheduler:
     handler: scheduler/create.create
     events:
       - http:
@@ -84,7 +84,7 @@ functions:
           method: post
           cors: true
 
-  list:
+  ListScheduler:
     handler: scheduler/list.list
     events:
       - http:
@@ -92,7 +92,7 @@ functions:
           method: get
           cors: true
 
-  get:
+  GetScheduler:
     handler: scheduler/get.get
     events:
       - http:
@@ -100,7 +100,7 @@ functions:
           method: get
           cors: true
 
-  updateScheduler:
+  UpdateScheduler:
       handler: scheduler/update.update
       events:
         - http:
@@ -108,7 +108,7 @@ functions:
             method: put
             cors: true
 
-  deleteSchedular:
+  DeleteSchedular:
       handler: scheduler/delete.delete
       events:
         - http:
@@ -116,29 +116,14 @@ functions:
             method: delete
             cors: true
 
-  update:
-    handler: todos/update.update
-    events:
-      - http:
-          path: todos/{id}
-          method: put
-          cors: true
+  UpdateEventSchedule:
+          handler: scheduler/eventSchedule.update
+          events:
+            - http:
+                path: user/event/schedule
+                method: put
+                cors: true
 
-  delete:
-    handler: todos/delete.delete
-    events:
-      - http:
-          path: todos/{id}
-          method: delete
-          cors: true
-
-  JwtDecorde:
-      handler: jwtTokenDecorder/get.get
-      events:
-        - http:
-            path: jwt
-            method: get
-            cors: true
 
   updateProfile:
       handler: user/profile/update.update
@@ -148,62 +133,72 @@ functions:
             method: put
             cors: true
 
-  userCreate:
+  UserCreate:
       handler: user/create.create
       events:
         - http:
             path: user
             method: post
             cors: true
-  testAuthToken:
-      handler: scheduler/test.create
+
+  GetAuthUserInitData:
+      handler: user/get.get
       events:
         - http:
-            path: scheduler/test
-            method: post
-            cors: true
-  getAuthUserInitData:
-      handler: user/AuthUserInitData.get
-      events:
-        - http:
-            path: user/init
+            path: user
             method: get
             cors: true
-  getFreeEventsFromUser:
-      handler: user/userEventsFree.get
+  GetFreeEventsFromUser:
+      handler: user/event/free/get.get
       events:
         - http:
-            path: user/events/free
+            path: user/event/free
             method: get
             cors: true
-  eventSchedule:
-        handler: scheduler/eventSchedule.update
-        events:
-          - http:
-              path: user/event/schedule
-              method: put
-              cors: true
-  getConsultants:
+  GetUserNextEvent:
+      handler:  user/event/next/get.get
+      events:
+        - http:
+            path: user/event/next
+            method: get
+            cors: true
+  GetUserEventJoin:
+      handler:  user/event/join/get.get
+      events:
+        - http:
+            path: user/event/join
+            method: get
+            cors: true
+  GetConsultants:
     handler:  admin/consultant/list.list
     events:
       - http:
           path: admin/consultant
           method: get
           cors: true
-  GetUserNextEvent:
-    handler:  user/NextEvent/get.get
-    events:
-      - http:
-          path: user/event/next
-          method: get
-          cors: true
-  getConsultees:
+  GetConsultees:
       handler:  admin/consultee/list.list
       events:
         - http:
             path: admin/consultee
             method: get
             cors: true
+
+  TestAuthToken:
+          handler: scheduler/test.create
+          events:
+            - http:
+                path: scheduler/test
+                method: post
+                cors: true
+  JwtDecorde:
+        handler: jwtTokenDecorder/get.get
+        events:
+          - http:
+              path: jwt
+              method: get
+              cors: true
+
   UpdateRelatedUsers:
         handler:  admin/relatedUser/update.update
         events:
@@ -214,9 +209,10 @@ functions:
 
 
 
+
 resources:
   Resources:
-    TodosDynamoDbTable:
+    EventDynamoDbTable:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Retain
       Properties:
@@ -231,7 +227,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        TableName: ${self:provider.environment.EVENT_TABLE}
 
     UserDynamoDbTable:
           Type: 'AWS::DynamoDB::Table'
@@ -248,7 +244,7 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
-            TableName:  ${self:provider.environment.CONSULT_TABLE}
+            TableName:  ${self:provider.environment.USER_TABLE}
 
 
     UserEventMapperDynamoDbTable:

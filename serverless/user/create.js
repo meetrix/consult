@@ -31,7 +31,7 @@ module.exports.create = (event, context, callback) => {
 
     const timestamp = new Date().getTime();
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       Item: {
         id: uuid.v1(),
         createdAt: timestamp,
@@ -56,7 +56,7 @@ module.exports.create = (event, context, callback) => {
   function updateUserWithEvent(data){
     const timestamp = new Date().getTime();
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       Key: {
         id: 'a0dfdaf0-2b85-11e8-818b-1f6245b3b3e6',
       },

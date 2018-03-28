@@ -1,12 +1,16 @@
+/**
+ * Created by supun on 19/03/18.
+ */
 'use strict';
-const dynamodb = require('./dynamodb');
+
+const uuid = require('uuid');
+const dynamodb = require('../../dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
-
-
 module.exports.get = (event, context, callback) => {
 
+  //event id
   const data = {
     id: event.queryStringParameters.id
   };
@@ -23,46 +27,48 @@ module.exports.get = (event, context, callback) => {
         }
         else{
           resolve(data)
+
         }
       })
     });
   }
 
 
-  function handler(validData) {
-    let currentDate = new Date().toISOString();
+  function handler(data) {
+
+    const timestamp = new Date().getTime();
     const params = {
-      TableName: process.env.USER_EVENT_MAPPER_TABLE,
-      KeyConditionExpression: 'id = :value AND #eventStartDate >= :date', // a string representing a constraint on the attribute
-      // a string representing a constraint on the attribute
-      ExpressionAttributeNames: { // a map of substitutions for attribute names with special characters
-        '#eventStartDate': 'date'
+      TableName: process.env.EVENT_TABLE,
+      Item: {
+        id: data.id,
       },
-      ExpressionAttributeValues: { // a map of substitutions for all attribute values
-        ':value': validData.id,
-        ':date': currentDate
-      },
-      ScanIndexForward: true, // optional (true | false) defines direction of Query in the index
-      Limit: 1, // optional (limit the number of items to evaluate)
-      ConsistentRead: false,
     };
-    // fetch from db
+
+    // write the todo to the database
     return new Promise((resolve, reject)=>{
-      dynamodb.query(params, (error, result) => {
+      dynamodb.get(params, (error) => {
         // handle potential errors
         if (error) {
           console.error(error);
           reject(error);
         }
         else {
-          resolve(result)
+          if(Item!==null){
+            let currentTime = new Date();
+            let eventStartTime = new Date(Item.start);
+            let minDiff = (currentTime.getTime() - eventStartTime.getTime())/60000;
+            if(minDiff<10){
+                resolve("url")
+            }
+          }
+          resolve("event not found")
         }
       });
     });
   }
 
-  validate(data,schema).then((result)=>{
-    return handler(result)
+  validate(data).then((result)=>{
+      return  handler(result)
   }).then((result)=>{
     // create a response
     const response = {
@@ -79,6 +85,5 @@ module.exports.get = (event, context, callback) => {
       body: JSON.stringify(err)
     });
   })
-
 
 };

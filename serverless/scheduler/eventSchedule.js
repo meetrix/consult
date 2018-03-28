@@ -34,7 +34,7 @@ module.exports.update = (event, context, callback) => {
 
   function eventUpdateWithUser(data) {
     const params = {
-      TableName: process.env.DYNAMODB_TABLE,
+      TableName: process.env.EVENT_TABLE,
       Key: {
         id: data.event.id,
       },
@@ -65,47 +65,75 @@ module.exports.update = (event, context, callback) => {
       });
     });
   }
-
-  function userUpdateWithEvent(data) {
+  function insertEventAndUserToMapper(eventData){
+    const timestamp = new Date().getTime();
     const params = {
-      TableName: process.env.CONSULT_TABLE,
-      Key: {
+      TableName: process.env.USER_EVENT_MAPPER_TABLE,
+      Item: {
         id: data.user.id,
-      },
-      ExpressionAttributeValues: {
-        ':updatedAt': timestamp,
-        ':event': [data.event.id],
-        ':empty_events':[]
-      },
-      ExpressionAttributeNames: {
-        '#e': 'events',
+        eventId:data.event.id,
+        date:data.event.start,
+        createdAt: timestamp
 
       },
-      UpdateExpression: 'set #e= list_append(if_not_exists(#e, :empty_events), :event),updatedAt= :updatedAt',
-      ReturnValues: 'ALL_NEW',
+      ReturnValues: 'ALL_OLD',
     };
 
-
-  // write the todo to the database
-  return new Promise((resolve, reject) => {
-    dynamodb.update(params, (error, data) => {
-      // handle potential errors
-      if (error) {
-        console.error(error);
-        reject(error);
-      }
-      else {
-        resolve(data)
-      }
+    // write the todo to the database
+    return new Promise((resolve, reject)=>{
+      dynamodb.put(params, (error,data) => {
+        // handle potential errors
+        if (error) {
+          console.error(error);
+          reject(error);
+        }
+        else {
+          resolve(eventData)
+        }
+      });
     });
-  });
- }
+  }
+
+ //  function userUpdateWithEvent(data) {
+ //    const params = {
+ //      TableName: process.env.CONSULT_TABLE,
+ //      Key: {
+ //        id: data.user.id,
+ //      },
+ //      ExpressionAttributeValues: {
+ //        ':updatedAt': timestamp,
+ //        ':event': [data.event.id],
+ //        ':empty_events':[]
+ //      },
+ //      ExpressionAttributeNames: {
+ //        '#e': 'events',
+ //
+ //      },
+ //      UpdateExpression: 'set #e= list_append(if_not_exists(#e, :empty_events), :event),updatedAt= :updatedAt',
+ //      ReturnValues: 'ALL_NEW',
+ //    };
+ //
+ //
+ //  // write the todo to the database
+ //  return new Promise((resolve, reject) => {
+ //    dynamodb.update(params, (error, data) => {
+ //      // handle potential errors
+ //      if (error) {
+ //        console.error(error);
+ //        reject(error);
+ //      }
+ //      else {
+ //        resolve(data)
+ //      }
+ //    });
+ //  });
+ // }
 
   validate(data, schema).then((validateData)=>{
 
     return eventUpdateWithUser(validateData).then((updateEvent)=>{
 
-      return userUpdateWithEvent(validateData)
+      return insertEventAndUserToMapper(validateData)
     })
 
   }).then((result)=>{

@@ -1,20 +1,18 @@
 'use strict';
-
-const dynamodb = require('./dynamodb');
+const dynamodb = require('../../dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
-module.exports.update = (event, context, callback) => {
-  const data = JSON.parse(event.body);
-  const timestamp = new Date().getTime();
+
+
+module.exports.get = (event, context, callback) => {
+
+  const data = {
+    id: event.queryStringParameters.id
+  };
 
   const schema = Joi.object().keys({
-    id:Joi.string().required(),
-    start: Joi.string().required(),
-    end: Joi.string().required(),
-    title: Joi.string().required(),
-    consultee: Joi.string().required(),
-    booked:Joi.boolean().required()
+    id: Joi.string().required()
   });
 
   function validate  (data, schema) {
@@ -30,45 +28,40 @@ module.exports.update = (event, context, callback) => {
     });
   }
 
-  function handler(data) {
 
+  function handler(validData) {
+    let currentDate = new Date().toISOString();
     const params = {
-      TableName: process.env.EVENT_TABLE,
-      Key: {
-        id: data.id,
+      TableName: process.env.USER_EVENT_MAPPER_TABLE,
+      KeyConditionExpression: 'id = :value AND #eventStartDate >= :date', // a string representing a constraint on the attribute
+      // a string representing a constraint on the attribute
+      ExpressionAttributeNames: { // a map of substitutions for attribute names with special characters
+        '#eventStartDate': 'date'
       },
-      ExpressionAttributeValues: {
-        ':updatedAt': timestamp,
-        ':start': data.start,
-        ':end': data.end,
-        ':title':data.title,
-        ':consultee':data.consultee,
-        ':booked':data.booked
+      ExpressionAttributeValues: { // a map of substitutions for all attribute values
+        ':value': validData.id,
+        ':date': currentDate
       },
-      ExpressionAttributeNames: {
-        '#startAt': 'start',
-        '#endAt' : 'end'
-      },
-      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,consultee=:consultee,booked=:booked,updatedAt= :updatedAt',
-      ReturnValues: 'ALL_NEW',
+      ScanIndexForward: true, // optional (true | false) defines direction of Query in the index
+      Limit: 1, // optional (limit the number of items to evaluate)
+      ConsistentRead: false,
     };
-
-    // write the todo to the database
+    // fetch from db
     return new Promise((resolve, reject)=>{
-      dynamodb.update(params, (error,data) => {
+      dynamodb.query(params, (error, result) => {
         // handle potential errors
         if (error) {
           console.error(error);
           reject(error);
         }
         else {
-          resolve(data)
+          resolve(result)
         }
       });
     });
   }
 
-  validate(data, schema).then((result)=>{
+  validate(data,schema).then((result)=>{
     return handler(result)
   }).then((result)=>{
     // create a response
@@ -86,5 +79,6 @@ module.exports.update = (event, context, callback) => {
       body: JSON.stringify(err)
     });
   })
+
 
 };
