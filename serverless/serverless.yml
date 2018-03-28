@@ -162,6 +162,13 @@ functions:
             path: user/event/next
             method: get
             cors: true
+  GetUserEventJoin:
+      handler:  user/event/join/get.get
+      events:
+        - http:
+            path: user/event/join
+            method: get
+            cors: true
   GetConsultants:
     handler:  admin/consultant/list.list
     events:
