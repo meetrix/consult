@@ -74,7 +74,7 @@ class UserProfile extends Component{
     }
 
     render() {
-      if(this.props.user.firstName!==undefined) {
+      
         return (
           <div className="animated fadeIn">
             <Row>
@@ -171,10 +171,7 @@ class UserProfile extends Component{
             </Row>
           </div>
         )
-      }
-      else {
-        return(null)
-      }
+      
     }
 
 }
