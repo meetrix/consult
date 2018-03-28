@@ -53,6 +53,36 @@ module.exports.update = (event, context, callback) => {
           reject(error);
         }
         else {
+          resolve(params)
+        }
+      });
+    });
+  }
+
+  function updateConsultee(data){
+    const params = {
+      TableName: process.env.CONSULT_TABLE,
+      Key: {
+        id: data.consulteeId,
+      },
+      ExpressionAttributeValues: {
+        ':updatedAt': timestamp,
+        ':relatedUser': [{id:data.id}],
+        ':empty_users': [],
+      },
+      UpdateExpression: 'SET relatedUsers=list_append(if_not_exists(relatedUsers, :empty_users), :relatedUser), updatedAt= :updatedAt',
+      ReturnValues: 'ALL_NEW',
+    };
+
+    // write the todo to the database
+    return new Promise((resolve, reject)=>{
+      dynamodb.update(params, (error,data) => {
+        // handle potential errors
+        if (error) {
+          console.error(error);
+          reject(error);
+        }
+        else {
           resolve(data)
         }
       });
@@ -60,7 +90,9 @@ module.exports.update = (event, context, callback) => {
   }
 
   validate(data, schema).then((result)=>{
-    return handler(result)
+    return handler(result).then((result) =>{
+      return updateConsultee(result)
+    })
   }).then((result)=>{
     // create a response
     const response = {
