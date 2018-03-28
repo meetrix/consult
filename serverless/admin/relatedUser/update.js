@@ -31,7 +31,7 @@ module.exports.update = (event, context, callback) => {
   function handler(data) {
     console.log("data: "+data.id);
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       Key: {
         id: data.id,
       },
@@ -71,7 +71,7 @@ module.exports.update = (event, context, callback) => {
     const data_passed = data;
     console.log("consultant_db: "+data.consultant_db)
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       Key: {
         id: data.data_passed.consulteeId,
       },
