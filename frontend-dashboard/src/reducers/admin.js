@@ -32,6 +32,15 @@ export default (state=admin,action) => {
         }
       }
         break;
+      case REDUX_API_GATEWAY_ACTIONS.UPDATE_RELATED_USERS_SUCCESS:{
+        console.log("admin reducer related users payload: "+action.payload.consultant_db);
+        return {
+          ...state,
+          consultees:[state.consultees,...action.payload.consultee_db],
+          consultants:[state.consultants,...action.payload.consultant_db]
+        }
+      }
+        break;
       case REDUX_ACTIONS.SET_CONSULTANT_ID:{
         return{
           ...state,

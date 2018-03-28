@@ -29,7 +29,7 @@ module.exports.update = (event, context, callback) => {
   }
 
   function handler(data) {
-
+    console.log("data: "+data.id);
     const params = {
       TableName: process.env.CONSULT_TABLE,
       Key: {
@@ -44,6 +44,8 @@ module.exports.update = (event, context, callback) => {
       ReturnValues: 'ALL_NEW',
     };
 
+    const data_passed = data;
+    var data_combined = {};
     // write the todo to the database
     return new Promise((resolve, reject)=>{
       dynamodb.update(params, (error,data) => {
@@ -53,21 +55,29 @@ module.exports.update = (event, context, callback) => {
           reject(error);
         }
         else {
-          resolve(params)
+          data_combined = {
+            data_passed : data_passed,
+            consultant_db : data
+          }
+          resolve(data_combined);
         }
       });
     });
   }
 
-  function updateConsultee(data){
+  function updateConsultee(data){ 
+
+    var data_combined = {};
+    const data_passed = data;
+    console.log("consultant_db: "+data.consultant_db)
     const params = {
       TableName: process.env.CONSULT_TABLE,
       Key: {
-        id: data.consulteeId,
+        id: data.data_passed.consulteeId,
       },
       ExpressionAttributeValues: {
         ':updatedAt': timestamp,
-        ':relatedUser': [{id:data.id}],
+        ':relatedUser': [{id:data.data_passed.id}],
         ':empty_users': [],
       },
       UpdateExpression: 'SET relatedUsers=list_append(if_not_exists(relatedUsers, :empty_users), :relatedUser), updatedAt= :updatedAt',
@@ -83,7 +93,11 @@ module.exports.update = (event, context, callback) => {
           reject(error);
         }
         else {
-          resolve(data)
+          data_combined={
+            consultant_db : data_passed.consultant_db,
+            consultee_db : data
+          }
+          resolve(data_combined);
         }
       });
     });

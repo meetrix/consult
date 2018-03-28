@@ -5,11 +5,12 @@ function AvailableStudents(props) {
   if(!props.consultees){
     return null;
   }else {
+    console.log("AvailableStudents: "+props.consultees[0].firstName);
     return( <ListGroup>
     {
       props.consultees.map(function (consultee, index) {
-        <ListGroupItem key={index}>{consultee.firstName + " " + consultee.lastName}</ListGroupItem>
-      }, this)
+        return <ListGroupItem key={index}>{consultee.firstName + " " + consultee.lastName}</ListGroupItem>
+      })
     }
     </ListGroup>);
   }
