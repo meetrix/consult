@@ -89,5 +89,12 @@ metadata[KEYS.GET_CONSULTEES] = {
   failureAction: ACTIONS.GET_CONSULTEES_FAIL,
   successAction: ACTIONS.GET_CONSULTEES_SUCCESS
 };
+metadata[KEYS.UPDATE_RELATED_USERS] = {
+  method:'PUT',
+  endPoint: ENDPOINTS.CONSULT_API,
+  apiRoute: API_ROUTE.ADMIN_RELATED_USER,
+  failureAction: ACTIONS.UPDATE_RELATED_USERS_FAIL,
+  successAction: ACTIONS.UPDATE_RELATED_USERS_SUCCESS
+};
 
 export default metadata;

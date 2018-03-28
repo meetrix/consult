@@ -10,6 +10,7 @@ var admin = {consultants:[{
     id:1,
     role:"student",
     events:[],
+    firstName:"Yasith",
     consultants:[]
   }]};
 
@@ -28,6 +29,15 @@ export default (state=admin,action) => {
         return {
           ...state,
           consultees:action.payload.Items,
+        }
+      }
+        break;
+      case REDUX_API_GATEWAY_ACTIONS.UPDATE_RELATED_USERS_SUCCESS:{
+        console.log("admin reducer related users payload: "+action.payload.consultant_db);
+        return {
+          ...state,
+          consultees:[state.consultees,...action.payload.consultee_db],
+          consultants:[state.consultants,...action.payload.consultant_db]
         }
       }
         break;

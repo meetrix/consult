@@ -36,7 +36,7 @@ class AdminPanel extends Component{
                 <CardBody>
                   <ListGroup>
                     {this.props.admin.consultants.map(function(consultant, index){
-                      return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id)} href="#" tag="a">{consultant.firstName+" "+consultant.lastName }</ListGroupItem>
+                      return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id)} href="#/dashboard/admin_panel/consultant" tag="a">{consultant.firstName+" "+consultant.lastName }</ListGroupItem>
                     },this)}
                   </ListGroup>
                 </CardBody>
@@ -50,7 +50,7 @@ class AdminPanel extends Component{
                 <CardBody>
                   <ListGroup>
                     {this.props.admin.consultees.map(function(consultee, index){
-                      return <ListGroupItem key={index} href="#" tag="a">{consultee.firstName+" "+consultee.lastName} </ListGroupItem>
+                      return <ListGroupItem key={index} href="#/dashboard/admin_panel/test" tag="a">{consultee.firstName+" "+consultee.lastName} </ListGroupItem>
                     })}
                   </ListGroup>
                 </CardBody>
