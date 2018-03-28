@@ -24,10 +24,10 @@ module.exports.list = (event, context, callback) =>{
 
   function handler(data) {
 
-    console.log('table name : '+process.env.CONSULT_TABLE);
+    console.log('table name : '+process.env.USER_TABLE);
 
     const params = {
-      TableName: process.env.CONSULT_TABLE,
+      TableName: process.env.USER_TABLE,
       FilterExpression:'#subRole=:value',
       ExpressionAttributeValues: {':value': "student"},
       ExpressionAttributeNames: {
