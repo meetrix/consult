@@ -157,6 +157,7 @@ class Calendar extends Component{
 
 
    render(){
+      console.log("relatedUsers: "+this.props.user.relatedUsers[0].firstName);
        return(
            <div style={{height: '100%'}}>
            <BigCalendar
@@ -180,7 +181,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} onExit={this.toggleEditingFalse}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onBookChange={this.onBookChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} />
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onBookChange={this.onBookChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} relatedUsers={this.props.user.relatedUsers} />
                  </ModalBody>
                  <ModalFooter>
                    {this.state.editing && <Button color="danger" onClick={this.onDeleteEvent}>Delete Event</Button>}

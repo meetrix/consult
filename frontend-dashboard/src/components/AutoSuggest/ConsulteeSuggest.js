@@ -48,32 +48,13 @@ function renderSuggestion(suggestion, { query }) {
 }
 
 class ConsulteeSuggest extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      people: [
-        {
-          first: 'Charlie',
-          last: 'Brown',
-          twitter: 'dancounsell'
-        },
-        {
-          first: 'Charlotte',
-          last: 'White',
-          twitter: 'mtnmissy'
-        },
-        {
-          first: 'Chloe',
-          last: 'Jones',
-          twitter: 'ladylexy'
-        },
-        {
-          first: 'Cooper',
-          last: 'King',
-          twitter: 'steveodom'
-        }
-      ],
+      people: 
+        this.props.relatedUsers
+      ,
       value: '',
       suggestions: []
     };
@@ -106,6 +87,7 @@ class ConsulteeSuggest extends Component {
   };
 
   render() {
+    
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Type 'Consultee Name'",

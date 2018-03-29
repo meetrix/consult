@@ -6,6 +6,7 @@ import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 class ScheduleForm extends Component{
 
   render(){
+    console.log("relatedUsers:22 "+this.props.relatedUsers[0].firstName);
     return(
       <Form>
         <FormGroup>
@@ -22,17 +23,7 @@ class ScheduleForm extends Component{
         </FormGroup>
         <FormGroup>
           <Label>Select Student</Label>
-        <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange}/>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleSelect">Select Student</Label>
-          <Input type="select" name="select" id="exampleSelect">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
+        <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange} relatedUsers={this.props.relatedUsers}/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleText">Description</Label>
