@@ -1,3 +1,5 @@
+import {Branding} from "../../config";
+
 export const STORE_INITIATE_VALUE={
   AUTH_INITIATE:
     {
@@ -21,7 +23,12 @@ export const STORE_INITIATE_VALUE={
   SPINNER_INITIATE: {
     value:false
 
+  },
+  CONFIG_INITIATE: {
+    footer:Branding.footer,
   }
+
+
 
 
 }

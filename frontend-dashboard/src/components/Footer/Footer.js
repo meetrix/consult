@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import {Branding} from "../../../config";
+import {connect} from 'react-redux';
+
 
 class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        <span><a href={Branding.footer.organizationLink}>{Branding.footer.applicationName}</a> &copy; {Branding.footer.copyrightYear+" "+Branding.footer.organization}</span>
-        <span className="ml-auto">Powered by <a href={Branding.footer.poweredBylink}>{Branding.footer.poweredBy}</a></span>
+        <span><a href={this.props.config.footer.organizationLink}>{this.props.config.footer.applicationName}</a> &copy; {this.props.config.footer.copyrightYear+" "+this.props.config.footer.organization}</span>
+        <span className="ml-auto">Powered by <a href={this.props.config.footer.poweredBylink}>{this.props.config.footer.poweredBy}</a></span>
       </footer>
     )
   }
 }
 
-export default Footer;
+function mapStateToProps(state){
+
+	return({
+		config:state.config
+	})
+}
+
+export default connect(mapStateToProps)(Footer);
