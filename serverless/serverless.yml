@@ -268,5 +268,5 @@ resources:
                 ProvisionedThroughput:
                   ReadCapacityUnits: 1
                   WriteCapacityUnits: 1
-                TableName:  ${self:provider.environment.USER_EVENT_MAPPER_TABLE}
+                TableName:  ${self:provider.environment.USER_EVENT_MAPPER_TABLE_2}
 
