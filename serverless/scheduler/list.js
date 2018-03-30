@@ -25,32 +25,6 @@ module.exports.list = (event, context, callback) =>{
   function handler(data) {
 
     console.log('table name : '+process.env.EVENT_TABLE);
-    //
-    // const params = {
-    //   RequestItems: {
-    //     'serverless-rest-api-with-dynamodb-dev' : {
-    //       Keys: [
-    //         {'id': {'S': '469ce3d0-2518-11e8-9271-3777bb2c31cd'}}
-    //       ]
-    //     }
-    //   }
-    // };
-    //
-    // // read
-    // return new Promise((resolve, reject)=>{
-    //   dynamodb.batchGetItem(params, (error, result) => {
-    //     // handle potential errors
-    //     console.log('test');
-    //     if (error) {
-    //       console.error(error);
-    //       reject(error);
-    //     }
-    //     else {
-    //       resolve(result);
-    //       context.succeed(result);
-    //     }
-    //   });
-    // });
 
     const params = {
       TableName: process.env.EVENT_TABLE,

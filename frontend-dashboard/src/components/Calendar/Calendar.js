@@ -34,6 +34,7 @@ class Calendar extends Component{
     this.toggleEditingFalse = this.toggleEditingFalse.bind(this);
     this.toggleEditingTrue = this.toggleEditingTrue.bind(this);
     this.onDeleteEvent = this.onDeleteEvent.bind(this);
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
   }
 
   componentDidMount(){
@@ -99,6 +100,16 @@ class Calendar extends Component{
     this.setState({consultee:newValue});
   }
 
+  handleDropdownClick(id,firstName,lastName){
+    console.log("handleDropdownClick"+firstName);
+    this.props.actions.setConsultees({
+
+    })
+    // this.setState({
+
+    // })
+  }
+
   toggle() {
     this.setState({
       modal: !this.state.modal,
@@ -141,11 +152,13 @@ class Calendar extends Component{
       })
     }else {
       this.props.actions.postScheduleEvents({
+          createdBy:{id:this.props.user.id,firstName:this.props.user.firstName,lastName:this.props.user.lastName},
           start: this.state.start.toDate(),
           end: this.state.end.toDate(),
           title: this.state.title,
-          consultee: this.state.consultee,
-          booked: this.state.booked
+          consultee: this.props.consultees,
+          booked: this.state.booked,
+          consultant: {id:this.props.user.id,firstName:this.props.user.firstName,lastName:this.props.user.lastName}
         }
       )
     }
@@ -181,7 +194,7 @@ class Calendar extends Component{
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} onExit={this.toggleEditingFalse}>
                  <ModalHeader toggle={this.toggle}>Enter Details</ModalHeader>
                  <ModalBody>
-                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onBookChange={this.onBookChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} relatedUsers={this.props.user.relatedUsers} />
+                   <ScheduleForm start={this.state.start} end={this.state.end} handleStartDateChange={this.handleStartDateChange.bind(this)} handleEndDateChange={this.handleEndDateChange.bind(this)} onTitleChange={this.onTitleChange.bind(this)} onBookChange={this.onBookChange.bind(this)} onConsulteeChange={this.onConsulteeChange.bind(this)} title={this.state.title} relatedUsers={this.props.user.relatedUsers} actions={this.props.actions} />
                  </ModalBody>
                  <ModalFooter>
                    {this.state.editing && <Button color="danger" onClick={this.onDeleteEvent}>Delete Event</Button>}
