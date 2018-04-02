@@ -19,12 +19,13 @@ module.exports.create = (event, context, callback) => {
   let data = JSON.parse(event.body);
   const schema = Joi.object().keys({
       createdBy: Joi.object().required(),
-      consultant:Joi.object().required(),
-      consultee:Joi.object().required(),
+
       start: Joi.string().required(),
       end: Joi.string().required(),
       title: Joi.string().required(),
-      booked: Joi.boolean().required()
+      consultee: Joi.object().required(),
+      booked: Joi.boolean().required(),
+      consultant:Joi.object().required()
   });
 
   function validate  (data, schema) {
@@ -52,14 +53,16 @@ module.exports.create = (event, context, callback) => {
               consultant:data.consultant,
               consultee:data.consultee,
               createdAt: timestamp,
+              createdBy:[data.createdBy],
               start: data.start,
               end: data.end,
               title:data.title,
               booked:data.booked,
-              users:[data.consultant,data.consultee],
 
           },
       };
+
+      const data_passed = {data:data,id:params.Item.id};
 
       // write the todo to the database
       return new Promise((resolve, reject)=>{
@@ -70,7 +73,7 @@ module.exports.create = (event, context, callback) => {
                   reject(error);
               }
               else {
-                resolve(params)
+                resolve(data_passed);
               }
           });
       });
@@ -114,28 +117,57 @@ module.exports.create = (event, context, callback) => {
   // }
   function insertEventAndUserToMapper(eventData){
     const timestamp = new Date().getTime();
+    //const TableName = process.env.USER_EVENT_MAPPER_TABLE;
     const params = {
-      TableName: process.env.USER_EVENT_MAPPER_TABLE,
-      Item: {
-        id: eventData.Item.users[0].sub,
-        eventId:eventData.Item.id,
-        date:eventData.Item.start,
-        createdAt: timestamp
-
-      },
-      ReturnValues: 'ALL_OLD',
+      // TableName: process.env.USER_EVENT_MAPPER_TABLE,
+      // Item: {
+      //   userId: eventData.,
+      //   eventId:eventData.Item.id,
+      //   date:eventData.Item.start,
+      //   createdAt: timestamp
+      //
+      // },
+      // ReturnValues: 'ALL_OLD',
+      RequestItems:{
+        "UserEventMapper" : [
+          {
+            PutRequest:{
+              Item:{
+                "userId":eventData.data.consultant.id,
+                "startDate":eventData.data.start,
+                "eventId":eventData.id,
+                "eventTitle":eventData.title,
+                "userFirstName":eventData.data.consultant.firstName,
+                "userLastName":eventData.data.consultant.lastName,
+              }
+            }
+          },
+          {
+            PutRequest:{
+              Item:{
+                "userId":eventData.data.consultee.id,
+                "startDate":eventData.data.start,
+                "eventId":eventData.id,
+                "eventTitle":eventData.title,
+                "userFirstName":eventData.data.consultee.firstName,
+                "userLastName":eventData.data.consultee.lastName,
+              }
+            }
+          },
+        ]
+      }
     };
 
     // write the todo to the database
     return new Promise((resolve, reject)=>{
-      dynamodb.put(params, (error,data) => {
+      dynamodb.batchWrite(params, (error,data) => {
         // handle potential errors
         if (error) {
           console.error(error);
           reject(error);
         }
         else {
-          resolve(eventData)
+          resolve(data)
         }
       });
     });
@@ -195,10 +227,13 @@ module.exports.create = (event, context, callback) => {
 
 
   validate(data, schema).then((result)=>{
-       return  handler(data).then((result)=>{
-         return insertEventAndUserToMapper(result)
+
+
+       return  handler(result).then((eventData)=>{
+         return insertEventAndUserToMapper(eventData)
+
        })
-     
+
 
   }).then((result)=>{
     // create a response

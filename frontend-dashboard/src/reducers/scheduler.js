@@ -9,6 +9,7 @@ import {REDUX_API_GATEWAY_ACTIONS} from '../constants/apiGateWayConstant';
 
 //intiate store constant
 import {STORE_INITIATE_VALUE} from '../constants/initialstore'
+import {REDUX_ACTIONS} from "../constants/apiSagaConstant";
 
 //convert event
 export const  convertEvent = (item) => {
@@ -87,6 +88,12 @@ export default (state = STORE_INITIATE_VALUE.EVENT_INITIALE, action) => {
         events: updatedEvents
 
       }
+    case REDUX_ACTIONS.SET_CONSULTEES:{
+      return{
+        ...state,
+        consultees:action.data
+      }
+    }
     default:
       return state;
   }

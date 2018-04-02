@@ -1,11 +1,38 @@
 import React,{Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, DropdownItem, DropdownMenu, Dropdown, DropdownToggle } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
 class ScheduleForm extends Component{
 
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false
+    };
+
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
+  handleDropdownClick(id,firstName,lastName,event){
+
+    this.props.actions.setConsultees({
+      id: id,
+      firstName: firstName,
+      lastName: lastName
+    })
+  }
+
   render(){
+    console.log("relatedUsers:22 "+this.props.relatedUsers[0].firstName);
     return(
       <Form>
         <FormGroup>
@@ -22,17 +49,20 @@ class ScheduleForm extends Component{
         </FormGroup>
         <FormGroup>
           <Label>Select Student</Label>
-        <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange}/>
+        <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange} relatedUsers={this.props.relatedUsers}/>
         </FormGroup>
         <FormGroup>
-          <Label for="exampleSelect">Select Student</Label>
-          <Input type="select" name="select" id="exampleSelect">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
+          <Label>Select Student</Label>
+        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+          Dropdown
+        </DropdownToggle>
+        <DropdownMenu>
+          {this.props.relatedUsers.map((relatedUser,index)=>{
+            return (<DropdownItem key={index} onClick={this.handleDropdownClick.bind(this,relatedUser.id,relatedUser.firstName,relatedUser.lastName)}>{relatedUser.firstName}</DropdownItem>)
+          },this)}
+        </DropdownMenu>
+      </Dropdown>
         </FormGroup>
         <FormGroup>
           <Label for="exampleText">Description</Label>
