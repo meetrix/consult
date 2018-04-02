@@ -53,7 +53,6 @@ module.exports.create = (event, context, callback) => {
               consultant:data.consultant,
               consultee:data.consultee,
               createdAt: timestamp,
-              createdBy:[data.createdBy],
               start: data.start,
               end: data.end,
               title:data.title,
