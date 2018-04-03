@@ -26,7 +26,7 @@ function OtherAvailableStudents(props) {
     console.log("handleConsulteeClick : "+firstName);
     props.updateRelatedUsers({
       id : props.consultantId.id,
-      consultantFirstName : props.consulteeId.firstName,
+      consultantFirstName : props.consultantId.firstName,
       consultantLastName : props.consultantId.lastName,
       consulteeId : id,
       consulteeFirstName:firstName,
