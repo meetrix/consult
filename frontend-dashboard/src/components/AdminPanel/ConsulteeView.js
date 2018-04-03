@@ -20,6 +20,8 @@ function AvailableStudents(props) {
 
 function OtherAvailableStudents(props) {
 
+  let status = true;
+
   function handleConsulteeClick(id,firstName,lastName,event){
     console.log("handleConsulteeClick : "+firstName);
     props.updateRelatedUsers({
@@ -39,7 +41,12 @@ function OtherAvailableStudents(props) {
     return(
       <ListGroup>
     {props.consultees.map(function (consultee,index) {
-      return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this,consultee.id,consultee.firstName,consultee.lastName)}>{consultee.firstName +" "+consultee.lastName}</ListGroupItem>);
+      status = true;
+      props.usedConsultees.map(function(usedConsultee){
+        if(consultee.id == usedConsultee.id) status = false;
+      })
+
+      if(status == true){ return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this,consultee.id,consultee.firstName,consultee.lastName)}>{consultee.firstName +" "+consultee.lastName}</ListGroupItem>);}
     },this)}
       </ListGroup>
     )
@@ -94,7 +101,7 @@ class ConsulteeView extends Component{
               <strong>Other Students</strong>
               </CardHeader>
               <CardBody>
-                  <OtherAvailableStudents consultees={this.props.admin.consultees} consultantId={this.props.admin.consultantId} updateRelatedUsers={this.props.action.updateRelatedUsers}/>
+                  <OtherAvailableStudents consultees={this.props.admin.consultees} consultantId={this.props.admin.consultantId} updateRelatedUsers={this.props.action.updateRelatedUsers} usedConsultees={consultees}/>
               </CardBody>
             </Card>
           </Row>
