@@ -10,6 +10,8 @@ module.exports.update = (event, context, callback) => {
 
   const schema = Joi.object().keys({
     id:Joi.string().required(),
+    consultantFirstName: Joi.string().required(),
+    consultantLastName: Joi.string().required(),
     consulteeId: Joi.string().required(),
     consulteeFirstName: Joi.string().required(),
     consulteeLastName: Joi.string().required()
@@ -65,7 +67,7 @@ module.exports.update = (event, context, callback) => {
     });
   }
 
-  function updateConsultee(data){ 
+  function updateConsultee(data){
 
     var data_combined = {};
     const data_passed = data;
