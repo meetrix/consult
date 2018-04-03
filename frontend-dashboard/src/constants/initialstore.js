@@ -24,7 +24,7 @@ export const STORE_INITIATE_VALUE={
     value:false
 
   },
-  CONFIG_INITIATE: {
+  CUSTOMIZE_INITIATE: {
     footer:Branding.footer,
   }
 

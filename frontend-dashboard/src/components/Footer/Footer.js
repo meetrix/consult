@@ -6,8 +6,8 @@ class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        <span><a href={this.props.config.footer.organizationLink}>{this.props.config.footer.applicationName}</a> &copy; {this.props.config.footer.copyrightYear+" "+this.props.config.footer.organization}</span>
-        <span className="ml-auto">Powered by <a href={this.props.config.footer.poweredBylink}>{this.props.config.footer.poweredBy}</a></span>
+        <span><a href={this.props.customize.footer.organizationLink}>{this.props.customize.footer.applicationName}</a> &copy; {this.props.customize.footer.copyrightYear+" "+this.props.customize.footer.organization}</span>
+        <span className="ml-auto">Powered by <a href={this.props.customize.footer.poweredBylink}>{this.props.customize.footer.poweredBy}</a></span>
       </footer>
     )
   }
@@ -16,7 +16,7 @@ class Footer extends Component {
 function mapStateToProps(state){
 
 	return({
-		config:state.config
+		customize:state.customize
 	})
 }
 
