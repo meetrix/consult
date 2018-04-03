@@ -55,7 +55,7 @@ class ScheduleForm extends Component{
           <Label>Select Student</Label>
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
-          Dropdown
+          {this.props.consultees.firstName}
         </DropdownToggle>
         <DropdownMenu>
           {this.props.relatedUsers.map((relatedUser,index)=>{

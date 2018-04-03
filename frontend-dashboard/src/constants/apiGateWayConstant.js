@@ -67,6 +67,7 @@ export const ENDPOINTS = {
 export const API_ROUTE = {
     PETS: '/pets',
     SCHEDULE:'/schedule',
+    SCHEDULE_GET:'/schedule/get?id=/:id',
     EVENT_SCHEDULE:'/user/event/schedule',
     USER:'/user',
     USER_EVENTS_FREE:'/user/event/free?id=/:id',

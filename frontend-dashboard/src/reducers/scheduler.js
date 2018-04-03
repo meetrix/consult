@@ -13,14 +13,12 @@ import {REDUX_ACTIONS} from "../constants/apiSagaConstant";
 
 //convert event
 export const  convertEvent = (item) => {
-
   let event = {};
   event['id'] = item['id'];
   event['start'] = moment(item.start).toDate();
   event['end'] = moment(item.end).toDate();
   event['title'] = item.title;
-  event['users'] = item.users || [];
-  event['consultee'] = item.consultee;
+  return event;
 }
 
 export default (state = STORE_INITIATE_VALUE.EVENT_INITIALE, action) => {
@@ -29,7 +27,7 @@ export default (state = STORE_INITIATE_VALUE.EVENT_INITIALE, action) => {
   switch (action.type) {
     case REDUX_API_GATEWAY_ACTIONS.GET_SCHEDULE_EVENT_SUCCESS: {
 
-       const convertEvents = action.payload.Items.map((item)=>convertEvent(item));
+      const convertEvents = action.payload.Responses.Event.map((item)=>convertEvent(item));
       return {
         ...state,
             events: convertEvents
