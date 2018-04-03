@@ -1,23 +1,21 @@
-  /**
+/**
  * Created by supun on 07/02/18.
  */
 
-import React,{Component} from 'react';
-import {Col} from 'reactstrap'
-import Spinner from 'react-spinkit'
-class SpinnerComponent extends Component{
+import React, { Component } from "react";
+import { Col } from "reactstrap";
+import Spinner from "react-spinkit";
 
-  constructor(props){
-    super(props);
-  }
+class SpinnerComponent extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-  render(){
-    return(
-      <Col><Spinner name="line-scale-party" color="aqua"/></Col>
+	render() {
+		return (
+  <Col><Spinner name="line-scale-party" color="aqua" /></Col>
 
-    );
-  }
-
-
+		);
+	}
 }
-export default SpinnerComponent
+export default SpinnerComponent;

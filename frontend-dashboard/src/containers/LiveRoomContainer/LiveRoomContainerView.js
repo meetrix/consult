@@ -3,27 +3,26 @@
  */
 
 // Core modules
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import LiveRooms from '../../components/LiveRoom/LiveRooms'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import LiveRooms from "../../components/LiveRoom/LiveRooms";
 
 class LiveRoomContainerView extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-    constructor(props){
-        super(props)
-    }
-
-    render() {
-        return(
-            <LiveRooms rooms={this.props.rooms} numOfRoomsShouldShow={this.props.numOfRoomsShouldShow}></LiveRooms>
-        )
-    }
+	render() {
+		return (
+			<LiveRooms rooms={this.props.rooms} numOfRoomsShouldShow={this.props.numOfRoomsShouldShow} />
+		);
+	}
 }
 
 LiveRoomContainerView.propTypes = {
-    actions: PropTypes.object.isRequired,
-    rooms:PropTypes.array.isRequired,
-    numOfRoomsShouldShow:PropTypes.number.isRequired
+	actions: PropTypes.object.isRequired,
+	rooms: PropTypes.array.isRequired,
+	numOfRoomsShouldShow: PropTypes.number.isRequired,
 
 };
 

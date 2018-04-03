@@ -5,3 +5,4 @@
 node_modules/
 dist/
 .webpack/
+./frontend-dashboard/build/*

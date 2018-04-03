@@ -1,24 +1,23 @@
-import React, {Component} from 'react';
-import {Col,Row} from 'reactstrap';
+import React, { Component } from "react";
+import { Col, Row } from "reactstrap";
 
 
+class BaseBox extends Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+  <Col className="base-box">
 
-class BaseBox extends Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return(
-            <Col className="base-box">
+  <Col>
 
-                <Col>
+  {this.props.children}
 
-                    {this.props.children}
-
-                </Col>
-            </Col>
-        )
-    }
+				</Col>
+			</Col>
+		);
+	}
 }
 
 export default BaseBox;

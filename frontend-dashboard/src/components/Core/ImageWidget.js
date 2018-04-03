@@ -1,31 +1,28 @@
-import React,{Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 const propTypes = {
-    path: PropTypes.string,
-    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	path: PropTypes.string,
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 };
 
 const defaultProps = {
-    tag: 'img'
+	tag: "img",
 };
 
-class ImageWidget extends Component{
+class ImageWidget extends Component {
+	render() {
+		const {
+			path,
+			tag: Tag,
 
+		} = this.props;
 
-    render(){
-
-        let {
-            path,
-            tag: Tag,
-
-        } = this.props;
-
-        return(
-            <Tag type={(Tag === 'img') ? 'img' : undefined} src={path}/>
-        );
-    }
+		return (
+  <Tag type={(Tag === "img") ? "img" : undefined} src={path} />
+		);
+	}
 }
 
 ImageWidget.propTypes = propTypes;

@@ -6,53 +6,49 @@
  */
 
 // Core modules
-import React, {Component, Fragment} from 'react';
-import {Row} from 'reactstrap';
-import PropTypes from 'prop-types';
-import Consultant from './Consultant';
+import React, { Component, Fragment } from "react";
+import { Row } from "reactstrap";
+import PropTypes from "prop-types";
+import Consultant from "./Consultant";
 
 class Consultants extends Component {
+	getConsultantCardColumns(consultantsInRow) {
+		const consultantCardColumnWidth = 4;
+		return (
+			consultantsInRow.map((consultant, index) =>
 
-    getConsultantCardColumns(consultantsInRow){
-        let consultantCardColumnWidth = 4;
-        return (
-            consultantsInRow.map((consultant, index) =>
+  <Consultant
+  key={index}
+					{...consultant}
+					actions={this.props.actions}
+					columnWidth={consultantCardColumnWidth}
+				/>,)
+		);
+	}
 
-                <Consultant  key={index}
-                    {...consultant}
-                    actions={this.props.actions}
-                    columnWidth = {consultantCardColumnWidth}
-                />
-
-            )
-        )
-    }
-
-    render() {
-        var rows=[];
-        let numberOfCardsInRow = 3;
-        for(let i=0; i<this.props.consultants.length ; i=i+numberOfCardsInRow){
-            rows.push(
-                <Row className="consultant-array" key={i}>
-                    {this.getConsultantCardColumns(this.props.consultants.slice(i,i+numberOfCardsInRow))}
-                </Row>
-            )
-        }
-        return(
-            <Fragment>
-                {rows}
-            </Fragment>
-        )
-    }
+	render() {
+		const rows = [];
+		const numberOfCardsInRow = 3;
+		for (let i = 0; i < this.props.consultants.length; i += numberOfCardsInRow) {
+			rows.push(<Row className="consultant-array" key={i}>
+				{this.getConsultantCardColumns(this.props.consultants.slice(i, i + numberOfCardsInRow))}
+			</Row>);
+		}
+		return (
+  <Fragment>
+  {rows}
+			</Fragment>
+		);
+	}
 }
 
 Consultants.propTypes = {
-    consultants: PropTypes.arrayOf(PropTypes.shape({
-        _id:PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
+	consultants: PropTypes.arrayOf(PropTypes.shape({
+		_id: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
 
-    })),
-    actions: PropTypes.object.isRequired
+	})),
+	actions: PropTypes.object.isRequired,
 
 };
 
