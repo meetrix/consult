@@ -57,7 +57,7 @@ module.exports.create = (event, context, callback) => {
           },
       };
 
-      const data_passed = {data:data,id:params.Item.id};
+      const data_passed = {data:data,id:params.Item.id,params:params};
 
       // write the todo to the database
       return new Promise((resolve, reject)=>{
@@ -111,18 +111,11 @@ module.exports.create = (event, context, callback) => {
   //   });
   // }
   function insertEventAndUserToMapper(eventData){
+    const data_passed = eventData;
     const timestamp = new Date().getTime();
     //const TableName = process.env.USER_EVENT_MAPPER_TABLE;
     const params = {
-      // TableName: process.env.USER_EVENT_MAPPER_TABLE,
-      // Item: {
-      //   userId: eventData.,
-      //   eventId:eventData.Item.id,
-      //   date:eventData.Item.start,
-      //   createdAt: timestamp
-      //
-      // },
-      // ReturnValues: 'ALL_OLD',
+      
       RequestItems:{
         "UserEventMapper" : [
           {
@@ -163,7 +156,8 @@ module.exports.create = (event, context, callback) => {
           reject(error);
         }
         else {
-          resolve(data)
+
+          resolve(data_passed);
         }
       });
     });
