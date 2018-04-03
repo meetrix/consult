@@ -154,7 +154,8 @@ module.exports.create = (event, context, callback) => {
             }
           },
         ]
-      }
+      },
+      ReturnItemCollectionMetrics: 'SIZE'
     };
 
     // write the todo to the database

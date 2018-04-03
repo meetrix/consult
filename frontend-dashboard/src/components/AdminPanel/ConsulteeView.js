@@ -23,7 +23,9 @@ function OtherAvailableStudents(props) {
   function handleConsulteeClick(id,firstName,lastName,event){
     console.log("handleConsulteeClick : "+firstName);
     props.updateRelatedUsers({
-      id : props.consultantId,
+      id : props.consultantId.id,
+      consultantFirstName : props.consulteeId.firstName,
+      consultantLastName : props.consultantId.lastName,
       consulteeId : id,
       consulteeFirstName:firstName,
       consulteeLastName:lastName
@@ -61,7 +63,7 @@ class ConsulteeView extends Component{
 
   render(){
     var consultant = this.props.admin.consultants.find(function (obj) {
-      return obj.id === this.props.admin.consultantId;
+      return obj.id === this.props.admin.consultantId.id;
     },this);
     if(consultant) {
       var consultees = consultant.relatedUsers;

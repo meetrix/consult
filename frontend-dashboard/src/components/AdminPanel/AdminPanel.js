@@ -15,10 +15,12 @@ class AdminPanel extends Component{
     });
   }
 
-  handleConsultantClick(id,event){
+  handleConsultantClick(id,firstName,lastName,event){
     console.log("id : "+id);
     this.props.actions.setConsultantId({
-      id : id
+      id : id,
+      firstName : firstName,
+      lastName : lastName
     })
 
 
@@ -36,7 +38,7 @@ class AdminPanel extends Component{
                 <CardBody>
                   <ListGroup>
                     {this.props.admin.consultants.map(function(consultant, index){
-                      return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id)} href="#/dashboard/admin_panel/consultant" tag="a">{consultant.firstName+" "+consultant.lastName }</ListGroupItem>
+                      return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id,consultant.firstName,consultant.lastName)} href="#/dashboard/admin_panel/consultant" tag="a">{consultant.firstName+" "+consultant.lastName }</ListGroupItem>
                     },this)}
                   </ListGroup>
                 </CardBody>

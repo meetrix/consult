@@ -17,8 +17,8 @@ export const STORE_INITIATE_VALUE={
       }
     },
   EVENT_INITIALE:{
-    events:[]
-
+    events:[],
+    consultees:{firstName:"User"}
   },
   SPINNER_INITIATE: {
     value:false

@@ -77,7 +77,7 @@ module.exports.update = (event, context, callback) => {
       },
       ExpressionAttributeValues: {
         ':updatedAt': timestamp,
-        ':relatedUser': [{id:data.data_passed.id}],
+        ':relatedUser': [{id:data.data_passed.id,firstName:data_passed.consultantFirstName,lastName:data_passed.consultantLastName}],
         ':empty_users': [],
       },
       UpdateExpression: 'SET relatedUsers=list_append(if_not_exists(relatedUsers, :empty_users), :relatedUser), updatedAt= :updatedAt',

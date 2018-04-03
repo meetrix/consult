@@ -44,7 +44,7 @@ export default (state=admin,action) => {
       case REDUX_ACTIONS.SET_CONSULTANT_ID:{
         return{
           ...state,
-          consultantId:action.payload.id
+          consultantId:action.payload
         }
       }
       default: return state;
