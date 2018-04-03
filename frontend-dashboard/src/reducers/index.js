@@ -3,8 +3,8 @@ import auth from './auth';
 import consultants from './consultants';
 import scheduler from './scheduler';
 import admin from './admin';
-import spinner from './spinner'
-import config from './config'
+import spinner from './spinner';
+import customize from './customize';
 
 const rootReducer = combineReducers({
     auth,
@@ -12,6 +12,6 @@ const rootReducer = combineReducers({
     scheduler,
     admin,
     spinner,
-    config
+    customize
 });
 export default rootReducer;
