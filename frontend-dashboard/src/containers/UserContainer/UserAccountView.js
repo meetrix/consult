@@ -4,24 +4,24 @@
 /**
  * Created by supun on 23/02/18.
  */
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import UserAccount from "../../components/User/UserAccount";
+import UserAccount from '../../components/User/UserAccount';
 
 class UserAccountView extends Component {
-	constructor(props) {
-		super(props);
-	}
-	render() {
-		return (
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
 
-  <UserAccount {...this.props.account} />
-		);
-	}
+      <UserAccount {...this.props.account} />
+    );
+  }
 }
 UserAccountView.propTypes = {
-	account: PropTypes.object.isRequired,
+  account: PropTypes.object.isRequired,
 };
 
 export default UserAccountView;

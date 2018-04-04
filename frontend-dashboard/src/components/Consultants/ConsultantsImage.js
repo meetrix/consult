@@ -1,45 +1,45 @@
 /**
  * Created by supun on 15/02/18.
  */
-import React, { Component } from "react";
-import { Row, Col, Button } from "reactstrap";
+import React, { Component } from 'react';
+import { Row, Col, Button } from 'reactstrap';
 
-import { BaseBox, BaseShowRow } from "../BaseBox";
-import ConsultantImage from "./ConsultantImage";
+import { BaseBox, BaseShowRow } from '../BaseBox';
+import ConsultantImage from './ConsultantImage';
 
 
 class ConsultantsImage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			consultantAvailabelImages: [],
-			num: 2,
-		};
-	}
-	componentDidMount() {
-		this.getConsultantsImages();
-	}
-	getConsultantsImages() {
-		const consultantAvailabelImages = [];
-		if (this.props.consultantsImages != undefined) {
-			this.props.consultantsImages.map((consultantImage, index) =>
-				consultantAvailabelImages.push(<ConsultantImage key={index} image={consultantImage} />));
-			this.setState({ consultantAvailabelImages });
-		}
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      consultantAvailabelImages: [],
+      num: 2,
+    };
+  }
+  componentDidMount() {
+    this.getConsultantsImages();
+  }
+  getConsultantsImages() {
+    const consultantAvailabelImages = [];
+    if (this.props.consultantsImages != undefined) {
+      this.props.consultantsImages.map((consultantImage, index) =>
+        consultantAvailabelImages.push(<ConsultantImage key={index} image={consultantImage} />));
+      this.setState({ consultantAvailabelImages });
+    }
+  }
 
 
-	render() {
-		return (
+  render() {
+    return (
 
-  <BaseBox>
-  <Row>
-  <BaseShowRow numComponentView={this.state.num} availabelComponent={this.state.consultantAvailabelImages} />
-				</Row>
+      <BaseBox>
+        <Row>
+          <BaseShowRow numComponentView={this.state.num} availabelComponent={this.state.consultantAvailabelImages} />
+        </Row>
 
-			</BaseBox>
-		);
-	}
+      </BaseBox>
+    );
+  }
 }
 
 export default ConsultantsImage;

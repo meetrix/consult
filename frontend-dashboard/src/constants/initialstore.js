@@ -1,7 +1,7 @@
-import { Branding } from "../../config";
+import { Branding } from '../../config';
 
 export const STORE_INITIATE_VALUE = {
-	AUTH_INITIATE:
+  AUTH_INITIATE:
     {
     	user: {
     		email: undefined,
@@ -16,17 +16,17 @@ export const STORE_INITIATE_VALUE = {
 
     	},
     },
-	EVENT_INITIALE: {
-		events: [],
-		consultees: { firstName: "User" },
-	},
-	SPINNER_INITIATE: {
-		value: false,
+  EVENT_INITIALE: {
+    events: [],
+    consultees: { firstName: 'User' },
+  },
+  SPINNER_INITIATE: {
+    value: false,
 
-	},
-	CUSTOMIZE_INITIATE: {
-		footer: Branding.footer,
-	},
+  },
+  CUSTOMIZE_INITIATE: {
+    footer: Branding.footer,
+  },
 
 
 };

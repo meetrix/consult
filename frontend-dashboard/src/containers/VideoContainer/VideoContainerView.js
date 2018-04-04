@@ -6,26 +6,26 @@
  */
 
 // Core modules
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Videos from "../../components/Video/Videos";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Videos from '../../components/Video/Videos';
 
 class VideoContainerView extends Component {
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super(props);
+  }
 
-	render() {
-		return (
-			<Videos videos={this.props.videos} numOfVideoShouldShow={this.props.numOfVideoShouldShow} />
-		);
-	}
+  render() {
+    return (
+      <Videos videos={this.props.videos} numOfVideoShouldShow={this.props.numOfVideoShouldShow} />
+    );
+  }
 }
 
 VideoContainerView.propTypes = {
-	actions: PropTypes.object.isRequired,
-	videos: PropTypes.array.isRequired,
-	numOfVideoShouldShow: PropTypes.number.isRequired,
+  actions: PropTypes.object.isRequired,
+  videos: PropTypes.array.isRequired,
+  numOfVideoShouldShow: PropTypes.number.isRequired,
 
 };
 

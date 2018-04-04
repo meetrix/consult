@@ -1,7 +1,7 @@
-import { STORE_INITIATE_VALUE } from "../constants/initialstore";
+import { STORE_INITIATE_VALUE } from '../constants/initialstore';
 
 export default (state = STORE_INITIATE_VALUE.CUSTOMIZE_INITIATE, action) => {
-	switch (action.type) {
-	default: return state;
-	}
+  switch (action.type) {
+    default: return state;
+  }
 };
