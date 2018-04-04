@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Label, FormGroup } from 'reactstrap';
-import RadioButton from './RadioButton';
+import { FormGroup } from 'reactstrap';
 import PropTypes from 'prop-types';
+import RadioButton from './RadioButton';
 
 class SortByRadioButtons extends Component {
   render() {
@@ -22,7 +22,6 @@ class SortByRadioButtons extends Component {
 }
 
 SortByRadioButtons.propTypes = {
-  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   radioButtons: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,

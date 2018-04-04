@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Input, Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import DropDownMenu from './DropDownMenu';
 
@@ -7,9 +7,14 @@ class DropDownMenuSet extends Component {
   render() {
     const columnWidthMd = 12 / this.props.dropDownMenus.length;
     const menuSet = this.props.dropDownMenus.map(dropDownMenu =>
-      (<Col xs="12" sm={columnWidthMd} md={columnWidthMd} key={`drop_down_menu_set_${dropDownMenu.name}`}>
-        <DropDownMenu name={dropDownMenu.name} label={dropDownMenu.label} options={dropDownMenu.options} />
-       </Col>));
+      (
+        <Col xs="12" sm={columnWidthMd} md={columnWidthMd} key={`drop_down_menu_set_${dropDownMenu.name}`}>
+          <DropDownMenu
+            name={dropDownMenu.name}
+            label={dropDownMenu.label}
+            options={dropDownMenu.options}
+          />
+        </Col>));
 
     return (
     // Fragment is used to return columns without a dev wrap

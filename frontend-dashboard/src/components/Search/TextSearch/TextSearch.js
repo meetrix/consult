@@ -16,7 +16,6 @@ class TextSearch extends Component {
 }
 
 TextSearch.propTypes = {
-  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeHolder: PropTypes.string.isRequired,
 };
