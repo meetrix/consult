@@ -49,5 +49,6 @@ class ConsulteeView extends Component {
 }
 ConsulteeView.propTypes = {
   admin: PropTypes.shape.isRequired,
+  action: PropTypes.func.isRequired,
 };
 export default ConsulteeView;
