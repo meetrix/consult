@@ -3,11 +3,10 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import ReactList from 'react-list';
 
 import LiveRoom from './LiveRoom';
-import BaseShowRow from '../BaseBox/BaseShowRow';
 import BaseBox from '../BaseBox/BaseBox';
 
 class LiveRooms extends Component {
@@ -22,7 +21,7 @@ class LiveRooms extends Component {
   }
   getConsultantsRooms() {
     const availabelRooms = [];
-    if (this.props.rooms != undefined) {
+    if (this.props.rooms !== undefined) {
       this.props.rooms.map((room, index) =>
         availabelRooms.push(<LiveRoom key={index} room={room} />));
 
@@ -34,7 +33,6 @@ class LiveRooms extends Component {
     return (
       <BaseBox>
         <Row>
-          {/* <BaseShowRow  numComponentView={this.props.numOfRoomsShouldShow} availabelComponent={this.state.availabelRooms}/> */}
           <Col style={{ overflow: 'auto' }}>
             <ReactList
               itemRenderer={(index, key) => this.state.availabelRooms[index]}

@@ -13,7 +13,7 @@ class RequestTimeSlot extends Component {
         <Row>
           <Col>
             <Alert className="text-center" color="success">
-                            Didn't find the time slot you were  looking for ?
+              Didn&apost find the time slot you were  looking for ?
             </Alert>
           </Col>
         </Row>

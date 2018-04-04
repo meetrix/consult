@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, DropdownItem, DropdownMenu, Dropdown, DropdownToggle } from 'reactstrap';
+import { Form, FormGroup, Label, Input, DropdownItem, DropdownMenu, Dropdown, DropdownToggle } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
@@ -47,7 +47,10 @@ class ScheduleForm extends Component {
         </FormGroup>
         <FormGroup>
           <Label>Select Student</Label>
-          <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange} relatedUsers={this.props.relatedUsers} />
+          <ConsulteeSuggest
+            onConsulteeChange={this.props.onConsulteeChange}
+            relatedUsers={this.props.relatedUsers}
+          />
         </FormGroup>
         <FormGroup>
           <Label>Select Student</Label>
@@ -56,7 +59,19 @@ class ScheduleForm extends Component {
               {this.props.consultees.firstName}
             </DropdownToggle>
             <DropdownMenu>
-              {this.props.relatedUsers.map((relatedUser, index) => (<DropdownItem key={index} onClick={this.handleDropdownClick.bind(this, relatedUser.id, relatedUser.firstName, relatedUser.lastName)}>{relatedUser.firstName}</DropdownItem>), this)}
+              {this.props.relatedUsers.map((relatedUser, index) => (
+                <DropdownItem
+                  key={index}
+                  onClick={
+                    this.handleDropdownClick.bind(this,
+                    relatedUser.id,
+                      relatedUser.firstName,
+                      relatedUser.lastName,
+                    )}
+                >
+                  {relatedUser.firstName}
+                </DropdownItem>
+              ), this)}
             </DropdownMenu>
           </Dropdown>
         </FormGroup>

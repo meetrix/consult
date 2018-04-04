@@ -22,12 +22,7 @@ export default ({ component: C, props: init, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-				(!init.isAuthenticated
-					? <C {...props} {...init} />
-					: <Redirect
-  to={redirect === '' || redirect === null ? '/login' : redirect}
-					/>)}
+      render={props => (!init.isAuthenticated ? <C {...props} {...init} /> : <Redirect to={redirect === '' || redirect === null ? '/login' : redirect} />)}
     />
   );
 };
