@@ -11,7 +11,7 @@ class SummaryPane extends Component {
     let nextEvent = undefined,year =undefined,month=undefined,day = undefined;
     let countDown = undefined ;
     if(this.props.auth.user.nextEvent!==undefined){
-      nextEvent = new Date(this.props.auth.user.nextEvent.date);
+      nextEvent = new Date(this.props.auth.user.nextEvent.startDate);
       year = nextEvent.getFullYear();
       month = nextEvent.getMonth();
       day = nextEvent.getMinutes();
