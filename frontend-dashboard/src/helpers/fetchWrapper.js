@@ -18,8 +18,6 @@ export default (url, options) =>
 
     options.credentials = 'include';
     const token = localStorage.getItem('token');
-
-    console.log(`token=========${token}`);
     if (token === null) {
       options.headers = new Headers({
         'Content-Type': 'application/json',
@@ -41,7 +39,6 @@ export default (url, options) =>
     fetch(url, options).then((res) => {
       // Wait for response data to resolve before resolving the fetch promise
       res.json().then((data) => {
-        console.log('server response');
         res.data = data;
 
         if (res.status === HTTP_CODES.NOT_AUTHENTICATED) {
