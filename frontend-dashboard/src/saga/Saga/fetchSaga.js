@@ -1,8 +1,9 @@
 /**
  * Created by supun on 09/01/18.
  */
+
+import { put, takeEvery, call, takeLatest } from 'redux-saga/effects';
 import { REDUX_ACTIONS, HTTP_METHODS } from '../../constants/apiSagaConstant';
-import { put, takeEvery, call, takeLatest, select } from 'redux-saga/effects';
 import metadata from './metadata';
 import fetch from '../../helpers/fetchWrapper';
 
@@ -14,14 +15,18 @@ function fetchHandler({ key, payload }) {
   console.log(payload);
 
   let {
-    url, options, failureAction, successAction,
+    url,
   } = metadata[key];
-  // Note - metadata will not be validated here expecting that the metadata file is perfect and predictable
+  const {
+    options, failureAction, successAction,
+  } = metadata[key];
+  /* Note - metadata will not be validated here expecting that
+   the metadata file is perfect and predictable */
 
   // Cloned to avoid later assigned values being persistent across requests
-  const optionsClone = { ...options },
-    payloadClone = { ...payload },
-    pathTokens = url.split('/:');
+  const optionsClone = { ...options };
+  const payloadClone = { ...payload };
+  const pathTokens = url.split('/:');
 
   // Cater for path parameters
   // Note - This code block must appear before params/body is assigned to optionsClone object
@@ -50,6 +55,7 @@ function fetchHandler({ key, payload }) {
         res,
 
       }))
+      /* eslint prefer-promise-reject-errors: 0 */
       .catch(err => reject({
         failureAction,
         err,
@@ -65,6 +71,7 @@ function* fetchAsync(action) {
     const reply = yield call(fetchHandler, action);
     yield put({ ...action, type: REDUX_ACTIONS.FETCHING_SUCCESS });
     console.log(reply);
+    /* eslint max-len: ["error", { "code": 180 }] */
     yield put({ type: reply.successAction, payload: reply.res.data, args: { ...action.payload, ...action.args } });
   } catch (reply) {
     console.log(reply);
