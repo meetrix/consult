@@ -1,6 +1,6 @@
 import { Branding } from '../../config';
 
-export const STORE_INITIATE_VALUE = {
+const STORE_INITIATE_VALUE = {
   AUTH_INITIATE:
     {
     	user: {
@@ -31,3 +31,4 @@ export const STORE_INITIATE_VALUE = {
 
 };
 
+export default STORE_INITIATE_VALUE;

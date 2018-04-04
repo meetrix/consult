@@ -34,6 +34,7 @@ function mapStateToProps(state) {
 
     ],
     numOfRoomsShouldShow: 2,
+    rooms2: state,
   };
 }
 const mapDispatchToProps = dispatch => ({

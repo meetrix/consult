@@ -11,20 +11,14 @@ import PropTypes from 'prop-types';
 import Videos from '../../components/Video/Videos';
 
 class VideoContainerView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Videos videos={this.props.videos} numOfVideoShouldShow={this.props.numOfVideoShouldShow} />
     );
   }
 }
-
 VideoContainerView.propTypes = {
-  actions: PropTypes.object.isRequired,
-  videos: PropTypes.array.isRequired,
+  videos: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   numOfVideoShouldShow: PropTypes.number.isRequired,
 
 };

@@ -10,12 +10,9 @@ import CalendarView from '../../components/Calendar/Calendar';
 import { ACTION_KEY as API_GATEWAY_KEYS, ACTION_ATTR as API_GATEWAY_ATTRS } from '../../constants/apiGateWayConstant';
 import { actionCreateApiGateWayFactory, actionCreateStoreUpdateFactory } from '../../actions/actionCreator';
 
-// events json
-import events from '../../components/Calendar/example_events';
 import { ACTION_ATTR, REDUX_ACTIONS, SCHEDULAR_FORM } from '../../constants/apiSagaConstant';
 
 function mapStateToProps(state) {
-  console.log(state.scheduler);
   return {
     events: state.scheduler.events,
     user: state.auth.user,
@@ -24,6 +21,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => ({
   actions: {
+    /* eslint max-len : 0 */
     getScheduleEvents: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
     postScheduleEvents: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.POST_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
     updateScheduleEvents: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.UPDATE_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD), dispatch),

@@ -31,6 +31,7 @@ function mapStateToProps(state) {
 
     ],
     numOfConsultantShouldShow: 2,
+    consultants2: state,
   };
 }
 const mapDispatchToProps = dispatch => ({

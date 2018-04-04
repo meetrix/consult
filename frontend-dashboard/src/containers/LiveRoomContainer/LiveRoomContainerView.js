@@ -8,10 +8,6 @@ import PropTypes from 'prop-types';
 import LiveRooms from '../../components/LiveRoom/LiveRooms';
 
 class LiveRoomContainerView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <LiveRooms rooms={this.props.rooms} numOfRoomsShouldShow={this.props.numOfRoomsShouldShow} />
@@ -20,8 +16,7 @@ class LiveRoomContainerView extends Component {
 }
 
 LiveRoomContainerView.propTypes = {
-  actions: PropTypes.object.isRequired,
-  rooms: PropTypes.array.isRequired,
+  rooms: PropTypes.arrayOf.isRequired,
   numOfRoomsShouldShow: PropTypes.number.isRequired,
 
 };

@@ -31,11 +31,13 @@ function mapStateToProps(state) {
           id: '4', date: '2011/02/30', amount: '1000.00', status: 'verified',
         },
       ],
+      reocrd: state,
 
     },
   };
 }
 const mapDispatchToProps = dispatch => ({
+  /* eslint max-len : 0 */
   actions: { signup: bindActionCreators(actionCreatorFactory(KEYS.SIGNUP, ATTRS.PAYLOAD), dispatch) },
 });
 

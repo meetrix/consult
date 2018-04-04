@@ -1,6 +1,6 @@
 // core library
 import React, { Component } from 'react';
-import { Row, Col, Button, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 // container
@@ -18,6 +18,8 @@ class DashBoardView extends Component {
     this.state = {
       consultantId: undefined,
     };
+    this._viewTimeSlot = this._viewTimeSlot.bind(this);
+    this._selectConsultant = this._selectConsultant.bind(this);
   }
   componentDidMount() {
     // get user next event
@@ -31,12 +33,13 @@ class DashBoardView extends Component {
   }
 
   _capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + this.string.slice(1);
   }
 
   _viewTimeSlot() {
     if (this.props.auth.user.relatedUsers != null) {
       if (this.state.consultantId === undefined) {
+        /* eslint max-len : 0 */
         this.props.actions.getFreeEventFromConsultant({ id: this.props.auth.user.relatedUsers[0].id });
       } else {
         this.props.actions.getFreeEventFromConsultant({ id: this.state.consultantId });
@@ -49,18 +52,19 @@ class DashBoardView extends Component {
     if (this.props.auth.user.role === role.consultee) {
       if (!(this.props.scheduler.events === undefined || this.props.scheduler.events === null || this.props.scheduler.events.length === 0)) {
         view =
-          (<Col>
-            <Row>
-              <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
-            </Row>
-            <Row>
-              <h6>Let's schedule your class</h6>
-
-            </Row>
-            <Row>
-              <PickTimeSlotContainer />
-            </Row>
-           </Col>);
+          (
+            <Col>
+              <Row>
+                <h3>Hi {this._capitalizeFirstLetter(this.props.auth.user.firstName)} !</h3>
+              </Row>
+              <Row>
+                <h6> {'Let\'s'} schedule your class</h6>
+              </Row>
+              <Row>
+                <PickTimeSlotContainer />
+              </Row>
+            </Col>
+          );
       }
       // TODO when time slot not availble shwo message
       // else {
@@ -77,34 +81,36 @@ class DashBoardView extends Component {
       // }
 
       consultantSelectElm =
-  (<Row>
-    <Form >
-      <FormGroup>
-        <Label for="exampleSelectMulti">Select Teacher For View Free Time Slot</Label>
-        <Input type="select" onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
+  (
+    <Row>
+      <Form >
+        <FormGroup>
+          <Label for="exampleSelectMulti">Select Teacher For View Free Time Slot</Label>
+          <Input type="select" onChange={this._selectConsultant} name="selectMulti" id="exampleSelectMulti" >
 
-          {this.props.auth.user.relatedUsers != null ? this.props.auth.user.relatedUsers.map((consultant, index) =>
-
-            <option value={consultant.id} key={index}>{consultant.id} </option>) : null}
-        </Input>
-      </FormGroup>
-      <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
-    </Form>
-
-
-  </Row>);
+            {this.props.auth.user.relatedUsers != null ? this.props.auth.user.relatedUsers.map((consultant, index) =>
+              /* eslint react/no-array-index-key :0 */
+              <option value={consultant.id} key={index}>{consultant.id} </option>) : null}
+          </Input>
+        </FormGroup>
+        <Button onClick={this._viewTimeSlot}>View Free Slot</Button>
+      </Form>
+    </Row>
+  );
     } else if (this.props.auth.user.role === role.consultant) {
       view =
-        (<div className="animated fadeIn">
-          <Col>
-            <Row className="dash-board-component-wrapper">
-              {/* <MyConsultantsContainer/> */}
-            </Row>
-            <Row className="dash-board-component-wrapper"><ConsultantLiveContainer /></Row>
-            <Row className="dash-board-component-wrapper"><LiveRoomContainer /></Row>
-            <Row className="dash-board-component-wrapper"><VideoContainer /></Row>
-          </Col>
-         </div>);
+        (
+          <div className="animated fadeIn">
+            <Col>
+              <Row className="dash-board-component-wrapper">
+                {/* <MyConsultantsContainer/> */}
+              </Row>
+              <Row className="dash-board-component-wrapper"><ConsultantLiveContainer /></Row>
+              <Row className="dash-board-component-wrapper"><LiveRoomContainer /></Row>
+              <Row className="dash-board-component-wrapper"><VideoContainer /></Row>
+            </Col>
+          </div>
+        );
     }
     return (
 
@@ -122,11 +128,11 @@ DashBoardView.propTypes = {
       id: PropTypes.string,
       role: PropTypes.string,
       firstName: PropTypes.string,
-      relatedUser: PropTypes.array,
+      relatedUsers: PropTypes.arrayOf.isRequired,
 
     }),
-  }),
-  scheduler: PropTypes.object,
-  actions: PropTypes.object.isRequired,
+  }).isRequired,
+  scheduler: PropTypes.shape().isRequired,
+  actions: PropTypes.shape().isRequired,
 };
 export default DashBoardView;
