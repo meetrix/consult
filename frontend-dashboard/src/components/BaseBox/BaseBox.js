@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'reactstrap';
+import { Col } from 'reactstrap';
 
 
 class BaseBox extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Col className="base-box">

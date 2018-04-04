@@ -20,19 +20,23 @@ class BaseShowRow extends Component {
     this.previousComponent = this.previousComponent.bind(this);
     this.nextComponent = this.nextComponent.bind(this);
   }
-  componentWillReceiveProps(props) {
-    this.setState({ availabelComponent: props.availabelComponent });
+
+  componentDidMount() {
     this.showComponent();
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(props) {
+    this.setState({ availabelComponent: props.availabelComponent });
     this.showComponent();
   }
 
   showComponent() {
     this.setState(prev => (
       {
-        showComponents: prev.availabelComponent.slice(prev.showFirstComponentIndex, prev.showFirstComponentIndex + prev.numComponentView),
+        showComponents: prev.availabelComponent.slice(
+          prev.showFirstComponentIndex,
+          prev.showFirstComponentIndex + prev.numComponentView,
+        ),
       }
     ));
   }
@@ -48,7 +52,9 @@ class BaseShowRow extends Component {
     }
   }
   nextComponent() {
-    if (this.props.availabelComponent.length > (this.state.showFirstComponentIndex + this.state.numComponentView)) {
+    if (this.props.availabelComponent.length > (
+      this.state.showFirstComponentIndex + this.state.numComponentView
+    )) {
       this.setState(prev => (
         {
           showFirstComponentIndex: prev.showFirstComponentIndex + 1,
