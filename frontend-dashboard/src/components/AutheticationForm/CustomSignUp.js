@@ -25,9 +25,9 @@ export default class CustomSignUp extends SignUp {
       username, password, email, phone_number, role,
     } = this.inputs;
     let mainRole;
-    if (role == 'student') {
+    if (role === 'student') {
       mainRole = 'consultee';
-    } else if (role == 'teacher') {
+    } else if (role === 'teacher') {
       mainRole = 'consultant';
     }
     Auth.signUp({
