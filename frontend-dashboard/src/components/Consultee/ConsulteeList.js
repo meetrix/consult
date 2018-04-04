@@ -20,34 +20,34 @@ import {
 import { ROLE } from '../../constants/apiSagaConstant';
 
 class ConsulteeList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   headers() {
     let header;
     if (this.props.user.role == ROLE.CONSULTANT) {
-      header = (<tr>
-        <th>ConsulteeProfile</th>
-        <th>ConsulteeName</th>
-        <th>NextSession</th>
-      </tr>);
+      header = (
+        <tr>
+          <th>ConsulteeProfile</th>
+          <th>ConsulteeName</th>
+          <th>NextSession</th>
+        </tr>);
       return header;
     } else if (this.props.user.role == ROLE.CONSULTEE) {
-      header = (<tr>
-        <th>ConsultantProfile</th>
-        <th>ConsultantName</th>
-        <th>NextSession</th>
-      </tr>);
+      header = (
+        <tr>
+          <th>ConsultantProfile</th>
+          <th>ConsultantName</th>
+          <th>NextSession</th>
+        </tr>);
       return header;
     } else if (this.props.user.role == ROLE.ADMIN) {
-      header = (<tr>
-        <th>ConsultantProfile</th>
-        <th>ConsultantName</th>
-        <th>ConsulteeProfile</th>
-        <th>ConsulteeName</th>
-        <th>NextSession</th>
-                </tr>);
+      header = (
+        <tr>
+          <th>ConsultantProfile</th>
+          <th>ConsultantName</th>
+          <th>ConsulteeProfile</th>
+          <th>ConsulteeName</th>
+          <th>NextSession</th>
+        </tr>
+      );
       return header;
     }
   }
@@ -56,32 +56,35 @@ class ConsulteeList extends Component {
     let recordElement;
     if (this.props.user.role == ROLE.CONSULTANT) {
       recordElement = records.map(record =>
-        (<tr key={record.id}>
-          <td> <img alt="Avatar" src={record.consulteeProfile} /> </td>
-          <td>{record.consulteeName}</td>
-          <td>{record.nextSession}</td>
-          {/* <td><Badge color="success">{record.status}</Badge></td> */}
-         </tr>));
+        (
+          <tr key={record.id}>
+            <td> <img alt="Avatar" src={record.consulteeProfile} /> </td>
+            <td>{record.consulteeName}</td>
+            <td>{record.nextSession}</td>
+            {/* <td><Badge color="success">{record.status}</Badge></td> */}
+          </tr>));
       return recordElement;
     } else if (this.props.user.role == ROLE.CONSULTEE) {
       recordElement = records.map(record =>
-        (<tr key={record.id}>
-          <td> <img alt="Avatar" src={record.consultantProfile} /> </td>
-          <td>{record.consultantName}</td>
-          <td>{record.nextSession}</td>
-          {/* <td><Badge color="success">{record.status}</Badge></td> */}
-        </tr>));
+        (
+          <tr key={record.id}>
+            <td> <img alt="Avatar" src={record.consultantProfile} /> </td>
+            <td>{record.consultantName}</td>
+            <td>{record.nextSession}</td>
+            {/* <td><Badge color="success">{record.status}</Badge></td> */}
+          </tr>));
       return recordElement;
     } else if (this.props.user.role == ROLE.ADMIN) {
       recordElement = records.map(record =>
-        (<tr key={record.id}>
-          <td> <img alt="Avatar" src={record.consultantProfile} /> </td>
-          <td>{record.consultantName}</td>
-          <td> <img alt="Avatar" src={record.consultantProfile} /> </td>
-          <td>{record.consultantName}</td>
-          <td>{record.nextSession}</td>
-          {/* <td><Badge color="success">{record.status}</Badge></td> */}
-        </tr>));
+        (
+          <tr key={record.id}>
+            <td> <img alt="Avatar" src={record.consultantProfile} /> </td>
+            <td>{record.consultantName}</td>
+            <td> <img alt="Avatar" src={record.consultantProfile} /> </td>
+            <td>{record.consultantName}</td>
+            <td>{record.nextSession}</td>
+            {/* <td><Badge color="success">{record.status}</Badge></td> */}
+          </tr>));
       return recordElement;
     }
   }
@@ -104,16 +107,6 @@ class ConsulteeList extends Component {
                       {this.records()}
                     </tbody>
                   </Table>
-                  {/* <Pagination> */}
-                  {/* <PaginationItem disabled><PaginationLink previous href="#">Prev</PaginationLink></PaginationItem> */}
-                  {/* <PaginationItem active> */}
-                  {/* <PaginationLink href="#">1</PaginationLink> */}
-                  {/* </PaginationItem> */}
-                  {/* <PaginationItem><PaginationLink href="#">2</PaginationLink></PaginationItem> */}
-                  {/* <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem> */}
-                  {/* <PaginationItem><PaginationLink href="#">4</PaginationLink></PaginationItem> */}
-                  {/* <PaginationItem><PaginationLink next href="#">Next</PaginationLink></PaginationItem> */}
-                  {/* </Pagination> */}
                 </CardBody>
               </Card>
             </Col>
