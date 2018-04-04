@@ -31,7 +31,10 @@ class ConsultantsLive extends Component {
     return (
       <BaseBox>
         <Row>
-          <BaseShowRow numComponentView={this.props.numOfConsultantShouldShow} availabelComponent={this.state.availabelConsultants} />
+          <BaseShowRow
+            numComponentView={this.props.numOfConsultantShouldShow}
+            availabelComponent={this.state.availabelConsultants}
+          />
         </Row>
       </BaseBox>
     );

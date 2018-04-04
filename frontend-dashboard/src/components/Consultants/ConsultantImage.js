@@ -3,10 +3,6 @@ import { Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 class ConsultantImage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Col>

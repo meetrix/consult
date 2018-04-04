@@ -34,7 +34,10 @@ class ConsultantsImage extends Component {
 
       <BaseBox>
         <Row>
-          <BaseShowRow numComponentView={this.state.num} availabelComponent={this.state.consultantAvailabelImages} />
+          <BaseShowRow
+            numComponentView={this.state.num}
+            availabelComponent={this.state.consultantAvailabelImages}
+          />
         </Row>
 
       </BaseBox>
