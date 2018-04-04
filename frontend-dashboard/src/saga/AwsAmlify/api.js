@@ -3,28 +3,27 @@
  */
 import { Auth } from 'aws-amplify';
 
-export default 'api';
-const setAuthUser = async () => await Auth.currentUserInfo();
-const getAuthUser = () => new Promise((resolve, reject) => {
-    setAuthUser().then((auth) => {
-      resolve({
-        successAction,
-        res: auth,
 
-      });
-    }).catch(err =>
-      reject({
-        failureAction,
-        err,
-      }));
-  });
+const setAuthUser = async () => Auth.currentUserInfo();
+const getAuthUser = (successAction, failureAction) => new Promise((resolve, reject) => {
+  setAuthUser().then((auth) => {
+    resolve({
+      successAction,
+      res: auth,
+
+    });
+  }).catch(err =>
+    reject(new Error({
+      failureAction,
+      err,
+    })));
+});
 const api = (method, failureAction, successAction) => {
   switch (method) {
     case 'GET_AUTH_USER':
-      console.log('switch');
-      return getAuthUser();
-      break;
+      return getAuthUser(successAction, failureAction);
     default:
-      break;
+      return ('error');
   }
 };
+export default api;

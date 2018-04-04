@@ -1,10 +1,11 @@
 /**
  * Created by supun on 10/03/18.
  */
-import { put, takeEvery, call, takeLatest, select } from 'redux-saga/effects';
+import { Auth } from 'aws-amplify';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { REDUX_API_GATEWAY_ACTIONS } from '../../constants/apiGateWayConstant';
 import metadata from './metadata';
-import { API, Auth } from 'aws-amplify';
+
 
 import { api } from './api';
 
@@ -45,6 +46,7 @@ function* apiGateWayActionHandler(action) {
     yield put({ ...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_SUCCESS });
     // console.log("reply")
     // console.log(reply)
+    /* eslint max-len: ["error", { "code": 180 }] */
     yield put({ type: reply.successAction, payload: reply.res, args: { ...action.payload, ...action.args } });
   } catch (reply) {
     yield put({ ...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_FAILURE });
@@ -55,6 +57,6 @@ function* apiGateWayActionHandler(action) {
 /**
  * Saga: Capture all API_SOCKET_EMIT actions and call method to handle side-effects
  */
-export function* takeEveryApiGateWaySaga() {
+export default function* takeEveryApiGateWaySaga() {
   yield takeEvery(REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING, apiGateWayActionHandler);
 }

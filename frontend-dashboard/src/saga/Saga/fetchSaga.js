@@ -9,11 +9,6 @@ import fetch from '../../helpers/fetchWrapper';
 
 
 function fetchHandler({ key, payload }) {
-  console.log('fetchHandler');
-  console.log(`key:${key}`);
-  console.log(`payload:${payload}`);
-  console.log(payload);
-
   let {
     url,
   } = metadata[key];
@@ -65,16 +60,12 @@ function fetchHandler({ key, payload }) {
 
 
 function* fetchAsync(action) {
-  console.log(`sagaFetch:${action}`);
-  console.log(action);
   try {
     const reply = yield call(fetchHandler, action);
     yield put({ ...action, type: REDUX_ACTIONS.FETCHING_SUCCESS });
-    console.log(reply);
     /* eslint max-len: ["error", { "code": 180 }] */
     yield put({ type: reply.successAction, payload: reply.res.data, args: { ...action.payload, ...action.args } });
   } catch (reply) {
-    console.log(reply);
     yield put({ ...action, type: REDUX_ACTIONS.FETCHING_FAILURE });
     yield put({ type: reply.failureAction, payload: reply.err.data, args: { ...action.payload, ...action.args } });
   }

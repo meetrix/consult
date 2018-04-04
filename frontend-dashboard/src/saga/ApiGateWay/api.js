@@ -1,26 +1,27 @@
 /**
  * Created by supun on 12/03/18.
  */
-import { API, Auth } from 'aws-amplify';
+import { API } from 'aws-amplify';
 
 
 const pathParam = (payload, url) => {
-  const payloadClone = { ...payload },
-    pathTokens = url.split('/:');
+  let newUrl;
+  const payloadClone = { ...payload };
+  const pathTokens = url.split('/:');
   if (url.indexOf('/:') !== 0) {
     pathTokens.shift();
   }
 
   pathTokens.forEach((token) => {
     const paramKey = token.split('/')[0];
-    url = url.replace(`/:${paramKey}`, `${payloadClone[paramKey]}`);
+    newUrl = url.replace(`/:${paramKey}`, `${payloadClone[paramKey]}`);
 
     // Assume that same data will not be sent as both path param and query/body
     delete payloadClone[paramKey];
   });
-  return url;
+  return newUrl;
 };
-export const api = (method, endPoint, apiRoute, failureAction, successAction, token, payload) => {
+const api = (method, endPoint, apiRoute, failureAction, successAction, token, payload) => {
   let options;
   switch (method) {
     case 'GET':
@@ -114,6 +115,9 @@ export const api = (method, endPoint, apiRoute, failureAction, successAction, to
             err,
           }));
       });
+    default:
       break;
   }
 };
+
+export default api;
