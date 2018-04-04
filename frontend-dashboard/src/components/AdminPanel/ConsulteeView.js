@@ -1,67 +1,22 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
+import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import PropTypes from 'prop-types';
-
+import AvailableStudents from './AvailableStudents';
+import OtherAvailableStudents from './OtherAvailableStudents';
 
 class ConsulteeView extends Component {
-  constructor(props) {
-    super(props);
-  }
-  AvailableStudents() {
-    if (!this.props.consultees) {
-      return null;
-    }
-    return (
-      <ListGroup>
-      {
-        this.props.consultees.map((consultee, index) => <ListGroupItem key={index}>{`${consultee.firstName} ${consultee.lastName}`}</ListGroupItem>)
-      }
-    </ListGroup>);
-  }
-  OtherAvailableStudents() {
-    let status = true;
-
-    function handleConsulteeClick(id, firstName, lastName, event) {
-      this.props.updateRelatedUsers({
-        id: this.props.consultantId.id,
-        consultantFirstName: this.props.consulteeId.firstName,
-        consultantLastName: this.props.consultantId.lastName,
-        consulteeId: id,
-        consulteeFirstName: firstName,
-        consulteeLastName: lastName,
-      });
-    }
-
-
-    if (!this.props.consultees) {
-      return null;
-    }
-    return (
-      <ListGroup>
-        {this.props.consultees.map(function (consultee, index) {
-          status = true;
-          this.props.usedConsultees.map((usedConsultee) => {
-            if (consultee.id == usedConsultee.id) status = false;
-          });
-
-          if (status == true) { return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this, consultee.id, consultee.firstName, consultee.lastName)}>{`${consultee.firstName} ${consultee.lastName}`}</ListGroupItem>); }
-        }, this)}
-      </ListGroup>
-    );
-  }
   render() {
     let consultees;
     const consultant = this.props.admin.consultants.find((obj) => {
-      const isConsult = obj.id === this.props.admin.consultantId.id;
-      return isConsult;
+      const value = obj.id === this.props.admin.consultantId.id;
+      return value;
     }, this);
     if (consultant) {
       consultees = consultant.relatedUsers;
-      console.log(`consultees: ${consultees}`);
     } else {
       consultees = null;
     }
-
+    /* eslint max-len:0 */
     return (
       <div>
         <h1>Yasith</h1>
@@ -92,10 +47,7 @@ class ConsulteeView extends Component {
     );
   }
 }
-
 ConsulteeView.propTypes = {
   admin: PropTypes.shape.isRequired,
-  consultees: PropTypes.arrayOf.isRequired,
-  updateRelatedUsers: PropTypes.func.isRequired,
 };
 export default ConsulteeView;

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Col, ListGroup, ListGroupItem, Card, CardHeader, CardBody } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 class AdminPanel extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.handleConsultantClick = this.handleConsultantClick.bind(this);
   }
   componentDidMount() {
     this.props.actions.getConsultants({
@@ -14,8 +16,7 @@ class AdminPanel extends Component {
     });
   }
 
-  handleConsultantClick(id, firstName, lastName, event) {
-    console.log(`id : ${id}`);
+  handleConsultantClick(id, firstName, lastName) {
     this.props.actions.setConsultantId({
       id,
       firstName,
@@ -24,6 +25,8 @@ class AdminPanel extends Component {
   }
 
   render() {
+    /* eslint react/no-array-index-key:0 */
+    /* eslint arrow-body-style:0 */
     return (
       <div>
         <Row>
@@ -34,9 +37,9 @@ class AdminPanel extends Component {
               </CardHeader>
               <CardBody>
                 <ListGroup>
-                  {this.props.admin.consultants.map(function (consultant, index) {
-										return <ListGroupItem key={index} onClick={this.handleConsultantClick.bind(this, consultant.id, consultant.firstName, consultant.lastName)} href="#/dashboard/admin_panel/consultant" tag="a">{`${consultant.firstName} ${consultant.lastName}` }</ListGroupItem>;
-									}, this)}
+                  {this.props.admin.consultants.map((consultant, index) => {
+                    return <ListGroupItem key={index} onClick={this.handleConsultantClick(consultant.id, consultant.firstName, consultant.lastName)} href="#/dashboard/admin_panel/consultant" tag="a">{`${consultant.firstName} ${consultant.lastName}` }</ListGroupItem>;
+                  }, this)}
                 </ListGroup>
               </CardBody>
             </Card>
@@ -58,5 +61,8 @@ class AdminPanel extends Component {
     );
   }
 }
-
+AdminPanel.propTypes = {
+  actions: PropTypes.shape.isRequired,
+  admin: PropTypes.shape.isRequired,
+};
 export default AdminPanel;
