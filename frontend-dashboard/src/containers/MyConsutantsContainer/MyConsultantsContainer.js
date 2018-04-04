@@ -14,10 +14,12 @@ import { actionCreatorFactory } from '../../actions/actionCreator';
 function mapStateToProps(state) {
   return {
     consultants: [{ _id: 1, username: 'supun' }, { _id: 2, username: 'supun' }, { _id: 3, username: 'supun' }],
+    consultants2: state,
 
   };
 }
 const mapDispatchToProps = dispatch => ({
+  /* eslint max-len : 0 */
   actions: { getConsultants: bindActionCreators(actionCreatorFactory(KEYS.CONSULTS, ATTRS.PAYLOAD), dispatch) },
 });
 

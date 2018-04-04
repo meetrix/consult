@@ -10,9 +10,6 @@ import PropTypes from 'prop-types';
 import UserAccount from '../../components/User/UserAccount';
 
 class UserAccountView extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
 
@@ -21,7 +18,7 @@ class UserAccountView extends Component {
   }
 }
 UserAccountView.propTypes = {
-  account: PropTypes.object.isRequired,
+  account: PropTypes.shape().isRequired,
 };
 
 export default UserAccountView;

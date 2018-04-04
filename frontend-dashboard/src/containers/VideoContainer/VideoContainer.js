@@ -67,6 +67,7 @@ function mapStateToProps(state) {
 
     ],
     numOfVideoShouldShow: 2,
+    video: state,
   };
 }
 const mapDispatchToProps = dispatch => ({

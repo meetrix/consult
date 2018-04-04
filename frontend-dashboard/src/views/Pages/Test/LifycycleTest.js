@@ -4,11 +4,8 @@
 import React, { Component } from 'react';
 
 class LifycycleTest extends Component {
-  constructor(props) {
-    super(props);
-  }
   getInitialState() {
-    return ff;
+    return 'ff';
   }
   render() {
     return (<div>hi</div>);

@@ -1,31 +1,29 @@
 /**
  * Created by supun on 14/03/18.
  */
-import { API, Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
-export const api = (method, failureAction, successAction) => {
+
+const setAuthUser = async () => Auth.currentUserInfo();
+const getAuthUser = (successAction, failureAction) => new Promise((resolve, reject) => {
+  setAuthUser().then((auth) => {
+    resolve({
+      successAction,
+      res: auth,
+
+    });
+  }).catch(err =>
+    reject(new Error({
+      failureAction,
+      err,
+    })));
+});
+const api = (method, failureAction, successAction) => {
   switch (method) {
     case 'GET_AUTH_USER':
-      console.log('switch');
-      return getAuthUser();
-      break;
-  }
-
-  function getAuthUser() {
-    return new Promise((resolve, reject) => {
-      setAuthUser().then((auth) => {
-        resolve({
-          successAction,
-          res: auth,
-
-        });
-      }).catch(err =>
-        reject({
-          failureAction,
-          err,
-        }));
-    });
+      return getAuthUser(successAction, failureAction);
+    default:
+      return ('error');
   }
 };
-
-const setAuthUser = async () => await Auth.currentUserInfo();
+export default api;

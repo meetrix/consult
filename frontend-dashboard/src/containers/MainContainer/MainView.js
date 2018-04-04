@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 
 // core components
@@ -19,10 +20,6 @@ import SessionListContainer from '../../components/Session/session_list_containe
 import ConsulteeViewContainer from '../../containers/AdminPanelContainer/ConsulteeViewContainer';
 
 class MainView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.actions.getAuthUserInitData();
   }
@@ -65,5 +62,10 @@ class MainView extends Component {
     return (null);
   }
 }
+MainView.propTypes = {
+  auth: PropTypes.shape().isRequired,
+  actions: PropTypes.shape().isRequired,
+
+};
 
 export default MainView;

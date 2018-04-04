@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 
-import { ACTION_KEY as KEYS, ACTION_ATTR as ATTRS, USER_PROFILE } from '../../constants/apiSagaConstant';
+import { ACTION_KEY as KEYS, ACTION_ATTR as ATTRS } from '../../constants/apiSagaConstant';
 
 import {
-  actionCreatorFactory, actionCreateStoreUpdateFactory,
+  actionCreatorFactory,
   actionCreateApiGateWayFactory,
 } from '../../actions/actionCreator';
 
@@ -23,6 +23,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   actions: {
     signup: bindActionCreators(actionCreatorFactory(KEYS.SIGNUP, ATTRS.PAYLOAD), dispatch),
+    /* eslint max-len : 0 */
     updateProfileInfo: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.UPDATE_PROFILE_INFO, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
   },
 });

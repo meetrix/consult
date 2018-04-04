@@ -4,7 +4,7 @@
 
 // Core modules
 import React, { Component } from 'react';
-import { Row, Col, Fragment } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Consultants from '../../components/Consultants/Consultants';
 import DropDownMenuSet from '../../components/Search/DropDownMenu/DropDownMenuSet';
@@ -46,17 +46,17 @@ ConsultantsView.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
-  })),
+  })).isRequired,
   radioButtons: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
-  })),
+  })).isRequired,
   consultants: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
 
 
-  })),
-  actions: PropTypes.object.isRequired,
+  })).isRequired,
+  actions: PropTypes.shape.isRequired,
 
 };
 

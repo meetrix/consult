@@ -23,6 +23,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => ({
   actions: {
+    /* eslint max-len : 0 */
     selectTimeSlot: bindActionCreators(actionCreateStoreUpdateFactory(ACTIONS.CONSULTEE_TIME_SLOT_SELECT, ATTRS.PAYLOAD, ATTRS.DATA), dispatch),
     scheduleConsultant: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.SCHEDULE_TIME_SLOT_CONSULTEE, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
     getScheduleEvents: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD), dispatch),

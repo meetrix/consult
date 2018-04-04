@@ -1,27 +1,27 @@
 /**
  * Created by supun on 09/01/18.
  */
+
+import { put, takeEvery, call, takeLatest } from 'redux-saga/effects';
 import { REDUX_ACTIONS, HTTP_METHODS } from '../../constants/apiSagaConstant';
-import { put, takeEvery, call, takeLatest, select } from 'redux-saga/effects';
 import metadata from './metadata';
 import fetch from '../../helpers/fetchWrapper';
 
 
 function fetchHandler({ key, payload }) {
-  console.log('fetchHandler');
-  console.log(`key:${key}`);
-  console.log(`payload:${payload}`);
-  console.log(payload);
-
   let {
-    url, options, failureAction, successAction,
+    url,
   } = metadata[key];
-  // Note - metadata will not be validated here expecting that the metadata file is perfect and predictable
+  const {
+    options, failureAction, successAction,
+  } = metadata[key];
+  /* Note - metadata will not be validated here expecting that
+   the metadata file is perfect and predictable */
 
   // Cloned to avoid later assigned values being persistent across requests
-  const optionsClone = { ...options },
-    payloadClone = { ...payload },
-    pathTokens = url.split('/:');
+  const optionsClone = { ...options };
+  const payloadClone = { ...payload };
+  const pathTokens = url.split('/:');
 
   // Cater for path parameters
   // Note - This code block must appear before params/body is assigned to optionsClone object
@@ -50,24 +50,21 @@ function fetchHandler({ key, payload }) {
         res,
 
       }))
-      .catch(err => reject({
+      .catch(err => reject(new Error({
         failureAction,
         err,
-      }));
+      })));
   });
 }
 
 
 function* fetchAsync(action) {
-  console.log(`sagaFetch:${action}`);
-  console.log(action);
   try {
     const reply = yield call(fetchHandler, action);
     yield put({ ...action, type: REDUX_ACTIONS.FETCHING_SUCCESS });
-    console.log(reply);
+    /* eslint max-len: ["error", { "code": 180 }] */
     yield put({ type: reply.successAction, payload: reply.res.data, args: { ...action.payload, ...action.args } });
   } catch (reply) {
-    console.log(reply);
     yield put({ ...action, type: REDUX_ACTIONS.FETCHING_FAILURE });
     yield put({ type: reply.failureAction, payload: reply.err.data, args: { ...action.payload, ...action.args } });
   }

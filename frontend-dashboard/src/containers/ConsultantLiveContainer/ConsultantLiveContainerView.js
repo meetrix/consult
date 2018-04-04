@@ -11,20 +11,16 @@ import PropTypes from 'prop-types';
 import ConsultantsLive from '../../components/Consultants/ConsultantsLive';
 
 class ConsultantLiveContainerView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
+      /* eslint max-len:0 */
       <ConsultantsLive consultants={this.props.consultants} numOfConsultantShouldShow={this.props.numOfConsultantShouldShow} />
     );
   }
 }
 
 ConsultantLiveContainerView.propTypes = {
-  actions: PropTypes.object.isRequired,
-  consultants: PropTypes.array.isRequired,
+  consultants: PropTypes.arrayOf.isRequired,
   numOfConsultantShouldShow: PropTypes.number.isRequired,
 
 };

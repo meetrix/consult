@@ -20,13 +20,14 @@ class PickTimeSlotView extends Component {
         isError: false,
       },
     };
+    this._scheduleTimeSlot = this._scheduleTimeSlot.bind(this);
   }
   _getAvailableTimeSlots() {
     const availabelTimeSlots = [];
-    if (this.props.scheduler.events != undefined) {
-      this.props.scheduler.events.map((event, index) => {
-        availabelTimeSlots.push(<TimeSlot key={index} actions={this.props.actions}event={event} />);
-      });
+    if (this.props.scheduler.events !== undefined) {
+      /* eslint react/no-array-index-key: 0 */
+      /* eslint max-len : 0 */
+      this.props.scheduler.events.map((event, index) => availabelTimeSlots.push(<TimeSlot key={index} actions={this.props.actions}event={event} />));
     }
     return availabelTimeSlots;
   }
@@ -68,7 +69,7 @@ class PickTimeSlotView extends Component {
     let timeSlotList;
     if (timeSlot.length > 0) {
       timeSlotList = (<ReactList
-        itemRenderer={(index, key) => timeSlot[index]}
+        itemRenderer={index => timeSlot[index]}
         length={timeSlot.length}
         type="uniform"
         axis="x"
@@ -87,7 +88,7 @@ class PickTimeSlotView extends Component {
           </Row>
           <Row>{error}</Row>
           <Row>
-            <Button color="primary" onClick={this._scheduleTimeSlot.bind(this)}>Schedule</Button>
+            <Button color="primary" onClick={this._scheduleTimeSlot}>Schedule</Button>
           </Row>
 
         </Card>
@@ -98,16 +99,17 @@ class PickTimeSlotView extends Component {
 PickTimeSlotView.propTypes = {
   scheduler: PropTypes.shape({
     events: PropTypes.array,
-
-  }),
+  }).isRequired,
   user: PropTypes.shape({
+    id: PropTypes.string,
+    email: PropTypes.string,
     selectSlot: PropTypes.shape({
       isTimeSlotSelect: PropTypes.bool,
       timeSlot: PropTypes.object,
     }),
-  }),
+  }).isRequired,
 
-  actions: PropTypes.object.isRequired,
+  actions: PropTypes.shape().isRequired,
 
 };
 export default PickTimeSlotView;

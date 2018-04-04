@@ -19,6 +19,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
+    /* eslint max-len : 0 */
     getConsultants: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTANTS, API_GATEWAY_ATTR.PAYLOAD), dispatch),
     getConsultees: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTEES, API_GATEWAY_ATTR.PAYLOAD), dispatch),
     setConsultantId: bindActionCreators(actionCreateStoreUpdateFactory(REDUX_ACTIONS.SET_CONSULTANT_ID, ACTION_ATTR.PAYLOAD), dispatch),

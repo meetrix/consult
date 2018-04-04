@@ -16,6 +16,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => ({
   actions: {
+    /* eslint max-len :0 */
     getAuthUserInitData: bindActionCreators(actionCreateApiGateWayFactory(AWS_API_GATEWAY_KEYS.GET_AUTH_USER_INIT_DATA, AWS_API_GATEWAY_ATTRS.PAYLOAD), dispatch),
   },
 });

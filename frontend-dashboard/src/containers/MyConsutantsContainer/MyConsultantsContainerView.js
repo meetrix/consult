@@ -4,12 +4,9 @@
 
 // Core modules
 import React, { Component } from 'react';
-import { Row, Col, Fragment } from 'reactstrap';
+import { Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Consultants from '../../components/Consultants/Consultants';
-import DropDownMenuSet from '../../components/Search/DropDownMenu/DropDownMenuSet';
-import SortByRadioButtons from '../../components/Search/SortByRadioButtons/SortByRadioButtons';
-import TextSearch from '../../components/Search/TextSearch/TextSearch';
 import BaseBox from '../../components/BaseBox/BaseBox';
 
 class MyConsultantsContainer extends Component {
@@ -35,8 +32,8 @@ MyConsultantsContainer.propTypes = {
     username: PropTypes.string.isRequired,
 
 
-  })),
-  actions: PropTypes.object.isRequired,
+  })).isRequired,
+  actions: PropTypes.shape().isRequired,
 
 };
 
