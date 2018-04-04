@@ -18,10 +18,9 @@ function apiGateWayHandler({key, payload}) {
     // console.log("apiGatewayHandler");
     // console.log(key)
     let {method,endPoint, apiRoute, failureAction, successAction} = metadata[key];
-    console.log( Auth)
+    
      return Auth.currentSession().then((idToken)=> {
-       console.log("current log")
-       console.log(idToken.idToken.jwtToken)
+       
       // console.log(payload)
        let token = idToken.idToken.jwtToken
       // const options = {
@@ -50,8 +49,6 @@ function* apiGateWayActionHandler(action) {
     // console.log(reply)
     yield put({type: reply.successAction, payload: reply.res, args: {payload:action.payload, data:action.data}});
   } catch (reply) {
-      console.log("faile")
-     console.log(reply)
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_FAILURE});
     yield put({type: reply.failureAction, payload: reply.err, args: {...action.payload, ...action.args}});
   }
@@ -62,6 +59,5 @@ function* apiGateWayActionHandler(action) {
  * Saga: Capture all API_SOCKET_EMIT actions and call method to handle side-effects
  */
 export function* takeEveryApiGateWaySaga() {
-    console.log("takeEveryApiGateWaySaga")
     yield takeEvery(REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING, apiGateWayActionHandler);
 }

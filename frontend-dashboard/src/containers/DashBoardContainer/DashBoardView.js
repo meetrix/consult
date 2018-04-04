@@ -38,9 +38,13 @@ class DashBoardView extends Component {
   _viewTimeSlot(){
     if(this.props.auth.user.relatedUsers!=null){
       if(this.state.consultantId===undefined){
-        this.setState({consultantId:this.props.auth.user.relatedUsers[0].id});
+        
+        this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.relatedUsers[0].id});
       }
-      this.props.actions.getFreeEventFromConsultant({id:this.state.consultantId});
+      else{
+
+        this.props.actions.getFreeEventFromConsultant({id:this.state.consultantId});
+      }
     }
 
   }
@@ -82,12 +86,12 @@ class DashBoardView extends Component {
       <Row>
         <Form >
           <FormGroup>
-            <Label for="exampleSelectMulti">Select Multiple</Label>
+            <Label for="exampleSelectMulti">Select Teacher For View Free Time Slot</Label>
             <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
 
               {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
 
-                <option value={consultant.id} key={index}>{consultant.email} </option>
+                <option value={consultant.id} key={index}>{consultant.id} </option>
               ):null}
             </Input>
           </FormGroup>

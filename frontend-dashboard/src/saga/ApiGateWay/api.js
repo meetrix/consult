@@ -22,13 +22,6 @@ const pathParam=(payload,url)=>{
 
 }
 export const api = (method,endPoint,apiRoute,failureAction, successAction,token,payload)=>{
-    console.log(method)
-  console.log(endPoint)
-  console.log(apiRoute)
-  console.log(options)
-  console.log(failureAction)
-  console.log(successAction)
-
   let options;
     switch (method){
       case 'GET':
@@ -40,12 +33,9 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
         }
         const url = pathParam(payload,apiRoute)
           return new Promise((resolve, reject) =>{
-            console.log(options)
-            console.log(url)
           API.get(endPoint,url,options)
             .then(res => {
-              console.log(res)
-              console.log("schedulte event")
+              
               resolve({
                 successAction: successAction,
                 res: res
@@ -70,8 +60,7 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
         return new Promise((resolve, reject) =>{
           API.post(endPoint,apiRoute,options)
             .then(res => {
-              console.log(res)
-              console.log("schedulte event post")
+              
               resolve({
                 successAction: successAction,
                 res: res
@@ -96,8 +85,7 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
         return new Promise((resolve, reject) =>{
           API.put(endPoint,apiRoute,options)
             .then(res => {
-              console.log(res)
-              console.log("schedulte event PUT")
+              
               resolve({
                 successAction: successAction,
                 res: res
@@ -122,8 +110,7 @@ export const api = (method,endPoint,apiRoute,failureAction, successAction,token,
         return new Promise((resolve, reject) =>{
           API.del(endPoint,apiRoute,options)
             .then(res => {
-              console.log(res)
-              console.log("schedulte event DELETE")
+              
               resolve({
                 successAction: successAction,
                 res: res
