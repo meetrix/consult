@@ -3,15 +3,16 @@ import { HTTP_CODES, TIMEOUTS } from '../constants/apiSagaConstant';
 export default (url, options) =>
   new Promise((resolve, reject) => {
     if (options && options.params && Object.keys(options.params).length) {
-      let keys = Object.keys(options.params),
-        searchParams = new URLSearchParams();
+      const keys = Object.keys(options.params);
+      const searchParams = new URLSearchParams();
 
       // Build searchParams object using query key-value pairs
-      for (let i = 0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i += 1) {
         if (options.params[keys[i]]) { searchParams.append(keys[i], options.params[keys[i]]); }
       }
 
       // Extract query string
+      /* eslint no-param-reassign : 0 */
       url = `${url}?${searchParams.toString()}`;
     }
 
@@ -37,9 +38,6 @@ export default (url, options) =>
     if (typeof options.body === 'object') {
       options.body = JSON.stringify(options.body);
     }
-    console.log('serever request');
-    console.log(url);
-    console.log(options);
     fetch(url, options).then((res) => {
       // Wait for response data to resolve before resolving the fetch promise
       res.json().then((data) => {

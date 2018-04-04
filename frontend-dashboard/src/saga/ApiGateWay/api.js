@@ -24,7 +24,7 @@ const pathParam = (payload, url) => {
 const api = (method, endPoint, apiRoute, failureAction, successAction, token, payload) => {
   let options;
   switch (method) {
-    case 'GET':
+    case 'GET': {
       options = {
         headers: {
           Authorization: token,
@@ -41,14 +41,13 @@ const api = (method, endPoint, apiRoute, failureAction, successAction, token, pa
 
             });
           })
-          .catch(err => reject({
+          .catch(err => reject(new Error({
             failureAction,
             err,
-          }));
+          })));
       });
-      break;
-
-    case 'POST':
+    }
+    case 'POST': {
       options = {
         headers: {
           Authorization: token,
@@ -64,14 +63,13 @@ const api = (method, endPoint, apiRoute, failureAction, successAction, token, pa
 
             });
           })
-          .catch(err => reject({
+          .catch(err => reject(new Error({
             failureAction,
             err,
-          }));
+          })));
       });
-      break;
-
-    case 'PUT':
+    }
+    case 'PUT': {
       options = {
         headers: {
           Authorization: token,
@@ -87,14 +85,14 @@ const api = (method, endPoint, apiRoute, failureAction, successAction, token, pa
 
             });
           })
-          .catch(err => reject({
+          .catch(err => reject(new Error({
             failureAction,
             err,
-          }));
+          })));
       });
-      break;
+    }
 
-    case 'DELETE':
+    case 'DELETE': {
       options = {
         headers: {
           Authorization: token,
@@ -110,13 +108,14 @@ const api = (method, endPoint, apiRoute, failureAction, successAction, token, pa
 
             });
           })
-          .catch(err => reject({
+          .catch(err => reject(new Error({
             failureAction,
             err,
-          }));
+          })));
       });
+    }
     default:
-      break;
+      return ('not match method');
   }
 };
 

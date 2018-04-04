@@ -8,20 +8,15 @@ import { api } from './api';
 
 
 function AwsAmplifyHandler({ key }) {
-  console.log(key);
   const { method, failureAction, successAction } = metadata[key];
-  console.log(method);
   return api(method, failureAction, successAction);
 }
 function* AwsAmplifyActionHandler(action) {
   try {
     const reply = yield call(AwsAmplifyHandler, action);
     yield put({ ...action, type: REDUX_AWS_AMPLIFY_ACTIONS.AWS_AMPLIFY_FETCHING_SUCCESS });
-    console.log('reply');
-    console.log(reply);
     /* eslint max-len: ["error", { "code": 180 }] */
     yield put({ type: reply.successAction, payload: reply.res, args: { ...action.payload, ...action.args } });
-    console.log(reply);
   } catch (reply) {
     yield put({ ...action, type: REDUX_AWS_AMPLIFY_ACTIONS.AWS_AMPLIFY_FETCHING_FAILURE });
     yield put({ type: reply.failureAction, payload: reply.err, args: { ...action.payload, ...action.args } });

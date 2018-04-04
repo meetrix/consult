@@ -50,11 +50,10 @@ function fetchHandler({ key, payload }) {
         res,
 
       }))
-      /* eslint prefer-promise-reject-errors: 0 */
-      .catch(err => reject({
+      .catch(err => reject(new Error({
         failureAction,
         err,
-      }));
+      })));
   });
 }
 
