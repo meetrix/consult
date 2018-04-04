@@ -3,17 +3,14 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 
 // component
 import BaseBox from '../BaseBox/BaseBox';
-import ConsultantsImage from '../Consultants/ConsultantsImage';
 
 class Video extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   _getVideoPlayer() {
     return <div>hi</div>;

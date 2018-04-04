@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { ROLE } from '../../constants/apiSagaConstant';
 
 class SessionList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   records() {
     const records = this.props.records;
     let recordElement;
@@ -36,15 +32,16 @@ class SessionList extends Component {
       return recordElement;
     } else if (this.props.user.role == ROLE.ADMIN) {
       recordElement = records.map(record =>
-        (<tr key={record.id}>
-          <td>{record.id}</td>
-          <td>{record.consulteeName}</td>
-          <td>{record.consultantName}</td>
-          <td>{record.date}</td>
-          <td>{record.startedTime}</td>
-          <td>{record.duration}</td>
-          <td>{record.classFee}</td>
-        </tr>));
+        (
+          <tr key={record.id}>
+            <td>{record.id}</td>
+            <td>{record.consulteeName}</td>
+            <td>{record.consultantName}</td>
+            <td>{record.date}</td>
+            <td>{record.startedTime}</td>
+            <td>{record.duration}</td>
+            <td>{record.classFee}</td>
+          </tr>));
       return recordElement;
     }
   }
@@ -54,10 +51,10 @@ class SessionList extends Component {
         <thead>
           <tr>
             <th>#</th>
-            {this.props.user.role == ROLE.CONSULTANT && <th>Consultee</th>}
-            {this.props.user.role == ROLE.CONSULTEE && <th>Consultant</th>}
-            {this.props.user.role == ROLE.ADMIN && <th>Consultant</th>}
-            {this.props.user.role == ROLE.ADMIN && <th>Consultee</th>}
+            {this.props.user.role === ROLE.CONSULTANT && <th>Consultee</th>}
+            {this.props.user.role === ROLE.CONSULTEE && <th>Consultant</th>}
+            {this.props.user.role === ROLE.ADMIN && <th>Consultant</th>}
+            {this.props.user.role === ROLE.ADMIN && <th>Consultee</th>}
             <th>Date</th>
             <th>Started Time</th>
             <th>Duration(Mins)</th>

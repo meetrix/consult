@@ -15,15 +15,8 @@ class Sidebar extends Component {
   }
 
   activeRoute(routeName, props) {
-    // return this.props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
     return props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
   }
-
-  // todo Sidebar nav secondLevel
-  // secondLevelActive(routeName) {
-  //   return this.props.location.pathname.indexOf(routeName) > -1 ? "nav nav-second-level collapse in" : "nav nav-second-level collapse";
-  // }
-
 
   render() {
     const props = this.props;
@@ -39,7 +32,10 @@ class Sidebar extends Component {
     };
 
     // simple wrapper for nav-title item
-    const wrapper = item => (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, item.name)) : item.name);
+    const wrapper = item => (
+      item.wrapper && item.wrapper.element ? (
+        React.createElement(item.wrapper.element, item.wrapper.attributes, item.name)) : item.name
+    );
 
     // nav list section title
     const title = (title, key) => {
@@ -61,11 +57,11 @@ class Sidebar extends Component {
             <RsNavLink href={item.url} className={variant} active>
               <i className={item.icon} />{item.name}{badge(item.badge)}
             </RsNavLink>
-						:
+            :
             <NavLink to={item.url} className={variant} activeClassName="active">
               <i className={item.icon} />{item.name}{badge(item.badge)}
             </NavLink>
-					}
+              }
         </NavItem>
       );
     };

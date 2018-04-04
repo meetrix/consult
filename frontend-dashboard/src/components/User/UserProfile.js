@@ -1,32 +1,18 @@
 /**
  * Created by supun on 23/02/18.
  */
-/**
- * Created by supun on 23/02/18.
- */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Row,
   Col,
   Button,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Card,
   CardHeader,
-  CardFooter,
   CardBody,
-  Collapse,
-  Form,
   FormGroup,
-  FormText,
   Label,
   Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
 } from 'reactstrap';
 
 class UserProfile extends Component {
@@ -123,19 +109,15 @@ class UserProfile extends Component {
               <CardBody>
                 <FormGroup>
                   <Label htmlFor="school">School</Label>
-                  {/* <Input type="text" id="school" onChange={this._onSchoolChange.bind(this)} value={this.props.user.school}/> */}
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="district">District</Label>
-                  {/* <Input type="text" id="district" onChange={this._onDistrictChange.bind(this)} value={this.props.user.district}/> */}
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="stream">Stream</Label>
-                  {/* <Input type="text" id="stream" onChange={this._onStreamChange.bind(this)} value={this.props.user.stream}/> */}
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="subject">Subject</Label>
-                  {/* <Input type="text" id="subject" onChange={this._onSubjectChange.bind(this)} value={this.props.user.subject}/> */}
                 </FormGroup>
               </CardBody>
             </Card>
@@ -145,14 +127,7 @@ class UserProfile extends Component {
           <Col>
             <Card>
               <CardBody>
-                <FormGroup row>
-                  <Col md="3">
-                    {/* <img src={this.props.user.imageUrl} className="img-avatar" alt="admin@meetrix.io"/> */}
-                  </Col>
-                  <Col xs="12" md="9">
-                    {/* <Input type="file" id="file-input" name="file-input" onChange={this._onImageChange.bind(this)}/> */}
-                  </Col>
-                </FormGroup>
+                <FormGroup row />
               </CardBody>
             </Card>
           </Col>
