@@ -33,10 +33,10 @@ module.exports.get = (event, context, callback) => {
     let currentDate = new Date().toISOString();
     const params = {
       TableName: process.env.USER_EVENT_MAPPER_TABLE,
-      KeyConditionExpression: 'id = :value AND #eventStartDate >= :date', // a string representing a constraint on the attribute
+      KeyConditionExpression: 'userId = :value AND #eventStartDate >= :date', // a string representing a constraint on the attribute
       // a string representing a constraint on the attribute
       ExpressionAttributeNames: { // a map of substitutions for attribute names with special characters
-        '#eventStartDate': 'date'
+        '#eventStartDate': 'startDate'
       },
       ExpressionAttributeValues: { // a map of substitutions for all attribute values
         ':value': validData.id,

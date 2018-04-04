@@ -33,14 +33,19 @@ module.exports.get = (event, context, callback) => {
   function handler(data) {
 
     const params = {
-      TableName: process.env.USER_TABLE,
-      Key: {
-        id:  data.id,
-      }
+      TableName: process.env.USER_EVENT_MAPPER_TABLE,
+      KeyConditionExpression: '#attribute_name = :value',
+      ExpressionAttributeNames: { 
+        '#attribute_name': 'userId'
+
+    },
+    ExpressionAttributeValues: { 
+      ':value': data.id
+    },
     };
     // fetch from db
     return new Promise((resolve, reject)=>{
-      dynamodb.get(params, (error, result) => {
+      dynamodb.query(params, (error, result) => {
         // handle potential errors
         if (error) {
           console.error(error);
@@ -53,11 +58,11 @@ module.exports.get = (event, context, callback) => {
     });
   }
 
-  function getEventFromUser(user){
+  function getEvents(eventMappers){
     let keys = []
-      if(user.Item.events!=null){
-        keys = user.Item.events.map((event)=>{
-            return {id:event}
+      if(eventMappers.Items!=null){
+        keys = eventMappers.Items.map((event)=>{
+            return {id:event.eventId}
           }
         );
       }
@@ -89,13 +94,12 @@ module.exports.get = (event, context, callback) => {
 
         }
         else {
-          let timeSlotes = result.Responses['Event']
-          let filterFreeTimeSlot;
-          if(timeSlotes!=null){
-            filterFreeTimeSlot = timeSlotes.filter((timeSlot)=> (timeSlot.booked==null || timeSlot.booked==false))
-            resolve(filterFreeTimeSlot)
+          if(result!=null){
+            let events = result.Responses.Event.filter((event)=> !event.booked)
+            resolve(events)
           }
-          resolve({error:'no free slot'})
+          
+          resolve([{error:'no free event'}])
         }
       });
     });
@@ -104,10 +108,9 @@ module.exports.get = (event, context, callback) => {
 
 
   validate(data,schema).then((result)=>{
-    return handler(result).then((user)=>{
-
-      return getEventFromUser(user);
-    });
+    return handler(result).then((eventMappers)=>{
+        return getEvents(eventMappers);
+    })
   }).then((result)=>{
     // create a response
     const response = {
