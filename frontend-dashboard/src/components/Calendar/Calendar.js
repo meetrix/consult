@@ -144,7 +144,7 @@ class Calendar extends Component{
         start:this.state.start.toDate(),
         end:this.state.end.toDate(),
         title:this.state.title,
-        consultee:this.state.consultee,
+        consultee:this.props.consultees,
         booked:this.state.booked
       })
     }else {
