@@ -1,9 +1,6 @@
 /**
  * Created by supun on 08/01/18.
  */
-/**
- * Created by supun on 08/01/18.
- */
 
 // Core modules
 import React, { Component } from 'react';
@@ -17,8 +14,6 @@ import {
   CardFooter,
   CardBody,
   Badge,
-  Label,
-  Input,
   Button,
 } from 'reactstrap';
 
@@ -80,14 +75,6 @@ class Consultant extends Component {
                         <Badge pill color="success" className="float-left">chemestry|G.C.E A/L</Badge>
                         <Badge pill color="success" className="float-left">chemestry|G.C.E A/L</Badge>
                         <Badge pill color="success" className="float-left">chemestry|G.C.E A/L</Badge>
-                        {/* <Col xs={{size: 'auto', offset: 1}} md={{size: 'auto', offset: 1}}>Technology</Col> */}
-                      </Row>
-                      <Row >
-                        {/* <Col xs={{size: 'auto', offset: 2}} md={{size: 'auto', offset: 2}}>C</Col> */}
-                      </Row>
-                      <Row >
-                        {/* <Col xs={{size: 'auto', offset: 2}} md={{size: 'auto', offset: 2}}>Java</Col> */}
-
                       </Row>
                     </Col>
                   </Row>
