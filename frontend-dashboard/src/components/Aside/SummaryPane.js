@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { TabContent, TabPane, Badge } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { TabPane, Badge } from 'reactstrap';
 import DayPicker from 'react-day-picker';
-import moment from 'moment';
+
 import CountDownComponent from '../../components/CountDown/CountDownComponent';
 
 class SummaryPane extends Component {
   render() {
-    let nextEvent,
-      year,
-      month,
-      day;
+    let nextEvent;
+    let year;
+    let month;
+    let day;
     let countDown;
     if (this.props.auth.user.nextEvent !== undefined) {
       nextEvent = new Date(this.props.auth.user.nextEvent.date);
@@ -51,5 +52,7 @@ class SummaryPane extends Component {
     );
   }
 }
-
+SummaryPane.propTypes = {
+  auth: PropTypes.shape.isRequired,
+};
 export default SummaryPane;

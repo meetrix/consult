@@ -19,7 +19,7 @@ class UserAccount extends Component {
     this.accoutRecords = this.accoutRecords.bind(this);
   }
   accoutRecords() {
-    const records = this.props.records;
+    const { records } = this.props;
     const recordElement = records.map(record =>
       (
         <tr key={record.id} >
@@ -68,7 +68,7 @@ UserAccount.propTypes = {
     date: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     amount: PropTypes.string.isRequired,
-  })),
+  })).isRequired,
 };
 
 export default UserAccount;

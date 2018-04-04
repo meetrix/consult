@@ -1,74 +1,65 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-function AvailableStudents(props) {
-  if (!props.consultees) {
-    return null;
-  }
-  console.log(`AvailableStudents: ${props.consultees[0].firstName}`);
-  return (<ListGroup>
-    {
-			props.consultees.map((consultee, index) => <ListGroupItem key={index}>{`${consultee.firstName} ${consultee.lastName}`}</ListGroupItem>)
-		}
-          </ListGroup>);
-}
-
-
-function OtherAvailableStudents(props) {
-  let status = true;
-
-  function handleConsulteeClick(id, firstName, lastName, event) {
-    console.log(`handleConsulteeClick : ${firstName}`);
-    props.updateRelatedUsers({
-      id: props.consultantId.id,
-      consultantFirstName: props.consulteeId.firstName,
-      consultantLastName: props.consultantId.lastName,
-      consulteeId: id,
-      consulteeFirstName: firstName,
-      consulteeLastName: lastName,
-    });
-  }
-
-
-  if (!props.consultees) {
-    return null;
-  }
-  return (
-    <ListGroup>
-      {props.consultees.map(function (consultee, index) {
-				status = true;
-				props.usedConsultees.map((usedConsultee) => {
-					if (consultee.id == usedConsultee.id) status = false;
-				});
-
-				if (status == true) { return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this, consultee.id, consultee.firstName, consultee.lastName)}>{`${consultee.firstName} ${consultee.lastName}`}</ListGroupItem>); }
-			}, this)}
-    </ListGroup>
-  );
-}
 
 class ConsulteeView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
+  AvailableStudents() {
+    if (!this.props.consultees) {
+      return null;
+    }
+    return (
+      <ListGroup>
+      {
+        this.props.consultees.map((consultee, index) => <ListGroupItem key={index}>{`${consultee.firstName} ${consultee.lastName}`}</ListGroupItem>)
+      }
+    </ListGroup>);
+  }
+  OtherAvailableStudents() {
+    let status = true;
 
-  // handleConsulteeClick(id,event){
-  //   console.log("id : "+id);
-  //   // this.props.actions.setConsultantId({
-  //   //   id : id
-  //   // })
-  // };
+    function handleConsulteeClick(id, firstName, lastName, event) {
+      this.props.updateRelatedUsers({
+        id: this.props.consultantId.id,
+        consultantFirstName: this.props.consulteeId.firstName,
+        consultantLastName: this.props.consultantId.lastName,
+        consulteeId: id,
+        consulteeFirstName: firstName,
+        consulteeLastName: lastName,
+      });
+    }
 
 
+    if (!this.props.consultees) {
+      return null;
+    }
+    return (
+      <ListGroup>
+        {this.props.consultees.map(function (consultee, index) {
+          status = true;
+          this.props.usedConsultees.map((usedConsultee) => {
+            if (consultee.id == usedConsultee.id) status = false;
+          });
+
+          if (status == true) { return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this, consultee.id, consultee.firstName, consultee.lastName)}>{`${consultee.firstName} ${consultee.lastName}`}</ListGroupItem>); }
+        }, this)}
+      </ListGroup>
+    );
+  }
   render() {
-    const consultant = this.props.admin.consultants.find(function (obj) {
-      return obj.id === this.props.admin.consultantId.id;
+    let consultees;
+    const consultant = this.props.admin.consultants.find((obj) => {
+      const isConsult = obj.id === this.props.admin.consultantId.id;
+      return isConsult;
     }, this);
     if (consultant) {
-      var consultees = consultant.relatedUsers;
+      consultees = consultant.relatedUsers;
       console.log(`consultees: ${consultees}`);
     } else {
-      var consultees = null;
+      consultees = null;
     }
 
     return (
@@ -102,4 +93,9 @@ class ConsulteeView extends Component {
   }
 }
 
+ConsulteeView.propTypes = {
+  admin: PropTypes.shape.isRequired,
+  consultees: PropTypes.arrayOf.isRequired,
+  updateRelatedUsers: PropTypes.func.isRequired,
+};
 export default ConsulteeView;

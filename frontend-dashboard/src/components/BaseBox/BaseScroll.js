@@ -44,6 +44,7 @@ class BaseScroll extends Component {
         { name: 'a' },
       ],
     };
+    this.renderItem = this.renderItem.bind(this);
   }
 
   renderItem(index, key) {
@@ -55,7 +56,7 @@ class BaseScroll extends Component {
       <Col>
         <Row style={{ overflow: 'auto' }}>
           <ReactList
-            itemRenderer={this.renderItem.bind(this)}
+            itemRenderer={this.renderItem}
             length={this.state.accounts.length}
             type="uniform"
             axis="x"

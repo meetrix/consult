@@ -26,10 +26,9 @@ class UserProfile extends Component {
       lastName: this.props.user.lastName || '',
       address: this.props.user.address || '',
     };
-    console.log(this.props.user);
-    console.log(`firstname: ${this.state.firstName}`);
     this.toggle = this.toggle.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   toggle() {
@@ -48,15 +47,12 @@ class UserProfile extends Component {
   }
 
   handleInputChange(event) {
-    console.log('handleInputChange');
-    const target = event.target;
+    const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    console.log(`value: ${value}`);
+    const { target: name } = target;
     this.setState({
       [name]: value,
     });
-    console.log(`state: ${this.state.firstName}`);
   }
 
   render() {
@@ -138,7 +134,7 @@ class UserProfile extends Component {
               <CardBody>
                 <FormGroup row>
                   <Col md="3">
-                    <Button type="submit" size="sm" color="primary" onClick={this._handleSubmit.bind(this)}><i
+                    <Button type="submit" size="sm" color="primary" onClick={this._handleSubmit}><i
                       className="fa fa-dot-circle-o"
                     />Update Profile
                     </Button>
@@ -157,17 +153,20 @@ class UserProfile extends Component {
 
 UserProfile.propTypes = {
   user: PropTypes.shape({
-    // firstName: PropTypes.string.isRequired,
-    // lastName: PropTypes.string.isRequired,
-    // username: PropTypes.string,
-    // email: PropTypes.string.isRequired,
-    // imageUrl: PropTypes.string.isRequired,
-    // address: PropTypes.string.isRequired,
-    // school: PropTypes.string.isRequired,
-    // district: PropTypes.string.isRequired,
-    // stream: PropTypes.string.isRequired,
-    // subject: PropTypes.string.isRequired,
-  }),
+    id: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    username: PropTypes.string,
+    email: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    school: PropTypes.string.isRequired,
+    district: PropTypes.string.isRequired,
+    stream: PropTypes.string.isRequired,
+    subject: PropTypes.string.isRequired,
+  }).isRequired,
+  actions: PropTypes.shape.isRequired,
 };
 
 export default UserProfile;

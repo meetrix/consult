@@ -9,12 +9,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Badge,
-  InputGroupText,
   Table,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
 } from 'reactstrap';
 
 import { ROLE } from '../../constants/apiSagaConstant';
@@ -22,7 +17,7 @@ import { ROLE } from '../../constants/apiSagaConstant';
 class ConsulteeList extends Component {
   headers() {
     let header;
-    if (this.props.user.role == ROLE.CONSULTANT) {
+    if (this.props.user.role === ROLE.CONSULTANT) {
       header = (
         <tr>
           <th>ConsulteeProfile</th>
@@ -30,7 +25,7 @@ class ConsulteeList extends Component {
           <th>NextSession</th>
         </tr>);
       return header;
-    } else if (this.props.user.role == ROLE.CONSULTEE) {
+    } else if (this.props.user.role === ROLE.CONSULTEE) {
       header = (
         <tr>
           <th>ConsultantProfile</th>
@@ -38,7 +33,7 @@ class ConsulteeList extends Component {
           <th>NextSession</th>
         </tr>);
       return header;
-    } else if (this.props.user.role == ROLE.ADMIN) {
+    } else if (this.props.user.role === ROLE.ADMIN) {
       header = (
         <tr>
           <th>ConsultantProfile</th>
@@ -50,11 +45,12 @@ class ConsulteeList extends Component {
       );
       return header;
     }
+    return null;
   }
   records() {
-    const records = this.props.records;
+    const { records } = this.props;
     let recordElement;
-    if (this.props.user.role == ROLE.CONSULTANT) {
+    if (this.props.user.role === ROLE.CONSULTANT) {
       recordElement = records.map(record =>
         (
           <tr key={record.id}>
@@ -64,7 +60,7 @@ class ConsulteeList extends Component {
             {/* <td><Badge color="success">{record.status}</Badge></td> */}
           </tr>));
       return recordElement;
-    } else if (this.props.user.role == ROLE.CONSULTEE) {
+    } else if (this.props.user.role === ROLE.CONSULTEE) {
       recordElement = records.map(record =>
         (
           <tr key={record.id}>
@@ -74,7 +70,7 @@ class ConsulteeList extends Component {
             {/* <td><Badge color="success">{record.status}</Badge></td> */}
           </tr>));
       return recordElement;
-    } else if (this.props.user.role == ROLE.ADMIN) {
+    } else if (this.props.user.role === ROLE.ADMIN) {
       recordElement = records.map(record =>
         (
           <tr key={record.id}>
@@ -87,6 +83,7 @@ class ConsulteeList extends Component {
           </tr>));
       return recordElement;
     }
+    return null;
   }
   render() {
     return (
@@ -120,7 +117,7 @@ ConsulteeList.propTypes = {
 
   user: PropTypes.shape({
     role: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
   records: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     consulteeName: PropTypes.string,
@@ -129,7 +126,7 @@ ConsulteeList.propTypes = {
     consultantProfile: PropTypes.string,
     nextSession: PropTypes.string.isRequired,
 
-  })),
+  })).isRequired,
 };
 
 export default ConsulteeList;

@@ -1,6 +1,7 @@
 /**
  * Created by supun on 14/03/18.
  */
+import { Auth, I18n, Logger, JS } from 'aws-amplify';
 import React, { Component } from 'react';
 import { ConfirmSignUp } from 'aws-amplify-react';
 
@@ -17,8 +18,6 @@ import {
   Link,
 } from '../../../node_modules/aws-amplify-react/dist/AmplifyUI';
 
-import { Auth, I18n, Logger, JS } from 'aws-amplify';
-
 export default class CustomConfirmSignUp extends ConfirmSignUp {
   confirm() {
     const username = this.usernameFromAuthData() || this.inputs.username;
@@ -29,10 +28,12 @@ export default class CustomConfirmSignUp extends ConfirmSignUp {
   }
 
   render() {
+    /* eslint jsx-a11y/anchor-is-valid:0  */
+    /* eslint no-unused-vars:0  */
     const {
       authState, hide, federated, onStateChange,
     } = this.props;
-    const theme = this.props.theme;
+    const { theme } = this.props;
     const username = this.usernameFromAuthData();
     if (['signIn', 'signUp', 'signedIn', 'forgotPassword'].includes(authState)) { return null; }
     return (
@@ -42,14 +43,15 @@ export default class CustomConfirmSignUp extends ConfirmSignUp {
         </SectionHeader>
         <SectionBody theme={theme}>
           { username ? <MessageRow>{username}</MessageRow>
-						: <InputRow
-  placeholder={I18n.get('Username')}
-  theme={theme}
-  key="username"
-  name="username"
-  onChange={this.handleInputChange}
-						/>
-					}
+           :
+          <InputRow
+            placeholder={I18n.get('Username')}
+            theme={theme}
+            key="username"
+            name="username"
+            onChange={this.handleInputChange}
+          />
+          }
           <InputRow
             autoFocus
             placeholder={I18n.get('Code')}

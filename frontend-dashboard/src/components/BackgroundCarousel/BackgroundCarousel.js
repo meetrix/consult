@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group';
@@ -12,7 +12,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from 'reactstrap';
-import { LandingPageBackgroundCarouselItems } from '../../../config.js';
+import { LandingPageBackgroundCarouselItems } from '../../../config';
 // CarouselBackgroundImage
 import CarouselBackgroundImage from '../../assets/LandingPageImages/carousel_background.png';
 
@@ -40,6 +40,7 @@ class BackgroundCarousel extends Component {
 
   next() {
     if (this.animating) return;
+    /* eslint max-len:0 */
     const nextIndex = this.state.activeIndex === LandingPageBackgroundCarouselItems.length - 1 ? 0 : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
@@ -74,6 +75,7 @@ class BackgroundCarousel extends Component {
         className="landing-page-background-carousel"
         onExiting={this.onExiting}
         onExited={this.onExited}
+        /* eslint react/no-array-index-key:0 */
         key={index}
       >
         <Row>
@@ -126,20 +128,20 @@ Carousel.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
-  children: PropTypes.array,
+  children: PropTypes.arrayOf,
   // called when the mouse enters the Carousel
   mouseEnter: PropTypes.func,
   // called when the mouse exits the Carousel
   mouseLeave: PropTypes.func,
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
-  cssModule: PropTypes.object,
+  cssModule: PropTypes.shape,
 };
 CarouselItem.propTypes = {
   ...Transition.propTypes,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   in: PropTypes.bool,
-  cssModule: PropTypes.object,
+  cssModule: PropTypes.shape,
   children: PropTypes.node,
   slide: PropTypes.bool,
 };

@@ -5,32 +5,36 @@ import { ROLE } from '../../constants/apiSagaConstant';
 
 class SessionList extends Component {
   records() {
-    const records = this.props.records;
+    const { records } = this.props;
     let recordElement;
-    if (this.props.user.role == ROLE.CONSULTANT) {
+    if (this.props.user.role === ROLE.CONSULTANT) {
       recordElement = records.map(record =>
-        (<tr key={record.id}>
-          <td>{record.id}</td>
-          <td>{record.consulteeName}</td>
-          <td>{record.date}</td>
-          <td>{record.startedTime}</td>
-          <td>{record.duration}</td>
-          <td>{record.classFee}</td>
-          {/* <td><Badge color="success">{record.status}</Badge></td> */}
-         </tr>));
+        (
+          <tr key={record.id}>
+            <td>{record.id}</td>
+            <td>{record.consulteeName}</td>
+            <td>{record.date}</td>
+            <td>{record.startedTime}</td>
+            <td>{record.duration}</td>
+            <td>{record.classFee}</td>
+            {/* <td><Badge color="success">{record.status}</Badge></td> */}
+          </tr>
+        ));
       return recordElement;
-    } else if (this.props.user.role == ROLE.CONSULTEE) {
+    } else if (this.props.user.role === ROLE.CONSULTEE) {
       recordElement = records.map(record =>
-        (<tr key={record.id}>
-          <td>{record.id}</td>
-          <td>{record.consultantName}</td>
-          <td>{record.date}</td>
-          <td>{record.startedTime}</td>
-          <td>{record.duration}</td>
-          <td>{record.classFee}</td>
-         </tr>));
+        (
+          <tr key={record.id}>
+            <td>{record.id}</td>
+            <td>{record.consultantName}</td>
+            <td>{record.date}</td>
+            <td>{record.startedTime}</td>
+            <td>{record.duration}</td>
+            <td>{record.classFee}</td>
+          </tr>
+        ));
       return recordElement;
-    } else if (this.props.user.role == ROLE.ADMIN) {
+    } else if (this.props.user.role === ROLE.ADMIN) {
       recordElement = records.map(record =>
         (
           <tr key={record.id}>
@@ -44,6 +48,7 @@ class SessionList extends Component {
           </tr>));
       return recordElement;
     }
+    return null;
   }
   render() {
     return (
@@ -73,7 +78,7 @@ SessionList.propTypes = {
 
   user: PropTypes.shape({
     role: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
   records: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     consulteeName: PropTypes.string,
@@ -83,7 +88,7 @@ SessionList.propTypes = {
     duration: PropTypes.string.isRequired,
     classFee: PropTypes.string,
 
-  })),
+  })).isRequired,
 };
 
 export default SessionList;

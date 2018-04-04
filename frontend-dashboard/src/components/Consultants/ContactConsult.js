@@ -2,10 +2,7 @@
  * Created by supun on 06/03/18.
  */
 import React, { Component } from 'react';
-import { Col, Row, Card, CardBody, CardColumns, Label, CardImg, CardDeck, CardFooter, CardTitle, CardHeader, Media } from 'reactstrap';
-
-import Call from 'react-icons/lib/md/call';
-import Message from 'react-icons/lib/md/chat-bubble-outline';
+import { Col, Row, Media } from 'reactstrap';
 
 class ContactConsult extends Component {
   render() {

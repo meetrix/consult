@@ -9,6 +9,7 @@ import SidebarHeader from './../SidebarHeader';
 import SidebarMinimizer from './../SidebarMinimizer';
 
 class Sidebar extends Component {
+  /* eslint class-methods-use-this:0 */
   handleClick(e) {
     e.preventDefault();
     e.target.parentElement.classList.toggle('open');
@@ -19,16 +20,14 @@ class Sidebar extends Component {
   }
 
   render() {
-    const props = this.props;
-    const activeRoute = this.activeRoute;
-    const handleClick = this.handleClick;
-
+    const { props, activeRoute, handleClick } = this;
     // badge addon to NavItem
-    const badge = (badge) => {
-      if (badge) {
-        const classes = classNames(badge.class);
-        return (<Badge className={classes} color={badge.variant}>{ badge.text }</Badge>);
+    const badge = (badgeOb) => {
+      if (badgeOb) {
+        const classes = classNames(badgeOb.class);
+        return (<Badge className={classes} color={badgeOb.variant}>{ badgeOb.text }</Badge>);
       }
+      return 'not batdge';
     };
 
     // simple wrapper for nav-title item
@@ -38,13 +37,13 @@ class Sidebar extends Component {
     );
 
     // nav list section title
-    const title = (title, key) => {
-      const classes = classNames('nav-title', title.class);
-      return (<li key={key} className={classes}>{wrapper(title)} </li>);
+    const title = (titleV, key) => {
+      const classes = classNames('nav-title', titleV.class);
+      return (<li key={key} className={classes}>{wrapper(titleV)} </li>);
     };
 
     // nav list divider
-    const divider = (divider, key) => (<li key={key} className="divider" />);
+    const divider = (dividerOb, key) => (<li key={key} className="divider" />);
 
     // nav item with nav link
     const navItem = (item, key) => {
@@ -65,26 +64,25 @@ class Sidebar extends Component {
         </NavItem>
       );
     };
-
-    // nav dropdown
-    const navDropdown = (item, key) => (
-      <li key={key} className={activeRoute(item.url, props)}>
-        <a className="nav-link nav-dropdown-toggle" href="#" onClick={handleClick.bind(this)}><i className={item.icon} />{item.name}</a>
-        <ul className="nav-dropdown-items">
-          {navList(item.children)}
-        </ul>
-      </li>);
-
+    /* eslint no-use-before-define:0 */
+    // nav list
+    const navList = items => items.map((item, index) => navLink(item, index));
     // nav link
     const navLink = (item, idx) =>
+      /* eslint no-nested-ternary:0 */
       (item.title ? title(item, idx) :
         item.divider ? divider(item, idx) :
           item.children ? navDropdown(item, idx)
             : navItem(item, idx));
-
-    // nav list
-    const navList = items => items.map((item, index) => navLink(item, index));
-
+    // nav dropdown
+    /* eslint jsx-a11y/anchor-is-valid : 0 */
+    const navDropdown = (item, key) => (
+      <li key={key} className={activeRoute(item.url, props)}>
+        <a className="nav-link nav-dropdown-toggle" href="#" onClick={handleClick}><i className={item.icon} />{item.name}</a>
+        <ul className="nav-dropdown-items">
+          {navList(item.children)}
+        </ul>
+      </li>);
     // sidebar-nav root
     return (
       <div className="sidebar">

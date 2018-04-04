@@ -30,7 +30,7 @@ DropDownMenuSet.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
-  })),
+  })).isRequired,
 };
 
 export default DropDownMenuSet;

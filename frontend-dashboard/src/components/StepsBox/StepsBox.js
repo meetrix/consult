@@ -13,7 +13,7 @@ class StepsBox extends Component {
         <Col className="landing-page-signup-block" xs="12" sm="4" md="4" >
           <Row>
             <Col xs="6" sm="6" md="6">
-              <img className="landing-page-signup-block-image" width="75%" src={SignupImage} />
+              <img className="landing-page-signup-block-image" width="75%" src={SignupImage} alt="admin@meetrix.io" />
             </Col>
             <Col className="landing-page-signup-block-text" xs="6" sm="6" md="6">
               <h4>Sign up</h4>
@@ -24,7 +24,7 @@ class StepsBox extends Component {
         <Col className="landing-page-tutor-block" xs="12" sm="4" md="4" >
           <Row>
             <Col xs="6" sm="6" md="6">
-              <img className="landing-page-tutor-block-image" width="75%" src={SelectTutorImage} />
+              <img className="landing-page-tutor-block-image" width="75%" src={SelectTutorImage} alt="admin@meetrix.io" />
             </Col>
             <Col className="landing-page-tutor-block-text" xs="6" sm="6" md="6">
               <h4>Select a Tutor</h4>
@@ -35,7 +35,7 @@ class StepsBox extends Component {
         <Col className="landing-page-schedule-class-block" xs="12" sm="4" md="4" >
           <Row>
             <Col xs="6" sm="6" md="6">
-              <img className="landing-page-schedule-class-block-image" width="75%" src={ScheduleClassImage} />
+              <img className="landing-page-schedule-class-block-image" width="75%" src={ScheduleClassImage} alt="admin@meetrix.io" />
             </Col>
             <Col className="landing-page-schedule-class-block-text" xs="6" sm="6" md="6">
               <h4>Schedule a Class</h4>

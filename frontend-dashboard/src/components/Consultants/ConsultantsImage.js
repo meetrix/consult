@@ -2,8 +2,8 @@
  * Created by supun on 15/02/18.
  */
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'reactstrap';
-
+import { Row } from 'reactstrap';
+import PropTypes from 'prop-types';
 import { BaseBox, BaseShowRow } from '../BaseBox';
 import ConsultantImage from './ConsultantImage';
 
@@ -21,8 +21,9 @@ class ConsultantsImage extends Component {
   }
   getConsultantsImages() {
     const consultantAvailabelImages = [];
-    if (this.props.consultantsImages != undefined) {
+    if (this.props.consultantsImages !== undefined) {
       this.props.consultantsImages.map((consultantImage, index) =>
+      /* eslint react/no-array-index-key:0 */
         consultantAvailabelImages.push(<ConsultantImage key={index} image={consultantImage} />));
       this.setState({ consultantAvailabelImages });
     }
@@ -44,5 +45,7 @@ class ConsultantsImage extends Component {
     );
   }
 }
-
+ConsultantsImage.propTypes = {
+  consultantsImages: PropTypes.shape.isRequired,
+};
 export default ConsultantsImage;

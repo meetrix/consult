@@ -17,6 +17,7 @@ class CountDownComponent extends Component {
     // update every second
     this.interval = setInterval(() => {
       const date = this.calculateCountdown(this.props.date);
+      /* eslint no-unused-expressions:0 */
       date ? this.setState(date) : this.stop();
     }, 1000);
   }
@@ -29,7 +30,7 @@ class CountDownComponent extends Component {
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
 
     // clear countdown when date is reached
-    if (diff <= 0) return false;
+    if (this.diff <= 0) return false;
 
     const timeLeft = {
       years: 0,
@@ -66,6 +67,8 @@ class CountDownComponent extends Component {
   }
 
   addLeadingZeros(value) {
+    /* eslint class-methods-use-this:0 */
+    /* eslint no-param-reassign:0 */
     value = String(value);
     while (value.length < 2) {
       value = `0${value}`;
@@ -114,9 +117,4 @@ class CountDownComponent extends Component {
 CountDownComponent.propTypes = {
   date: PropTypes.string.isRequired,
 };
-
-CountDownComponent.defaultProps = {
-  date: new Date(),
-};
-
 export default CountDownComponent;

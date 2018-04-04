@@ -25,12 +25,12 @@ class Consultant extends Component {
   }
 
   componentWillMount() {
-    console.log('Consultant');
-    console.log(this.props.actions);
   }
 
   ratingChanged(newRating) {
-    console.log(newRating);
+    /* eslint no-unused-vars:0 */
+    const rate = newRating;
+    return this.rate;
   }
   render() {
     return (
@@ -132,9 +132,7 @@ class Consultant extends Component {
 }
 
 Consultant.propTypes = {
-  _id: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
   columnWidth: PropTypes.number.isRequired,
 
 };

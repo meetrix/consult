@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactStars from 'react-stars';
-
+import ProfTypes from 'prop-types';
 
 class ConsultantWidget extends Component {
   constructor(props) {
@@ -8,11 +8,6 @@ class ConsultantWidget extends Component {
 
     this.ratingChanged = this.ratingChanged.bind(this);
   }
-
-  ratingChanged(newRating) {
-    console.log(newRating);
-  }
-
   render() {
     return (
 
@@ -30,4 +25,8 @@ class ConsultantWidget extends Component {
     );
   }
 }
+ConsultantWidget.propTypes = {
+  username: ProfTypes.string.isRequired,
+  price: ProfTypes.string.isRequired,
+};
 export default ConsultantWidget;

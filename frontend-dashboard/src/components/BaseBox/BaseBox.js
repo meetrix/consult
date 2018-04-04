@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col } from 'reactstrap';
-
+import PropTypes from 'prop-types';
 
 class BaseBox extends Component {
   render() {
@@ -16,5 +16,7 @@ class BaseBox extends Component {
     );
   }
 }
-
+BaseBox.propTypes = {
+  children: PropTypes.string.isRequired,
+};
 export default BaseBox;

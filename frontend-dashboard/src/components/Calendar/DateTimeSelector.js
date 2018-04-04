@@ -15,6 +15,7 @@ class DateTimeSelector extends Component {
     this.state = {
       m: moment(),
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(m) {
@@ -44,7 +45,7 @@ class DateTimeSelector extends Component {
                 {/* </div> */}
                 <InputMoment
                   moment={this.state.m}
-                  onChange={this.handleChange.bind(this)}
+                  onChange={this.handleChange}
                   minStep={1}
                 />
               </form>

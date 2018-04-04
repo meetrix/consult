@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Button } from 'reactstrap';
 
 
 // component
@@ -14,8 +14,6 @@ class LiveRoom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      consultsViewImages: [],
-      num: 2,
     };
   }
 
@@ -48,7 +46,7 @@ class LiveRoom extends Component {
 
 LiveRoom.propTypes = {
   // images:PropTypes.array.isRequired
-  room: PropTypes.object.isRequired,
+  room: PropTypes.shape.isRequired,
 
 };
 

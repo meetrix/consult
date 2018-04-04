@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Progress, Label, Input, Badge } from 'reactstrap';
+import { TabContent, Nav, NavItem, NavLink, Badge } from 'reactstrap';
 import classnames from 'classnames';
 import SummaryPane from './SummaryPane';
 import MessagePane from './MessagePane';

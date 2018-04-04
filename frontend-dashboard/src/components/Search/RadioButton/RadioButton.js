@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input} from 'reactstrap';
+import { Input } from 'reactstrap';
 
 class RadioButton extends Component {
   render() {

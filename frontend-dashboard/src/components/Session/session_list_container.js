@@ -3,8 +3,6 @@ import { Col, Row } from 'reactstrap';
 import SessionList from './session_list';
 
 class SessionListContainer extends Component {
-
-
   render() {
     return (
       <Col>

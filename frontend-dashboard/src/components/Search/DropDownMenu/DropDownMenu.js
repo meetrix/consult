@@ -20,7 +20,7 @@ class DropDownMenu extends Component {
 DropDownMenu.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf.isRequired,
 };
 
 export default DropDownMenu;

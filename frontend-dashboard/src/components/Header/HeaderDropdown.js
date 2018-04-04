@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Badge,
   DropdownItem,
@@ -6,8 +7,8 @@ import {
   DropdownToggle,
   Dropdown,
 } from 'reactstrap';
-import Amplify, { API, Auth } from 'aws-amplify';
-import { Link, withRouter } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
+import { withRouter } from 'react-router-dom';
 
 class HeaderDropdown extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class HeaderDropdown extends Component {
     this.state = {
       dropdownOpen: false,
     };
+    this._logOut = this._logOut.bind(this);
   }
 
   toggle() {
@@ -48,18 +50,20 @@ class HeaderDropdown extends Component {
           <DropdownItem><i className="fa fa-file" /> Projects<Badge color="primary">42</Badge></DropdownItem>
           <DropdownItem divider />
           <DropdownItem><i className="fa fa-shield" /> Lock Account</DropdownItem>
-          <DropdownItem onClick={this._logOut.bind(this)}><i className="fa fa-lock" /> Logout</DropdownItem>
+          <DropdownItem onClick={this._logOut}><i className="fa fa-lock" /> Logout</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );
   }
 
   render() {
-    const { ...attributes } = this.props;
+    // const { ...attributes } = this.props;
     return (
       this.dropAccnt()
     );
   }
 }
-
+HeaderDropdown.propTypes = {
+  history: PropTypes.shape().isRequired,
+};
 export default withRouter(HeaderDropdown);

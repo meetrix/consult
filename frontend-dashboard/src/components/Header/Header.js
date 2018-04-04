@@ -11,6 +11,7 @@ import {
 import HeaderDropdown from './HeaderDropdown';
 
 class Header extends Component {
+  /* eslint class-methods-use-this:0 */
   sidebarToggle(e) {
     e.preventDefault();
     document.body.classList.toggle('sidebar-hidden');

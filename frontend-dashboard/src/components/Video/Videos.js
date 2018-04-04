@@ -22,8 +22,9 @@ class Videos extends Component {
   }
   getAvailableVideos() {
     const availabelVideos = [];
-    if (this.props.videos != undefined) {
+    if (this.props.videos !== undefined) {
       this.props.videos.map((video, index) =>
+      /* eslint react/no-array-index-key:0 */
         availabelVideos.push(<Video key={index} video={video} />));
 
       this.setState({ availabelVideos });
@@ -36,7 +37,7 @@ class Videos extends Component {
         <Row>
           <Col style={{ overflow: 'auto' }}>
             <ReactList
-              itemRenderer={(index, key) => this.state.availabelVideos[index]}
+              itemRenderer={index => this.state.availabelVideos[index]}
               length={this.state.availabelVideos.length}
               type="uniform"
               axis="x"
@@ -49,8 +50,7 @@ class Videos extends Component {
   }
 }
 Videos.propTypes = {
-  videos: PropTypes.array.isRequired,
-  numOfVideoShouldShow: PropTypes.number.isRequired,
+  videos: PropTypes.arrayOf.isRequired,
 
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class SidebarMinimizer extends Component {
+  /* eslint class-methods-use-this:0 */
   sidebarMinimize() {
     document.body.classList.toggle('sidebar-minimized');
   }
@@ -11,7 +12,7 @@ class SidebarMinimizer extends Component {
 
   render() {
     return (
-      <button className="sidebar-minimizer" type="button" onClick={(event) => { this.sidebarMinimize(); this.brandMinimize(); }} />
+      <button className="sidebar-minimizer" type="button" onClick={() => { this.sidebarMinimize(); this.brandMinimize(); }} />
     );
   }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Row } from 'reactstrap';
+import PropTypes from 'prop-types';
 import BaseBox from '../BaseBox/BaseBox';
 import ConsultGrap from './ConsultGrap';
-import { Col, Row } from 'reactstrap';
-import PropTypes from 'prop-types';
+
 
 class ConsultantLive extends Component {
   render() {
@@ -27,7 +28,7 @@ class ConsultantLive extends Component {
   }
 }
 ConsultantLive.propTypes = {
-  consultant: PropTypes.object.isRequired,
+  consultant: PropTypes.shape.isRequired,
 
 };
 export default ConsultantLive;

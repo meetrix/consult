@@ -10,23 +10,23 @@ import { Row, Col } from 'reactstrap';
 import BaseBox from '../BaseBox/BaseBox';
 
 class Video extends Component {
+  constructor(props) {
+    super(props);
 
-
+    this._getVideoPlayer = this._getVideoPlayer.bind(this);
+  }
   _getVideoPlayer() {
-    return <div>hi</div>;
+    this.element = <div>hi</div>;
+    return this.element;
   }
 
-
   render() {
-    if (this.videoPlayer) {
-
-    }
     return (
       <div style={{ float: 'left' }}>
         <Col>
           <BaseBox>
             <Row>
-              <div className="consultant-image" onClick={this._getVideoPlayer.bind(this)}>
+              <div className="consultant-image" onClick={() => {}} role="button" tabIndex={0} onKeyUp={this._getVideoPlayer}>
                 <img alt="Avatar" src={this.props.video.url} />
               </div>
             </Row>
@@ -41,7 +41,7 @@ class Video extends Component {
 
 Video.propTypes = {
   // images:PropTypes.array.isRequired
-  video: PropTypes.object.isRequired,
+  video: PropTypes.shape.isRequired,
 
 };
 

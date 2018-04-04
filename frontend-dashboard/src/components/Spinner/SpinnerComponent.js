@@ -7,10 +7,6 @@ import { Col } from 'reactstrap';
 import Spinner from 'react-spinkit';
 
 class SpinnerComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Col><Spinner name="line-scale-party" color="aqua" /></Col>

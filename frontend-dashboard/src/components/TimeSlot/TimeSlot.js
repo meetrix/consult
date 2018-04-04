@@ -3,13 +3,14 @@
  */
 import React, { Component } from 'react';
 import { Col, Card, CardBody, CardImg, CardTitle, CardFooter, Row } from 'reactstrap';
-
-import timeSlot from '../../../ProjectConfiguration/timeSlot.json';
 import PropTypes from 'prop-types';
+import timeSlot from '../../../ProjectConfiguration/timeSlot.json';
+
 
 class TimeSlot extends Component {
   constructor(props) {
     super(props);
+    this._selectTimeSlot = this._selectTimeSlot.bind(this);
   }
 
   _selectTimeSlot() {
@@ -25,7 +26,7 @@ class TimeSlot extends Component {
       consultSubjectElm = <CardTitle className="text-center" >Mathematics</CardTitle>;
     }
     return (
-      <div style={{ float: 'left' }} onClick={this._selectTimeSlot.bind(this)} >
+      <div style={{ float: 'left' }} role="button" onKeyUp={this._selectTimeSlot} onClick={() => {}} tabIndex={0} >
         <Col>
           <Card>
             {consultantImgElm}
@@ -45,10 +46,10 @@ class TimeSlot extends Component {
   }
 }
 TimeSlot.propTypes = {
-  event: PropTypes.object.isRequired,
+  event: PropTypes.shape.isRequired,
   actions: PropTypes.shape({
     selectTimeSlot: PropTypes.func.isRequired,
-  }),
+  }).isRequired,
 
 
 };

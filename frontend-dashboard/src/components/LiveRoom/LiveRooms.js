@@ -23,6 +23,7 @@ class LiveRooms extends Component {
     const availabelRooms = [];
     if (this.props.rooms !== undefined) {
       this.props.rooms.map((room, index) =>
+      /* eslint react/no-array-index-key:0  */
         availabelRooms.push(<LiveRoom key={index} room={room} />));
 
       this.setState({ availabelRooms });
@@ -35,7 +36,7 @@ class LiveRooms extends Component {
         <Row>
           <Col style={{ overflow: 'auto' }}>
             <ReactList
-              itemRenderer={(index, key) => this.state.availabelRooms[index]}
+              itemRenderer={index => this.state.availabelRooms[index]}
               length={this.state.availabelRooms.length}
               type="variable"
               axis="x"
@@ -47,9 +48,7 @@ class LiveRooms extends Component {
   }
 }
 LiveRooms.propTypes = {
-  rooms: PropTypes.array.isRequired,
-  numOfRoomsShouldShow: PropTypes.number.isRequired,
-
+  rooms: PropTypes.arrayOf.isRequired,
 };
 
 export default LiveRooms;

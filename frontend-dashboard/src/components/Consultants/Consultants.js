@@ -18,6 +18,7 @@ class Consultants extends Component {
       consultantsInRow.map((consultant, index) =>
 
         (<Consultant
+        /* eslint react/no-array-index-key:0 */
           key={index}
           {...consultant}
           actions={this.props.actions}
@@ -30,9 +31,12 @@ class Consultants extends Component {
     const rows = [];
     const numberOfCardsInRow = 3;
     for (let i = 0; i < this.props.consultants.length; i += numberOfCardsInRow) {
-      rows.push(<Row className="consultant-array" key={i}>
-        {this.getConsultantCardColumns(this.props.consultants.slice(i, i + numberOfCardsInRow))}
-                </Row>);
+      const element = (
+        <Row className="consultant-array" key={i}>
+          {this.getConsultantCardColumns(this.props.consultants.slice(i, i + numberOfCardsInRow))}
+        </Row>
+      );
+      rows.push(element);
     }
     return (
       <Fragment>
@@ -47,8 +51,8 @@ Consultants.propTypes = {
     _id: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
 
-  })),
-  actions: PropTypes.object.isRequired,
+  })).isRequired,
+  actions: PropTypes.shape.isRequired,
 
 };
 

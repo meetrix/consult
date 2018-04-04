@@ -1,6 +1,7 @@
 /**
  * Created by supun on 14/03/18.
  */
+import { Auth, I18n, Logger, JS } from 'aws-amplify';
 import React, { Component } from 'react';
 import { ForgotPassword } from 'aws-amplify-react';
 
@@ -14,7 +15,7 @@ import {
   Link,
 } from '../../../node_modules/aws-amplify-react/dist/AmplifyUI';
 
-import { Auth, I18n, Logger, JS } from 'aws-amplify';
+
 import { FederatedButtons } from '../../../node_modules/aws-amplify-react/dist/Auth/FederatedSignIn';
 
 const logger = new Logger('ForgotPassword');
@@ -40,7 +41,7 @@ export default class CustomForgetPassword extends ForgotPassword {
       })
       .catch(err => this.error(err));
   }
-
+  /* eslint no-undef:0 */
   sendView() {
     const theme = this.props.theme || AmplifyTheme;
     return (
@@ -87,16 +88,18 @@ export default class CustomForgetPassword extends ForgotPassword {
   }
 
   render() {
+    /* eslint no-unused-vars:0  */
     const {
       authState, hide, federated, onStateChange,
     } = this.props;
-    const theme = this.props.theme;
+    const { theme } = this.props;
     console.log('CustomSignUp');
     console.log(authState);
     if (['signUp', 'confirmSignUp', 'signedIn', 'signIn'].includes(authState)) {
       return null;
     }
     return (
+      /* eslint jsx-a11y/anchor-is-valid:0  */
       <FormSection theme={theme}>
         <SectionHeader theme={theme}>{I18n.get('Forgot Password')}</SectionHeader>
         <SectionBody>

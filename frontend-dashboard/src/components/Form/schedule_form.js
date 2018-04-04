@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, DropdownItem, DropdownMenu, Dropdown, DropdownToggle } from 'reactstrap';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import ConsulteeSuggest from '../AutoSuggest/ConsulteeSuggest';
 
@@ -21,7 +22,7 @@ class ScheduleForm extends Component {
     });
   }
 
-  handleDropdownClick(id, firstName, lastName, event) {
+  handleDropdownClick(id, firstName, lastName) {
     this.props.actions.setConsultees({
       id,
       firstName,
@@ -30,7 +31,6 @@ class ScheduleForm extends Component {
   }
 
   render() {
-    console.log(`relatedUsers:22 ${this.props.relatedUsers[0].firstName}`);
     return (
       <Form>
         <FormGroup>
@@ -61,9 +61,10 @@ class ScheduleForm extends Component {
             <DropdownMenu>
               {this.props.relatedUsers.map((relatedUser, index) => (
                 <DropdownItem
+                /* eslint react/no-array-index-key :0 */
                   key={index}
                   onClick={
-                    this.handleDropdownClick.bind(this,
+                    this.handleDropdownClick(
                     relatedUser.id,
                       relatedUser.firstName,
                       relatedUser.lastName,
@@ -89,5 +90,17 @@ class ScheduleForm extends Component {
     );
   }
 }
-
+ScheduleForm.propTypes = {
+  start: PropTypes.string.isRequired,
+  relatedUsers: PropTypes.string.isRequired,
+  end: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  consultees: PropTypes.shape().isRequired,
+  actions: PropTypes.shape().isRequired,
+  onBookChange: PropTypes.func.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
+  handleStartDateChange: PropTypes.func.isRequired,
+  handleEndDateChange: PropTypes.func.isRequired,
+  onConsulteeChange: PropTypes.func.isRequired,
+};
 export default ScheduleForm;

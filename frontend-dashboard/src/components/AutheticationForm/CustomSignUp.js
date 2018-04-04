@@ -1,7 +1,8 @@
 /**
  * Created by supun on 13/03/18.
  */
-import React, { Component } from 'react';
+import { Auth, I18n } from 'aws-amplify';
+import React from 'react';
 import { SignUp } from 'aws-amplify-react';
 
 
@@ -14,14 +15,17 @@ import {
   ButtonRow,
   Link,
   RadioRow,
-  Radio,
 } from '../../../node_modules/aws-amplify-react/dist/AmplifyUI';
 
-import { Auth, I18n, Logger, JS } from 'aws-amplify';
 
 export default class CustomSignUp extends SignUp {
+  constructor(props) {
+    super(props);
+    this.handleRole = this.handleRole.bind(this);
+  }
   signUp() {
     const {
+      /* eslint camelcase:0 */
       username, password, email, phone_number, role,
     } = this.inputs;
     let mainRole;
@@ -46,24 +50,16 @@ export default class CustomSignUp extends SignUp {
       .then(() => this.changeState('confirmSignUp', username))
       .catch(err => this.error(err));
   }
-  async checkUserCustomAttributes() {
-    const user = await Auth.currentAuthenticatedUser();
-    const result = await Auth.updateUserAttributes(user, {
-      'custom:role': 'student',
-      'custom:tenant': 'siplo',
-    });
-    console.log(user);
-    console.log(await Auth.currentUserInfo());
-  }
 
   handleRole(e) {
     this.inputs.role = e.target.value;
   }
   render() {
+    /* eslint no-unused-vars:0  */
     const {
       authState, hide, federated, onStateChange,
     } = this.props;
-    const theme = this.props.theme;
+    const { theme } = this.props;
     console.log('CustomSignUp');
     console.log(authState);
     const { teacher, student } = this.inputs;
@@ -71,6 +67,7 @@ export default class CustomSignUp extends SignUp {
     if (['signIn', 'confirmSignUp', 'signedIn', 'forgotPassword'].includes(authState)) { return null; }
 
     return (
+      /* eslint jsx-a11y/anchor-is-valid:0  */
       <FormSection theme={theme}>
         <SectionHeader theme={theme}>{I18n.get('Sign Up Account')}</SectionHeader>
         <SectionBody theme={theme}>
@@ -110,7 +107,7 @@ export default class CustomSignUp extends SignUp {
             key="student"
             name="role"
             value="student"
-            onChange={this.handleRole.bind(this)}
+            onChange={this.handleRole}
           />
           <RadioRow
             placeholder={I18n.get('Teacher')}
@@ -118,7 +115,7 @@ export default class CustomSignUp extends SignUp {
             key="teacher"
             name="role"
             value="teacher"
-            onChange={this.handleRole.bind(this)}
+            onChange={this.handleRole}
           />
 
 

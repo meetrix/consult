@@ -25,7 +25,7 @@ SortByRadioButtons.propTypes = {
   name: PropTypes.string.isRequired,
   radioButtons: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
-  })),
+  })).isRequired,
 };
 
 export default SortByRadioButtons;

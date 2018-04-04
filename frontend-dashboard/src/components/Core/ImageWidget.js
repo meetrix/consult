@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  path: PropTypes.string,
+  path: PropTypes.string.isRequired,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 };
