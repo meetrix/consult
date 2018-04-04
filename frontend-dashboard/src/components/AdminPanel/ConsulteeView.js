@@ -31,7 +31,7 @@ function OtherAvailableStudents(props) {
       consulteeId : id,
       consulteeFirstName:firstName,
       consulteeLastName:lastName
-    })
+    },{index:props.indexOfConsultant});
   }
 
 
@@ -42,9 +42,9 @@ function OtherAvailableStudents(props) {
       <ListGroup>
     {props.consultees.map(function (consultee,index) {
       status = true;
-      props.usedConsultees.map(function(usedConsultee){
+      if(props.usedConsultees) props.usedConsultees.map(function(usedConsultee){
         if(consultee.id == usedConsultee.id) status = false;
-      })
+      });
 
       if(status == true){ return (<ListGroupItem key={index} onClick={handleConsulteeClick.bind(this,consultee.id,consultee.firstName,consultee.lastName)}>{consultee.firstName +" "+consultee.lastName}</ListGroupItem>);}
     },this)}
@@ -69,19 +69,22 @@ class ConsulteeView extends Component{
 
 
   render(){
-    var consultant = this.props.admin.consultants.find(function (obj) {
+    var indexOf = null;
+    var consultant = this.props.admin.consultants.find(function (obj,index) {
+      indexOf = index;
       return obj.id === this.props.admin.consultantId.id;
     },this);
     if(consultant) {
       var consultees = consultant.relatedUsers;
       console.log("consultees: " + consultees);
+      console.log("index: "+indexOf);
     }else{
       var consultees = null;
     }
 
       return (
         <div>
-          <h1>Yasith</h1>
+          <h1>{this.props.admin.consultantId.firstName}</h1>
           <Row>
             <Col xs="12" sm="6">
               <Card>
@@ -101,7 +104,7 @@ class ConsulteeView extends Component{
               <strong>Other Students</strong>
               </CardHeader>
               <CardBody>
-                  <OtherAvailableStudents consultees={this.props.admin.consultees} consultantId={this.props.admin.consultantId} updateRelatedUsers={this.props.action.updateRelatedUsers} usedConsultees={consultees}/>
+                  <OtherAvailableStudents consultees={this.props.admin.consultees} consultantId={this.props.admin.consultantId} updateRelatedUsers={this.props.action.updateRelatedUsers} usedConsultees={consultees} getConsultants={this.props.action.getConsultants} indexOfConsultant = {indexOf}/>
               </CardBody>
             </Card>
           </Row>

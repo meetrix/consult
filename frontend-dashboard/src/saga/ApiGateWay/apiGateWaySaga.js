@@ -47,7 +47,7 @@ function* apiGateWayActionHandler(action) {
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_SUCCESS});
     // console.log("reply")
     // console.log(reply)
-    yield put({type: reply.successAction, payload: reply.res, args: {...action.payload, ...action.args}});
+    yield put({type: reply.successAction, payload: reply.res, args: {payload:action.payload, data:action.data}});
   } catch (reply) {
     yield put({...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_FAILURE});
     yield put({type: reply.failureAction, payload: reply.err, args: {...action.payload, ...action.args}});

@@ -33,12 +33,37 @@ export default (state=admin,action) => {
       }
         break;
       case REDUX_API_GATEWAY_ACTIONS.UPDATE_RELATED_USERS_SUCCESS:{
-        console.log("admin reducer related users payload: "+action.payload.consultant_db);
-        return {
+        console.log("admin reducer related users payload: "+action.payload.consultant_db.Attributes.firstName);
+        // const updatedConsultants =state.consultants.map(consultant=>{
+        //   console.log("===============================================================");
+        //   console.log(consultant.id)
+        //   console.log(state.consultantId.id)
+        //   if(consultant.id == state.consultantId.id){
+        //     const relatedUsers = [...consultant.relatedUsers,...action.payload.consultee_db];
+        //     const item = {
+        //       consultees : {relatedUsers:relatedUsers}
+        //     };
+        //     return {...consultant,...item.consultees};
+        //   }else{
+        //     return consultant;
+        //   }
+        // });
+        const updatedConsultants = state.consultants.map((consultant,index)=>{
+          if(index == action.args.data.index){
+            return action.payload.consultant_db.Attributes
+          }else{
+            return consultant;
+          }
+        });
+        return{
           ...state,
-          consultees:[state.consultees,...action.payload.consultee_db],
-          consultants:[state.consultants,...action.payload.consultant_db]
+          consultants:updatedConsultants
         }
+        // return {
+        //   ...state,
+        //   consultees:[state.consultees,...action.payload.consultee_db],
+        //   consultants:[state.consultants,...action.payload.consultant_db]
+        // }
       }
         break;
       case REDUX_ACTIONS.SET_CONSULTANT_ID:{
@@ -47,6 +72,7 @@ export default (state=admin,action) => {
           consultantId:action.payload
         }
       }
+        break;
       default: return state;
     }
 }
