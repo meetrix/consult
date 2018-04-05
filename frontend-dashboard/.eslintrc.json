@@ -10,7 +10,8 @@
         "import/no-extraneous-dependencies":0,
         "react/prefer-stateless-function":0,
         "no-underscore-dangle":0,
-        "no-console":1
+        "no-console":1,
+        "react/no-array-index-key":0
     },
     "globals": {
         "localStorage":true,

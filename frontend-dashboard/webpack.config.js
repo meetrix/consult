@@ -13,14 +13,13 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 console.log('BUILD_DIR', BUILD_DIR);
 console.log('SRC_DIR', SRC_DIR);
 
-module.exports = (env = {}) => {
-  return {
+module.exports = (env = {}) => ({
     entry: {
       index: ['babel-polyfill',SRC_DIR + '/index.js']
     },
     output: {
       path: BUILD_DIR,
-      filename: '[name].bundle.js'
+      filename: '[name].bundle.js',
     },
     // watch: true,
     devtool: env.prod ? 'source-map' : 'cheap-module-eval-source-map',
@@ -30,12 +29,12 @@ module.exports = (env = {}) => {
       port: 8080,
       compress: true,
       hot: true,
-      open: false
+      open: false,
     },
     module: {
       rules: [
         {
-          enforce: "pre",
+          enforce: 'pre',
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: "eslint-loader",
@@ -115,5 +114,4 @@ module.exports = (env = {}) => {
         {copyUnmodified: false}
       )
     ]
-  }
-};
+  });

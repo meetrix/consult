@@ -1,6 +1,7 @@
+
 // core library
 import React, { Component } from 'react';
-import { Row, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 // container
@@ -9,7 +10,7 @@ import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/Co
 import ConsultantsContainer from '../../containers/ConsultantsContainer/ConsultantsContainer';
 import VideoContainer from '../../containers/VideoContainer/VideoContainer';
 import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer';
-//constant
+// constant
 import role from '../../../ProjectConfiguration/role.json';
 
 class DashBoardView extends Component {
@@ -26,8 +27,8 @@ class DashBoardView extends Component {
     if (this.props.auth.user.id !== undefined) {
       this.props.actions.getNextEvent({ id: this.props.auth.user.id });
     }
-    if(this.props.auth.user.relatedUsers ===undefined){
-        this.props.actions.getSuggestConsultantList({id:this.props.auth.user.id,consultantRole:'teacher'});
+    if (this.props.auth.user.relatedUsers === undefined) {
+      this.props.actions.getSuggestConsultantList({ id: this.props.auth.user.id, consultantRole: 'teacher' });
     }
   }
 
@@ -50,11 +51,12 @@ class DashBoardView extends Component {
     }
   }
   render() {
+    /* eslint react/no-array-index-key:0  */
     let consultantSelectElm = null;
     let view = null;
     let consultantList = null;
-    if(this.props.auth.user.role=== role.consultee ){
-      if(!(this.props.scheduler.events ===undefined || this.props.scheduler.events ===null || this.props.scheduler.events.length ===0) ) {
+    if (this.props.auth.user.role === role.consultee) {
+      if (!(this.props.scheduler.events === undefined || this.props.scheduler.events === null || this.props.scheduler.events.length === 0)) {
         view =
           (
             <Col>
@@ -70,42 +72,40 @@ class DashBoardView extends Component {
             </Col>
           );
       }
-      if(this.props.auth.user.relatedUsers!==undefined){
-          
-          consultantSelectElm =
-          <Row>
-            <Form >
-              <FormGroup>
-                <Label for="exampleSelectMulti">Select Teacher For View Free Time Slot</Label>
-                <Input type="select"  onChange={this._selectConsultant.bind(this)} name="selectMulti" id="exampleSelectMulti" >
+      if (this.props.auth.user.relatedUsers !== undefined) {
+        consultantSelectElm =
+            (
+              <Row>
+                <Form >
+                  <FormGroup>
+                    <Label for="exampleSelectMulti">Select Teacher For View Free Time Slot</Label>
+                    <Input type="select" onChange={this._selectConsultant} name="selectMulti" id="exampleSelectMulti" >
 
-                  {this.props.auth.user.relatedUsers !=null ? this.props.auth.user.relatedUsers.map((consultant,index)=>
+                      {this.props.auth.user.relatedUsers !== null ? this.props.auth.user.relatedUsers.map((consultant, index) =>
 
-                    <option value={consultant.id} key={index}>{consultant.id} </option>
-                  ):null}
-                </Input>
-              </FormGroup>
-              <Button onClick={this._viewTimeSlot.bind(this)}>View Free Slot</Button>
-            </Form>
-
-
-          </Row>
+                        <option value={consultant.id} key={index}>{consultant.id} </option>) : null}
+                    </Input>
+                  </FormGroup>
+                  <Button onClick={this._viewTimeSlot}>View Free Slot</Button>
+                </Form>
+              </Row>
+            );
+      } else {
+        consultantList =
+          (
+            <div className="animated fadeIn">
+              <Col>
+                <Alert color="warning" >Suggest Consulants</Alert>
+                <Row className="dash-board-component-wrapper"> <ConsultantsContainer /> </Row>
+                {/* <Alert>Suggest Consulants</Alert>
+                <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+                <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+                <Row className="dash-board-component-wrapper"><VideoContainer/></Row> */}
+              </Col>
+            </div>
+          );
       }
-      else{
-        consultantList = 
-        <div className="animated fadeIn">
-          <Col>
-            <Alert color="warning" >Suggest Consulants</Alert>
-            <Row className="dash-board-component-wrapper"> <ConsultantsContainer/> </Row>
-            {/* <Alert>Suggest Consulants</Alert>
-            <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
-            <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
-            <Row className="dash-board-component-wrapper"><VideoContainer/></Row> */}
-          </Col>
-      </div>
-      }
-    }
-    else if(this.props.auth.user.role === role.consultant){
+    } else if (this.props.auth.user.role === role.consultant) {
       view =
         (
           <div className="animated fadeIn">
