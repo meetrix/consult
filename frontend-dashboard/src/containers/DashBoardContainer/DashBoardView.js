@@ -9,6 +9,7 @@ import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/Co
 import ConsultantsContainer from '../../containers/ConsultantsContainer/ConsultantsContainer';
 import VideoContainer from '../../containers/VideoContainer/VideoContainer';
 import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer';
+import ClassCardContainer from '../../containers/DashBoardContainer/ClassCardContainer';
 //constant
 import role from '../../../ProjectConfiguration/role.json';
 
@@ -19,6 +20,13 @@ class DashBoardView extends Component {
     this.state = {
       consultantId: undefined
     };
+    if(this.props.auth.user.role === role.consultant){
+      this.props.actions.getScheduleEvents(
+        {
+          id : this.props.auth.user.id
+        }
+      )
+    }
   }
   componentDidMount(){
     //get user next event
@@ -41,7 +49,7 @@ class DashBoardView extends Component {
   _viewTimeSlot(){
     if(this.props.auth.user.relatedUsers!=null){
       if(this.state.consultantId===undefined){
-        
+
         this.props.actions.getFreeEventFromConsultant({id:this.props.auth.user.relatedUsers[0].id});
       }
       else{
@@ -73,7 +81,7 @@ class DashBoardView extends Component {
           </Col>
       }
       if(this.props.auth.user.relatedUsers!==undefined){
-          
+
           consultantSelectElm =
           <Row>
             <Form >
@@ -94,7 +102,7 @@ class DashBoardView extends Component {
           </Row>
       }
       else{
-        consultantList = 
+        consultantList =
         <div className="animated fadeIn">
           <Col>
             <Alert color="warning" >Suggest Consulants</Alert>
@@ -114,8 +122,11 @@ class DashBoardView extends Component {
             <Row className="dash-board-component-wrapper">
               {/*<MyConsultantsContainer/>*/}
             </Row>
-            <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+            <h1>Today's Classes</h1>
+            <Row className="dash-board-component-wrapper" width="70%"><ClassCardContainer/></Row>
+            <h1>Live Rooms</h1>
             <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+            <h1>Students</h1>
             <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
           </Col>
         </div>

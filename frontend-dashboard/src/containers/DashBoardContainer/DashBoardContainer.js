@@ -1,7 +1,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {ACTION_KEY as API_GATEWAY_ACTION,ACTION_ATTR as API_GATEWAY_ATTRS  }from '../../constants/apiGateWayConstant'
+import {
+  ACTION_KEY as API_GATEWAY_ACTION, ACTION_ATTR as API_GATEWAY_ATTRS,
+  ACTION_KEY as API_GATEWAY_KEYS
+} from '../../constants/apiGateWayConstant'
 
 import {actionCreateApiGateWayFactory} from '../../actions/actionCreator'
 
@@ -20,7 +23,8 @@ const mapDispatchToProps = (dispatch) => ({
     getFreeEventFromConsultant:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_FREE_EVENT_FROM_CONSULTANT, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     getNextEvent:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_USER_NEXT_EVENT, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
     getSuggestConsultantList:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_SUGGEST_CONSULTANT, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
+    getScheduleEvents:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_SCHEDULE_EVENTS, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
   }
-})
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(DashBoardView)

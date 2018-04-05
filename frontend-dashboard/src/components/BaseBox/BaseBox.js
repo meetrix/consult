@@ -9,7 +9,7 @@ class BaseBox extends Component{
     }
     render(){
         return(
-            <Col className="base-box">
+            <Col className="base-box" style={{maxWidth:800}}>
 
                 <Col>
 
