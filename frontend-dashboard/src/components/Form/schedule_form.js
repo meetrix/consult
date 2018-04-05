@@ -32,7 +32,7 @@ class ScheduleForm extends Component{
   }
 
   render(){
-    console.log("relatedUsers:22 "+this.props.relatedUsers[0].firstName);
+    
     return(
       <Form>
         <FormGroup>
@@ -51,6 +51,7 @@ class ScheduleForm extends Component{
           <Label>Select Student</Label>
         <ConsulteeSuggest onConsulteeChange={this.props.onConsulteeChange} relatedUsers={this.props.relatedUsers}/>
         </FormGroup>
+        {this.props.relatedUsers.length>0 &&
         <FormGroup>
           <Label>Select Student</Label>
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -64,6 +65,7 @@ class ScheduleForm extends Component{
         </DropdownMenu>
       </Dropdown>
         </FormGroup>
+        }
         <FormGroup>
           <Label for="exampleText">Description</Label>
           <Input type="textarea" name="text" id="exampleText" />
