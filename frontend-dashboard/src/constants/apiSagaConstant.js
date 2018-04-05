@@ -20,14 +20,17 @@ export const REDUX_ACTIONS = {
     CONSULTEE_TIME_SLOT_SELECT:'CONSULTEE_TIME_SLOT_SELECT',
     //select consultant
     SELECT_CONSULTANT:'SELECT_CONSULTANT',
+    VIEW_CONSULTANT_SUMMARY:'VIEW_CONSULTANT_SUMMARY',
 
     //set consultant id by admin
     SET_CONSULTANT_ID:'SET_CONSULTANT_ID',
+
 
     SET_CONSULTEES: 'SET_CONSULTEES',
 
     //user profile update
     PROFILE_UPDATED: 'PROFILE_UPDATED'
+
 
 }
 //user profile update action

@@ -20,6 +20,7 @@ class Consultants extends Component {
 
                 <Consultant  key={index}
                     {...consultant}
+                    index={index}
                     actions={this.props.actions}
                     columnWidth = {consultantCardColumnWidth}
                 />
