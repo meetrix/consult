@@ -20,6 +20,7 @@ class Consultants extends Component {
 
                 <Consultant  key={index}
                     {...consultant}
+                    index={index}
                     actions={this.props.actions}
                     columnWidth = {consultantCardColumnWidth}
                 />
@@ -48,8 +49,8 @@ class Consultants extends Component {
 
 Consultants.propTypes = {
     consultants: PropTypes.arrayOf(PropTypes.shape({
-        _id:PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
+        id:PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
 
     })),
     actions: PropTypes.object.isRequired

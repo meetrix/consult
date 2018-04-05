@@ -13,7 +13,8 @@ module.exports.update = (event, context, callback) => {
     }),
     user: Joi.object().keys({
       id: Joi.string().required(),
-      email: Joi.string().required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
 
     })
 
@@ -32,7 +33,7 @@ module.exports.update = (event, context, callback) => {
     });
   }
 
-  function eventUpdateWithUser(data) {
+  function eventBook(data) {
     const params = {
       TableName: process.env.EVENT_TABLE,
       Key: {
@@ -40,15 +41,9 @@ module.exports.update = (event, context, callback) => {
       },
       ExpressionAttributeValues: {
         ':updatedAt': timestamp,
-        ':user': [data.user],
-        ':booked': true,
-        ':empty_users':[]
+        ':booked': true
       },
-      ExpressionAttributeNames: {
-        '#u': 'users',
-
-      },
-      UpdateExpression: 'set #u= list_append(if_not_exists(#u, :empty_users), :user),booked=:booked,updatedAt= :updatedAt',
+      UpdateExpression: 'set booked=:booked,updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };
     // write the todo to the database
@@ -65,16 +60,17 @@ module.exports.update = (event, context, callback) => {
       });
     });
   }
-  function insertEventAndUserToMapper(eventData){
+  function insertEventAndUserToMapper(eventData,updateEvent){
     const timestamp = new Date().getTime();
     const params = {
       TableName: process.env.USER_EVENT_MAPPER_TABLE,
       Item: {
-        id: data.user.id,
-        eventId:data.event.id,
-        date:data.event.start,
-        createdAt: timestamp
-
+        userId: eventData.user.id,
+        eventId:eventData.event.id,
+        startDate:updateEvent.Attributes.start,
+        createdAt: timestamp,
+        firstName: eventData.user.firstName,
+        lastName: eventData.user.lastName,
       },
       ReturnValues: 'ALL_OLD',
     };
@@ -88,7 +84,7 @@ module.exports.update = (event, context, callback) => {
           reject(error);
         }
         else {
-          resolve(eventData)
+          resolve(data)
         }
       });
     });
@@ -131,9 +127,9 @@ module.exports.update = (event, context, callback) => {
 
   validate(data, schema).then((validateData)=>{
 
-    return eventUpdateWithUser(validateData).then((updateEvent)=>{
+    return eventBook(validateData).then((updateEvent)=>{
 
-      return insertEventAndUserToMapper(validateData)
+      return insertEventAndUserToMapper(validateData,updateEvent)
     })
 
   }).then((result)=>{

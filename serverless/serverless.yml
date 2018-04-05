@@ -209,8 +209,13 @@ functions:
               path: admin/relatedUser
               method: put
               cors: true
-
-
+  SuggestConsultants:
+        handler:  consultant/suggest/list.list
+        events:
+          - http:
+              path: consultant/suggest/{id}/{consultantRole}
+              method: get
+              cors: true
 
 
 resources:
