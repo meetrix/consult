@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Row,Col,ListGroup,ListGroupItem,Card,CardHeader,CardBody} from 'reactstrap';
+import {Row,Col,ListGroup,ListGroupItem,Card,CardHeader,CardBody,CardImg} from 'reactstrap';
 
 class AdminPanel extends Component{
 
@@ -32,6 +32,7 @@ class AdminPanel extends Component{
           <Row>
             <Col xs="12" sm="6">
               <Card>
+                <CardImg top width="100%" src="img/classes/teacher.jpg" alt="Card image cap" />
                 <CardHeader>
                   <strong>Teachers</strong>
                 </CardHeader>
@@ -46,6 +47,7 @@ class AdminPanel extends Component{
             </Col>
             <Col xs="12" sm="6">
               <Card>
+                <CardImg top width="100%" src="img/classes/studentgirl2.jpg" alt="Card image cap" />
                 <CardHeader>
                   <strong>Students</strong>
                 </CardHeader>

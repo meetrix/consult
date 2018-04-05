@@ -16,6 +16,7 @@ import {
     DropdownMenu,
     DropdownItem,
     Card,
+    CardImg,
     CardHeader,
     CardFooter,
     CardBody,
@@ -91,6 +92,7 @@ class UserProfile extends Component{
                   <Alert color="success">Profile Updated Successfully!</Alert>
                 }
                 <Card>
+                  <CardImg top width="100%" src="img/classes/profile.jpg" alt="Card image cap" />
                   <CardHeader>
                     <strong>{this.props.user.firstName}</strong>
                     {/*<small> Form</small>*/}
