@@ -12,31 +12,37 @@ import PropTypes from 'prop-types';
 import Consultant from './Consultant';
 
 class Consultants extends Component {
-  getConsultantCardColumns(consultantsInRow) {
-    const consultantCardColumnWidth = 4;
-    return (
-      consultantsInRow.map((consultant, index) =>
+    getConsultantCardColumns(consultantsInRow){
+        let consultantCardColumnWidth = 4;
+        return (
+            consultantsInRow.map((consultant, index) =>
 
-        (<Consultant
-        /* eslint react/no-array-index-key:0 */
-          key={index}
-          {...consultant}
-          actions={this.props.actions}
-          columnWidth={consultantCardColumnWidth}
-        />))
-    );
-  }
+                <Consultant  key={index}
+                    {...consultant}
+                    index={index}
+                    actions={this.props.actions}
+                    columnWidth = {consultantCardColumnWidth}
+                />
 
-  render() {
-    const rows = [];
-    const numberOfCardsInRow = 3;
-    for (let i = 0; i < this.props.consultants.length; i += numberOfCardsInRow) {
-      const element = (
-        <Row className="consultant-array" key={i}>
-          {this.getConsultantCardColumns(this.props.consultants.slice(i, i + numberOfCardsInRow))}
-        </Row>
-      );
-      rows.push(element);
+            )
+        )
+    }
+
+    render() {
+        var rows=[];
+        let numberOfCardsInRow = 3;
+        for(let i=0; i<this.props.consultants.length ; i=i+numberOfCardsInRow){
+            rows.push(
+                <Row className="consultant-array" key={i}>
+                    {this.getConsultantCardColumns(this.props.consultants.slice(i,i+numberOfCardsInRow))}
+                </Row>
+            )
+        }
+        return(
+            <Fragment>
+                {rows}
+            </Fragment>
+        )
     }
     return (
       <Fragment>
@@ -47,10 +53,9 @@ class Consultants extends Component {
 }
 
 Consultants.propTypes = {
-  consultants: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-
+    consultants: PropTypes.arrayOf(PropTypes.shape({
+        id:PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
   })).isRequired,
   actions: PropTypes.shape.isRequired,
 

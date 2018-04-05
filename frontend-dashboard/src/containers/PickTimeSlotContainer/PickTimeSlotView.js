@@ -42,14 +42,14 @@ class PickTimeSlotView extends Component {
       });
     } else {
       this.props.actions.scheduleConsultant({
-        event: {
-          id: this.props.user.selectSlot.timeSlot.id,
-        },
-        user: {
-          id: this.props.user.id,
-          email: this.props.user.email,
-        },
-      });
+          event:{
+            id:this.props.user.selectSlot.timeSlot.id
+          },
+          user:{
+          id:this.props.user.id,
+          firstName:this.props.user.firstName,
+          lastName:this.props.user.lastName
+        }});
     }
   }
 

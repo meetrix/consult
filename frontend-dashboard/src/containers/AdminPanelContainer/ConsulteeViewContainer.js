@@ -12,12 +12,12 @@ function mapStateToProps(state) {
     admin: state.admin,
   });
 }
+const mapDispatchToProps =(dispatch)=>({
+  action:{
+    getConsultants: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.GET_CONSULTANTS,API_GATEWAY_ATTR.PAYLOAD),dispatch),
+    updateRelatedUsers: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.UPDATE_RELATED_USERS,API_GATEWAY_ATTR.PAYLOAD,API_GATEWAY_ATTR.DATA),dispatch),
 
-const mapDispatchToProps = dispatch => ({
-  action: {
-    /* eslint max-len : 0 */
-    updateRelatedUsers: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_KEYS.UPDATE_RELATED_USERS, API_GATEWAY_ATTR.PAYLOAD), dispatch),
-  },
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConsulteeView);

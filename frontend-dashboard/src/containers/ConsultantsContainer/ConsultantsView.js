@@ -12,51 +12,61 @@ import SortByRadioButtons from '../../components/Search/SortByRadioButtons/SortB
 import TextSearch from '../../components/Search/TextSearch/TextSearch';
 
 class ConsultantsView extends Component {
-  componentWillMount() {
-    this.props.actions.getPets();
-  }
-  render() {
-    return (
-      <div>
-        {/* Search Parameters */}
-        <Row>
-          {/* Search by Name */}
-          <Col xs="12" md="6">
-            <TextSearch label="textsearch" name="textsearch" placeHolder="textsearch" />
-          </Col>
+    componentWillMount(){
+        
+    }
+    render() {
+        let view = null;
+        if(this.props.consultants!==undefined){
+                view =  <Consultants consultants={this.props.consultants} actions={this.props.actions} />
+           
+        }
+        return(
+            <div>
+                {/* <Row>
+                    
+                    <Col xs="12" md="6">
+                        <TextSearch label="textsearch" name="textsearch" placeHolder="textsearch"/>
+                    </Col>
 
-          {/* Sort By Radio Buttons */}
-          <Col xs="12" md="6">
-            <SortByRadioButtons label="Sort" name="sortBy" radioButtons={this.props.radioButtons} />
-          </Col>
-        </Row>
+                    <Col xs="12" md="6">
+                        <SortByRadioButtons label="Sort" name="sortBy" radioButtons={this.props.radioButtons}/>
+                    </Col>
+                </Row>
 
-        {/* Criteria Selection */}
-        <Row>
-          <DropDownMenuSet dropDownMenus={this.props.dropDownMenus} />
-        </Row>
-        <Consultants consultants={this.props.consultants} actions={this.props.actions} />
-      </div>
-    );
-  }
+                <Row>
+                    <DropDownMenuSet dropDownMenus={this.props.dropDownMenus}/>
+                </Row> */}
+            {view}
+            </div>
+        )
+    }
 }
 
 ConsultantsView.propTypes = {
-  dropDownMenus: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    label: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.string),
-  })).isRequired,
-  radioButtons: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-  })).isRequired,
-  consultants: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    dropDownMenus : PropTypes.arrayOf(
+        PropTypes.shape(
+            {
+                name: PropTypes.string,
+                label: PropTypes.string,
+                options: PropTypes.arrayOf(PropTypes.string)
+            }
+        )
+    ),
+    radioButtons : PropTypes.arrayOf(
+        PropTypes.shape(
+            {
+                label: PropTypes.string
+            }
+        )
+    ),
+    consultants: PropTypes.arrayOf(PropTypes.shape({
+            id:PropTypes.string,
+        firstName: PropTypes.string.isRequired,
 
 
-  })).isRequired,
-  actions: PropTypes.shape.isRequired,
+    })),
+    actions: PropTypes.object.isRequired
 
 };
 

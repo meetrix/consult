@@ -63,7 +63,6 @@ class Consultant extends Component {
                       </Row>
                     </Col>
                   </Row>
-
                   <Row>
                     <Col xs="12" md="6">
                       <Row >
@@ -134,7 +133,6 @@ class Consultant extends Component {
 Consultant.propTypes = {
   username: PropTypes.string.isRequired,
   columnWidth: PropTypes.number.isRequired,
-
 };
 
 export default Consultant;

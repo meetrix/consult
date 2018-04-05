@@ -15,7 +15,7 @@ module.exports.update = (event, context, callback) => {
     start: Joi.string().required(),
     end: Joi.string().required(),
     title: Joi.string().required(),
-    consultee: Joi.string().required(),
+    consultee: Joi.object().required(),
     booked:Joi.boolean().required()
   });
 
@@ -51,7 +51,7 @@ module.exports.update = (event, context, callback) => {
         '#startAt': 'start',
         '#endAt' : 'end'
       },
-      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,consultee=:consultee,booked=:booked,updatedAt= :updatedAt',
+      UpdateExpression: 'SET #startAt=:start,#endAt=:end,title=:title,booked=:booked,updatedAt= :updatedAt',
       ReturnValues: 'ALL_NEW',
     };
 

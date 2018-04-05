@@ -119,7 +119,7 @@ module.exports.create = (event, context, callback) => {
     const timestamp = new Date().getTime();
     //const TableName = process.env.USER_EVENT_MAPPER_TABLE;
     const params = {
-      
+
       RequestItems:{
         "UserEventMapper" : [
           {
@@ -128,7 +128,7 @@ module.exports.create = (event, context, callback) => {
                 "userId":eventData.data.consultant.id,
                 "startDate":eventData.data.start,
                 "eventId":eventData.id,
-                "eventTitle":eventData.title,
+                "eventTitle":eventData.data.title,
                 "userFirstName":eventData.data.consultant.firstName,
                 "userLastName":eventData.data.consultant.lastName,
               }
@@ -221,8 +221,6 @@ module.exports.create = (event, context, callback) => {
 
 
   validate(data, schema).then((result)=>{
-
-
        return  handler(result).then((eventData)=>{
          return insertEventAndUserToMapper(eventData)
 
