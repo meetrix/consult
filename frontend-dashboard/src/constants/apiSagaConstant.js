@@ -24,7 +24,10 @@ export const REDUX_ACTIONS = {
     //set consultant id by admin
     SET_CONSULTANT_ID:'SET_CONSULTANT_ID',
 
-    SET_CONSULTEES: 'SET_CONSULTEES'
+    SET_CONSULTEES: 'SET_CONSULTEES',
+
+    //user profile update
+    PROFILE_UPDATED: 'PROFILE_UPDATED'
 
 }
 //user profile update action

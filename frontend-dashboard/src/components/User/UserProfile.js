@@ -7,6 +7,7 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 import {
+    Alert,
     Row,
     Col,
     Button,
@@ -46,6 +47,12 @@ class UserProfile extends Component{
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    componentDidMount(){
+      this.props.actions.profileUpdated({
+        profile_updated : false
+      })
+    }
+
     toggle() {
         this.setState({ collapse: !this.state.collapse });
     }
@@ -74,12 +81,15 @@ class UserProfile extends Component{
     }
 
     render() {
-      
+
         return (
           <div className="animated fadeIn">
             <Row>
 
               <Col xs="12" sm="6">
+                {this.props.user.profile_updated &&
+                  <Alert color="success">Profile Updated Successfully!</Alert>
+                }
                 <Card>
                   <CardHeader>
                     <strong>{this.props.user.firstName}</strong>
@@ -171,7 +181,7 @@ class UserProfile extends Component{
             </Row>
           </div>
         )
-      
+
     }
 
 }

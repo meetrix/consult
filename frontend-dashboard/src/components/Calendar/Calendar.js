@@ -102,9 +102,6 @@ class Calendar extends Component{
     this.props.actions.setConsultees({
 
     })
-    // this.setState({
-
-    // })
   }
 
   toggle() {

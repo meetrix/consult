@@ -92,6 +92,14 @@ export default (state = STORE_INITIATE_VALUE.AUTH_INITIATE, action) => {
             nextEvent: action.payload.Items[0]
           }
         }
+      case REDUX_API_GATEWAY_ACTIONS.UPDATE_PROFILE_INFO_SUCCESS:
+        return{
+          ...state,
+          user: {
+            ...state.user,
+            profile_updated: true
+          }
+        }
       default:
           return state;
     }
