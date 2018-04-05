@@ -1,18 +1,19 @@
-'use strict';
-const dynamodb = require('../../dynamodb');
+'use strict'
+
+const uuid = require('uuid');
+const dynamodb = require('./dynamodb');
 const Joi = require('joi');
 const Boom = require('boom');
 
-
-
-module.exports.get = (event, context, callback) => {
-
+module.exports.list = (event, context, callback) =>{
   const data = {
-    id: event.queryStringParameters.id
+    id: event.pathParameters.id,
+    consultantRole: event.pathParameters.consultantRole,
   };
 
   const schema = Joi.object().keys({
-    id: Joi.string().required()
+    id: Joi.string().required(),
+    consultantRole: Joi.string().required()
   });
 
   function validate  (data, schema) {
@@ -28,27 +29,22 @@ module.exports.get = (event, context, callback) => {
     });
   }
 
+  function handler(data) {
 
-  function handler(validData) {
-    let currentDate = new Date().toISOString();
     const params = {
-      TableName: process.env.USER_EVENT_MAPPER_TABLE,
-      KeyConditionExpression: 'userId = :value AND #eventStartDate >= :date', // a string representing a constraint on the attribute
-      // a string representing a constraint on the attribute
-      ExpressionAttributeNames: { // a map of substitutions for attribute names with special characters
-        '#eventStartDate': 'startDate'
+      TableName: process.env.USER_TABLE,
+      Limit: 10, 
+      FilterExpression: '#attribute_name = :value', 
+      ExpressionAttributeNames: { 
+        '#attribute_name': 'role'
       },
-      ExpressionAttributeValues: { // a map of substitutions for all attribute values
-        ':value': validData.id,
-        ':date': currentDate
+      ExpressionAttributeValues: { 
+      ':value': data.consultantRole
       },
-      ScanIndexForward: true, // optional (true | false) defines direction of Query in the index
-      Limit: 1, // optional (limit the number of items to evaluate)
-      ConsistentRead: false,
     };
     // fetch from db
     return new Promise((resolve, reject)=>{
-      dynamodb.query(params, (error, result) => {
+      dynamodb.scan(params, (error, result) => {
         // handle potential errors
         if (error) {
           console.error(error);
@@ -61,8 +57,9 @@ module.exports.get = (event, context, callback) => {
     });
   }
 
-  validate(data,schema).then((result)=>{
-    return handler(result)
+
+  validate(data, schema).then((result)=>{
+    return handler(result);
   }).then((result)=>{
     // create a response
     const response = {
@@ -73,12 +70,11 @@ module.exports.get = (event, context, callback) => {
     callback(null, response);
   }).
   catch((err)=>{
-    console.error('Validation Failed');
     callback(null, {
       headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*",'Access-Control-Allow-Credentials':"true" },
-      body: JSON.stringify(err)
+      ...err
     });
   })
 
 
-};
+}

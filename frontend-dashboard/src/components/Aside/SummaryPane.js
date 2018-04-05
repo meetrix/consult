@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TabContent, TabPane, Badge} from 'reactstrap';
+import {TabContent, TabPane, Badge, Col} from 'reactstrap';
 import DayPicker from 'react-day-picker';
 import moment from 'moment'
 import CountDownComponent from '../../components/CountDown/CountDownComponent'
@@ -10,16 +10,15 @@ class SummaryPane extends Component {
 
     let nextEvent = undefined,year =undefined,month=undefined,day = undefined;
     let countDown = undefined ;
+    let ele = undefined;
     if(this.props.auth.user.nextEvent!==undefined){
-      nextEvent = new Date(this.props.auth.user.nextEvent.date);
+      nextEvent = new Date(this.props.auth.user.nextEvent.startDate);
       year = nextEvent.getFullYear();
       month = nextEvent.getMonth();
       day = nextEvent.getMinutes();
       countDown = <CountDownComponent date={nextEvent.toISOString()}/>;
-    }
-
-    return (
-      <TabPane tabId="1">
+      ele = 
+        <TabPane tabId="1">
         <div className="card text-white bg-primary text-center">
           <div className="card-body">
             <h3>Next Class</h3>
@@ -47,6 +46,41 @@ class SummaryPane extends Component {
           {/*</div>*/}
         </div>
       </TabPane>
+      
+    }
+    else{
+      ele = 
+        <TabPane tabId="1">
+        <div className="card text-white bg-primary text-center">
+          <div className="card-body">
+            <Badge>Please Schedule Class </Badge>
+            
+          </div>
+        </div>
+
+        <div className="card text-white bg-primary text-center">
+          <div className="card-header">Today</div>
+          <div className="card-body">
+                            <span className="fa-stack fa-3x">
+                                <i className="fa fa-calendar-o fa-stack-2x"/>
+                                <span className="fa-stack-1x calendar-text">27</span>
+                            </span>
+          </div>
+        </div>
+
+
+        <div className="card text-white bg-primary text-center">
+          {/*<div className="card-body">*/}
+          <DayPicker />
+          {/*</div>*/}
+        </div>
+      </TabPane>
+      
+    }
+
+    return (
+      <Col>{ele}</Col>
+      
     )
   }
 }

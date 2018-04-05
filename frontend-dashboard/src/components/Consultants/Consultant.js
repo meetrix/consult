@@ -60,7 +60,7 @@ class Consultant extends Component {
                                         <Col xs="12" md="6">
                                             <Row>
                                                 <Col >
-                                                    <h6 style={{color:'blue'}}>{this.props.username}</h6>
+                                                    <h6 style={{color:'blue'}}>{this.props.firstName}</h6>
                                                 </Col>
                                             </Row>
                                             <Row>
@@ -101,7 +101,7 @@ class Consultant extends Component {
                         </Col>
                     </Row>
                 </div>
-                <div className="consultant">
+                {/* <div className="consultant">
                 <Row className="consultant-price"><p>1000/ - per session</p> </Row>
                 <Row >
                     <Col className="consultant-image" xs="12" md="6">
@@ -137,7 +137,7 @@ class Consultant extends Component {
                         </Row>
                         </Col>
                 </Row>
-                </div>
+                </div> */}
 
             </Col>
 
@@ -148,8 +148,8 @@ class Consultant extends Component {
 }
 
 Consultant.propTypes = {
-    _id:PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    id:PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
     actions:PropTypes.object.isRequired,
     columnWidth: PropTypes.number.isRequired
 

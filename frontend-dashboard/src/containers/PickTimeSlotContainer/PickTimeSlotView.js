@@ -48,7 +48,8 @@ class PickTimeSlotView extends Component{
           },
           user:{
           id:this.props.user.id,
-          email:this.props.user .email
+          firstName:this.props.user.firstName,
+          lastName:this.props.user.lastName
         }});
     }
   }

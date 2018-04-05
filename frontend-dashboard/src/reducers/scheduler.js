@@ -82,7 +82,7 @@ export default (state = STORE_INITIATE_VALUE.EVENT_INITIALE, action) => {
 
       }
     case REDUX_API_GATEWAY_ACTIONS.SCHEDULE_TIME_SLOT_CONSULTEE_SUCCESS:
-      const updatedEvents = state.events.filter(event => event.id != action.args.event.id);
+      const updatedEvents = state.events.filter(event => event.id != action.payload.Attributes.eventId);
       return{
         ...state,
         events: updatedEvents

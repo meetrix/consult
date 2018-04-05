@@ -15,7 +15,7 @@ import {ConsultantSortByRadioButtons, ConsultantSearchDropDownMenu} from '../../
 
 function mapStateToProps(state){
     return {
-        consultants: [{_id:'1',username:'supun'},{_id:'2',username:'supun'},{_id:'3',username:'supun'}],
+        consultants: state.consultants,
         radioButtons: ConsultantSortByRadioButtons,
         dropDownMenus: ConsultantSearchDropDownMenu
     }
@@ -24,8 +24,6 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => ({
     actions:{
         getConsultants:bindActionCreators(actionCreatorFactory(KEYS.CONSULTS, ATTRS.PAYLOAD),dispatch),
-        getPets:bindActionCreators(actionCreateApiGateWayFactory(API_GATWAY_KEYS.GETPETS,API_GATEWAY_ATTRS.PAYLOAD),dispatch)
-
     }
 })
 

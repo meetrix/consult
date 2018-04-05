@@ -7,7 +7,7 @@ class TextSearch extends Component {
         return (
                 <InputGroup>
                     <Input type="text" name={this.props.name} placeholder={this.props.placeHolder}/>
-                    <InputGroupAddon addontype="append">
+                    <InputGroupAddon addonType="append">
                         <span className="fa fa-search"></span>
                     </InputGroupAddon>
                 </InputGroup>
