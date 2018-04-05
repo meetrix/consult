@@ -10,6 +10,7 @@ import ConsultantsContainer from '../../containers/ConsultantsContainer/Consulta
 import VideoContainer from '../../containers/VideoContainer/VideoContainer';
 import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer';
 import ClassCardContainer from '../../containers/DashBoardContainer/ClassCardContainer';
+import ConsulteeCardContainer from '../../containers/DashBoardContainer/ConsulteeCardContainer';
 //constant
 import role from '../../../ProjectConfiguration/role.json';
 
@@ -127,7 +128,7 @@ class DashBoardView extends Component {
             <h1>Live Rooms</h1>
             <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
             <h1>Students</h1>
-            <Row className="dash-board-component-wrapper"><VideoContainer/></Row>
+            <Row className="dash-board-component-wrapper"><ConsulteeCardContainer/></Row>
           </Col>
         </div>
     }
