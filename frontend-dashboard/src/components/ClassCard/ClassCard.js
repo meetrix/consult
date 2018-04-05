@@ -23,7 +23,7 @@ class ClassCard extends Component{
           <CardBody>
             <CardTitle>{this.props.event.title}</CardTitle>
             <CardSubtitle>At :</CardSubtitle>
-            <CardText>7 30 AM</CardText>
+            <CardText>{this.props.event.start.toISOString()}</CardText>
             <CardSubtitle>With : </CardSubtitle>
             <CardText>Yasith Prabuddhaka</CardText>
             <Button>Change</Button>
