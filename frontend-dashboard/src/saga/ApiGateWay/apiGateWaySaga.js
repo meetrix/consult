@@ -7,7 +7,7 @@ import { REDUX_API_GATEWAY_ACTIONS } from '../../constants/apiGateWayConstant';
 import metadata from './metadata';
 
 
-import { api } from './api';
+import api from './api';
 
 /**
  * Perform a socket send based on the meta data available corresponding to the request type
@@ -31,7 +31,6 @@ function apiGateWayHandler({ key, payload }) {
     //   },
     //   body:payload
     // }
-
     return api(method, endPoint, apiRoute, failureAction, successAction, token, payload);
   });
 }
@@ -46,7 +45,7 @@ function* apiGateWayActionHandler(action) {
     yield put({ ...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_SUCCESS });
     // console.log("reply")
     // console.log(reply)
-    yield put({type: reply.successAction, payload: reply.res, args: {payload:action.payload, data:action.data}});
+    yield put({ type: reply.successAction, payload: reply.res, args: { payload: action.payload, data: action.data } });
   } catch (reply) {
     yield put({ ...action, type: REDUX_API_GATEWAY_ACTIONS.API_GATEWAY_FETCHING_FAILURE });
     yield put({ type: reply.failureAction, payload: reply.err, args: { ...action.payload, ...action.args } });

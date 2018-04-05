@@ -5,21 +5,20 @@ import { API } from 'aws-amplify';
 
 
 const pathParam = (payload, url) => {
-  let newUrl;
   const payloadClone = { ...payload };
   const pathTokens = url.split('/:');
   if (url.indexOf('/:') !== 0) {
     pathTokens.shift();
   }
-
+  /* eslint no-param-reassign:0 */
   pathTokens.forEach((token) => {
     const paramKey = token.split('/')[0];
-    newUrl = url.replace(`/:${paramKey}`, `${payloadClone[paramKey]}`);
+    url = url.replace(`/:${paramKey}`, `${payloadClone[paramKey]}`);
 
     // Assume that same data will not be sent as both path param and query/body
     delete payloadClone[paramKey];
   });
-  return newUrl;
+  return url;
 };
 const api = (method, endPoint, apiRoute, failureAction, successAction, token, payload) => {
   let options;

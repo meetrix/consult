@@ -4,7 +4,7 @@
 
 // constant
 import { REDUX_ACTIONS, USER_PROFILE } from '../constants/apiSagaConstant';
-import { STORE_INITIATE_VALUE } from '../constants/initialstore';
+import STORE_INITIATE_VALUE from '../constants/initialstore';
 import { REDUX_AWS_AMPLIFY_ACTIONS } from '../constants/apiAmlifyConstant';
 import { REDUX_API_GATEWAY_ACTIONS } from '../constants/apiGateWayConstant';
 

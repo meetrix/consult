@@ -53,6 +53,6 @@ class SummaryPane extends Component {
   }
 }
 SummaryPane.propTypes = {
-  auth: PropTypes.shape.isRequired,
+  auth: PropTypes.shape().isRequired,
 };
 export default SummaryPane;

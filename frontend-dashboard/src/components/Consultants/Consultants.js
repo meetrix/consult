@@ -46,7 +46,7 @@ Consultants.propTypes = {
     id: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
   })).isRequired,
-  actions: PropTypes.shape.isRequired,
+  actions: PropTypes.shape().isRequired,
 
 };
 

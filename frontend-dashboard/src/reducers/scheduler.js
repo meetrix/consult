@@ -8,7 +8,7 @@ import moment from 'moment';
 import { REDUX_API_GATEWAY_ACTIONS } from '../constants/apiGateWayConstant';
 
 // intiate store constant
-import { STORE_INITIATE_VALUE } from '../constants/initialstore';
+import STORE_INITIATE_VALUE from '../constants/initialstore';
 import { REDUX_ACTIONS } from '../constants/apiSagaConstant';
 
 // convert event

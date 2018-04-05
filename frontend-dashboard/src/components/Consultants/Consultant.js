@@ -85,53 +85,17 @@ class Consultant extends Component {
             </Col>
           </Row>
         </div>
-        <div className="consultant">
-          <Row className="consultant-price"><p>1000/ - per session</p> </Row>
-          <Row >
-            <Col className="consultant-image" xs="12" md="6">
-              <img alt="Avatar" src="img/avatars/1.jpg" />
-            </Col>
-            <Col xs="12" md="6">
-              <Row>
-                <Col >
-                  <p >{this.props.username}</p>
-                </Col>
-              </Row>
-              <Row>
-                <Col >
-                  <ReactStars count={5} onChange={this.ratingChanged} size={24} color2="#ffd700" />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs="12" md="6">
-              <Row >
-                <Col xs="12" md="6">Experts Area</Col>
-              </Row>
-              <Row>
-                <Col xs={{ size: 'auto', offset: 1 }} md={{ size: 'auto', offset: 1 }}>Technology</Col>
-              </Row>
-              <Row >
-                <Col xs={{ size: 'auto', offset: 2 }} md={{ size: 'auto', offset: 2 }}>C</Col>
-              </Row>
-              <Row >
-                <Col xs={{ size: 'auto', offset: 2 }} md={{ size: 'auto', offset: 2 }}>Java</Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
-
       </Col>
 
 
     );
   }
 }
-
+Consultant.defaultProps = {
+  username: '',
+};
 Consultant.propTypes = {
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   columnWidth: PropTypes.number.isRequired,
 };
 

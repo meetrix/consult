@@ -7,8 +7,8 @@ import { all } from 'redux-saga/effects';
 
 // Sagas
 import { takeEveryFetchSaga, takeLatestFetchSaga } from './Saga/fetchSaga';
-import { takeEveryApiGateWaySaga } from './ApiGateWay/apiGateWaySaga';
-import { takeEveryAwsAmplifySaga } from './AwsAmlify/awsAmlify';
+import takeEveryApiGateWaySaga from './ApiGateWay/apiGateWaySaga';
+import takeEveryAwsAmplifySaga from './AwsAmlify/awsAmlify';
 
 
 /**

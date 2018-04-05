@@ -35,6 +35,6 @@ class MessagePane extends Component {
   }
 }
 MessagePane.propTypes = {
-  messages: PropTypes.arrayOf.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 export default MessagePane;
