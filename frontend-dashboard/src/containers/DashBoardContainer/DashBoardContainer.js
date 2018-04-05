@@ -13,12 +13,12 @@ function mapStateToProps(state) {
     scheduler: state.scheduler,
   };
 }
-const mapDispatchToProps = (dispatch) => ({
-  //TODO
-  actions:{
-    getFreeEventFromConsultant:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_FREE_EVENT_FROM_CONSULTANT, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
-    getNextEvent:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_USER_NEXT_EVENT, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
-    getSuggestConsultantList:bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_SUGGEST_CONSULTANT, API_GATEWAY_ATTRS.PAYLOAD),dispatch),
-  }
-})
+const mapDispatchToProps = dispatch => ({
+  // TODO
+  actions: {
+    getFreeEventFromConsultant: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_FREE_EVENT_FROM_CONSULTANT, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
+    getNextEvent: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_USER_NEXT_EVENT, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
+    getSuggestConsultantList: bindActionCreators(actionCreateApiGateWayFactory(API_GATEWAY_ACTION.GET_SUGGEST_CONSULTANT, API_GATEWAY_ATTRS.PAYLOAD), dispatch),
+  },
+});
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoardView);

@@ -5,7 +5,7 @@ import Amplify from 'aws-amplify';
 import { withAuthenticator, VerifyContact } from 'aws-amplify-react';
 
 // aws cognito configuration
-import { awsExports } from '../../../../aws_exports';
+import awsExports from '../../../../aws_exports';
 
 // Custom Sign Up Ui
 import CustomSignIn from '../../../components/AutheticationForm/CustomSignIn';

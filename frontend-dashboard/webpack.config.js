@@ -12,7 +12,7 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 
 module.exports = (env = {}) => ({
   entry: {
-    index: ['babel-polyfill', `${SRC_DIR}  /index.js`],
+    index: ['babel-polyfill', `${SRC_DIR}/index.js`],
   },
   output: {
     path: BUILD_DIR,
