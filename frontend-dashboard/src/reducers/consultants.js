@@ -17,7 +17,16 @@ export default (state = STORE_INITIATE_VALUE.CONSULTANT_INITIATE, action) => {
       };
     }
     case REDUX_API_GATEWAY_ACTIONS.GET_SUGGEST_CONSULTANT_SUCCESS: {
-      return action.payload.Items;
+      return {
+        ...state,
+        consultantsData: action.payload.Items,
+      };
+    }
+    case REDUX_ACTIONS.VIEW_CONSULTANT_SUMMARY: {
+      return {
+        ...state,
+        selectedIndex: action.payload.consultantIndex,
+      };
     }
     default:
       return state;

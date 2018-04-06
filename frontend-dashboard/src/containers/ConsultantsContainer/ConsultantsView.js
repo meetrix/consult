@@ -12,7 +12,7 @@ class ConsultantsView extends Component {
   render() {
     let view = null;
     if (this.props.consultants !== undefined) {
-      view = <Consultants consultants={this.props.consultants} actions={this.props.actions} />;
+      view = <Consultants consultants={this.props.consultants.consultantsData} actions={this.props.actions} />;
     }
     /* eslint max-len:0 */
     return (
@@ -46,10 +46,7 @@ ConsultantsView.propTypes = {
 //   radioButtons: PropTypes.arrayOf(PropTypes.shape({
 //         label: PropTypes.string,
 //       },),),
-  consultants: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    firstName: PropTypes.string.isRequired,
-  })).isRequired,
+  consultants: PropTypes.shape().isRequired,
   actions: PropTypes.shape().isRequired,
 
 };

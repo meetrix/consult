@@ -30,6 +30,5 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PickTimeSlotView);/**
- * Created by supun on 18/02/18.
- */
+export default connect(mapStateToProps, mapDispatchToProps)(PickTimeSlotView);
+

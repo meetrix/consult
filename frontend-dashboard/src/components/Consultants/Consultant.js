@@ -22,11 +22,11 @@ class Consultant extends Component {
     super(props);
 
     this.ratingChanged = this.ratingChanged.bind(this);
+    this._viewConsultantSummary = this._viewConsultantSummary.bind(this);
   }
-
-  componentWillMount() {
+  _viewConsultantSummary() {
+    this.props.actions.viewConsultantSummary({ consultantIndex: this.props.index });
   }
-
   ratingChanged(newRating) {
     /* eslint no-unused-vars:0 */
     const rate = newRating;
@@ -80,6 +80,7 @@ class Consultant extends Component {
                 </CardBody>
                 <CardFooter>
                   <Button color="warning" className="float-right"><i className="fa fa-calendar" />&nbsp; Time Slot</Button>
+                  <Button onClick={this._viewConsultantSummary} className="float-left"><i style={{ backgroudColor: 'blue' }} className="fa fa-user-circle" />&nbsp; View</Button>
                 </CardFooter>
               </Card>
             </Col>
@@ -97,6 +98,8 @@ Consultant.defaultProps = {
 Consultant.propTypes = {
   username: PropTypes.string,
   columnWidth: PropTypes.number.isRequired,
+  actions: PropTypes.shape().isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Consultant;

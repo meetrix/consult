@@ -10,6 +10,7 @@ import ConsultantLiveContainer from '../../containers/ConsultantLiveContainer/Co
 import ConsultantsContainer from '../../containers/ConsultantsContainer/ConsultantsContainer';
 import VideoContainer from '../../containers/VideoContainer/VideoContainer';
 import PickTimeSlotContainer from '../../containers/PickTimeSlotContainer/PickTimeSlotContainer';
+import ConsultantView from '../../components/Consultants/ConsultantView';
 // constant
 import role from '../../../ProjectConfiguration/role.json';
 
@@ -90,20 +91,22 @@ class DashBoardView extends Component {
                 </Form>
               </Row>
             );
-      } else {
+      } else if (this.props.consultants.selectedIndex !== -1) {
+        consultantList = <ConsultantView actions={this.props.actions} />;
+      } else if (this.props.consultants.selectedIndex === -1) {
         consultantList =
-          (
-            <div className="animated fadeIn">
-              <Col>
-                <Alert color="warning" >Suggest Consulants</Alert>
-                <Row className="dash-board-component-wrapper"> <ConsultantsContainer /> </Row>
-                {/* <Alert>Suggest Consulants</Alert>
-                <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
-                <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
-                <Row className="dash-board-component-wrapper"><VideoContainer/></Row> */}
-              </Col>
-            </div>
-          );
+        (
+          <div className="animated fadeIn">
+            <Col>
+              <Alert color="warning" >Suggest Consulants</Alert>
+              <Row className="dash-board-component-wrapper"> <ConsultantsContainer /> </Row>
+              {/* <Alert>Suggest Consulants</Alert>
+              <Row className="dash-board-component-wrapper"><ConsultantLiveContainer/></Row>
+              <Row className="dash-board-component-wrapper"><LiveRoomContainer/></Row>
+              <Row className="dash-board-component-wrapper"><VideoContainer/></Row> */}
+            </Col>
+          </div>
+        );
       }
     } else if (this.props.auth.user.role === role.consultant) {
       view =
@@ -142,6 +145,7 @@ DashBoardView.propTypes = {
     }),
   }).isRequired,
   scheduler: PropTypes.shape().isRequired,
+  consultants: PropTypes.shape().isRequired,
   actions: PropTypes.shape().isRequired,
 };
 export default DashBoardView;

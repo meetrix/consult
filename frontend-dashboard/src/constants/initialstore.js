@@ -27,8 +27,11 @@ const STORE_INITIATE_VALUE = {
   CUSTOMIZE_INITIATE: {
     footer: Branding.footer,
   },
-  CONSULTANT_INITIATE: [
-  ],
+  CONSULTANT_INITIATE: {
+    consultantsData: [],
+    selectedConsultants: {},
+    selectedIndex: -1,
+  },
 };
 
 export default STORE_INITIATE_VALUE;
