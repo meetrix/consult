@@ -118,13 +118,19 @@ functions:
             path: schedule
             method: delete
             cors: true
-
   UpdateEventSchedule:
           handler: scheduler/eventSchedule.update
           events:
             - http:
                 path: user/event/schedule
                 method: put
+                cors: true
+  getEventUsers:
+          handler: scheduler/user/get.get
+          events:
+            - http:
+                path: schedule/user
+                method: get
                 cors: true
 
 
@@ -257,7 +263,7 @@ resources:
 
     UserEventMapperDynamoDbTable:
               Type: 'AWS::DynamoDB::Table'
-              
+
               Properties:
                 AttributeDefinitions:
                   -
